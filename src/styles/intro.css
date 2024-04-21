@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 800px;
+    min-height: 800px;
     background: linear-gradient(180deg, #E1D13D 0%, #DF631E 100%);
 
 
@@ -78,6 +78,9 @@
 }
 
 @media (max-width: 768px){
+    .intro-cointainer{
+        height: auto;
+    }
     .intro-left{
         width: 100%;
     }

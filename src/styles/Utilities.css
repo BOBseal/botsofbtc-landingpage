@@ -1,6 +1,6 @@
 .util-container{
     font-family: "Fredoka", sans-serif;
-    min-height: 300px;
+   
     padding: 50px;
     background: linear-gradient(180deg, #8C1D52 0%, #111037 100%);
     color: white;
@@ -14,6 +14,15 @@
     margin-bottom: 10px;
 }
 
+.util-container li {
+    padding: 5px;
+}
+
+.util-container h3 {
+    font-weight: 600;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
 .util-container p {
     padding-top: 30px;
     line-height: 28px;
@@ -25,6 +34,10 @@
 }
 
 @media (max-width: 768px){
+    .util-container{
+        min-height: 1100px;
+        padding-bottom: 30px;
+    }
     .util-container h2{
         line-height: 42.7px;
         font-size: 30px;
@@ -32,9 +45,13 @@
     }
 
     .util-container p {
-        line-height: 14px;
-        font-size: 10px;
+        line-height: 28px;
+        font-size: 20px;
         font-weight: 400;
+    }
+
+    .util-container li{
+        font-size: 15px;
     }
     .util-container{
         height: 700px;

@@ -1,5 +1,5 @@
-.milk-container{
-    background: linear-gradient(180deg, #8C1D52 0%, #111037 100%);
+.about-container{
+    background: linear-gradient(180deg, #DD4423 0%, #F6960C 100%);
 
 padding: 37px;
 color:#280303;
@@ -7,21 +7,21 @@ font-family: "Fredoka", sans-serif;
 
 
 }
-.milk-inner-container{
+.about-inner-container{
     background-color: rgba(240, 248, 255, 0.518);
     padding: 15px;
     border-radius: 30px;
     /* animation: blob1 10s alternate infinite; */
     }
 
-.ab-milk-inner-container{
+.ab-about-inner-container{
     background-color:  #f0c62df1;
     padding: 20px;
     border-radius: 30px;
     animation: blob2 12s alternate infinite;   
 }
 
-.ab-milk-inner-container p{
+.ab-about-inner-container p{
     padding: 15px;
 }
 
@@ -38,21 +38,21 @@ font-family: "Fredoka", sans-serif;
     }
 }
 @media (max-width: 768px){
-    .milk-container{
+    .about-container{
         font-size: x-small;
        line-height: 200%;
     }
 
-    .milk-inner-container{
+    .about-inner-container{
         border-radius: 20px;
         }
     
-    .ab-milk-inner-container{
+    .ab-about-inner-container{
         font-size: 15px;
         border-radius: 20px;
        
     }
-    .ab-milk-inner-container p{
+    .ab-about-inner-container p{
         padding: 10px;
     }
 }

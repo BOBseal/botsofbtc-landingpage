@@ -1,12 +1,12 @@
 import React from 'react'
-import '../styles/milk.css'
+import '../styles/about.css'
 
 export default function About() {
     return (
       <>
-         <div className="milk-container">
-          <div className="milk-inner-container">
-          <div className="ab-milk-inner-container">
+         <div className="about-container">
+          <div className="about-inner-container">
+          <div className="ab-about-inner-container">
   <h2>WHAT IS BOOBS OF BITCOIN?</h2>
   <p>
     BOOBS OF BITCOIN is a Meme-Fi on Revolution on BITCOIN. In a world full of Dogs , Cats and All other Fur Babies that Bring Joy to Us, we forget about 

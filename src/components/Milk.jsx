@@ -7,7 +7,7 @@ export default function Milk() {
        <div className="milk-container">
         <div className="milk-inner-container">
         <div className="ab-milk-inner-container">
-            <h2>Milk Pots</h2>
+            <h2>Milk Pots (Coming Soon)</h2>
             <p>Milk Pots are a Simple Low Entry Cost Raffle where there are Pots (or Rounds ) on which each 
 Pot consists of 500 Milk Drops (or Tickets) and Users can Pour one drop at a time into the 
 Current Pot. Each Drop has a Unique Bytes12 Id and an Owner value representing it making 

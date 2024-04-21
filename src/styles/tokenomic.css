@@ -1,9 +1,8 @@
 .token-container{
     font-family: "Fredoka", sans-serif;
-    min-height: 830px;
     padding: 50px;
     background: linear-gradient(180deg, #DD4423 0%, #F6960C 100%);
-
+    height: auto;
     color: white;
 
 }
@@ -21,12 +20,24 @@
     line-height: 28px;
     font-size: 20px;
     font-weight: 400;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+.token-container li{
+    padding: 5px;
 }
 .para{
     margin-bottom: 30px;
 }
 
 @media (max-width: 768px){
+    .token-container{
+        min-height: 1230px;
+    }
+    .token-container li{
+        padding: 5px;
+        font-size: 15px;
+    }
     .token-container h2{
         line-height: 42.7px;
         font-size: 30px;
@@ -34,14 +45,14 @@
     }
 
     .token-container p {
-        line-height: 14px;
-        font-size: 10px;
+        
+        line-height: 24px;
+        font-size: 20px;
         font-weight: 400;
     }
     .token-container{
         height: 700px;
         padding: 50px;
-
     
     }
 }
