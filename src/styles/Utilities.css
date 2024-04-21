@@ -35,7 +35,7 @@
 
 @media (max-width: 768px){
     .util-container{
-        min-height: 1100px;
+        min-height: 1000px;
         padding-bottom: 30px;
     }
     .util-container h2{
