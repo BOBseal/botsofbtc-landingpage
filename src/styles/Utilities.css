@@ -1,0 +1,45 @@
+.util-container{
+    font-family: "Fredoka", sans-serif;
+    min-height: 300px;
+    padding: 50px;
+    background: linear-gradient(180deg, #8C1D52 0%, #111037 100%);
+    color: white;
+
+}
+
+.util-container h2{
+    line-height: 60px;
+    font-weight: 600;
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.util-container p {
+    padding-top: 30px;
+    line-height: 28px;
+    font-size: 20px;
+    font-weight: 400;
+}
+.para{
+    margin-bottom: 30px;
+}
+
+@media (max-width: 768px){
+    .util-container h2{
+        line-height: 42.7px;
+        font-size: 30px;
+        margin-bottom: 5px;
+    }
+
+    .util-container p {
+        line-height: 14px;
+        font-size: 10px;
+        font-weight: 400;
+    }
+    .util-container{
+        height: 700px;
+        padding: 50px;
+
+    
+    }
+}

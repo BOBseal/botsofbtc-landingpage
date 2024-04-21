@@ -1,0 +1,52 @@
+.f-container{
+    background-color: #201D1C;
+    color: #FFFFFF;
+    height: 400px;
+}
+.f-upper{
+    display: flex;
+    justify-content: center;
+    align-items: first baseline;
+    padding-top: 50px;
+}
+
+.f-list-items{
+    margin:30px;
+    font-family: "Fredoka", sans-serif;
+
+    transition: transform 0.3s ease-in-out;
+    font-size: 24px;
+
+}
+.f-list-items:hover{
+    transform: scale(1.2);
+    color: #F0C52D ;
+}
+
+.f-lower{
+    display: flex;
+    align-content: flex-end;
+    justify-content: center;
+}
+
+.f-img img{
+    margin: 20px;
+     width: 30px;
+     transition: transform 0.3s ease-in-out;
+
+}
+
+.f-img img:hover{
+    transform: scale(1.5);
+}
+
+@media (max-width: 768px){
+
+    .f-container{
+        height: 330px;
+    }
+    .f-list-items{
+        font-size: small;
+    }
+     
+}

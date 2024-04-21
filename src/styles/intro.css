@@ -1,0 +1,138 @@
+.intro-cointainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 800px;
+    background: linear-gradient(180deg, #E1D13D 0%, #DF631E 100%);
+
+
+}
+
+.intro-left{
+    padding: 20px 60px ;
+    color: white;
+}
+.intro-left h1{
+    font-size: 80px;
+    font-family: "Fredoka", sans-serif;
+    font-weight: 700;
+    line-height: 70px;
+    padding: 20px;
+}
+
+.intro-left p {
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 500;
+    font-family: "Fredoka", sans-serif;
+    padding: 20px;
+}
+.intro-left p span{
+    color: #F0C52D;
+}
+.intro-right{
+    width: 463px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 50px;
+}
+
+.boobies-img{
+    margin: 5px;
+    box-shadow: 10px 10px 0 0 #201D1C;
+    transition: transform 0.3s ease-in-out;
+
+}
+#img-l-t{
+    width:232px;
+    height: 240px;
+    position: relative;
+    right: 8px;
+    margin-bottom: 20px;
+}
+#img-l-b{
+    width: 186px;
+    position: relative;
+    right: -40px;
+    margin-right: 0;
+  
+}
+#img-r-t{
+    width: 232px;
+    height:240px;
+}
+#img-r-m{
+    width: 208px;
+    position: relative;
+    right: -18px;
+}
+#img-r-b{
+    width: 232px ;
+}
+
+.boobies-img:hover{
+    transform: scale(1.07);
+    box-shadow: 6px 6px 0 0 #201d1cc8; ;
+}
+
+@media (max-width: 768px){
+    .intro-left{
+        width: 100%;
+    }
+    .intro-right{
+        width: 100%;
+        margin-top: -80px;
+    }
+
+    .intro-cointainer{
+        flex-direction: column-reverse;
+        font-size:10px ;
+        margin: 0;
+    }
+    .boobies-img{
+        padding: 0;
+    }
+    #img-l-t{
+      display: none;
+    }
+    #img-l-b{
+        width: 174px;
+        right: -16px;
+        top: 65px;
+
+      
+    }
+    #img-r-t{
+        display: none;
+
+    }
+    #img-r-m{
+        width: 110px;
+        position: relative;
+        right: -31px;
+        top: 68px;
+    }
+    #img-r-b{
+        width: 126px;
+        position: relative;
+        top: 88px;
+        left: 31px;
+    }
+
+    .intro-left h1{
+
+    font-size: 40px;
+    line-height: 40px;
+   
+    }
+
+    .intro-left p {
+        font-size: 15px;
+        line-height: 30px;
+        font-weight: 500;
+        font-family: "Fredoka", sans-serif;
+    }
+
+}
