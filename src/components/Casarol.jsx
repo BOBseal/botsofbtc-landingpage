@@ -1,18 +1,10 @@
-import React from 'react'
-import {Swiper ,SwiperSlide, useSwiper} from 'swiper/react'
-// import { EffectCoverflow , Pagination, Navigation}  from 'swiper'
-import '../styles/casarol.css'
-import { sliderSettings } from '../utils/common'
-
-
-import 'swiper/css'
-import 'swiper/css/effect-coverflow'
-import 'swiper/css/pagination'
-import 'swiper/css/navigation'
-
+'use client'
+import React ,{useState}from 'react'
+import "../styles/casarol.css";
+import Image from '../../node_modules/next/image';
 // for now i just have hard coded to show the image 
 
-import img from '../assets/6.png'
+import img1 from '../assets/6.png'
 import img2 from '../assets/7.png'
 import img3 from '../assets/8.png'
 import img4 from '../assets/9.png'
@@ -20,57 +12,128 @@ import img5 from '../assets/10.png'
 import img6 from '../assets/11.png'
 import img7 from '../assets/12.png'
 import img8 from '../assets/13.png'
+import img9 from '../assets/5.png'
+import lArrow from "../assets/leftArrow.png"
+import rArrow from "../assets/rightArrow.png"
 
 export default function Casarol() {
-  return (
-    <>
-    <div className="s-container">
-       <Swiper
-           loop={true}
-           
-           {...sliderSettings}
-       >
-           <SwiperSlide>
-               <img className='slides' src={img}alt="" />
-           </SwiperSlide>
-           <SwiperSlide>
-               <img className='slides' src={img2}alt="" />
-           </SwiperSlide>
-           <SwiperSlide>
-               <img className='slides' src={img3}alt="" />
-           </SwiperSlide>
-           <SwiperSlide>
-               <img className='slides' src={img4}alt="" />
-           </SwiperSlide>
-           <SwiperSlide>
-               <img className='slides' src={img5}alt="" />
-           </SwiperSlide>
-           <SwiperSlide>
-               <img className='slides' src={img6}alt="" />
-           </SwiperSlide>
-           <SwiperSlide>
-               <img className='slides' src={img7}alt="" />
-           </SwiperSlide>
-           <SwiperSlide>
-               <img className='slides' src={img8}alt="" />
-           </SwiperSlide>
-           <SliderBtn/>
-       </Swiper>
-    </div>
-  </>
-  )
-}
+    const [act , setAct] = useState(1);
+    const [images,setImages] =useState({
+        imgCenter:img1,
+        imgleft:img2,
+        imgRight: img3
+    });
 
-const SliderBtn = () => {
-    const swiper = useSwiper()
-    return(
-        <div className='r-btn'>
-           <div className='btn' onClick={() => swiper.slidePrev() }>
-                 &lt;
-           </div>
-           <div className='btn'  onClick={() => swiper.slideNext() }>
-               &gt;
-           </div>
+    const goLeftM=()=>{
+        if(act == 9){
+            return
+        }
+        const x = act ;
+        setAct(x +1);
+    }
+    const goRightM=()=>{
+        if(act == 1){
+            return
+        }
+        const x = act ;
+        setAct(x -1);
+    }
+    
+
+    const goLeft =()=>{
+        if(images.imgRight == img3){
+            setImages({...images, imgleft:img1, imgCenter:img3, imgRight:img4});
+        }
+        if(images.imgRight == img4){
+            setImages({...images, imgleft:img3, imgCenter:img4, imgRight:img5});
+        }
+        if(images.imgRight == img5){
+            setImages({...images, imgleft:img4, imgCenter:img5, imgRight:img6});
+        }
+        if(images.imgRight == img6){
+            setImages({...images, imgleft:img5, imgCenter:img6, imgRight:img7});
+        }
+        if(images.imgRight == img7){
+            setImages({...images, imgleft:img6, imgCenter:img7, imgRight:img8});
+        }
+        if(images.imgRight == img8){
+            setImages({...images, imgleft:img7, imgCenter:img8, imgRight:img9});
+        }
+    }
+
+    const goRight =()=>{
+        if(images.imgRight == img4){
+            setImages({...images, imgleft:img2, imgCenter:img1, imgRight:img3});
+        }
+        if(images.imgRight == img5){
+            setImages({...images, imgleft:img1, imgCenter:img3, imgRight:img4});
+        }
+        if(images.imgRight == img6){
+            setImages({...images, imgleft:img3, imgCenter:img4, imgRight:img5});
+        }
+        if(images.imgRight == img7){
+            setImages({...images, imgleft:img4, imgCenter:img5, imgRight:img6});
+        }
+        if(images.imgRight == img8){
+            setImages({...images, imgleft:img5, imgCenter:img6, imgRight:img7});
+        }
+        if(images.imgRight == img9){
+            setImages({...images, imgleft:img6, imgCenter:img7, imgRight:img8});
+        }
+    }
+    
+    return (
+        <div className='flex justify-center flex-col border-[1px] w-full h-[500px] md:h-[600px] lg:h-[700px] bg-gradient-to-t from-[#111037] to-[#8C1D52]'>
+            <div className='flex flex-col md:flex-row justify-center md:justify-between items-center h-[80%]'>
+              <button className='hidden md:flex w-[2rem] h-[2rem] ml-[2rem]' onClick={()=>goRight()}>
+                <Image height={1000} width={1000} src={lArrow} className="object-cover"/>
+              </button>
+    
+              <div className='flex justify-center md:justify-between w-[75%] items-center gap-3'>
+                  <div className='hidden md:flex rounded-2xl h-[222px] w-[222px] lg:h-[328px] lg:w-[328px] items-center drop-shadow-2xl justify-center'>
+                    <div className='object-cover'>
+                        <Image src={images.imgleft} height={1000} className="rounded-xl" width={1000} alt="BOOBIES"/>
+                    </div>
+                  </div>
+    
+                  <div className='rounded-2xl h-[282px] w-[282px] lg:h-[410px] lg:w-[410px] items-center justify-center drop-shadow-2xl'>
+                    <div className='object-cover hidden md:flex'>
+                        <Image src={images.imgCenter} height={1000} width={1000} className="rounded-xl" alt="BOOBIES"/>
+                    </div>
+                    <div className='object-cover md:hidden'>
+                        <Image src={img1} height={1000} width={1000} className={`rounded-xl ${act == 1 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img2} height={1000} width={1000} className={`rounded-xl ${act == 2 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img3} height={1000} width={1000} className={`rounded-xl ${act == 3 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img4} height={1000} width={1000} className={`rounded-xl ${act == 4 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img5} height={1000} width={1000} className={`rounded-xl ${act == 5 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img6} height={1000} width={1000} className={`rounded-xl ${act == 6 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img7} height={1000} width={1000} className={`rounded-xl ${act == 7 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img8} height={1000} width={1000} className={`rounded-xl ${act == 8 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img9} height={1000} width={1000} className={`rounded-xl ${act == 9 ? "" :"hidden"}`} alt="BOOBIES"/>
+                    </div>
+                  </div>
+    
+                  <div className='hidden md:flex rounded-2xl h-[222px] w-[222px] lg:h-[328px] lg:w-[328px] items-center justify-center drop-shadow-2xl'>
+                    <div className='object-cover'>
+                        <Image src={images.imgRight} height={1000} width={1000} alt="BOOBIES" className="rounded-xl"/>
+                    </div>
+                  </div>
+              </div>
+      
+              <button className='hidden md:flex w-[2rem] h-[2rem] mr-[2rem]' onClick={()=>goLeft()}>
+                <Image height={1000} width={1000} src={rArrow} className="object-cover"/>
+              </button>
+
+              <div className='flex mt-[2rem] w-[50%] justify-between md:hidden'>
+                <button className=' w-[2rem] h-[1rem] ' onClick={()=>goRightM()}>
+                    <Image height={1000} width={1000} src={lArrow} className="object-cover"/>
+                </button>
+                <button className=' w-[2rem] h-[1rem]' onClick={()=>goLeftM()}>
+                    <Image height={1000} width={1000} src={rArrow} className="object-cover"/>
+                </button>
+              </div>  
+            </div>
+            
         </div>
     )
 }

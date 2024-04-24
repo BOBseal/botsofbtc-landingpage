@@ -1,6 +1,5 @@
 import React from 'react'
 import '../styles/footer.css'
-
 import dis from '../assets/Vector.svg'
 import twit from '../assets/Vector (1).svg'
 

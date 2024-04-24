@@ -33,7 +33,7 @@
 @media (max-width: 768px){
     .token-container{
         width: auto;
-        min-height: 1230px;
+        min-height: 1400px;
     }
     .token-container li{
         padding: 5px;

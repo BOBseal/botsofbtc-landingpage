@@ -8,10 +8,9 @@ import Footer from '../components/Footer'
 import About from '../components/About'
 import { Utilities } from '../components/Utilities'
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
-    <Navbar/>
     <Intro/>
     <Casarol/>
     <About/>
