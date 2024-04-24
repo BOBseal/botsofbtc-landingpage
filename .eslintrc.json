@@ -127,7 +127,8 @@
     "react/prop-types": "off",
     "no-empty": "off",
     "no-constant-condition": "off",
-    "no-extra-semi": "off"
+    "no-extra-semi": "off",
+    "no-unescaped-entities":"off"
      // Disable React prop-types check
 
     // Disable specific ESLint rules for your custom files
