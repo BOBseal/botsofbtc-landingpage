@@ -4,7 +4,7 @@
     padding: 50px;
     background: linear-gradient(180deg, #8C1D52 0%, #111037 100%);
     color: white;
-
+    width: auto;
 }
 
 .util-container h2{
@@ -36,6 +36,7 @@
 @media (max-width: 768px){
     .util-container{
         min-height: 1000px;
+        width: auto;
         padding-bottom: 30px;
     }
     .util-container h2{

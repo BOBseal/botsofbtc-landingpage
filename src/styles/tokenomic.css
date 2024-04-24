@@ -4,7 +4,7 @@
     background: linear-gradient(180deg, #DD4423 0%, #F6960C 100%);
     height: auto;
     color: white;
-
+    width: auto;
 }
 
 .token-container h2{
@@ -32,6 +32,7 @@
 
 @media (max-width: 768px){
     .token-container{
+        width: auto;
         min-height: 1230px;
     }
     .token-container li{

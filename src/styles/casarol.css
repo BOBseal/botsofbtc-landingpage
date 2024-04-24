@@ -2,7 +2,7 @@
 .s-container{
     padding-top: 60px;
     background: linear-gradient(180deg, #8C1D52 0%, #111037 100%);
-
+    width: auto;
 }
 
 .r-btn{

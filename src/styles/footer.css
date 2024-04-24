@@ -2,6 +2,7 @@
     background-color: #201D1C;
     color: #FFFFFF;
     height: 400px;
+    width: auto;
 }
 .f-upper{
     display: flex;
