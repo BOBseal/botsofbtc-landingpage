@@ -3,7 +3,7 @@ import React ,{useState}from 'react'
 import "../styles/casarol.css";
 import Image from '../../node_modules/next/image';
 // for now i just have hard coded to show the image 
-
+import { motion , AnimatePresence } from 'framer-motion'
 import img1 from '../assets/6.png'
 import img2 from '../assets/7.png'
 import img3 from '../assets/8.png'
@@ -101,15 +101,16 @@ export default function Casarol() {
                         <Image src={images.imgCenter} height={1000} width={1000} className="rounded-xl" alt="BOOBIES"/>
                     </div>
                     <div className='object-cover md:hidden'>
-                        <Image src={img1} height={1000} width={1000} className={`rounded-xl ${act == 1 ? "" :"hidden"}`} alt="BOOBIES"/>
-                        <Image src={img2} height={1000} width={1000} className={`rounded-xl ${act == 2 ? "" :"hidden"}`} alt="BOOBIES"/>
-                        <Image src={img3} height={1000} width={1000} className={`rounded-xl ${act == 3 ? "" :"hidden"}`} alt="BOOBIES"/>
-                        <Image src={img4} height={1000} width={1000} className={`rounded-xl ${act == 4 ? "" :"hidden"}`} alt="BOOBIES"/>
-                        <Image src={img5} height={1000} width={1000} className={`rounded-xl ${act == 5 ? "" :"hidden"}`} alt="BOOBIES"/>
-                        <Image src={img6} height={1000} width={1000} className={`rounded-xl ${act == 6 ? "" :"hidden"}`} alt="BOOBIES"/>
-                        <Image src={img7} height={1000} width={1000} className={`rounded-xl ${act == 7 ? "" :"hidden"}`} alt="BOOBIES"/>
-                        <Image src={img8} height={1000} width={1000} className={`rounded-xl ${act == 8 ? "" :"hidden"}`} alt="BOOBIES"/>
-                        <Image src={img9} height={1000} width={1000} className={`rounded-xl ${act == 9 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img1} height={1000} width={1000} className={`rounded-xl hover:scale-105 ease-in-out ${act == 1 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img2} height={1000} width={1000} className={`rounded-xl hover:scale-105 ease-in-out ${act == 2 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img3} height={1000} width={1000} className={`rounded-xl hover:scale-105 ease-in-out ${act == 3 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img4} height={1000} width={1000} className={`rounded-xl hover:scale-105 ease-in-out ${act == 4 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img5} height={1000} width={1000} className={`rounded-xl hover:scale-105 ease-in-out ${act == 5 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img6} height={1000} width={1000} className={`rounded-xl hover:scale-105 ease-in-out ${act == 6 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img7} height={1000} width={1000} className={`rounded-xl hover:scale-105 ease-in-out ${act == 7 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img8} height={1000} width={1000} className={`rounded-xl hover:scale-105 ease-in-out ${act == 8 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img9} height={1000} width={1000} className={`rounded-xl hover:scale-105 ease-in-out ${act == 9 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        
                     </div>
                   </div>
     
