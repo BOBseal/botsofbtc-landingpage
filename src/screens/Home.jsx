@@ -7,7 +7,7 @@ import Casarol from '../components/Casarol'
 import Footer from '../components/Footer'
 import About from '../components/About'
 import { Utilities } from '../components/Utilities'
-
+import Roadmap from "../components/Roadmap"
 export default function HomePage() {
   return (
     <>
@@ -17,7 +17,7 @@ export default function HomePage() {
     <Utilities/>
     <Tokenomic/>
     <Milk/>
-    <Footer/>
+    <Roadmap/>
     </>
   )
 }

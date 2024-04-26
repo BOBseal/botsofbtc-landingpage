@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import '../styles/intro.css'
-import imgA from '../assets/1.png'
+import imgA from '../assets/6.png'
 import imgB from '../assets/2.png'
 import imgC from '../assets/3.png'
 import imgD from '../assets/4.png'

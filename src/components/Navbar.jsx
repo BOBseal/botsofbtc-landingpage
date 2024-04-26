@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import '../styles/navbar.css';
 import line from '../assets/threelinemenu.svg';
 import Image from '../../node_modules/next/image';
-import lgo from "../assets/6.png"
+import lgo from "../assets/dp.jpg"
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 

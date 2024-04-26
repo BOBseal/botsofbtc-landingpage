@@ -1,7 +1,7 @@
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import {Inter} from 'next/font/google'
-
+import Footer from '@/components/Footer'
 //export const inter = Inter({})
 
 export const metadata= {
@@ -17,6 +17,7 @@ export default function RootLayout({
       <body>
         <Navbar/>
         {children}
+        <Footer/>
         </body>
     </html>
   )
