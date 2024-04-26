@@ -6,7 +6,7 @@ const Roadmap = () => {
   return (
     <div className='roadContainer flex p-[2.5rem] flex-col justify-center gap-[1rem] md:gap-[2rem]'>
       <div className='flex gap-[0.5rem]'>
-        <h2 className='text-[24px] pb-[1rem] md:text-[60px] font-[700] md:ml-[3rem] underline'>ROADMAP</h2>
+        <h2 className='text-[24px] pb-[1rem] md:text-[60px] font-[700] md:ml-[3rem]'>ROADMAP</h2>
         <p className='text-[24px] pb-[1rem] md:text-[60px] font-[700] md:ml-[3rem]'>:</p>
       </div>
       <div className='flex flex-col gap-[1rem] md:gap-[2rem] md:ml-[4rem]'>
