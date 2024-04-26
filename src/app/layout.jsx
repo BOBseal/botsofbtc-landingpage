@@ -1,5 +1,8 @@
 import './globals.css'
 import Navbar from '@/components/Navbar'
+import {Inter} from 'next/font/google'
+
+//export const inter = Inter({})
 
 export const metadata= {
   title: 'BOOBS OF BITCOIN',

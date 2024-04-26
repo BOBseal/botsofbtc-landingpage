@@ -12,9 +12,7 @@
 }
 
 .f-list-items{
-    margin:30px;
     font-family: "Fredoka", sans-serif;
-
     transition: transform 0.3s ease-in-out;
     font-size: 24px;
 
@@ -34,7 +32,6 @@
     margin: 20px;
      width: 30px;
      transition: transform 0.3s ease-in-out;
-
 }
 
 .f-img img:hover{

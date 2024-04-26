@@ -90,7 +90,7 @@ export default function Casarol() {
               </button>
     
               <div className='flex justify-center md:justify-between w-[75%] items-center gap-3'>
-                  <div className='hidden md:flex rounded-2xl h-[222px] w-[222px] lg:h-[328px] lg:w-[328px] items-center drop-shadow-2xl justify-center'>
+                  <div className='hidden md:flex  rounded-2xl h-[222px] w-[222px] lg:h-[328px] lg:w-[328px] items-center drop-shadow-2xl justify-center'>
                     <div className='object-cover'>
                         <Image src={images.imgleft} height={1000} className="rounded-xl" width={1000} alt="BOOBIES"/>
                     </div>
