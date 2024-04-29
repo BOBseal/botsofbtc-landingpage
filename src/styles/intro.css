@@ -8,7 +8,7 @@
 }
 
 .intro-left{
-    width: 45%;
+    width: 55%;
     padding: 20px 60px ;
     color: white;
 }
@@ -31,7 +31,7 @@
     color: #F0C52D;
 }
 .intro-right{
-    width: 55%;
+    width: 45%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -135,6 +135,12 @@
         display: flex;
         top: 57%;
         left: 49%;
+    }
+    .intro-left{
+        width: 42%;
+    }
+    .intro-right{
+        width: 58%;
     }
 }
 

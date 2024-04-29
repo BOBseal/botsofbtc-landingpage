@@ -34,7 +34,7 @@ export default function Navbar() {
             <div className='h-[50px] w-[50px] md:h-[70px] md:w-[70px]'>
               <Image src={lgo} height={1000} width={1000} alt="logo" className='rounded-full object-cover'/>
             </div>
-             <h1 className='text-[1.5rem] mt-[5px] md:mt-0 lg:text-[2rem]'>BOOBS OF BITCOIN</h1>
+             <h1 className='text-[1.5rem] mt-[5px] md:mt-0 lg:text-[2rem]'>BOTS OF BITCOIN</h1>
           </div>
         </div>
         <div className="nav-list-box md:w-[60%] md:ml-[20rem] lg:ml-[40rem]">
@@ -43,7 +43,7 @@ export default function Navbar() {
           <Image className='icon' src={line} alt="" onClick={toggleMenu} />
 
         
-          <button className='list-items small-screen' onClick={()=> alert("Coming Soon")}>Milk Pots</button>
+          <button className='list-items small-screen' onClick={()=> alert("Coming Soon")}>Oil Pots</button>
           <button className='list-items small-screen'>Contract</button>
           <button className='list-items small-screen' onClick={()=> alert("Coming Soon!")}>Genesis Mint</button>
 
