@@ -10,14 +10,14 @@ export default function Milk() {
         <div className="milk-inner-container">
         <div className="ab-milk-inner-container">
             <h2 className=' text-[24px] pb-[1rem] md:text-[60px] font-[700]'>Oil Pots (Coming Soon)</h2>
-            <p>Oil Pots are a Simple Low Entry Cost Raffle where there are Pots (or Rounds ) on which each 
+            <p>Oil Pots are a Simple Raffles where there are Pots (or Rounds ) on which each 
 Pot consists of 500 Milk Drops (or Tickets) and Users can Pour one drop at a time into the 
 Current Pot. Each Drop has a Unique Bytes12 Id and an Owner value representing it making 
 each Drop unique Tickets.</p>
 
 <h2 className=' text-[19px] md:text-[30px] font-[600]'>About the Game</h2>
-<p>Each User can pour upto max 10 drops into a Pot , each Milk Drop costing 0.0001 BTC. When 
-the Pot is filled , i.e. reaches 500 Drops 10 Random Drops(Tickets) are selected are selected 
+<p>Each User can pour upto max 10 drops into a Pot , each Oil Drop costing from 1$ - 100$. When 
+the Pot is filled , i.e. reaches 500 Drops 10 Random Drops(Tickets) are selected 
 as Winners and the 85% of the Pot is equally distributed among the Owners of the 10 
 Winning Drops. After this The next Pot (Round) gets activated and User can Claim his 
 Winning Shares. The Rest 15% Of the Pot goes to Platform Revenue.</p>

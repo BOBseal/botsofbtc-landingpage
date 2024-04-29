@@ -12,7 +12,7 @@ const Roadmap = () => {
           <p>We do not have a fixed timeline for roadmap products as we believe a fixed List of Shipments , over fixed Points of Time do not adequtely reflects the needs for an Ever-Evolving and Dynamic Crypto Market. Thus we have only pointed out the Initial Products Planned in Chronological Order and is Open to Community-Voted changes accomodating to the requirements of IRL Market Conditions.</p>
           <div className='flex flex-col gap-[1rem]'>
           <li>Genesis Mint of BOB Collection.</li>
-          <li>Launch Of Milk-Pots.</li>
+          <li>Launch Of Oil-Pots.</li>
           <li>Launch of Casino.</li>
           <li>Token Presales & Activities.</li>
           <li>$BOTS TGE & Airdrop.</li>
