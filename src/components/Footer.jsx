@@ -16,7 +16,7 @@ const Footer =()=> {
               {/*  CAN USE ROUTER TO NAVIGATE THROUGH DIFFERNT PAGES IN FUTURE */}
             <button className='f-list-items'>Contact Us</button>
             <button className='f-list-items'>T&C</button>
-            <Link href={'https://twitter.com/BoobsOfBitcoin'}>
+            <Link href={'https://twitter.com/BotsOfBtc'}>
             <Image className='f-list-items' width={39} height={30} src= {twit} alt="" />
             </Link>
             </div>
@@ -24,7 +24,7 @@ const Footer =()=> {
             <div className="flex flex-col gap-[2rem] items-center">
             <button className='f-list-items'>D-App (Coming Soon)</button>
             <button className='f-list-items'>Mint (Coming Soon)</button>
-            <Link href={'https://t.me/boobsOfbitcoin'}>
+            <Link href={'https://t.me/botsofbtc'}>
             <Image className='bg-white rounded-full f-list-items' width={39} height={30} src={telegram} alt="" />
             </Link>
             </div>
