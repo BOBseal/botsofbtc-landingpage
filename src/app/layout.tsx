@@ -8,7 +8,7 @@ import Footer from '@/components/Footer'
 const fredoka = Varela_Round({
   subsets:['latin'],
   variable: "--font-fredoka",
-  weight:"500"
+  weight:"400"
 })
 
 export const metadata :Metadata= {
