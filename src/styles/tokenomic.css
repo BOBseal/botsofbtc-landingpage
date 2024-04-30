@@ -40,6 +40,8 @@
     }
     .token-container h2{
         line-height: 42.7px;
+        padding-top: 0;
+        padding-bottom: 15px;
         font-size: 30px;
         margin-bottom: 5px;
     }
