@@ -2,7 +2,7 @@
     background: linear-gradient(180deg, #8C1D52 0%, #111037 100%);
 
 padding: 37px;
-color:#280303;
+color:white;
 width: auto;
 
 }
@@ -14,7 +14,7 @@ width: auto;
     }
 
 .ab-milk-inner-container{
-    background-color:  #f0c62df1;
+    background-color:  #DD4423;;
     padding: 20px;
     border-radius: 30px;
     animation: blob2 12s alternate infinite;   

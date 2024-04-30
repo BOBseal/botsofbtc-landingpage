@@ -2,7 +2,7 @@
     background: linear-gradient(180deg, #DD4423 0%, #F6960C 100%);
 width: auto;
 padding: 37px;
-color:#280303;
+color:white;
 
 
 }
@@ -14,9 +14,9 @@ color:#280303;
     }
 
 .ab-about-inner-container{
-    background-color:  #f0c62df1;
+    background-color:  #DD4423;
     padding: 20px;
-    border-radius: 30px;
+    border-radius: 10px;
     animation: blob2 12s alternate infinite;   
 }
 

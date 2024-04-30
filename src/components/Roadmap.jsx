@@ -4,7 +4,7 @@ import "../styles/roadmap.css"
 
 const Roadmap = () => {
   return (
-    <div className='roadContainer flex p-[2.5rem] flex-col justify-center gap-[1rem] md:gap-[2rem] text-black'>
+    <div className='roadContainer flex p-[2.5rem] flex-col justify-center gap-[1rem] md:gap-[2rem] text-white'>
       <div className='flex gap-[0.5rem]'>
         <h2 className='text-[24px] pb-[1rem] md:text-[60px] font-[700] md:ml-[3rem] font-nunito'>ROADMAP</h2>
       </div>
