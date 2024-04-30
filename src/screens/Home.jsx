@@ -10,7 +10,7 @@ import { Utilities } from '../components/Utilities'
 import Roadmap from "../components/Roadmap"
 export default function HomePage() {
   return (
-    <>
+    <main className='font-fredoka'>
     <Intro/>
     <Casarol/>
     <About/>
@@ -18,6 +18,6 @@ export default function HomePage() {
     <Tokenomic/>
     <Milk/>
     <Roadmap/>
-    </>
+    </main>
   )
 }

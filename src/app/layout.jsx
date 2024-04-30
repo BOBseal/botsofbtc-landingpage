@@ -1,8 +1,13 @@
 import './globals.css'
 import Navbar from '@/components/Navbar'
-import {Inter} from 'next/font/google'
+import {Fredoka} from 'next/font/google'
 import Footer from '@/components/Footer'
-//export const inter = Inter({})
+
+const fredoka = Fredoka({
+  subsets:['latin'],
+  variable: "--font-fredoka",
+  weight: "400"
+})
 
 export const metadata= {
   title: 'BOTS OF BITCOIN',
@@ -14,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${fredoka.variable}`}>
         <Navbar/>
         {children}
         <Footer/>

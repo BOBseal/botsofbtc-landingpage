@@ -14,7 +14,6 @@
 }
 .intro-left h1{
     font-size: 80px;
-    font-family: "Fredoka", sans-serif;
     font-weight: 700;
     line-height: 70px;
     padding: 20px;
@@ -24,7 +23,6 @@
     font-size: 24px;
     line-height: 30px;
     font-weight: 500;
-    font-family: "Fredoka", sans-serif;
     padding: 20px;
 }
 .intro-left p span{
@@ -212,7 +210,6 @@
         font-size: 15px;
         line-height: 30px;
         font-weight: 500;
-        font-family: "Fredoka", sans-serif;
     }
 
 }
