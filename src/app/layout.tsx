@@ -5,10 +5,10 @@ import {Fredoka , Varela_Round , Saira} from 'next/font/google'
 
 import Footer from '@/components/Footer'
 
-const fredoka = Varela_Round({
+const fredoka = Saira({
   subsets:['latin'],
   variable: "--font-fredoka",
-  weight:"400"
+  weight:"500"
 })
 
 export const metadata :Metadata= {
