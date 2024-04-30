@@ -110,7 +110,6 @@ export default function Casarol() {
                         <Image src={img7} height={1000} width={1000} className={`rounded-xl hover:scale-105 ease-in-out ${act == 7 ? "" :"hidden"}`} alt="BOOBIES"/>
                         <Image src={img8} height={1000} width={1000} className={`rounded-xl hover:scale-105 ease-in-out ${act == 8 ? "" :"hidden"}`} alt="BOOBIES"/>
                         <Image src={img9} height={1000} width={1000} className={`rounded-xl hover:scale-105 ease-in-out ${act == 9 ? "" :"hidden"}`} alt="BOOBIES"/>
-                        
                     </div>
                   </div>
     

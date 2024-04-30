@@ -6,6 +6,7 @@ import Milk from '../components/Milk'
 import Casarol from '../components/Casarol'
 import Footer from '../components/Footer'
 import About from '../components/About'
+import Team from "../components/Team"
 import { Utilities } from '../components/Utilities'
 import Roadmap from "../components/Roadmap"
 export default function HomePage() {
@@ -18,6 +19,7 @@ export default function HomePage() {
     <Tokenomic/>
     <Milk/>
     <Roadmap/>
+    
     </main>
   )
 }
