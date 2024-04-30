@@ -145,14 +145,14 @@
 @media (max-width: 668px){
     .intro-left{
         height: 40%;
-        position: relative;
         width: 100%;
-        margin-top: 360px;
-        padding: 40px;
+        margin-top: 380px;
+        padding: 20px;
     }
     .intro-right{
         width: 100%;
         margin-top: -90px;
+        margin-left: -10px ;
     }
 
     .intro-cointainer{
@@ -199,12 +199,11 @@
         left: 181px;
     }
     .intro-left{
-        margin-left: -50px;
+     
     }
     .intro-left h1{
-    width:30rem;
-    font-size: 40px;
-    line-height: 40px;
+    font-size: 75px;
+    line-height: 70px;
    
     }
 
