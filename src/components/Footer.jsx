@@ -10,7 +10,7 @@ const Footer =()=> {
 
   return (
     <>
-      <div className="h-[280px] bg-black text-white p-[2rem] md:p-[4rem] flex flex-col justify-evenly items-center gap-[2rem]">
+      <div className="h-[280px] bg-black text-white p-[2rem] md:p-[4rem] font-fredoka flex flex-col justify-evenly items-center gap-[2rem]">
          <div className="flex justify-center w-[80%] gap-[5rem] items-center" >
             <div className=" flex flex-col gap-[2rem] items-center">
               {/*  CAN USE ROUTER TO NAVIGATE THROUGH DIFFERNT PAGES IN FUTURE */}

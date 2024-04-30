@@ -28,7 +28,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="nav-container flex justify-between w-full">
+      <div className="nav-container flex justify-between w-full font-fredoka">
         <div className='absolute left-[1rem] md:left-[2rem] lg:left-[4rem] md:w-[35%]'>
           <div className='flex w-full gap-[1rem] justify-start items-center'>
             <div className='h-[50px] w-[50px] md:h-[70px] md:w-[70px]'>
