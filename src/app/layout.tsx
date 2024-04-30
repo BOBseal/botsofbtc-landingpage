@@ -1,7 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import Navbar from '@/components/Navbar'
-import {Fredoka , Varela_Round , Saira} from 'next/font/google'
+import {Fredoka , Varela_Round , Saira, Nunito} from 'next/font/google'
 
 import Footer from '@/components/Footer'
 
@@ -9,6 +9,12 @@ const fredoka = Saira({
   subsets:['latin'],
   variable: "--font-fredoka",
   weight:"500"
+})
+
+const nunito = Nunito({
+  subsets:['latin'],
+  variable:"--font-nunito",
+  weight:'800'
 })
 
 export const metadata :Metadata= {
@@ -23,7 +29,7 @@ export default function RootLayout({
 }){
   return (
     <html lang="en">
-      <body className={`${fredoka.variable}`}>
+      <body className={`${fredoka.variable} ${nunito.variable}`}>
         <Navbar/>
         {children}
         <Footer/>

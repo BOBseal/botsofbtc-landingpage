@@ -13,7 +13,7 @@ export default function Intro() {
   return (
     <><div className="intro-cointainer">
         <div className="intro-left">
-            <h1 className=' font-fredoka'>BOTS OF BITCOIN</h1>
+            <h1 className=' font-nunito'>BOTS OF BITCOIN</h1>
             <p>BOTS OF BITCOIN is a Collection of 10k Unique Revenue Sharing ROBOT PFPs with Utility on BOB. Mint one and Earn 6.9% Royalties on your Minted PFPs Forever and a Bonus Airdrop of Platform Tokens! </p>
         </div>
         <div className="intro-right">

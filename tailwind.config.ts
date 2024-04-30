@@ -16,6 +16,7 @@ const config: Config = {
     },
     fontFamily:{
       fredoka : ["var(--font-fredoka)"],
+      nunito: ["var(--font-nunito)"],
     }
   },
   plugins: [],

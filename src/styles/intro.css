@@ -167,21 +167,21 @@
       height: 106px;
       width: 106px;
       position: absolute;
-      left:27px;
+      left:10px;
       top:268px;
     }
     #img-l-b{
         position:absolute;
         width: 150px;
         height: 150px;
-        left:27px;
+        left:10px;
         top: 94px;
     }
     #img-r-t{
         width: 70px;
         position: absolute;
         height: 70px;
-        left:78px;
+        left:60px;
         top:391px;
     }
     #img-r-m{
@@ -189,28 +189,27 @@
         height: 108px;
         position: absolute;
         top: 124px;
-        left:233px;
+        left:200px;
     }
     #img-r-b{
         width: 193px;
         height: 193px;
         position: absolute;
         top: 268px;
-        left: 181px;
+        left: 151px;
     }
     .intro-left{
      
     }
     .intro-left h1{
-    font-size: 75px;
-    line-height: 70px;
-   
+    font-size: 65px;
+    line-height: 80px;
+    
     }
 
     .intro-left p {
         font-size: 15px;
         line-height: 30px;
-        font-weight: 500;
     }
 
 }
