@@ -1,11 +1,11 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import Navbar from '@/components/Navbar'
-import {Fredoka , VarelaRound , Saira} from 'next/font/google'
+import {Fredoka , Varela_Round , Saira} from 'next/font/google'
 
 import Footer from '@/components/Footer'
 
-const fredoka = Saira({
+const fredoka = Varela_Round({
   subsets:['latin'],
   variable: "--font-fredoka",
   weight:"500"
