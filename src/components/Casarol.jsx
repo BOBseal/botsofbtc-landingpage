@@ -83,7 +83,7 @@ export default function Casarol() {
     }
     
     return (
-        <div className='flex justify-center flex-col border-[1px] w-full h-[500px] md:h-[600px] lg:h-[700px] bg-gradient-to-t from-[#111037] to-[#8C1D52]'>
+        <div className='flex justify-center flex-col border-[3px] border-black w-full h-[500px] md:h-[600px] lg:h-[700px] bg-[#140a06f9] to-[#8C1D52]'>
             <div className='flex flex-col md:flex-row justify-center md:justify-between items-center h-[80%]'>
               <button className='hidden md:flex w-[2rem] h-[2rem] ml-[2rem]' onClick={()=>goRight()}>
                 <Image height={1000} width={1000} src={lArrow} className="object-cover"/>
@@ -92,30 +92,30 @@ export default function Casarol() {
               <div className='flex justify-center md:justify-between w-[75%] items-center gap-3'>
                   <div className='hidden md:flex  rounded-2xl h-[222px] w-[222px] lg:h-[328px] lg:w-[328px] items-center drop-shadow-2xl justify-center'>
                     <div className='object-cover hover:scale-[104%] ease-in'>
-                        <Image src={images.imgleft} height={1000} className="rounded-xl" width={1000} alt="BOOBIES"/>
+                        <Image src={images.imgleft} height={1000} className="rounded-xl border-[2px]" width={1000} alt="BOOBIES"/>
                     </div>
                   </div>
     
                   <div className='rounded-2xl h-[282px] w-[282px] lg:h-[410px] lg:w-[410px] items-center justify-center drop-shadow-2xl'>
                     <div className='object-cover hidden md:flex hover:scale-[104%] ease-in'>
-                        <Image src={images.imgCenter} height={1000} width={1000} className="rounded-xl" alt="BOOBIES"/>
+                        <Image src={images.imgCenter} height={1000} width={1000} className="rounded-xl border-[2px]" alt="BOOBIES"/>
                     </div>
                     <div className='object-cover md:hidden'>
-                        <Image src={img1} height={1000} width={1000} className={`rounded-xl hover:scale-105 ease-in-out ${act == 1 ? "" :"hidden"}`} alt="BOOBIES"/>
-                        <Image src={img2} height={1000} width={1000} className={`rounded-xl hover:scale-105 ease-in-out ${act == 2 ? "" :"hidden"}`} alt="BOOBIES"/>
-                        <Image src={img3} height={1000} width={1000} className={`rounded-xl hover:scale-105 ease-in-out ${act == 3 ? "" :"hidden"}`} alt="BOOBIES"/>
-                        <Image src={img4} height={1000} width={1000} className={`rounded-xl hover:scale-105 ease-in-out ${act == 4 ? "" :"hidden"}`} alt="BOOBIES"/>
-                        <Image src={img5} height={1000} width={1000} className={`rounded-xl hover:scale-105 ease-in-out ${act == 5 ? "" :"hidden"}`} alt="BOOBIES"/>
-                        <Image src={img6} height={1000} width={1000} className={`rounded-xl hover:scale-105 ease-in-out ${act == 6 ? "" :"hidden"}`} alt="BOOBIES"/>
-                        <Image src={img7} height={1000} width={1000} className={`rounded-xl hover:scale-105 ease-in-out ${act == 7 ? "" :"hidden"}`} alt="BOOBIES"/>
-                        <Image src={img8} height={1000} width={1000} className={`rounded-xl hover:scale-105 ease-in-out ${act == 8 ? "" :"hidden"}`} alt="BOOBIES"/>
-                        <Image src={img9} height={1000} width={1000} className={`rounded-xl hover:scale-105 ease-in-out ${act == 9 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img1} height={1000} width={1000} className={`rounded-xl hover:scale-105 border-[2px] ease-in-out ${act == 1 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img2} height={1000} width={1000} className={`rounded-xl hover:scale-105 border-[2px] ease-in-out ${act == 2 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img3} height={1000} width={1000} className={`rounded-xl hover:scale-105 border-[2px] ease-in-out ${act == 3 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img4} height={1000} width={1000} className={`rounded-xl hover:scale-105 border-[2px] ease-in-out ${act == 4 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img5} height={1000} width={1000} className={`rounded-xl hover:scale-105 border-[2px] ease-in-out ${act == 5 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img6} height={1000} width={1000} className={`rounded-xl hover:scale-105 border-[2px] ease-in-out ${act == 6 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img7} height={1000} width={1000} className={`rounded-xl hover:scale-105 border-[2px] ease-in-out ${act == 7 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img8} height={1000} width={1000} className={`rounded-xl hover:scale-105 border-[2px] ease-in-out ${act == 8 ? "" :"hidden"}`} alt="BOOBIES"/>
+                        <Image src={img9} height={1000} width={1000} className={`rounded-xl hover:scale-105 border-[2px] ease-in-out ${act == 9 ? "" :"hidden"}`} alt="BOOBIES"/>
                     </div>
                   </div>
     
                   <div className='hidden md:flex rounded-2xl h-[222px] w-[222px] lg:h-[328px] lg:w-[328px] items-center justify-center drop-shadow-2xl'>
                     <div className='object-cover hover:scale-[104%] ease-in'>
-                        <Image src={images.imgRight} height={1000} width={1000} alt="BOOBIES" className="rounded-xl"/>
+                        <Image src={images.imgRight} height={1000} width={1000} alt="BOOBIES" className="rounded-xl border-[2px]"/>
                     </div>
                   </div>
               </div>

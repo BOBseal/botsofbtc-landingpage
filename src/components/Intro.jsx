@@ -11,10 +11,10 @@ import Image from '../../node_modules/next/image'
 
 export default function Intro() {
   return (
-    <><div className="intro-cointainer ">
+    <><div className="intro-cointainer border-[3px] border-black">
         <div className="intro-left ">
-            <h1 className=' font-nunito'>BOTS OF BITCOIN</h1>
-            <p className=''>BOTS OF BITCOIN is a Collection of 10k Unique Revenue Sharing ROBOT PFPs with Utility on BOB. Mint one and Earn 6.9% Royalties on your Minted PFPs Forever and a Bonus Airdrop of Platform Tokens! </p>
+            <h1 className=' font-nunito text-black'>BOTS OF BITCOIN</h1>
+            <p className='text-black'>BOTS OF BITCOIN is a Collection of 10k Unique Revenue Sharing ROBOT PFPs with Utility on BOB. Mint one and Earn 6.9% Royalties on your Minted PFPs Forever and a Bonus Airdrop of Platform Tokens! </p>
         </div>
         <div className="intro-right">
           <div className="imgbox-a">

@@ -4,7 +4,7 @@ import "../styles/Utilities.css"
 
 export const Utilities = () => {
   return (
-    <div className='util-container'>
+    <div className='util-container border-[3px] border-black'>
         <h2 className='font-nunito'>NFT UTILITIES AND FEATURES:</h2>
         <p>The BOTS OF BITCOIN PFP Collection is the Exclusive NFT Collection for BOTS OF BITCOIN Ecosystem and Enjoys a Range of Benifits for Both Holders and OG Minters.</p>
         <h3 className='font-nunito text-[1.25rem]'>Holder Utility & Benifits :</h3>

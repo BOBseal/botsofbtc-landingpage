@@ -1,8 +1,8 @@
 .util-container{
    
     padding: 50px;
-    background: linear-gradient(180deg, #8C1D52 0%, #111037 100%);
-    color: white;
+    background: #F2D60D;
+    color: black;
     width: auto;
 }
 
@@ -34,7 +34,7 @@
 
 @media (max-width: 768px){
     .util-container{
-        min-height: 1290px;
+        min-height: 1330px;
         width: auto;
         padding-bottom: 30px;
     }

@@ -6,9 +6,9 @@ import '../styles/about.css'
 export default function About() {
     return (
       <>
-         <div className="about-container">
-          <div className="about-inner-container">
-          <div className="ab-about-inner-container">
+         <div className="about-container border-[3px] border-black">
+          <div className="about-inner-container border-[2px] border-black ">
+          <div className="ab-about-inner-container ">
   <h2 className=' font-nunito text-[24px] pb-[1rem] md:text-[60px] font-[700]'>WHAT IS BOTS OF BITCOIN?</h2>
   <p className=''>
    BOTS OF BITCOIN is a Collection of 10k Unique Robot PFPs on Bitcoin Layer2 Networks and Coming First on <span className=' font-semibold font'>BUILD ON BITCOIN - BOB</span>. Not only Limited to a PFP Project , Bots Of Bitcoin aims to Introduce NFT-Fi On Bitcoin L2s Such as BOB and others BTC L2s in Future. Not Only Limited to NFT Sector , BOTS will Expand into various Sectors within Web3 such as Trading Bots, De-Fi , Restaking etc as Decided by our Community.

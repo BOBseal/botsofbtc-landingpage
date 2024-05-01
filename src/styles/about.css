@@ -1,20 +1,22 @@
 .about-container{
-    background: linear-gradient(180deg, #DD4423 0%, #F6960C 100%);
+    background: #F36016;
 width: auto;
 padding: 37px;
-color:white;
+color:black;
 
 
 }
 .about-inner-container{
-    background-color: rgba(240, 248, 255, 0.518);
+    background-color: #F2D60D;
+    
     padding: 15px;
     border-radius: 30px;
     /* animation: blob1 10s alternate infinite; */
     }
 
 .ab-about-inner-container{
-    background-color:  #DD4423;
+    background-color:  #F36016;
+    
     padding: 20px;
     border-radius: 10px;
     animation: blob2 12s alternate infinite;   
@@ -51,6 +53,9 @@ color:white;
         border-radius: 20px;
        
     }
+    .ab-about-inner-container h2{
+        line-height: 30px;
+    } 
     .ab-about-inner-container p{
         padding: 10px;
     }
