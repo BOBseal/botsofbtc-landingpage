@@ -1,7 +1,6 @@
 .token-container{
     padding: 50px;
     background: #FF8500;
-    height: auto;
     color: black;
     width: auto;
 }
@@ -32,9 +31,9 @@
 @media (max-width: 768px){
     .token-container{
         width: auto;
-        min-height: 1480px;
     }
     .token-container li{
+        display: flex;
         padding: 5px;
         font-size: 15px;
     }
