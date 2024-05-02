@@ -83,7 +83,7 @@ export default function Casarol() {
     }
     
     return (
-        <div className='flex justify-center flex-col border-[3px] border-black w-full h-[500px] md:h-[600px] lg:h-[700px] bg-[#140a06f9] to-[#8C1D52]'>
+        <div className='flex justify-center flex-col border-[3px] border-black w-full h-[500px] md:h-[600px] lg:h-[700px] bg-[#140a06f9]'>
             <div className='flex flex-col md:flex-row justify-center md:justify-between items-center h-[80%]'>
               <button className='hidden md:flex w-[2rem] h-[2rem] ml-[2rem]' onClick={()=>goRight()}>
                 <Image height={1000} width={1000} src={lArrow} className="object-cover"/>
