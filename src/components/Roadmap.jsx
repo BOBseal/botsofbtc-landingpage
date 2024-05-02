@@ -15,6 +15,7 @@ const Roadmap = () => {
             <li>Genesis Mint of BOB Collection.</li>
             <li>Launch Of Oil-Pots & PFP Staking V1.</li>
             <li>Launch of Casino & Yeild Vaults.</li>
+            <li>Bots & Tooling Launch.</li>
             <li>Token Presales & Activities.</li>
             <li>$BOTS TGE & Airdrop.</li>
             <li>Expansion as needed ...</li>
