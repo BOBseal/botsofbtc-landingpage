@@ -7,7 +7,7 @@ export default function Milk() {
   return (
     <>
        <div className="milk-container border-[3px] border-black">
-        <div className="milk-inner-container border-[2px] border-black drop-shadow-2xl">
+        <div className="milk-inner-container border-[2px] border-black shadow-lg">
         <div className="ab-milk-inner-container ">
             <h2 className=' text-[24px] pb-[1rem] md:text-[60px] font-nunito'>Oil Pots (Coming Soon)</h2>
             <p>Oil Pots are a Simple Raffles where there are Pots (or Rounds ) on which each 

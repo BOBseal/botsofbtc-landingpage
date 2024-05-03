@@ -7,7 +7,7 @@ export default function About() {
     return (
       <>
          <div className="about-container border-[3px] border-black">
-          <div className="about-inner-container border-[2px] border-black ">
+          <div className="about-inner-container border-[2px] border-black shadow-lg">
           <div className="ab-about-inner-container ">
   <h2 className=' font-nunito text-[24px] pb-[1rem] md:text-[60px] font-[700]'>WHAT IS BOTS OF BITCOIN?</h2>
   <p className=''>
