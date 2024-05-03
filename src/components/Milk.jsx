@@ -11,7 +11,7 @@ export default function Milk() {
         <div className="ab-milk-inner-container ">
             <h2 className=' text-[24px] pb-[1rem] md:text-[60px] font-nunito'>Oil Pots (Coming Soon)</h2>
             <p>Oil Pots are a Simple Raffles where there are Pots (or Rounds ) on which each 
-Pot consists of 500 Milk Drops (or Tickets) and Users can Pour one drop at a time into the 
+Pot consists of Varying Capacity for Oil Drops (or Tickets) and Users can Pour one drop at a time into the 
 Current Pot. Each Drop has a Unique Bytes12 Id and an Owner value representing it making 
 each Drop unique Tickets.</p>
 
@@ -23,13 +23,11 @@ Winning Drops. After this The next Pot (Round) gets activated and User can Claim
 Winning Shares. The Rest 15% Of the Pot goes to Platform Revenue.</p>
 
 <h3 className='text-[19px] md:text-[30px] font-[600] font-nunito'>Brief:</h3>
-<p>1: Rounds of the Raffle is called "Pots"</p>
-<p>2: Each Pot can hold 500 Drops.</p>
-<p>3: Drops are unique Tickets representing entry to the Pot for the User.</p>
-<p>4: There can only be max 10 Winning Drops Per Pot.</p>
-<p>5: 85% of Reward Pool goes to Rewarding Winners.</p>
-<p>6: Winners also get Points Allocation and get 20% more bonus on Win per PFP Held.</p>
-<p>7: Till TGE 80% of All Fee Generated through Raffles would be towards Liquidity Boosting.</p>
+<p>1: Rounds of the Lottery are called "Pots" & Tickers as Oil Drops.</p>
+<p>2: Each Pot can Hold Varying Quantities of Drops.</p>
+<p>3: There can be Varying Number of Winners depending on Pot type (risk different based on max entries, max winners ).</p>
+<p>4: The System of Starting Ticket Buy , Starting Draw and Transfer of Win Amounts are all Automatic and Admin have no control over funds except fee accrued.</p>
+<p>5: Till TGE 30% of All Fee Generated through Raffles would be Reserved towards Strengthening Token Liquidity.</p>
         </div>
         </div>
        </div>
