@@ -13,7 +13,6 @@ export default function HomePage() {
   return (
     <main className='font-fredoka'>
     <Intro/>
-    <Casarol/>
     <About/>
     <Utilities/>
     <Tokenomic/>

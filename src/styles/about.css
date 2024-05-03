@@ -15,11 +15,8 @@ color:black;
     }
 
 .ab-about-inner-container{
-    background-color:  #FF8500;
-    
     padding: 20px;
-    border-radius: 10px;
-    animation: blob2 12s alternate infinite;   
+    border-radius: 10px; 
 }
 
 .ab-about-inner-container p{

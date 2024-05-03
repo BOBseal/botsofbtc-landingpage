@@ -43,9 +43,10 @@ export default function Navbar() {
           <Image className='icon' src={line} alt="" onClick={toggleMenu} />
 
         
-          <button className='list-items small-screen' onClick={()=> alert("Coming Soon")}>Oil Pots</button>
-          <button className='list-items small-screen'>Contract</button>
-          <button className='list-items small-screen' onClick={()=> alert("Coming Soon!")}>Genesis Mint</button>
+          <button className='list-items small-screen' onClick={()=> alert("Coming Soon")}>Lottery</button>
+          <button className='list-items small-screen'>Rampage</button>
+          <button className='list-items small-screen'>Vaults</button>
+          <button className='list-items small-screen ' onClick={()=> alert("Coming Soon!")}>Mint</button>
 
           {/* 
           <div className="nav-btn list-items">

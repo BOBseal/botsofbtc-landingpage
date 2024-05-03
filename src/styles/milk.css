@@ -1,5 +1,5 @@
 .milk-container{
-    background: #E8C430;
+    background: #FF8500;
 
 padding: 37px;
 color:black;
@@ -7,17 +7,15 @@ width: auto;
 
 }
 .milk-inner-container{
-    background-color: #FF8500;
+    background-color: #E8C430;
     padding: 15px;
     border-radius: 30px;
     /* animation: blob1 10s alternate infinite; */
     }
 
 .ab-milk-inner-container{
-    background-color:  #E8C430;
     padding: 20px;
-    border-radius: 30px;
-    animation: blob2 12s alternate infinite;   
+    border-radius: 30px; 
 }
 
 .ab-milk-inner-container p{
