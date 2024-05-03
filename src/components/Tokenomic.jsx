@@ -18,14 +18,17 @@ export default function Tokenomic() {
           <li>Reward Token : $BOTS also acts as the Reward token for the Platform where users can Stake their PFPs to Earn Platform Revenue in $BOTS Token. Users can also Stake $BOTS itself to earn 20% of all Platform Revenue as Yield.</li>
           </div>
           <p className='text-[20px] pt-[20px] pb-[20px] text-black'>Upto a total of 50% of all Revenue Generated in the Plaform (in BTC) is used to Buy-Back $BOTS and Distributed back to Ecosystem Contributors such as Stakers. Ecosystem Allocation is Utilized for Liquidity , Partnerships , Future Events and it's Utilization will be decided by Community through Voting. </p>
-          <p className='font-nunito font-semibold text-[1.25rem] pt-[20px] pb-[20px] text-black'>The Distribution of $BOTS will look like this :</p>
+          <p className='font-nunito font-semibold text-[1.25rem] pt-[20px] pb-[20px] text-black'>The Distribution of $BOTS will look like this-</p>
           <div className='flex flex-col gap-[5px] md:gap-[6px] text-black'>
-          <li>NFT Holders : 5% of Total Supply.</li>
-          <li>Community & Incentives: 10% of Total Supply.</li>
-          <li>Ecosystem & Liquidity: 50% of Total Supply.</li>
-          <li>Presales : 15% of Total Supply.</li>
-          <li>Public Sales : 10% of Total Supply.</li>
-          <li>Team : 10% of Total Supply. (Vested - Cliff)</li>
+          <li>NFT Holders Total Incentives - 3% of Total Supply.</li>
+          <li>Community & Incentives - 7% of Total Supply.</li>
+          <li>Seed - 5% of total Supply.</li>
+          <li>Presale (Stage-1) - 15% of Total Supply.</li>
+          <li>Public Sale (Stage - 2) - 10% of Total Supply.</li>
+          <li>Liquidity - 10% of Total Supply.</li>
+          <li>Advisors & Partners - 10% of Total Supply.</li>
+          <li>Team - 10% of Total Supply.</li>
+          <li>Ecosystem - 30% of Total Supply. </li>
           </div>
         </div>
      </div>
