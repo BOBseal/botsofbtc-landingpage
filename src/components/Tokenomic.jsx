@@ -7,7 +7,7 @@ export default function Tokenomic() {
      <div className="p-[50px] bg-[#FF8500] border-[3px] border-black flex h-full">
         <div className='flex flex-col rounded-2xl bg-[#E8C430] border-black border-[2px] shadow-lg p-[20px] md:p-[50px] h-full'>
           <h2 className='font-nunito font-[600] text-[30px] md:text-[60px] pt-[15px] pb-[15px] md:pb-[30px] md:pt-[30px] text-black'>TOKENOMICS</h2>
-          <p className='pt-[20px] pb-[20px] text-[20px] text-black'>The BOTS OF BITCOIN Ecosystem Have two Primary Tokens , they are :</p>
+          <p className='pt-[20px] pb-[20px] text-[20px] text-black'>The BOTS OF BITCOIN Ecosystem Have two Primary Tokens , they are-</p>
           <div className='flex flex-col gap-[5px] md:gap-[6px] text-black'>
           <li>BOTS OF BITCOIN PFPs : ERC721</li>
           <li>$BOTS Token : ERC20</li>
