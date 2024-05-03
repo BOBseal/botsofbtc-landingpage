@@ -44,8 +44,8 @@ export default function Navbar() {
 
         
           <button className='list-items small-screen' onClick={()=> alert("Coming Soon")}>Lottery</button>
-          <button className='list-items small-screen'>Rampage</button>
-          <button className='list-items small-screen'>Vaults</button>
+          <button className='list-items small-screen' onClick={()=> alert("Coming Soon")}>Rampage</button>
+          <button className='list-items small-screen' onClick={()=> alert("Coming Soon")}>Vaults</button>
           <button className='list-items small-screen ' onClick={()=> alert("Coming Soon!")}>Mint</button>
 
           {/* 

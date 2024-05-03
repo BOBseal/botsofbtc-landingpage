@@ -15,7 +15,7 @@ const Footer =()=> {
             <div className=" flex flex-col gap-[2rem] items-center">
               {/*  CAN USE ROUTER TO NAVIGATE THROUGH DIFFERNT PAGES IN FUTURE */}
             <button className='f-list-items'>Contact Us</button>
-            <button className='f-list-items'>T&C</button>
+            <button className='f-list-items'>Docs</button>
             <Link href={'https://twitter.com/BotsOfBtc'}>
             <Image className='f-list-items' width={39} height={30} src= {twit} alt="" />
             </Link>
