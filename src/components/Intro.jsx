@@ -20,7 +20,7 @@ export default function Intro() {
         </div>
 
         <div className="flex w-[90%] h-[50%] flex-col lg:pl-[7rem]">
-            <h1 className=' nnn text-[65px] md:pb-[20px] md:text-[85px] fomt-[700] pt-[20px] pr-[20px] pl-[20px] font-nunito text-black'>BOTS OF BITCOIN</h1>
+            <h1 className=' nnn text-[65px] md:pb-[20px] md:text-[85px] font-[700] pt-[20px] pr-[20px] pl-[20px] font-nunito text-black'>BOTS OF BITCOIN</h1>
             <p className='text-black p-[20px] text-[24px] ddd'>BOTS OF BITCOIN is a Collection of 10k Unique Revenue Sharing ROBOT PFPs with Utility on BOB. Mint one and Earn 6.9% Royalties on your Minted PFPs Forever and a Bonus Airdrop of Platform Tokens! </p>
         </div>
         </div></>
