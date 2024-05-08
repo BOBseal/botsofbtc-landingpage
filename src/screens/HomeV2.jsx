@@ -1,5 +1,5 @@
 import React from 'react'
-import NAVBAR from '@/components/NAVBAR'
+import NAVBAR from '@/components/Navbar'
 import HM from "@/components/HM"
 import TxtSlider from "@/components/TxtSlider"
 import Partners from "@/components/Partners"
