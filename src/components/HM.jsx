@@ -9,7 +9,7 @@ const HM = () => {
  const st = {
     main : `flex flex-col gap-[1rem] md:gap-[2rem] justify-between items-center h-full pt-[10px] pb-[50px] bg-gradient-to-b from-[#E5BD19] to-[#FFEB99]`,
     h1:`md:text-[96px] text-[38px] font-extrabold font-fredoka text-black font-outline-1`,
-    imgBox:`flex flex-col md:flex-row-reverse justify-center items-center md:justify-between w-[85%] md:w-[80%] lg:w-[45%] gap-[2rem]`,
+    imgBox:`flex flex-col md:flex-row-reverse justify-center items-center md:justify-between w-[85%] md:w-[80%] lg:w-[55%] gap-[2rem]`,
     img:`w-[250px] md:w-[450px] lg:w-[650px] object-cover`,
     h2:`text-[24px] font-semibold font-nunito text-black`
  } 
