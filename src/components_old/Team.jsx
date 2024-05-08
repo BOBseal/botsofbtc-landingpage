@@ -1,7 +1,7 @@
 import React from 'react'
 import "../styles/Team.css"
 import {teamConfig} from "../configs/config"
-import TeamCard from "../components/CARDS/TeamCard"
+import TeamCard from "./CARDS/TeamCard"
 
 const Team = () => {
   return (

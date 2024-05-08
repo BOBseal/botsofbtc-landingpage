@@ -1,10 +1,10 @@
 import React from 'react'
-import '../styles/footer.css'
-import dis from '../assets/Vector.svg'
-import twit from '../assets/Vector1.svg'
-import Image from '../../node_modules/next/image'
-import telegram from "../assets/telegram.svg"
-import Link from '../../node_modules/next/link'
+
+//import dis from './src/assets/Vector.svg'
+import twit from '../src/assets/Vector1.svg'
+import Image from 'next/image'
+import telegram from "../src/assets/telegram.svg"
+import Link from 'next/link'
 
 const Footer =()=> {
 
