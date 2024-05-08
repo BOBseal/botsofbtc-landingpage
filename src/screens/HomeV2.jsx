@@ -3,7 +3,7 @@ import NAVBAR from '@/components/Navbar'
 import HM from "@/components/HM"
 import TxtSlider from "@/components/TxtSlider"
 import Partners from "@/components/Partners"
-import Footer from "../../components_old/Footer"
+//import Footer from "../../components_old/Footer"
 const CSS = {
 
 }
