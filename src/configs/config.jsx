@@ -2,7 +2,7 @@ import bob from "../assets/1.png"
 import v from "../assets/30.png"
 import deep from "../assets/11.png"
 import six from "../assets/12.png"
-
+import partner1Logo from "../assets/BOB_LOGO.png"
 export const teamConfig =[
     {id:1 , name : "BOB" , designation:"Founder & CTO", desc:"Web3 Dev with a Vision to Serve the Ecosystem and Grow Along.", link:"", picture: bob},
     {id:2 , name : "S. Agarwal" , designation:"Legal Head", desc:"CA with magic-hand in finances & handles compliances.", link:"", picture: six},
@@ -10,8 +10,8 @@ export const teamConfig =[
     {id:4 , name : "Vishnu" , designation:"COO / Advisory", desc:"Ex-Yahoo R&D , Co-Operate with founder & team to plan the bigger picture.", link:"", picture: v},
 ]
 
-export const partners =[
-    {id: 1 , logo:null}
+export const partnerInfo =[
+    {id: 1 , logo:partner1Logo}
 ]
 
 export const sectionText = [

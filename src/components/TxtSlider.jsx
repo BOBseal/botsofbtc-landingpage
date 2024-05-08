@@ -32,7 +32,7 @@ const TxtSlider = () => {
     }
 
   return (
-    <div className='bg-[#231F20] flex justify-between items-center min-h-[900px] md:min-h-[800px] pt-[2rem] pb-[2rem] border-b border-white'>
+    <div className='bg-[#231F20] flex justify-between items-center min-h-[1100px] md:min-h-[900px] pt-[2rem] pb-[2rem] border-b border-white'>
         <button className='text-white md:ml-[30px]' onClick={()=> goLeft()}><Image src={l} height={20} width={20} className="hover:scale-125"/></button>
         
         <div className={`h-[86%] flex flex-col md:w-[70%] lg:w-[55%] w-[85%] ${act == 1 ? "" : "hidden"}`}>
