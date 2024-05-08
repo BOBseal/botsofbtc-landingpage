@@ -11,7 +11,7 @@ const Card3 = () => {
         <p className='w-[90%] text-white text-[15px] font-nunito'>{sectionText[2].p2}</p>
         <h2 className='text-[#E5BD19] font-fredoka text-[18px] md:text-[35px] font-bold uppercase md:w-[90%]'> OVERVIEW :</h2>
         {sectionText[2].t.map((o , k) => (
-            <li className='w-[90%] text-white text-[15px] font-nunito'>{o}</li>
+            <li key={k} className='w-[90%] text-white text-[15px] font-nunito'>{o}</li>
         ))}
     </div>
   )

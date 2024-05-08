@@ -1,5 +1,5 @@
 import React from 'react'
-import NAVBAR from '@/components/Navbar'
+import Navbar from '@/components/Navbar'
 import HM from "@/components/HM"
 import TxtSlider from "@/components/TxtSlider"
 import Partners from "@/components/Partners"
@@ -11,7 +11,7 @@ const CSS = {
 const HomeV2 = () => {
   return (
     <div className='flex flex-col w-full justify-center h-full'>
-      <NAVBAR/>
+      <Navbar/>
       <HM/>
       <TxtSlider/>
       <Partners/>

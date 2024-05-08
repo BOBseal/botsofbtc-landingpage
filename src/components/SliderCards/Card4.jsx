@@ -10,7 +10,7 @@ const Card4 = () => {
         <h2 className='text-[#E5BD19] font-fredoka text-[18px] md:text-[35px] font-bold uppercase md:w-[90%] mt-[20px]'>{sectionText[3].h2}</h2>
         {
             sectionText[3].p2.map((o,k)=>(
-                <li className='w-[90%] mt-[10px] text-white text-[15px] font-nunito'>{o}</li>
+                <li key={k} className='w-[90%] mt-[10px] text-white text-[15px] font-nunito'>{o}</li>
             ))
         }
     </div>

@@ -1,11 +1,11 @@
 'use client'
 import React from 'react'
-import Image from '../../node_modules/next/image'
+import Image from 'next/image'
 import lgo from "../assets/dp.jpg"
 import menu from "../assets/threelinemenu.svg"
 
 
-const NAVBAR = () => {
+const Navbar = () => {
   return (
     <div className="flex justify-between items-center border-b-[2px] border-black bg-[#E5BD19] w-full p-[0.7rem] lg:pr-[6rem] lg:pl-[6rem]">
         <div className='flex justify-center gap-[0.5rem] md:gap-[1rem] lg:gap-[1.6rem] items-center'>
@@ -37,4 +37,4 @@ const NAVBAR = () => {
   )
 }
 
-export default NAVBAR
+export default Navbar
