@@ -1,12 +1,12 @@
 'use client'
-import React from 'react'
+import React,{useContext} from 'react'
 import Image from 'next/image'
 import lgo from "../assets/dp.jpg"
 import menu from "../assets/threelinemenu.svg"
-
+import { AppContext } from '@/context/AppContext'
 
 const Navbar = () => {
-  
+  const {connectWallet , user} = useContext(AppContext);
   const al =()=>{
     alert("Coming Soon");
   }
