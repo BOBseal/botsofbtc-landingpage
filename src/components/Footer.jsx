@@ -1,38 +1,34 @@
+'use client'
 import React from 'react'
-import '../styles/footer.css'
-import dis from '../assets/Vector.svg'
 import twit from '../assets/Vector1.svg'
-import Image from '../../node_modules/next/image'
+import Image from 'next/image'
 import telegram from "../assets/telegram.svg"
-import Link from '../../node_modules/next/link'
+import Link from 'next/link'
 
-const Footer =()=> {
-
+const Footer = () => {
   return (
-    <>
-      <div className="h-[280px] bg-black text-white p-[2rem] md:p-[4rem] font-fredoka flex flex-col justify-evenly items-center gap-[2rem]">
-         <div className="flex justify-center w-[80%] gap-[5rem] items-center" >
-            <div className=" flex flex-col gap-[2rem] items-center">
-              {/*  CAN USE ROUTER TO NAVIGATE THROUGH DIFFERNT PAGES IN FUTURE */}
-            <button className='f-list-items'>Contact Us</button>
-            <button className='f-list-items'>Docs</button>
-            <Link href={'https://twitter.com/BotsOfBtc'}>
-            <Image className='f-list-items' width={39} height={30} src= {twit} alt="" />
-            </Link>
-            </div>
-            
-            <div className="flex flex-col gap-[2rem] items-center">
-            <button className='f-list-items'>D-App (Coming Soon)</button>
-            <button className='f-list-items'>Mint (Coming Soon)</button>
+    <div className='bg-[#231F20] p-[2rem] md:p-[4rem] text-white flex flex-col justify-center items-center gap-[2rem]'>
+        <div className=' grid gap-[4rem] items-center w-[80%] md:w-[50%] lg:w-[30%] justify-items-center justify-center grid-cols-2'>
+          <div className='flex flex-col gap-[1rem]'>
+            <p>Docs</p>
+            <p>Contact Us</p>
+            <p>Terms of use</p>
             <Link href={'https://t.me/botsofbtc'}>
-            <Image className='bg-white rounded-full f-list-items' width={39} height={30} src={telegram} alt="" />
+            <Image src={telegram} className={`text-white bg-white rounded-full`} height={39} width={39}/>
             </Link>
-            </div>
-         </div>
+          </div>
 
-
-      </div>
-    </>
+          <div className='flex flex-col gap-[1rem]'>
+            <p>Dapp</p>
+            <p>Mint</p>
+            <p>FAQ</p>
+            <Link href={'https://twitter.com/BotsOfBtc'}>
+            <Image src={twit} height={39} width={39} className={``}/>
+            </Link>
+          </div>
+        </div>
+    </div>
   )
 }
+
 export default Footer
