@@ -11,7 +11,7 @@ const HM = () => {
     h1:`md:text-[96px] lg:text-[130px] text-[38px] font-extrabold font-fredoka text-black font-outline-1`,
     imgBox:`flex flex-col md:flex-row-reverse justify-center items-center md:justify-between w-[85%] md:w-[80%] lg:w-[55%] gap-[2rem]`,
     img:`w-[250px] md:w-[450px] lg:w-[500px] object-cover`,
-    h2:`text-[24px] leading-[30px] font-nunito text-black`
+    h2:`md:text-[24px] text-[18px] leading-[30px] font-nunito text-black`
  } 
   
  return (
