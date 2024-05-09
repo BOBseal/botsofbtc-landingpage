@@ -73,7 +73,7 @@ const TxtSlider = () => {
             <Card6/>
             
         </div>
-        <div className='flex w-full justify-between mt-[400px] h-full absolute'>
+        <div className='flex w-full justify-between mt-[400px] md:hidden h-full absolute'>
             <button className='text-white md:hidden flex' onClick={()=> goLeft()}><Image src={l} height={20} width={20} className="hover:scale-125"/></button>
             <button className='text-white md:hidden flex' onClick={()=> goRight()}><Image src={r} height={20} width={20} className="hover:scale-125"/></button>    
         </div>
