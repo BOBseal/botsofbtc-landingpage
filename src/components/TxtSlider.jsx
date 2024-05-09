@@ -14,6 +14,13 @@ import Card7 from './SliderCards/Card7'
 
 const TxtSlider = () => {
     const [act , setAct] = useState(1)
+    const [cards, setCards] = useState([
+        Card1,
+        Card2,
+        Card3,
+        Card4,
+        Card5
+    ])
 
     const goRight =()=>{
         if(act == 5){

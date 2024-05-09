@@ -6,6 +6,10 @@ import menu from "../assets/threelinemenu.svg"
 
 
 const Navbar = () => {
+  
+  const al =()=>{
+    alert("Coming Soon");
+  }
   return (
     <div className="flex justify-between items-center border-b-[2px] border-black bg-[#E5BD19] w-full p-[0.7rem] lg:pr-[6rem] lg:pl-[6rem]">
         <div className='flex justify-center gap-[0.5rem] md:gap-[1rem] lg:gap-[1.6rem] items-center'>
@@ -24,10 +28,10 @@ const Navbar = () => {
         </div>
         
         <div className ="md:flex gap-[30px] hidden ">
-          <button className='text-[22px] font-nunito font-semibold'>Mint</button>
-          <button className='text-[22px] font-nunito font-semibold'>Lottery</button>
-          <button className='text-[22px] font-nunito font-semibold'>Vaults</button>
-          <button className='text-[22px] font-nunito font-semibold'>Docs</button>
+          <button className='text-[22px] font-nunito font-semibold hover:scale-105' onClick={()=> al()}>Mint</button>
+          <button className='text-[22px] font-nunito font-semibold hover:scale-105' onClick={()=> al()}>Lottery</button>
+          <button className='text-[22px] font-nunito font-semibold hover:scale-105' onClick={()=> al()}>Vaults</button>
+          <button className='text-[22px] font-nunito font-semibold hover:scale-105'>Docs</button>
         </div>
 
         <button className='md:flex hidden text-[22px] font-nunito p-[10px] text-white font-semibold bg-black rounded-full'>
