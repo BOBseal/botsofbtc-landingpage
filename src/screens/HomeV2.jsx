@@ -4,6 +4,7 @@ import HM from "@/components/HM"
 import TxtSlider from "@/components/TxtSlider"
 import Partners from "@/components/Partners"
 import Team from "@/components/Team"
+import Footer from "@/components/Footer"
 //import Footer from "../../components_old/Footer"
 const CSS = {
 
@@ -17,6 +18,7 @@ const HomeV2 = () => {
       <TxtSlider/>
       <Partners/>
       <Team/>
+      <Footer/>
     </div>
   )
 }

@@ -1,8 +1,28 @@
+'use client'
 import React from 'react'
+import twit from '../assets/Vector1.svg'
+import Image from 'next/image'
+import telegram from "../assets/telegram.svg"
 
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <div className='bg-[#231F20] p-[2rem] md:p-[4rem] text-white flex flex-col justify-center items-center gap-[2rem]'>
+        <div className=' grid gap-[4rem] items-center w-[80%] md:w-[50%] lg:w-[30%] justify-items-center justify-center grid-cols-2'>
+          <div className='flex flex-col gap-[1rem]'>
+            <p>Docs</p>
+            <p>Contact Us</p>
+            <p>Terms of use</p>
+            <Image src={telegram} className={`text-white bg-white`} height={39} width={39}/>
+          </div>
+
+          <div className='flex flex-col gap-[1rem]'>
+            <p>Dapp</p>
+            <p>Mint</p>
+            <p>FAQ</p>
+            <Image src={twit} height={39} width={39}/>
+          </div>
+        </div>
+    </div>
   )
 }
 
