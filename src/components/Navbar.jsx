@@ -17,7 +17,7 @@ const Navbar = () => {
               <Image src={lgo} height={1000} width={1000} alt="logo" className='rounded-full border border-black object-cover'/>
           </div>
           <div> 
-            <h1 className='font-nunito text-[23px] md:text-[35px] lg:text-[45px] font-[700]'>BOTS OF BITCOIN</h1>
+            <h1 className='font-nunito text-[23px] md:text-[35px] lg:text-[45px] font-[700] hidden md:flex'>BOTS OF BITCOIN</h1>
           </div>
         </div>
 
