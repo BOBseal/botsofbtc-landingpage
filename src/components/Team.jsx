@@ -9,7 +9,7 @@ const Team = () => {
         <h1 className='text-black font-bold text-[2rem] md:text-[3rem] flex font-nunito w-[80%] md:w-auto justify-center'>TEAM</h1>
         <div className='w-full h-full min-h-[19rem] grid-cols-2 md:grid-cols-4 grid gap-[0.8rem]'>
         {teamConfig.map((item, key)=>(
-          <TeamCard item ={item} key={key} className="border"/>
+          <TeamCard item ={item} key={key} className=""/>
         ))}
         </div>
       </div>
