@@ -3,7 +3,7 @@ import {sectionText} from "../../configs/config"
 
 const Card2 = () => {
   return (
-    <div className='w-full h-full text-white gap-[1rem] md:gap-1rem flex flex-col'>
+    <div className='w-full h-full text-white justify-evenly gap-[1rem] md:gap-1rem flex flex-col'>
         <h1 className='text-[#E5BD19] leading-[30px] md:leading-[60px] font-fredoka text-[22px] md:text-[55px] font-bold uppercase md:w-[90%]'>{sectionText[1].h1}</h1>
         <p className='w-[90%] text-white font-nunito text-[15px]'>{sectionText[1].p1}</p>
         <h2 className='text-[#E5BD19] font-fredoka leading-[30px] md:leading-[50px] text-[18px] md:text-[35px] font-bold uppercase md:w-[90%]'>{sectionText[1].p2[0].h}</h2>

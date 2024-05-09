@@ -14,6 +14,13 @@ import Card7 from './SliderCards/Card7'
 
 const TxtSlider = () => {
     const [act , setAct] = useState(1)
+    const [cards, setCards] = useState([
+        Card1,
+        Card2,
+        Card3,
+        Card4,
+        Card5
+    ])
 
     const goRight =()=>{
         if(act == 5){
@@ -32,11 +39,12 @@ const TxtSlider = () => {
     }
 
   return (
-    <div className='bg-[#231F20] flex justify-between items-center min-h-[1100px] md:min-h-[900px] pt-[2rem] pb-[2rem] border-b border-white'>
-        <button className='text-white md:ml-[30px]' onClick={()=> goLeft()}><Image src={l} height={20} width={20} className="hover:scale-125"/></button>
+    <div className='bg-[#231F20] flex justify-between flex-col md:flex-row md:justify-between items-center h-[800px] overflow-x-auto pt-[2rem] pb-[2rem] border-b border-white'>
+        <button className='text-white md:ml-[30px] hidden md:flex' onClick={()=> goLeft()}><Image src={l} height={20} width={20} className="hover:scale-125"/></button>
         
         <div className={`h-[86%] flex flex-col md:w-[70%] lg:w-[55%] w-[85%] ${act == 1 ? "" : "hidden"}`}>
             <Card1/>
+            
         </div>
 
         <div className={`h-[86%] flex flex-col md:w-[70%] lg:w-[55%] w-[85%] ${act == 2 ? "" : "hidden"}`}>
@@ -63,10 +71,14 @@ const TxtSlider = () => {
 
         <div className={`h-[86%] flex flex-col md:w-[70%] lg:w-[55%] w-[85%] ${act == 6 ? "" : "hidden"}`}>
             <Card6/>
+            
+        </div>
+        <div className='flex w-full justify-between mt-[400px] h-full absolute'>
+            <button className='text-white md:hidden flex' onClick={()=> goLeft()}><Image src={l} height={20} width={20} className="hover:scale-125"/></button>
+            <button className='text-white md:hidden flex' onClick={()=> goRight()}><Image src={r} height={20} width={20} className="hover:scale-125"/></button>    
         </div>
 
-
-        <button className='text-white md:mr-[30px]' onClick={()=> goRight()}><Image src={r} height={20} width={20} className="hover:scale-125"/></button>
+        <button className='text-white md:mr-[30px] hidden md:flex' onClick={()=> goRight()}><Image src={r} height={20} width={20} className="hover:scale-125"/></button>
     </div>
   )
 }

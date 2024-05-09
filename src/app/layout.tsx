@@ -1,4 +1,5 @@
 import './globals.css'
+import {AppProvider} from "../context/AppContext"
 import type { Metadata } from 'next'
 //import Navbar from '@/components/Navbar'
 //import NAVBAR from "../components/NAVBAR"
@@ -31,7 +32,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${fredoka.variable} ${nunito.variable}`}>
+        <AppProvider>
         {children}
+        </AppProvider>
         </body>
     </html>
   )
