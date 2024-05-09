@@ -39,7 +39,7 @@ const TxtSlider = () => {
     }
 
   return (
-    <div className='bg-[#231F20] flex justify-between flex-col md:flex-row md:justify-between items-center h-[900px] overflow-x-auto pt-[2rem] pb-[2rem] border-b border-white'>
+    <div className='bg-[#231F20] flex justify-between flex-col md:flex-row md:justify-between items-center h-[800px] overflow-x-auto pt-[2rem] pb-[2rem] border-b border-white'>
         <button className='text-white md:ml-[30px] hidden md:flex' onClick={()=> goLeft()}><Image src={l} height={20} width={20} className="hover:scale-125"/></button>
         
         <div className={`h-[86%] flex flex-col md:w-[70%] lg:w-[55%] w-[85%] ${act == 1 ? "" : "hidden"}`}>
@@ -73,7 +73,7 @@ const TxtSlider = () => {
             <Card6/>
             
         </div>
-        <div className='flex w-full justify-between mt-[700px] h-full absolute'>
+        <div className='flex w-full justify-between mt-[400px] h-full absolute'>
             <button className='text-white md:hidden flex' onClick={()=> goLeft()}><Image src={l} height={20} width={20} className="hover:scale-125"/></button>
             <button className='text-white md:hidden flex' onClick={()=> goRight()}><Image src={r} height={20} width={20} className="hover:scale-125"/></button>    
         </div>
