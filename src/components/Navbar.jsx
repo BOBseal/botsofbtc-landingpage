@@ -30,7 +30,7 @@ const Navbar = () => {
           <button className='text-[22px] font-nunito font-semibold'>Docs</button>
         </div>
 
-        <button className='md:flex hidden text-[22px] font-nunito p-[4px] text-white font-semibold bg-black rounded-full'>
+        <button className='md:flex hidden text-[22px] font-nunito p-[10px] text-white font-semibold bg-black rounded-full'>
           Log In
         </button>
     </div>
