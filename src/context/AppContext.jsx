@@ -10,7 +10,8 @@ import {
     unixToGeneralTime,
     connectMetamask,
     getChainId,
-    getEthBalance
+    getEthBalance,
+    walletSign
  } from "../utils/hooks"
 
 export const AppContext = React.createContext();
@@ -27,7 +28,15 @@ export const AppProvider =({children})=>{
                 await addNetwork(BOB_MAINNET);
             }
             const accounts = await connectMetamask();
-            setUser({... user, wallet: accounts.wallet})
+            console.log(accounts)
+            if(accounts.wallet){
+                const res = walletSign("BOTS OF BITCOIN wants you to sign in and confirm wallet ownership. ARE YOU FRIKKIN READY TO RAMPAGE !!?" , accounts.wallet);                
+                res.then(()=>{
+                    setUser({...user , wallet: accounts.wallet});
+                }).catch((err)=>{
+                    alert("Sign In failed")
+                })
+            }
         } catch (error) {
             console.log(error)
         }

@@ -35,7 +35,7 @@ const Navbar = () => {
         </div>
 
         <button onClick={()=> connectWallet()} className='md:flex hidden text-[22px] font-nunito p-[10px] text-white font-semibold bg-black rounded-full'>
-          Log In
+          {user.wallet ? <>0x...{user.wallet.slice(38)}</>:"Log In"}
         </button>
     </div>
   )

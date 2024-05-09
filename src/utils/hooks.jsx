@@ -76,6 +76,20 @@ export const getEthBalance=async(account)=>{
     }
 }
 
+export const walletSign = async(message , from)=>{
+    try {
+        const msg = `0x${Buffer.from(message, "utf8").toString("hex")}`;
+        const sign = await window.ethereum.request({
+            method: "personal_sign",
+            params: [msg, from],
+        });
+        return sign;
+    } catch (error) {
+        console.log(error);
+        alert("Sign In failed");
+    }
+}
+
 export function unixToGeneralTime(seconds)
 
 {
