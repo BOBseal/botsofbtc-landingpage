@@ -32,7 +32,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${fredoka.variable} ${nunito.variable}`}>
+        <AppProvider>
         {children}
+        </AppProvider>
         </body>
     </html>
   )

@@ -3,9 +3,10 @@ import React,{useContext} from 'react'
 import Image from 'next/image'
 import lgo from "../assets/dp.jpg"
 import menu from "../assets/threelinemenu.svg"
-//import { AppContext } from '@/context/AppContext'
+import { AppContext } from '@/context/AppContext'
 
 const Navbar = () => {
+  const {connectWallet , user} = useContext(AppContext);
   const al =()=>{
     alert("Coming Soon");
   }
@@ -33,7 +34,7 @@ const Navbar = () => {
           <button className='text-[22px] font-nunito font-semibold hover:scale-105'>Docs</button>
         </div>
 
-        <button className='md:flex hidden text-[22px] font-nunito p-[10px] text-white font-semibold bg-black rounded-full'>
+        <button onClick={()=> connectWallet()} className='md:flex hidden text-[22px] font-nunito p-[10px] text-white font-semibold bg-black rounded-full'>
           Log In
         </button>
     </div>

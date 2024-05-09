@@ -15,7 +15,7 @@ import {
 
 export const AppContext = React.createContext();
 
-export const AppProvider =({child})=>{
+export const AppProvider =({children})=>{
 
     const [user , setUser] = useState({});
 
@@ -36,7 +36,7 @@ export const AppProvider =({child})=>{
     return(
         <>
         <AppContext.Provider value={{connectWallet, user}}>
-            {child}
+            {children}
         </AppContext.Provider>
         </>
     )
