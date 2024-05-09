@@ -24,15 +24,15 @@ const Navbar = () => {
         </div>
         
         <div className ="md:flex gap-[30px] hidden ">
-          <p>Mint</p>
-          <p>Lottery</p>
-          <p>Vaults</p>
-          <p>Learn More</p>
+          <button className='text-[22px] font-nunito font-semibold'>Mint</button>
+          <button className='text-[22px] font-nunito font-semibold'>Lottery</button>
+          <button className='text-[22px] font-nunito font-semibold'>Vaults</button>
+          <button className='text-[22px] font-nunito font-semibold'>Docs</button>
         </div>
 
-        <div className='md:flex hidden'>
-          Connect Wallet
-        </div>
+        <button className='md:flex hidden text-[22px] font-nunito p-[4px] text-white font-semibold bg-black rounded-full'>
+          Log In
+        </button>
     </div>
   )
 }

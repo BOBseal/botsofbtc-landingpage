@@ -3,6 +3,7 @@ import React from 'react'
 import twit from '../assets/Vector1.svg'
 import Image from 'next/image'
 import telegram from "../assets/telegram.svg"
+import Link from 'next/link'
 
 const Footer = () => {
   return (
@@ -12,14 +13,18 @@ const Footer = () => {
             <p>Docs</p>
             <p>Contact Us</p>
             <p>Terms of use</p>
-            <Image src={telegram} className={`text-white bg-white`} height={39} width={39}/>
+            <Link href={'https://t.me/botsofbtc'}>
+            <Image src={telegram} className={`text-white bg-white rounded-full`} height={39} width={39}/>
+            </Link>
           </div>
 
           <div className='flex flex-col gap-[1rem]'>
             <p>Dapp</p>
             <p>Mint</p>
             <p>FAQ</p>
-            <Image src={twit} height={39} width={39}/>
+            <Link href={'https://twitter.com/BotsOfBtc'}>
+            <Image src={twit} height={39} width={39} className={``}/>
+            </Link>
           </div>
         </div>
     </div>
