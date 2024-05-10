@@ -28,14 +28,14 @@ export const AppProvider =({children})=>{
     const connectWallet = async()=>{
         try {
             const chain = await getChainId();
-            if(chain != BOB_MAINNET[0].chainId){
-                await addNetwork(BOB_MAINNET);
-            }
             const accounts = await connectMetamask();
             console.log(accounts)
             if(accounts.wallet){
                 const res = walletSign("BOTS OF BITCOIN wants you to sign in and confirm wallet ownership. ARE YOU FRIKKIN READY TO RAMPAGE !!?" , accounts.wallet);                
                 res.then(()=>{
+                    if(chain != BOB_MAINNET[0].chainId){
+                        addNetwork(BOB_MAINNET);
+                    }
                     setUser({...user , wallet: accounts.wallet});
                 }).catch((err)=>{
                     alert("Sign In failed")

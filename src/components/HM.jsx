@@ -1,11 +1,13 @@
 'use client'
-import React from 'react'
+import React,{useContext} from 'react'
 import Image from '../../node_modules/next/image'
 import img1 from "../assets/haha.gif"
 import img2 from "../assets/10.png"
 import img3 from "../assets/11.png"
+import { AppContext } from '@/context/AppContext'
 
 const HM = () => {
+    const {states} = useContext(AppContext);
  const st = {
     main : `flex flex-col gap-[1rem] md:gap-[2rem] justify-between items-center h-full pt-[10px] pb-[50px] bg-gradient-to-b from-[#E5BD19] to-[#FFEB99]`,
     h1:`md:text-[96px] lg:text-[130px] text-[38px] font-extrabold drop-shadow-2xl font-fredoka text-black font-outline-1`,
@@ -15,7 +17,7 @@ const HM = () => {
  } 
   
  return (
-    <div className={`${st.main}`}>
+    <div className={`${st.main} ${states.mobileMenuOpen ? "blur-md" : ""}`} >
         <div>
             <h1 className={`${st.h1} font-`}>BOTS OF BITCOIN</h1>
         </div>

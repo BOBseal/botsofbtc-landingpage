@@ -13,9 +13,9 @@ const CSS = {
 }
 
 const HomeV2 = () => {
-  const {states} = useContext(AppContext);
+  const {states, openMobileMeu} = useContext(AppContext);
   return (
-    <div className={`flex flex-col w-full justify-center h-full ${!states.mobileMenuOpen? 'blur-2xl':""}`}>
+    <div className={`flex flex-col w-full justify-center h-full`}>
       <Navbar/>
       <HM/>
       <TxtSlider />

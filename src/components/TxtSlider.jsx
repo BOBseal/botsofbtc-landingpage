@@ -15,7 +15,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { AppContext } from '@/context/AppContext.jsx'
 
 const TxtSlider = () => {
-    const {act , setAct} = useContext(AppContext);
+    const {act , setAct, states} = useContext(AppContext);
     const [exitVariants , setActiveVariants] = useState({
         hidden: { opacity: 25, x: 100 },
         visible: { opacity: 1, x: 0 },
@@ -47,7 +47,7 @@ const TxtSlider = () => {
     }
 
   return (
-    <div className='bg-[#231F20] flex justify-between flex-col md:flex-row md:justify-between items-center h-[600px] md:h-[790px] overflow-x-auto pt-[2rem] pb-[2rem] border-b border-white'>
+    <div className={`bg-[#231F20] flex justify-between flex-col md:flex-row md:justify-between items-center h-[600px] md:h-[790px] overflow-x-auto pt-[2rem] pb-[2rem] border-b border-white ${states.mobileMenuOpen ? "blur-md" : ""}`} >
         <button className='text-white md:ml-[30px] hidden md:flex' onClick={()=> goLeft()}><Image src={l} height={20} width={20} alt="pcbutton" className="hover:scale-125"/></button>
         
         <AnimatePresence mode="wait">

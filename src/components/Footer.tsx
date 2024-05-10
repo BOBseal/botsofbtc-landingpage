@@ -6,6 +6,12 @@ import telegram from "../assets/telegram.svg"
 import Link from 'next/link'
 
 const Footer:React.FC = () => {
+  const al =()=>{
+    alert ("coming soon")
+  }
+  const tnc =()=>{
+    alert ("Announcements soon")
+  }
   return (
     <div className='bg-[#231F20] p-[2rem] md:p-[4rem] text-white flex flex-col justify-center items-center gap-[2rem]'>
         <div className=' grid gap-[4rem] items-center w-[80%] md:w-[50%] lg:w-[30%] justify-items-center justify-center grid-cols-2'>
@@ -19,9 +25,9 @@ const Footer:React.FC = () => {
           </div>
 
           <div className='flex flex-col gap-[1rem]'>
-            <p>Dapp</p>
-            <p>Mint</p>
-            <p>FAQ</p>
+            <p onClick={()=>al()}>Vaults</p>
+            <p onClick={()=>al()}>Mint</p>
+            <p onClick={()=>al()}>Lottery</p>
             <Link href={'https://twitter.com/BotsOfBtc'}>
             <Image src={twit} height={30} width={30} className={``} alt="Twitter / X"/>
             </Link>
