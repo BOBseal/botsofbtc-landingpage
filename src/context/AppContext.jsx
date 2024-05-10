@@ -19,7 +19,11 @@ export const AppContext = React.createContext();
 export const AppProvider =({children})=>{
 
     const [user , setUser] = useState({});
-
+    const [act , setAct] = useState(1);
+    const [states, setStates] = useState({
+        mobileMenuOpen: false ,
+        contentsSubmenuOpen: false
+      })
 
     const connectWallet = async()=>{
         try {
@@ -42,9 +46,21 @@ export const AppProvider =({children})=>{
         }
     }
 
+    const openMobileMenu=()=>{
+        if(states.mobileMenuOpen){
+          setStates({...states,mobileMenuOpen:false})
+          console.log(false)
+          
+        }
+        if(!states.mobileMenuOpen){
+          setStates({...states,mobileMenuOpen:true})
+          console.log(true)
+        }
+      }
+
     return(
         <>
-        <AppContext.Provider value={{connectWallet, user}}>
+        <AppContext.Provider value={{connectWallet, user, act , setAct, states, setStates, openMobileMenu}}>
             {children}
         </AppContext.Provider>
         </>

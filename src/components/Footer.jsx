@@ -14,7 +14,7 @@ const Footer = () => {
             <p>Contact Us</p>
             <p>Terms of use</p>
             <Link href={'https://t.me/botsofbtc'}>
-            <Image src={telegram} className={`text-white bg-white rounded-full`} height={30} width={30}/>
+            <Image src={telegram} className={`text-white bg-white rounded-full`} height={30} width={30} alt="Telegram"/>
             </Link>
           </div>
 
@@ -23,7 +23,7 @@ const Footer = () => {
             <p>Mint</p>
             <p>FAQ</p>
             <Link href={'https://twitter.com/BotsOfBtc'}>
-            <Image src={twit} height={30} width={30} className={``}/>
+            <Image src={twit} height={30} width={30} className={``} alt="Twitter / X"/>
             </Link>
           </div>
         </div>

@@ -1,5 +1,5 @@
 'use client'
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import {sectionText} from "../configs/config.jsx"
 import Image from '../../node_modules/next/image.js'
 import l from "../assets/leftArrow.png"
@@ -12,9 +12,11 @@ import Card5 from "./SliderCards/Card5"
 import Card6 from "./SliderCards/Card6"
 import Card7 from './SliderCards/Card7'
 import { motion, AnimatePresence } from "framer-motion"
+import { AppContext } from '@/context/AppContext.jsx'
 
 const TxtSlider = () => {
-    const [act , setAct] = useState(1)
+    const {act , setAct} = useContext(AppContext);
+    
     const [cards, setCards] = useState([
         Card1,
         Card2,
@@ -46,7 +48,7 @@ const TxtSlider = () => {
 
   return (
     <div className='bg-[#231F20] flex justify-between flex-col md:flex-row md:justify-between items-center h-[600px] md:h-[790px] overflow-x-auto pt-[2rem] pb-[2rem] border-b border-white'>
-        <button className='text-white md:ml-[30px] hidden md:flex' onClick={()=> goLeft()}><Image src={l} height={20} width={20} className="hover:scale-125"/></button>
+        <button className='text-white md:ml-[30px] hidden md:flex' onClick={()=> goLeft()}><Image src={l} height={20} width={20} alt="pcbutton" className="hover:scale-125"/></button>
         
         <AnimatePresence mode="wait">
                 <motion.div
@@ -67,11 +69,11 @@ const TxtSlider = () => {
             </AnimatePresence>
 
         <div className='flex w-full justify-between mt-[300px] md:hidden h-full absolute'>
-            <button className='text-white md:hidden flex' onClick={()=> goLeft()}><Image src={l} height={20} width={20} className="hover:scale-125"/></button>
-            <button className='text-white md:hidden flex' onClick={()=> goRight()}><Image src={r} height={20} width={20} className="hover:scale-125"/></button>    
+            <button className='text-white md:hidden flex' onClick={()=> goLeft()}><Image src={l} height={20} width={20} alt="button" className="hover:scale-125"/></button>
+            <button className='text-white md:hidden flex' onClick={()=> goRight()}><Image src={r} height={20} width={20} alt="button" className="hover:scale-125"/></button>    
         </div>
 
-        <button className='text-white md:mr-[30px] hidden md:flex' onClick={()=> goRight()}><Image src={r} height={20} width={20} className="hover:scale-125"/></button>
+        <button className='text-white md:mr-[30px] hidden md:flex' onClick={()=> goRight()}><Image src={r} height={20} width={20} alt="pcbutton" className="hover:scale-125"/></button>
     </div>
   )
 }

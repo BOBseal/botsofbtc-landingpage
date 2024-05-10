@@ -11,7 +11,7 @@ const TeamCard = ({item}) => {
         <p className='text-[20px] md:text-[20px] font-semibold h-[4rem] drop-shadow-2xl'>@{item.name}</p>
         <p className='text-[20px] md:text-[20px] font-semibold h-[4rem] drop-shadow-2xl'>{item.designation}</p>
         <div className='flex gap-4'>
-            {link ? <Image src={twit} height={30} width={30} className="bg-black p-1"/>:<div className='w-full h-full flex justify-center'>
+            {link ? <Image src={twit} height={30} width={30} className="bg-black p-1" alt="Linked In"/>:<div className='w-full h-full flex justify-center'>
             <p className='text-[15px] over md:text-[14px] h-[7rem] md:h-[6rem] lg:w-[50%] drop-shadow-2xl'>{item.desc}</p>
             </div>}
         </div>

@@ -1,12 +1,12 @@
 'use client'
-import React,{useContext} from 'react'
+import React,{useContext, useState} from 'react'
 import Image from 'next/image'
 import lgo from "../assets/dp.jpg"
 import menu from "../assets/threelinemenu.svg"
 import { AppContext } from '@/context/AppContext'
 
 const Navbar = () => {
-  const {connectWallet , user} = useContext(AppContext);
+  const {connectWallet , user, states, setStates, openMobileMenu} = useContext(AppContext);
   const al =()=>{
     alert("Coming Soon");
   }
@@ -22,9 +22,9 @@ const Navbar = () => {
         </div>
 
         <div className="md:hidden flex">
-          <div className='h-[70px] w-[70px] md:h-[80px] md:w-[80px]'>
+          {!states.mobileMenuOpen ? <button className='h-[70px] w-[70px] md:h-[80px] md:w-[80px] cursor-pointer' onClick={()=>openMobileMenu()}>
             <Image src={menu} height={1000} width={1000} alt="menu" className='object-cover'/>
-          </div>
+          </button> : <MobileNav openMobileMenu={openMobileMenu}/>}
         </div>
         
         <div className ="md:flex gap-[30px] hidden ">
@@ -42,3 +42,15 @@ const Navbar = () => {
 }
 
 export default Navbar
+
+
+const MobileNav =({openMobileMenu})=>{
+
+  return(
+    <div className='absolute md:hidden top-0 left-0 bg-black h-[35rem] w-full z-50'>
+      <div className='flex flex-col h-full border-b-[8px] border-[#E5BD19] w-full'>
+      <button className='text-white justify-center flex' onClick={()=>openMobileMenu()}>CLOSE</button>
+      </div>
+    </div>
+  )
+}
