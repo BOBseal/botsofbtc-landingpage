@@ -8,7 +8,7 @@ import { AnimatePresence , motion } from 'framer-motion'
 
 interface NavbarProps {
   openMobileMenu: () => void;
-  userWallet : "";
+  userWallet : String;
   connectWallet : () => void;
 }
 
