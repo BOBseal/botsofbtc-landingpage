@@ -34,10 +34,10 @@ const Navbar: React.FC<NavbarProps> = () => {
           </button> : 
           <AnimatePresence>
             <motion.div
-            initial={{ opacity: 1}}
-            animate={{ opacity: 1 }}
+            initial={{ y:-300}}
+            animate={{ y:0 }}
             transition={{ type: "spring", stiffness: 100 }}
-            exit={{ opacity: 0}}
+            exit={{ y:-300}}
             >
              <MobileNav openMobileMenu={openMobileMenu} userWallet={user.wallet} connectWallet={connectWallet}/>
             </motion.div>
