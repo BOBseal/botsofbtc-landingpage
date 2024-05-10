@@ -47,7 +47,7 @@ const TxtSlider = () => {
     }
 
   return (
-    <div className={`bg-[#231F20] flex justify-between flex-col md:flex-row md:justify-between items-center h-[600px] md:h-[790px] overflow-x-auto pt-[2rem] pb-[2rem] border-b border-white ${states.mobileMenuOpen ? "blur-md" : ""}`} >
+    <div className={`bg-[#231F20] flex justify-between flex-col md:flex-row md:justify-between items-center h-[800px] md:h-[790px] overflow-x-auto pt-[2rem] pb-[2rem] border-b border-white ${states.mobileMenuOpen ? "blur-md" : ""}`} >
         <button className='text-white md:ml-[30px] hidden md:flex' onClick={()=> goLeft()}><Image src={l} height={20} width={20} alt="pcbutton" className="hover:scale-125"/></button>
         
         <AnimatePresence mode="wait">
@@ -68,7 +68,7 @@ const TxtSlider = () => {
                 </motion.div>
             </AnimatePresence>
 
-        <div className='flex w-full justify-between mt-[300px] md:hidden h-full absolute'>
+        <div className='flex w-full justify-between mt-[400px] md:hidden h-full absolute'>
             <button className='text-white md:hidden flex' onClick={()=> goLeft()}><Image src={l} height={20} width={20} alt="button" className="hover:scale-125"/></button>
             <button className='text-white md:hidden flex' onClick={()=> goRight()}><Image src={r} height={20} width={20} alt="button" className="hover:scale-125"/></button>    
         </div>
