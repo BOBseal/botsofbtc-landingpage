@@ -15,13 +15,13 @@ const CSS = {
 const HomeV2 = () => {
   const {states} = useContext(AppContext);
   return (
-    <div className={`flex flex-col w-full justify-center h-full`}>
+    <div className={`flex flex-col w-full justify-center h-full ${!states.mobileMenuOpen? 'blur-2xl':""}`}>
       <Navbar/>
-      <HM className={`${!states.mobileMenuOpen? 'blur-2xl':""}`}/>
-      <TxtSlider className={`${states.mobileMenuOpen? 'blur-2xl':""}`}/>
-      <Partners className={`${states.mobileMenuOpen? 'blur-2xl':""}`}/>
-      <Team className={`${states.mobileMenuOpen? 'blur-2xl':""}`}/>
-      <Footer className={`${states.mobileMenuOpen? 'blur-2xl':""}`}/>
+      <HM/>
+      <TxtSlider />
+      <Partners />
+      <Team />
+      <Footer />
     </div>
   )
 }
