@@ -45,7 +45,7 @@ const Navbar: React.FC<NavbarProps> = () => {
           }
         </div>
         
-        <div className ="md:flex gap-[30px] hidden ">
+        <div className ="md:flex gap-[30px] hidden text-black">
           <button className='text-[22px] font-nunito font-semibold hover:scale-105' onClick={()=> al()}>Mint</button>
           <button className='text-[22px] font-nunito font-semibold hover:scale-105' onClick={()=> al()}>Lottery</button>
           <button className='text-[22px] font-nunito font-semibold hover:scale-105' onClick={()=> al()}>Vaults</button>
@@ -68,13 +68,13 @@ const MobileNav :React.FC <NavbarProps>=({openMobileMenu , userWallet, connectWa
     <div className='absolute md:hidden top-0 left-0 bg-[#E5BD19] h-[35rem] w-full z-50'>
       <div className='flex flex-col h-full border-b-[20px] border-black w-full justify-between items-center'>
         <div className='flex flex-col h-[80%] justify-center items-center gap-[2rem]'>
-          <p onClick={()=> al()} className=' font-nunito text-[22px]'>Mint</p>
-          <p onClick={()=> al()} className=' font-nunito text-[22px]'>Lottery</p>
-          <p onClick={()=> al()} className=' font-nunito text-[22px]'>Vaults</p>
-          <p onClick={()=> al()} className=' font-nunito text-[22px]'>Docs</p>
-          <button onClick={()=>connectWallet()} className=' font-nunito text-[22px]'>{userWallet ? <>0x...{userWallet.slice(37)}</>:"Log In"}</button>
+          <p onClick={()=> al()} className=' font-nunito text-black text-[22px]'>Mint</p>
+          <p onClick={()=> al()} className=' font-nunito text-black text-[22px]'>Lottery</p>
+          <p onClick={()=> al()} className=' font-nunito text-black text-[22px]'>Vaults</p>
+          <p onClick={()=> al()} className=' font-nunito text-black text-[22px]'>Docs</p>
+          <button onClick={()=>connectWallet()} className='text-black font-nunito text-[22px]'>{userWallet ? <>0x...{userWallet.slice(37)}</>:"Log In"}</button>
         </div>
-        <button className='h-[4rem] font-nunito text-[22px] p-[1rem] w-[12rem] justify-center flex ' onClick={()=>openMobileMenu()}>CLOSE</button>
+        <button className='h-[4rem] font-nunito text-[22px] text-black p-[1rem] w-[12rem] justify-center flex ' onClick={()=>openMobileMenu()}>CLOSE</button>
       </div>
     </div>
   )
