@@ -16,7 +16,12 @@ import { AppContext } from '@/context/AppContext.jsx'
 
 const TxtSlider = () => {
     const {act , setAct} = useContext(AppContext);
-    
+    const [exitVariants , setActiveVariants] = useState({
+        hidden: { opacity: 25, x: 100 },
+        visible: { opacity: 1, x: 0 },
+        exit: { opacity: 0, x: -100 },
+    })
+
     const [cards, setCards] = useState([
         Card1,
         Card2,
@@ -41,11 +46,6 @@ const TxtSlider = () => {
         setAct(s -1);
     }
 
-    const exitVariants = {
-        hidden: { opacity: 0, x: -100 },
-        visible: { opacity: 1, x: 0 },
-    };
-
   return (
     <div className='bg-[#231F20] flex justify-between flex-col md:flex-row md:justify-between items-center h-[600px] md:h-[790px] overflow-x-auto pt-[2rem] pb-[2rem] border-b border-white'>
         <button className='text-white md:ml-[30px] hidden md:flex' onClick={()=> goLeft()}><Image src={l} height={20} width={20} alt="pcbutton" className="hover:scale-125"/></button>
@@ -56,7 +56,7 @@ const TxtSlider = () => {
                     className={`h-[86%] flex flex-col md:w-[70%] lg:w-[55%] w-[85%]`}
                     initial="hidden"
                     animate="visible"
-                    exit="hidden"
+                    exit="exit"
                     variants={exitVariants}
                 >
                     {act === 1 && <Card1 />}
