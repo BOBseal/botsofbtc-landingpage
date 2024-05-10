@@ -47,8 +47,8 @@ export default Navbar
 const MobileNav =({openMobileMenu})=>{
 
   return(
-    <div className='absolute md:hidden top-0 left-0 bg-black h-[35rem] w-full z-50'>
-      <div className='flex flex-col h-full border-b-[8px] border-[#E5BD19] w-full'>
+    <div className='absolute md:hidden top-0 left-0 bg-[#E5BD19] h-[35rem] w-full z-50'>
+      <div className='flex flex-col h-full border-b-[20px] border-black w-full'>
       <button className='text-white justify-center flex' onClick={()=>openMobileMenu()}>CLOSE</button>
       </div>
     </div>
