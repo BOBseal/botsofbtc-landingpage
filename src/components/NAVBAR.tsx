@@ -5,7 +5,11 @@ import lgo from "../assets/dp.jpg"
 import menu from "../assets/threelinemenu.svg"
 import { AppContext } from '@/context/AppContext'
 
-const Navbar = () => {
+interface NavbarProps {
+  openMobileMenu: () => void;
+}
+
+const Navbar: React.FC<NavbarProps> = () => {
   const {connectWallet , user, states, setStates, openMobileMenu} = useContext(AppContext);
   const al =()=>{
     alert("Coming Soon");
@@ -41,10 +45,8 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
 
-
-const MobileNav =({openMobileMenu})=>{
+const MobileNav :React.FC <NavbarProps>=({openMobileMenu})=>{
 
   return(
     <div className='absolute md:hidden top-0 left-0 bg-[#E5BD19] h-[35rem] w-full z-50'>
@@ -54,3 +56,5 @@ const MobileNav =({openMobileMenu})=>{
     </div>
   )
 }
+
+export default Navbar

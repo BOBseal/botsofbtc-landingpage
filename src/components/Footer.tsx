@@ -5,7 +5,7 @@ import Image from 'next/image'
 import telegram from "../assets/telegram.svg"
 import Link from 'next/link'
 
-const Footer = () => {
+const Footer:React.FC = () => {
   return (
     <div className='bg-[#231F20] p-[2rem] md:p-[4rem] text-white flex flex-col justify-center items-center gap-[2rem]'>
         <div className=' grid gap-[4rem] items-center w-[80%] md:w-[50%] lg:w-[30%] justify-items-center justify-center grid-cols-2'>
