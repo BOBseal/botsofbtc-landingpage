@@ -1,6 +1,6 @@
 'use client'
 import React,{useContext} from 'react'
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/NAVBAR'
 import HM from "@/components/HM"
 import TxtSlider from "@/components/TxtSlider"
 import Partners from "@/components/Partners"
