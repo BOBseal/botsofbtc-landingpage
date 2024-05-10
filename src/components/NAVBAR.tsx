@@ -36,6 +36,7 @@ const Navbar: React.FC<NavbarProps> = () => {
             <motion.div
             initial={{ opacity: 1}}
             animate={{ opacity: 1 }}
+            transition={{delay:1}}
             exit={{ opacity: 0}}
             >
              <MobileNav openMobileMenu={openMobileMenu} userWallet={user.wallet} connectWallet={connectWallet}/>
