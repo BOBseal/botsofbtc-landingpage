@@ -33,6 +33,15 @@ const TxtSlider = () => {
     }
 
   return (
+    <AnimatePresence>
+        <motion.div
+          initial ={{opacity:60 , X:-50 }}
+         animate={{
+          opacity:1,
+          y:0
+         }}
+         transition={{ ease: "easeInOut", duration: 0.8 }}
+        >
     <div className={`bg-[#231F20] flex justify-center md:flex-row md:justify-between items-center h-[800px] md:h-[790px] pt-[2rem] pb-[2rem] border-b border-white ${states.mobileMenuOpen ? "blur-md" : ""}`} >
         <button className='text-white md:ml-[30px] flex' onClick={()=> goLeft()}><Image src={l} height={20} width={20} alt="pcbutton" className="hover:scale-125"/></button>
         
@@ -51,6 +60,8 @@ const TxtSlider = () => {
 
         <button className='text-white md:mr-[30px] flex' onClick={()=> goRight()}><Image src={r} height={20} width={20} alt="pcbutton" className="hover:scale-125"/></button>
     </div>
+    </motion.div>
+    </AnimatePresence>
   )
 }
 

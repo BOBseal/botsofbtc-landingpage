@@ -15,9 +15,9 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = () => {
   const {connectWallet , user, states, setStates, openMobileMenu} = useContext(AppContext);
   const [exitVariants , setActiveVariants] = useState({
-    hidden: {  y: 100 },
-    visible: {  y: 0 },
-    exit: {  y: -100 },
+    hidden: { opacity:0, y: 100 },
+    visible: { opacity:1, y: 0 },
+    exit: { opacity:0,  y: -100 },
 })
   const al =()=>{
     alert("Coming Soon");
@@ -39,6 +39,7 @@ const Navbar: React.FC<NavbarProps> = () => {
           </button> : 
           <AnimatePresence>
             <motion.div
+            key={states.mobileMenuOpen}
             initial="hidden"
             animate="visible"
             exit="exit"

@@ -5,6 +5,7 @@ import img1 from "../assets/haha.gif"
 import img2 from "../assets/10.png"
 import img3 from "../assets/11.png"
 import { AppContext } from '@/context/AppContext'
+import {motion , AnimatePresence} from "framer-motion"
 
 const HM = () => {
     const {states} = useContext(AppContext);
@@ -17,6 +18,15 @@ const HM = () => {
  } 
   
  return (
+    <AnimatePresence>
+        <motion.div
+          initial ={{opacity:60 , X:-50 }}
+         animate={{
+          opacity:1,
+          y:0
+         }}
+         transition={{ ease: "easeInOut", duration: 0.8 }}
+        >
     <div className={`${st.main} ${states.mobileMenuOpen ? "blur-md" : ""}`} >
         <div>
             <h1 className={`${st.h1} font-`}>BOTS OF BITCOIN</h1>
@@ -28,6 +38,8 @@ const HM = () => {
             </h2>    
         </div>
     </div>
+    </motion.div>
+        </AnimatePresence>
   )
 }
 
