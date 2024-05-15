@@ -14,12 +14,13 @@ const HomeV2 = () => {
   return (
     <div className={`flex flex-col w-full justify-center h-full`}>
       <Navbar/>
-      
+      <>
       <HM/>
       <TxtSlider />
       <Partners />
       <Team />
       <Footer />
+      </>
     </div>
   )
 }
