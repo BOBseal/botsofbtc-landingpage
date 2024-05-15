@@ -14,7 +14,7 @@ const HomeV2 = () => {
   return (
     <div className={`flex flex-col w-full justify-center h-full`}>
       <Navbar/>
-      <FusionInvite/>
+      
       <HM/>
       <TxtSlider />
       <Partners />
