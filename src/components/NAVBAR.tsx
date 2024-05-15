@@ -43,7 +43,7 @@ const Navbar: React.FC<NavbarProps> = () => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            transition={{ type: "spring", stiffness: 100 }}
+            transition={{ ease: "easeInOut", duration: 0.8 }}
             variants={exitVariants}
             >
              <MobileNav openMobileMenu={openMobileMenu} userWallet={user.wallet} connectWallet={connectWallet}/>

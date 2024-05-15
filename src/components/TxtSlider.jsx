@@ -38,7 +38,7 @@ const TxtSlider = () => {
           initial ={{opacity:60 , X:-50 }}
          animate={{
           opacity:1,
-          y:0
+          x:0
          }}
          transition={{ ease: "easeInOut", duration: 0.8 }}
         >
