@@ -25,7 +25,14 @@ export const sectionText = [
             "With Eit will be possible for De-Fi , NFTs , and Literally everything that makes the Ethereum Ecosystem Vibrant would be compatible with Bitcoin through these L2s and would pave way to new Innovations down the road."
         ]
     },
-
+    {
+        h1:"WHAT IS BOB (Build on Bitcoin) ?",
+        p1:"BOB (Build on Bitcoin) is a first-of-its-kind hybrid Layer-2 powered by the two largest blockchain ecosystems, Bitcoin and Ethereum. BOB is backed by Castle Island Ventures, Coinbase Ventures Mechanism Ventures, Bankless Ventures, and other high-profile VCs and is positioned to become the most secure and accessible Layer-2 for builders and users.",
+        h2:"What is SPICE ?",
+        p2:"'Spice' is the native ('Point') system of the BOB network, primarily earned by contributing to the network's Total Value Locked (TVL). It's designed to incentivize participation through a referral bonus system, rewarding users for expanding the network's reach.",
+        h3:"BOTS OF BITCOIN <> BOB FUSION",
+        p3:"As Fusion Partners Users who Interact with BOTS OF BITCOIN's PFP Mints , Lottery Pools and Rampage Event Tasks are eligible to Earn BONUS SPICE along with RP (on certain activities). RP and SPICE is Distributed Actively on any given Interactions. More Details will be announced soon , Stay Tuned !"
+    },
     {
         sectionName : "utility",
         h1:"BOTS OF BITCOIN PFP UTILITY & BENIFITS :",
@@ -85,7 +92,28 @@ export const sectionText = [
             "Additional Tooling such as LP Mannagement , Vesting , and Token Minting Services."
         ]
     },
-    
+    {
+        sectionName: "tokenomics",
+        h1:"TOKENOMICS",
+        p1: "The BOTS OF BITCOIN Ecosystem Have two Primary Tokens , they are :",
+        h1a:[
+            "BOTS OF BITCOIN PFPs - BOBs",
+            "$BOTS ERC20 TOKEN"
+        ],
+        h2:"Distribution of PFPs",
+        h2a : [
+            "Total Supply : 10,000 BOBs",
+            "Mint Price : TBD",
+            "Public Mint : 8000 BOBs"
+        ],
+        h3: "$BOTS is the Primary token within the Platform with a Max Supply of 690 Million, although it is not used for Fees it serves the following utilities :",
+        h3a :[
+            "Governance : Along with the PFPs , $BOTS will enable that all users who missed the PFPs have the option to participate in Governance of the BOTS OF BITCOIN Platform.",
+            "Reward Token : $BOTS also acts as the Reward token for the Platform where users can Stake their PFPs to Earn Platform Revenue in $BOTS Token. Users can also Stake $BOTS itself to earn 20% of all Platform Revenue as Yield."
+        ],
+        h4: "Total Supply : 690,000,000 (690 Million) $BOTS",
+        p5 :"Upto a total of 50% of all Revenue Generated in the Plaform (in BTC) is used to Buy-Back $BOTS and Distributed back to Ecosystem Contributors such as Stakers. Ecosystem Allocation is Utilized for Liquidity , Partnerships , Future Events and it's Utilization will be decided by Community through Voting."
+    },
 ]
 
 const tokenomics = {
@@ -108,16 +136,15 @@ const tokenomics = {
         "Reward Token : $BOTS also acts as the Reward token for the Platform where users can Stake their PFPs to Earn Platform Revenue in $BOTS Token. Users can also Stake $BOTS itself to earn 20% of all Platform Revenue as Yield."
     ],
     h4: "Total Supply : 690,000,000 (690 Million) $BOTS",
-    h4a : [
-        "NFT Holders Total Incentives - 2% of Total Supply.",
-        "Community & Incentives - 8% of Total Supply.",
-        "Seed - 5% of total Supply.",
-        "Presale (Stage-1) - 15% of Total Supply.",
-        "Public Sale (Stage - 2) - 5% of Total Supply.",
-        "Team - 10% of Total Supply.",
-        "Advisors & Partners - 10% of Total Supply.",
-        "Liquidity - 10% of Total Supply.",
-        "Ecosystem - 35% of Total Supply.",
-    ],
     p4 :"Upto a total of 50% of all Revenue Generated in the Plaform (in BTC) is used to Buy-Back $BOTS and Distributed back to Ecosystem Contributors such as Stakers. Ecosystem Allocation is Utilized for Liquidity , Partnerships , Future Events and it's Utilization will be decided by Community through Voting."
 }
+
+export const faqlist= [
+    {question:"WHEN IS THE MINT ?" , answer:"Mint Date & Time will be announced very soon on our Socials. Be sure to Subscribe to them and turn on Notifications!!"},
+    {question:"WHAT IS THE TOTAL SUPPLY OF BOB PFPs ?" , answer:"BOTS OF BITCOIN (BOB) PFPs are set to have a Max Supply of 10k Units."},
+    {question:"IS BOTS OF BITCOIN - BOB & BUILD ON BITCOIN SAME ?" , answer:"NO BOTH THE ABOVE 'BOBS' ARE SEPERATE ENTITIES, FORMER BEING A PLATOFRM ON THE LATTER AND ARE NOT AFFILIATED TO ONE ANOTHER."},
+    {question:"WILL THERE BE AN ECOSYSTEM TOKEN ?" , answer:"Yes , BOTS OF BITCOIN will have $BOTS as the ECOSYSTEM TOKEN."},
+    {question:"WHAT IS RP ?" , answer:"RP is the unique 'Point' Identifier for BOTS OF BITCOIN Rampage Events and is a way to accurately record and reward user contributions later on. Post TGE RP will be made convertible to $BOTS for a Specific Time window for Eligible 'Human' Users."},
+    {question:"WHAT IS RAMPAGE ?" , answer:"RAMPAGE is the Genesis Event for BOTS OF BITCOIN Marking its Launch followed by Various Community Centric Events and Campaigns."},
+    {question:"IS IT JUST A USELESS PFP PROJECT ?" , answer:"NO ! , We are not only a PFP Project but our Long term Goals revolve around utilizing the EVM on BTCOIN L2s for Various Community Approved NFT-FI , DEFI & Automation (Bot) Features."},
+]

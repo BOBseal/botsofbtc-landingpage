@@ -7,12 +7,13 @@ import {AnimatePresence , motion} from 'framer-motion'
 const Team = () => {
   const {states} = useContext(AppContext)
   return (
+    <>
     <AnimatePresence>
-        <motion.div
-          initial ={{opacity:60 , X:-50 }}
+      <motion.div
+          initial ={{opacity:60 , y:-50 }}
          animate={{
           opacity:1,
-          x:0
+          y:0
          }}
          transition={{ ease: "easeInOut", duration: 0.8 }}
         >
@@ -28,6 +29,7 @@ const Team = () => {
     </div>
     </motion.div>
     </AnimatePresence>
+    </>
   )
 }
 

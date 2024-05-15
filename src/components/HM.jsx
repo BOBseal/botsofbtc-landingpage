@@ -17,13 +17,13 @@ const HM = () => {
     h2:`md:text-[24px] text-[18px] leading-[30px] font-nunito text-black drop-shadow-2xl`
  } 
   
- return (
+ return (<>
     <AnimatePresence>
         <motion.div
-          initial ={{opacity:60 , X:-50 }}
+          initial ={{opacity:60 , y:-30 }}
          animate={{
           opacity:1,
-          x:0
+          y:0
          }}
          transition={{ ease: "easeInOut", duration: 0.8 }}
         >
@@ -39,7 +39,8 @@ const HM = () => {
         </div>
     </div>
     </motion.div>
-        </AnimatePresence>
+    </AnimatePresence>
+    </>
   )
 }
 

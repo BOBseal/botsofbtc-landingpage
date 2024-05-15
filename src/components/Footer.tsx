@@ -18,7 +18,9 @@ const Footer:React.FC = () => {
           <div className='flex flex-col gap-[1rem]'>
             <p>Docs</p>
             <p>Contact Us</p>
-            <p>Terms of use</p>
+            <Link href={'/faq'}>
+            <p>FAQs</p>
+            </Link>
             <Link href={'https://t.me/botsofbtc'}>
             <Image src={telegram} className={`text-white bg-white rounded-full`} height={30} width={30} alt="Telegram"/>
             </Link>

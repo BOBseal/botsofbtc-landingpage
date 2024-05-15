@@ -22,7 +22,7 @@ export const AppProvider =({children})=>{
     const [act , setAct] = useState(0);
     const [states, setStates] = useState({
         mobileMenuOpen: false ,
-        contentsSubmenuOpen: false
+        contentsSubmenuOpen: false,
       })
     const [fusionData, setFusionData] = useState({})
     const connectWallet = async()=>{

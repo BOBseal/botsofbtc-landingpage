@@ -17,7 +17,7 @@ const TxtSlider = () => {
     })
 
     const goRight =()=>{
-        if(act == 4){
+        if(act == 6){
             return
         }
         const s = act
@@ -33,12 +33,13 @@ const TxtSlider = () => {
     }
 
   return (
+    <>
     <AnimatePresence>
         <motion.div
-          initial ={{opacity:60 , X:-50 }}
+          initial ={{opacity:60 , y:-50 }}
          animate={{
           opacity:1,
-          x:0
+          y:0
          }}
          transition={{ ease: "easeInOut", duration: 0.8 }}
         >
@@ -62,6 +63,7 @@ const TxtSlider = () => {
     </div>
     </motion.div>
     </AnimatePresence>
+    </>
   )
 }
 

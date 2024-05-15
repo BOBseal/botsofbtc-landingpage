@@ -5,6 +5,7 @@ import lgo from "../assets/dp.jpg"
 import menu from "../assets/threelinemenu.svg"
 import { AppContext } from '@/context/AppContext'
 import { AnimatePresence , motion } from 'framer-motion'
+import Link from '../../node_modules/next/link'
 
 interface NavbarProps {
   openMobileMenu: () => void;
@@ -15,9 +16,9 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = () => {
   const {connectWallet , user, states, setStates, openMobileMenu} = useContext(AppContext);
   const [exitVariants , setActiveVariants] = useState({
-    hidden: { opacity:0, y: 100 },
+    hidden: { opacity:60, y: 100 },
     visible: { opacity:1, y: 0 },
-    exit: { opacity:0,  y: -100 },
+    exit: { opacity:60,  y: -100 },
 })
   const al =()=>{
     alert("Coming Soon");
@@ -53,8 +54,11 @@ const Navbar: React.FC<NavbarProps> = () => {
         </div>
         
         <div className ="md:flex gap-[30px] hidden text-black">
+          <Link href={'/'}>
+          <button className='text-[22px] font-nunito font-semibold hover:scale-105'>Home</button> 
+          </Link>
           <button className='text-[22px] font-nunito font-semibold hover:scale-105' onClick={()=> al()}>Mint</button>
-          <button className='text-[22px] font-nunito font-semibold hover:scale-105' onClick={()=> al()}>Lottery</button>
+          <button className='text-[22px] font-nunito font-semibold hover:scale-105' onClick={()=> al()}>Pots</button>
           <button className='text-[22px] font-nunito font-semibold hover:scale-105' onClick={()=> al()}>Vaults</button>
           <button className='text-[22px] font-nunito font-semibold hover:scale-105'>Docs</button>
         </div>
@@ -69,12 +73,16 @@ const Navbar: React.FC<NavbarProps> = () => {
 
 const MobileNav :React.FC <NavbarProps>=({openMobileMenu , userWallet, connectWallet})=>{
   const al =()=>{
+    openMobileMenu();
     alert("Coming Soon");
   }
   return(
     <div className='absolute md:hidden top-0 left-0 bg-[#E5BD19] h-[35rem] w-full z-50'>
-      <div className='flex flex-col h-full border-b-[20px] border-black w-full justify-between items-center'>
-        <div className='flex flex-col h-[80%] justify-center items-center gap-[2rem]'>
+      <div className='flex flex-col h-full border-b-[20px] border-black w-full justify-evenly items-center'>
+        <div className='flex flex-col h-[80%] justify-center gap-[2rem]'>
+        <Link href={'/'}>
+          <button className=' font-nunito text-black text-[22px]' onClick={()=>openMobileMenu()}>Home</button> 
+          </Link>
           <p onClick={()=> al()} className=' font-nunito text-black text-[22px]'>Mint</p>
           <p onClick={()=> al()} className=' font-nunito text-black text-[22px]'>Lottery</p>
           <p onClick={()=> al()} className=' font-nunito text-black text-[22px]'>Vaults</p>
