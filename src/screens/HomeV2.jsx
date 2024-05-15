@@ -5,7 +5,7 @@ import TxtSlider from "@/components/TxtSlider"
 import Partners from "@/components/Partners"
 import Team from "@/components/Team"
 import Footer from "@/components/Footer"
-
+import FusionInvite from '@/components/Banners/FusionInvite'
 const CSS = {
 
 }
@@ -14,6 +14,7 @@ const HomeV2 = () => {
   return (
     <div className={`flex flex-col w-full justify-center h-full`}>
       <Navbar/>
+      <FusionInvite/>
       <HM/>
       <TxtSlider />
       <Partners />

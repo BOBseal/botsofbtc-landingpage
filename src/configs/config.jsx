@@ -85,38 +85,39 @@ export const sectionText = [
             "Additional Tooling such as LP Mannagement , Vesting , and Token Minting Services."
         ]
     },
-    {
-        sectionName: "tokenomics",
-        h1:"TOKENOMICS",
-        p1: "The BOTS OF BITCOIN Ecosystem Have two Primary Tokens , they are :",
-        h1a:[
-            "BOTS OF BITCOIN PFPs - BOBs",
-            "$BOTS ERC20 TOKEN"
-        ],
-        h2:"Distribution of PFPs",
-        h2a : [
-            "Total Supply : 10,000 BOBs",
-            "Mint Price : TBD",
-            "Public Mint : 8000 BOBs"
-        ],
-        h3: "$BOTS is the Primary token within the Platform with a Max Supply of 690 Million, although it is not used for Fees it serves the following utilities :",
-        h3a :[
-            "Governance : Along with the PFPs , $BOTS will enable that all users who missed the PFPs have the option to participate in Governance of the BOTS OF BITCOIN Platform.",
-            "Reward Token : $BOTS also acts as the Reward token for the Platform where users can Stake their PFPs to Earn Platform Revenue in $BOTS Token. Users can also Stake $BOTS itself to earn 20% of all Platform Revenue as Yield."
-        ],
-        h4: "Total Supply : 690,000,000 (690 Million) $BOTS",
-        h4a : [
-            "NFT Holders Total Incentives - 3% of Total Supply.",
-            "Community & Incentives - 7% of Total Supply.",
-            "Seed - 5% of total Supply.",
-            "Presale (Stage-1) - 15% of Total Supply.",
-            "Public Sale (Stage - 2) - 5% of Total Supply.",
-            "Team - 10% of Total Supply.",
-            "Advisors & Partners - 10% of Total Supply.",
-            "Liquidity - 10% of Total Supply.",
-            "Ecosystem - 35% of Total Supply.",
-        ],
-        p4 :"Upto a total of 50% of all Revenue Generated in the Plaform (in BTC) is used to Buy-Back $BOTS and Distributed back to Ecosystem Contributors such as Stakers. Ecosystem Allocation is Utilized for Liquidity , Partnerships , Future Events and it's Utilization will be decided by Community through Voting."
-    },
     
 ]
+
+const tokenomics = {
+    sectionName: "tokenomics",
+    h1:"TOKENOMICS",
+    p1: "The BOTS OF BITCOIN Ecosystem Have two Primary Tokens , they are :",
+    h1a:[
+        "BOTS OF BITCOIN PFPs - BOBs",
+        "$BOTS ERC20 TOKEN"
+    ],
+    h2:"Distribution of PFPs",
+    h2a : [
+        "Total Supply : 10,000 BOBs",
+        "Mint Price : TBD",
+        "Public Mint : 8000 BOBs"
+    ],
+    h3: "$BOTS is the Primary token within the Platform with a Max Supply of 690 Million, although it is not used for Fees it serves the following utilities :",
+    h3a :[
+        "Governance : Along with the PFPs , $BOTS will enable that all users who missed the PFPs have the option to participate in Governance of the BOTS OF BITCOIN Platform.",
+        "Reward Token : $BOTS also acts as the Reward token for the Platform where users can Stake their PFPs to Earn Platform Revenue in $BOTS Token. Users can also Stake $BOTS itself to earn 20% of all Platform Revenue as Yield."
+    ],
+    h4: "Total Supply : 690,000,000 (690 Million) $BOTS",
+    h4a : [
+        "NFT Holders Total Incentives - 2% of Total Supply.",
+        "Community & Incentives - 8% of Total Supply.",
+        "Seed - 5% of total Supply.",
+        "Presale (Stage-1) - 15% of Total Supply.",
+        "Public Sale (Stage - 2) - 5% of Total Supply.",
+        "Team - 10% of Total Supply.",
+        "Advisors & Partners - 10% of Total Supply.",
+        "Liquidity - 10% of Total Supply.",
+        "Ecosystem - 35% of Total Supply.",
+    ],
+    p4 :"Upto a total of 50% of all Revenue Generated in the Plaform (in BTC) is used to Buy-Back $BOTS and Distributed back to Ecosystem Contributors such as Stakers. Ecosystem Allocation is Utilized for Liquidity , Partnerships , Future Events and it's Utilization will be decided by Community through Voting."
+}
