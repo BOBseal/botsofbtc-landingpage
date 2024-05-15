@@ -29,17 +29,27 @@ export const AppProvider =({children})=>{
         try {
             const chain = await getChainId();
             const accounts = await connectMetamask();
+            await resolveChain()
             console.log(accounts)
             if(accounts.wallet){
                 const res = walletSign("BOTS OF BITCOIN wants you to sign in and confirm wallet ownership. ARE YOU FRIKKIN READY TO RAMPAGE !!?" , accounts.wallet);                
                 res.then(()=>{
-                    if(chain != BOB_MAINNET[0].chainId){
-                        addNetwork(BOB_MAINNET);
-                    }
                     setUser({...user , wallet: accounts.wallet});
                 }).catch((err)=>{
                     alert("Sign In failed")
                 })
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const resolveChain=async()=>{
+        try {
+            if(user.wallet){
+                if(chain != BOB_MAINNET[0].chainId){
+                    addNetwork(BOB_MAINNET);
+                }
             }
         } catch (error) {
             console.log(error)
@@ -71,7 +81,7 @@ export const AppProvider =({children})=>{
 
     return(
         <>
-        <AppContext.Provider value={{connectWallet, user, act , fusionData,setAct, states, setStates, openMobileMenu, getFusionData}}>
+        <AppContext.Provider value={{connectWallet, user, act , fusionData,setAct, states, setStates, openMobileMenu, getFusionData, resolveChain}}>
             {children}
         </AppContext.Provider>
         </>

@@ -14,6 +14,11 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = () => {
   const {connectWallet , user, states, setStates, openMobileMenu} = useContext(AppContext);
+  const [exitVariants , setActiveVariants] = useState({
+    hidden: { opacity: 1, y: 100 },
+    visible: { opacity: 1, y: 0 },
+    exit: { opacity: 1, y: -100 },
+})
   const al =()=>{
     alert("Coming Soon");
   }
@@ -34,10 +39,10 @@ const Navbar: React.FC<NavbarProps> = () => {
           </button> : 
           <AnimatePresence>
             <motion.div
-            initial={{ opacity: 0}}
-            animate={{ opacity: 1 }}
-            transition={{ type: "spring", stiffness: 100 }}
-            exit={{ opacity: 0}}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={exitVariants}
             >
              <MobileNav openMobileMenu={openMobileMenu} userWallet={user.wallet} connectWallet={connectWallet}/>
             </motion.div>
@@ -52,8 +57,8 @@ const Navbar: React.FC<NavbarProps> = () => {
           <button className='text-[22px] font-nunito font-semibold hover:scale-105'>Docs</button>
         </div>
 
-        <button onClick={()=> connectWallet()} className='md:flex hidden text-[22px] font-nunito p-[10px] text-white font-semibold bg-black rounded-full'>
-          {user.wallet ? <>0x...{user.wallet.slice(38)}</>:"Log In"}
+        <button className='md:flex hidden text-[22px] font-nunito p-[10px] text-white font-semibold bg-black rounded-full'>
+          {user.wallet ? <>0x...{user.wallet.slice(38)}</>: <div onClick={()=> connectWallet()} >LOG IN</div>}
         </button>
     </div>
   )
