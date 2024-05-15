@@ -19,12 +19,12 @@ export const AppContext = React.createContext();
 export const AppProvider =({children})=>{
 
     const [user , setUser] = useState({});
-    const [act , setAct] = useState(1);
+    const [act , setAct] = useState(0);
     const [states, setStates] = useState({
         mobileMenuOpen: false ,
         contentsSubmenuOpen: false
       })
-
+    const [fusionData, setFusionData] = useState({})
     const connectWallet = async()=>{
         try {
             const chain = await getChainId();
@@ -56,11 +56,22 @@ export const AppProvider =({children})=>{
           setStates({...states,mobileMenuOpen:true})
           console.log(true)
         }
-      }
+    }
+
+    const getFusionData=async()=>{
+    try {
+        const res = await fetch("https://fusion-api.gobob.xyz/partners");
+        const data = await res.json();
+        setFusionData({...fusionData, apiResponse: data, ok: res.ok})
+        console.log(data)
+    } catch (error) {
+        console.log(error)
+    }
+    }
 
     return(
         <>
-        <AppContext.Provider value={{connectWallet, user, act , setAct, states, setStates, openMobileMenu}}>
+        <AppContext.Provider value={{connectWallet, user, act , fusionData,setAct, states, setStates, openMobileMenu, getFusionData}}>
             {children}
         </AppContext.Provider>
         </>
