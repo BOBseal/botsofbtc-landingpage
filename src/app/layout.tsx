@@ -2,6 +2,7 @@ import './globals.css'
 import React from 'react'
 import {AppProvider} from "../context/AppContext"
 import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/react';
 //import Navbar from '@/components/Navbar'
 //import NAVBAR from "../components/NAVBAR"
 import {Fredoka , Varela_Round , Saira, Nunito} from 'next/font/google'
@@ -35,6 +36,7 @@ export default function RootLayout({
         <AppProvider>
         {children}
         </AppProvider>
+        <Analytics/>
         </body>
     </html>
   )
