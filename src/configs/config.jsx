@@ -22,7 +22,7 @@ export const sectionText = [
         h2: "What are BitVMs & Why is it BIG ?",
         h2a: [
             "BitEVMs are one of the Latest Innovations in the Crypto Space making it Possible for the EVM to be Brought over to Bitcoin. It opens up a whole paradigm of Utility to be Brought over to BITCOIN as a Scaling Factor to Bitcoin as well as to Unite the BITCOIN & EVM Ecosystems.",
-            "With Eit will be possible for De-Fi , NFTs , and Literally everything that makes the Ethereum Ecosystem Vibrant would be compatible with Bitcoin through these L2s and would pave way to new Innovations down the road."
+            "With BitVMs, it will be possible for De-Fi , NFTs , and Literally everything that makes the Ethereum Ecosystem Vibrant would be compatible with Bitcoin through these L2s and would pave way to new Innovations down the road."
         ]
     },
     {
