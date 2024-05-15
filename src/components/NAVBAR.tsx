@@ -15,9 +15,9 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = () => {
   const {connectWallet , user, states, setStates, openMobileMenu} = useContext(AppContext);
   const [exitVariants , setActiveVariants] = useState({
-    hidden: { opacity: 1, y: 100 },
-    visible: { opacity: 1, y: 0 },
-    exit: { opacity: 1, y: -100 },
+    hidden: {  y: 100 },
+    visible: {  y: 0 },
+    exit: {  y: -100 },
 })
   const al =()=>{
     alert("Coming Soon");
@@ -42,6 +42,7 @@ const Navbar: React.FC<NavbarProps> = () => {
             initial="hidden"
             animate="visible"
             exit="exit"
+            transition={{ type: "spring", stiffness: 100 }}
             variants={exitVariants}
             >
              <MobileNav openMobileMenu={openMobileMenu} userWallet={user.wallet} connectWallet={connectWallet}/>
