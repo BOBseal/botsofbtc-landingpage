@@ -49,7 +49,8 @@ export const sectionText = [
         h3:"Genesis Minter Benifits :",
         h3a:[
             "6.9% Royalties Forever : All addresses which participate in the Genesis Mint and mints a PFP are eligible to Earn 6.9% Royalty from secondary sales of their minted PFPs Forever!",
-            "Early Supporter : Will be counted as an Early Supporter and recieve many benifits in the future."
+            "Early Supporter : Will be counted as an Early Supporter and recieve many benifits in the future.",
+            "SPICE Bonus : Minters would be eligible to claim SPICE points based on Minted Count & Referals done."
         ],
     },
     {
