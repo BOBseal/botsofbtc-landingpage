@@ -3,6 +3,8 @@ import v from "../assets/30.png"
 import deep from "../assets/11.png"
 import six from "../assets/12.png"
 import partner1Logo from "../assets/BOB_LOGO.png"
+import icecream from "../assets/icecream.png"
+
 export const teamConfig =[
     {id:1 , name : "BOB" , designation:"Founder & CTO", desc:"Web3 Dev with a Vision to Serve the Ecosystem and Grow Along.", link:"", picture: bob},
     {id:2 , name : "S.Agarwal" , designation:"Compliances", desc:"CA with magic-hand in finances & handles compliances.", link:"", picture: six},
@@ -11,14 +13,14 @@ export const teamConfig =[
 ]
 
 export const partnerInfo =[
-    {id: 1 , logo:partner1Logo}
+    {id: 1 , logo:partner1Logo},
 ]
 
 export const sectionText = [
     {
         sectionName :"intro",
         h1: "What is BOTS OF BITCOIN ?",
-        p1: "BOTS OF BITCOIN is a Collection of 10k Unique Robot PFPs and a NFT-FI + De-Fi Protocol on Bitcoin EVM Layer2 Ecosystems. The BOTS OF BITCOIN Collection is the Exclusive NFT Collection for BOTS OF BITCOIN Platform and $BOTS as the Ecosystem token , The platform is set to Incorporate NFT-FI and DE-FI on Bitcoin EVM Layer2 Ecosystems with the Vision to bring new uses to BTC besides being just a Store-Of-Value. Powered by 'BitEVM' it aims to Fuse Bitcoin Value with Ethereum Utility.",
+        p1: "BOTS OF BITCOIN is a Collection of 10k Unique Robotic PFPs and a NFT-FI + De-Fi Protocol on Bitcoin EVM Layer2 Ecosystems. The BOTS OF BITCOIN Collection is the Exclusive NFT Collection for BOTS OF BITCOIN Platform and $BOTS as the Ecosystem token , The platform is set to Incorporate NFT-FI and DE-FI on Bitcoin EVM Layer2 Ecosystems with the Vision to bring new uses to BTC besides being just a Store-Of-Value as well as to Re-Imagive uses of DLT for Trading Purposes. Powered by 'BitEVM' it aims to Fuse Bitcoin Value with Ethereum Utility.",
         h2: "What are BitVMs & Why is it BIG ?",
         h2a: [
             "BitEVMs are one of the Latest Innovations in the Crypto Space making it Possible for the EVM to be Brought over to Bitcoin. It opens up a whole paradigm of Utility to be Brought over to BITCOIN as a Scaling Factor to Bitcoin as well as to Unite the BITCOIN & EVM Ecosystems.",
@@ -43,7 +45,7 @@ export const sectionText = [
                 "Exclusive Pass - The BOB Collection is also an Exclusive Pass that gives its holder priority access to  all Services , Products &  Events by Bots Of Bitcoin.",
                 "Discounts and Bonuses - BOB Collection holders also enjoy many Discounts on Platform Service Fees and Bonuses on many Events and Products in the Ecosystem.",
                 "Platform Revenue Sharing - BOB Collection holders are eligible to earn upto 30% of Platform Revenue through Staking their pfps.",
-                "Token Incentives - Upto a Total of 3% Supply Reserved for NFT Holders.",
+                "Token Incentives - Upto a Total of 2% Supply Reserved for NFT Holders.",
                 "More Added as we Grow & Through Community approvals."
         ],
         h3:"Genesis Minter Benifits :",
@@ -148,4 +150,8 @@ export const faqlist= [
     {question:"WHAT IS RP ?" , answer:"RP is the unique 'Point' Identifier for BOTS OF BITCOIN Rampage Events and is a way to accurately record and reward user contributions later on. Post TGE RP will be made convertible to $BOTS for a Specific Time window for Eligible 'Human' Users."},
     {question:"WHAT IS RAMPAGE ?" , answer:"RAMPAGE is the Genesis Event for BOTS OF BITCOIN Marking its Launch followed by Various Community Centric Events and Campaigns."},
     {question:"IS IT JUST A USELESS PFP PROJECT ?" , answer:"NO ! , We are not only a PFP Project but our Long term Goals revolve around utilizing the EVM on BTCOIN L2s for Various Community Approved NFT-FI , DEFI & Automation (Bot) Features."},
+]
+
+export const banners = [
+    {a:"HAVEN'T JOINED", b:"BOB FUSION YET ?" , inviteLink: "http://fusion.gobob.xyz/?refCode=lqh3jh"}
 ]

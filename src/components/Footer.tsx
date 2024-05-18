@@ -18,10 +18,10 @@ const Footer:React.FC = () => {
           <div className='flex flex-col gap-[1rem]'>
             <p>Docs</p>
             <p>Contact Us</p>
-            <Link href={'/faq'}>
+            <Link href={'/faq'} target="_blank">
             <p>FAQs</p>
             </Link>
-            <Link href={'https://t.me/botsofbtc'}>
+            <Link href={'https://t.me/botsofbtc'} target="_blank">
             <Image src={telegram} className={`text-white bg-white rounded-full`} height={30} width={30} alt="Telegram"/>
             </Link>
           </div>
@@ -30,7 +30,7 @@ const Footer:React.FC = () => {
             <p onClick={()=>al()}>Vaults</p>
             <p onClick={()=>al()}>Mint</p>
             <p onClick={()=>al()}>Lottery</p>
-            <Link href={'https://twitter.com/BotsOfBtc'}>
+            <Link href={'https://twitter.com/BotsOfBtc'} target="_blank">
             <Image src={twit} height={30} width={30} className={``} alt="Twitter / X"/>
             </Link>
           </div>

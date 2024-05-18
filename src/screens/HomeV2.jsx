@@ -18,6 +18,7 @@ const HomeV2 = () => {
       <HM/>
       <TxtSlider />
       <Partners />
+      <FusionInvite/>
       <Team />
       <Footer />
       </>
