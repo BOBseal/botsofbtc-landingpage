@@ -25,6 +25,13 @@ export const AppProvider =({children})=>{
         contentsSubmenuOpen: false,
       })
     const [fusionData, setFusionData] = useState({})
+    const [dexStates , setDexStates] = useState({
+        amountOut:'',
+        amountIn:'',
+        fromToken:'',
+        toToken:'',
+        fromNative:false
+    })
     
     const connectWallet = async()=>{
         try {

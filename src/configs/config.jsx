@@ -17,6 +17,14 @@ export const partnerInfo =[
     {logo:icecream ,link:"https://icecreamswap.com"}
 ]
 
+export const supportedList=[
+    {name:"ETHEREUM" , ticker:"ETH", address:"NATIVE", logo:null},
+    {name:"WRAPPED BTC" , ticker:"WBTC", address:"NATIVE", logo:null},
+    {name:"USDT" , ticker:"USDT", address:"0x...", logo:null},
+    {name:"USDC" , ticker:"USDC", address:"0x..2", logo:null},
+    {name:"ICECREAMSWAP" , ticker:"ICE", address:"0x..3", logo:null},
+]
+
 export const sectionText = [
     {
         sectionName :"intro",

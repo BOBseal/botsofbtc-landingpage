@@ -30,7 +30,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               <Image src={lgo} height={1000} width={1000} alt="logo" className='rounded-full border border-black object-cover'/>
           </div>
           <div> 
-            <h1 className='font-nunito leading-[40px] text-[23px] md:text-[35px] lg:text-[45px] font-[700] hidden md:flex'>BOTS OF BITCOIN</h1>
+            <h1 className='font-fredoka leading-[40px] text-[23px] md:text-[35px] lg:text-[45px] font-[700] hidden md:flex'>BOTS OF BITCOIN</h1>
           </div>
         </div>
 
@@ -55,18 +55,18 @@ const Navbar: React.FC<NavbarProps> = () => {
         
         <div className ="md:flex gap-[30px] md:gap-[15px] lg:gap-[35px] hidden text-black">
           <Link href={'/'}>
-          <button className='text-[22px] font-nunito font-semibold hover:scale-105'>Home</button> 
+          <button className='lg:text-[22px] md:text-[18px] font-nunito font-semibold hover:scale-105'>Home</button> 
           </Link>
           <Link href={'/swap'}>
-            <button className='text-[22px] font-nunito font-semibold hover:scale-105'>Swap</button>
+            <button className='lg:text-[22px] font-nunito md:text-[18px] font-semibold hover:scale-105'>Swap</button>
           </Link>
-          <button className='text-[22px] font-nunito font-semibold hover:scale-105' onClick={()=> al()}>Mint</button>
-          <button className='text-[22px] font-nunito font-semibold hover:scale-105' onClick={()=> al()}>Pots</button>
-          <button className='text-[22px] font-nunito font-semibold hover:scale-105' onClick={()=> al()}>Vaults</button>
-          <button className='text-[22px] font-nunito font-semibold hover:scale-105'>Docs</button>
+          <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105' onClick={()=> al()}>Mint</button>
+          <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105' onClick={()=> al()}>Pots</button>
+          <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105' onClick={()=> al()}>Vaults</button>
+          <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105'>Docs</button>
         </div>
 
-        <button className='md:flex hidden text-[22px] hover:scale-105 font-nunito p-[10px] text-white font-semibold bg-black rounded-full'>
+        <button className='md:flex hidden text-[22px] md:text-[18px] hover:scale-105 font-nunito p-[10px] pl-[20px] pr-[20px] text-white font-semibold bg-black rounded-full'>
           {user.wallet ? <>0x...{user.wallet.slice(38)}</>: <div className='flex justify-center ' onClick={()=> connectWallet()} >LOG IN</div>}
         </button>
     </div>
