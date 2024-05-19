@@ -25,8 +25,8 @@ const Partners = () => {
         <p className='text-white font-nunito underline underline-offset-3'>Ecosystem Partners</p>
         <div className='w-full lg:w-[70%] flex flex-col justify-evenly gap-[1rem] items-center md:grid md:grid-cols-2'>
         {partnerInfo.map((o,k)=>(
-        <div className='flex justify-center items-center'>
-        <Link key={k} href={o.link} target={'_blank'}>
+        <div key={k} className='flex justify-center items-center'>
+        <Link href={o.link} target={'_blank'}>
           <Image src={o.logo} width={180} height={180} alt="BOB Logo" className='w-[150px] hover:scale-105 md:w-[180px] lg:w-[240px] flex justify-center cursor-pointer'/>
         </Link>
         </div>
