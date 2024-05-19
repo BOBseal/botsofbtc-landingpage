@@ -1,7 +1,7 @@
 'use client'
 
 import React, {useState , useEffect} from "react"
-import {BOB_MAINNET} from "../utils/constants"
+import {BOB_MAINNET, IceRouterAbi , IceRouterAddress} from "../utils/constants"
 import ethers from 'ethers'
 import { 
     addNetwork,
@@ -25,6 +25,7 @@ export const AppProvider =({children})=>{
         contentsSubmenuOpen: false,
       })
     const [fusionData, setFusionData] = useState({})
+    
     const connectWallet = async()=>{
         try {
             const chain = await getChainId();
@@ -78,6 +79,33 @@ export const AppProvider =({children})=>{
         console.log(error)
     }
     }
+
+    ///////ICE CREAM SWAP CALLS /////////////////
+
+    /////helpers////////
+    const iceRouterObj =async()=>{
+        try {
+            if(user.wallet){
+                const contract = await connectContract(IceRouterAddress, IceRouterAbi, user.wallet)
+                return contract   
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    ////////////////////
+
+    const WETH =async()=>{
+        try {
+            const contract = iceRouterObj();
+            const WETH = await contract.WETH();
+            return WETH
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    ////////////////////////////////////////////
 
     return(
         <>

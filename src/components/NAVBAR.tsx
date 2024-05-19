@@ -30,7 +30,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               <Image src={lgo} height={1000} width={1000} alt="logo" className='rounded-full border border-black object-cover'/>
           </div>
           <div> 
-            <h1 className='font-nunito text-[23px] md:text-[35px] lg:text-[45px] font-[700] hidden md:flex'>BOTS OF BITCOIN</h1>
+            <h1 className='font-nunito leading-[40px] text-[23px] md:text-[35px] lg:text-[45px] font-[700] hidden md:flex'>BOTS OF BITCOIN</h1>
           </div>
         </div>
 
@@ -53,9 +53,12 @@ const Navbar: React.FC<NavbarProps> = () => {
           }
         </div>
         
-        <div className ="md:flex gap-[30px] hidden text-black">
+        <div className ="md:flex gap-[30px] md:gap-[15px] lg:gap-[35px] hidden text-black">
           <Link href={'/'}>
           <button className='text-[22px] font-nunito font-semibold hover:scale-105'>Home</button> 
+          </Link>
+          <Link href={'/swap'}>
+            <button className='text-[22px] font-nunito font-semibold hover:scale-105'>Swap</button>
           </Link>
           <button className='text-[22px] font-nunito font-semibold hover:scale-105' onClick={()=> al()}>Mint</button>
           <button className='text-[22px] font-nunito font-semibold hover:scale-105' onClick={()=> al()}>Pots</button>
@@ -63,8 +66,8 @@ const Navbar: React.FC<NavbarProps> = () => {
           <button className='text-[22px] font-nunito font-semibold hover:scale-105'>Docs</button>
         </div>
 
-        <button className='md:flex hidden text-[22px] font-nunito p-[10px] text-white font-semibold bg-black rounded-full'>
-          {user.wallet ? <>0x...{user.wallet.slice(38)}</>: <div onClick={()=> connectWallet()} >LOG IN</div>}
+        <button className='md:flex hidden text-[22px] hover:scale-105 font-nunito p-[10px] text-white font-semibold bg-black rounded-full'>
+          {user.wallet ? <>0x...{user.wallet.slice(38)}</>: <div className='flex justify-center ' onClick={()=> connectWallet()} >LOG IN</div>}
         </button>
     </div>
   )
@@ -82,6 +85,9 @@ const MobileNav :React.FC <NavbarProps>=({openMobileMenu , userWallet, connectWa
         <div className='flex flex-col h-[80%] justify-center gap-[2rem]'>
         <Link href={'/'}>
           <button className=' font-nunito text-black text-[22px]' onClick={()=>openMobileMenu()}>Home</button> 
+          </Link>
+          <Link href={'/swap'}>
+          <button className=' font-nunito text-black text-[22px]'>Swap</button>
           </Link>
           <p onClick={()=> al()} className=' font-nunito text-black text-[22px]'>Mint</p>
           <p onClick={()=> al()} className=' font-nunito text-black text-[22px]'>Lottery</p>
