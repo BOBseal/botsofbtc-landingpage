@@ -2,7 +2,7 @@
 
 import React, {useState , useEffect} from "react"
 import {BOB_MAINNET, IceRouterAbi , IceRouterAddress} from "../utils/constants"
-import ethers from 'ethers'
+import { ethers } from "../../node_modules/ethers/lib/index"
 import { 
     addNetwork,
     changeNetwork,
@@ -11,7 +11,10 @@ import {
     connectMetamask,
     getChainId,
     getEthBalance,
-    walletSign
+    walletSign,
+    swapExactEthToToken,
+    swapExactTokenToEth,
+    swapExactTokenToToken
  } from "../utils/hooks"
 
 export const AppContext = React.createContext();
@@ -30,8 +33,9 @@ export const AppProvider =({children})=>{
         amountIn:'',
         fromToken:'',
         toToken:'',
-        fromNative:false
+        type:'NATIVE'
     })
+    const [loading , setLoading] = useState(false);
     
     const connectWallet = async()=>{
         try {
@@ -112,11 +116,38 @@ export const AppProvider =({children})=>{
         }
     }
 
+    const getAmountsOut = async(amountIn, path)=>{
+        try {
+            const contract = iceRouterObj();
+            const amountOut =await contract.getAmountsOut(amountIn, path);
+            return amountOut
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const getAmountsIn = async(amountOut) =>{
+        try {
+            const contract = iceRouterObj();
+            const amountIn = await contract.getAmountsIn(amountOut, path);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const executeSwap=async()=>{
+        try {
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     ////////////////////////////////////////////
 
     return(
         <>
-        <AppContext.Provider value={{connectWallet, user, act , fusionData,setAct, states, setStates, openMobileMenu, getFusionData, resolveChain}}>
+        <AppContext.Provider value={{connectWallet, user, act , fusionData,setAct, states, setStates, openMobileMenu, getFusionData, resolveChain , dexStates , setDexStates}}>
             {children}
         </AppContext.Provider>
         </>

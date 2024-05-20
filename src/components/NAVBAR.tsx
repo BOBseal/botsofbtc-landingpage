@@ -57,13 +57,12 @@ const Navbar: React.FC<NavbarProps> = () => {
           <Link href={'/'}>
           <button className='lg:text-[22px] md:text-[18px] font-nunito font-semibold hover:scale-105'>Home</button> 
           </Link>
-          <Link href={'/swap'}>
-            <button className='lg:text-[22px] font-nunito md:text-[18px] font-semibold hover:scale-105'>Swap</button>
-          </Link>
           <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105' onClick={()=> al()}>Mint</button>
           <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105' onClick={()=> al()}>Pots</button>
           <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105' onClick={()=> al()}>Vaults</button>
+          <Link href={'https://botsofbtc.notion.site/BOTS-OF-BITCOIN-27ab822513f5459d861d07a6f11271ba?pvs=4'} target={'_blank'}>
           <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105'>Docs</button>
+          </Link>
         </div>
 
         <button className='md:flex hidden text-[22px] md:text-[18px] hover:scale-105 font-nunito p-[10px] pl-[20px] pr-[20px] text-white font-semibold bg-black rounded-full'>
@@ -86,13 +85,12 @@ const MobileNav :React.FC <NavbarProps>=({openMobileMenu , userWallet, connectWa
         <Link href={'/'}>
           <button className=' font-nunito text-black text-[22px]' onClick={()=>openMobileMenu()}>Home</button> 
           </Link>
-          <Link href={'/swap'}>
-          <button className=' font-nunito text-black text-[22px]'>Swap</button>
-          </Link>
           <p onClick={()=> al()} className=' font-nunito text-black text-[22px]'>Mint</p>
           <p onClick={()=> al()} className=' font-nunito text-black text-[22px]'>Lottery</p>
           <p onClick={()=> al()} className=' font-nunito text-black text-[22px]'>Vaults</p>
+          <Link href={'https://botsofbtc.notion.site/BOTS-OF-BITCOIN-27ab822513f5459d861d07a6f11271ba?pvs=4'} target={'_blank'}>
           <p onClick={()=> al()} className=' font-nunito text-black text-[22px]'>Docs</p>
+          </Link>
           <button onClick={()=>connectWallet()} className='text-black font-nunito text-[22px]'>{userWallet ? <>0x...{userWallet.slice(37)}</>:"Log In"}</button>
         </div>
         <button className='h-[4rem] font-nunito text-[22px] text-black p-[1rem] w-[12rem] justify-center flex ' onClick={()=>openMobileMenu()}>CLOSE</button>
