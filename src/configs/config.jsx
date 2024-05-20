@@ -3,7 +3,7 @@ import v from "../assets/30.png"
 import deep from "../assets/11.png"
 import six from "../assets/12.png"
 import partner1Logo from "../assets/BOB_LOGO.png"
-import icecream from "../assets/icecream.png"
+import icecream from "../assets/icecreamLogo.png"
 
 export const teamConfig =[
     {id:1 , name : "BOB" , designation:"Founder & CTO", desc:"Web3 Dev with a Vision to Serve the Ecosystem and Grow Along.", link:"", picture: bob},
@@ -13,7 +13,16 @@ export const teamConfig =[
 ]
 
 export const partnerInfo =[
-    {id: 1 , logo:partner1Logo},
+    {logo:partner1Logo,link:"https://gobob.xyz"},
+    {logo:icecream ,link:"https://icecreamswap.com"}
+]
+
+export const supportedList=[
+    {name:"ETHEREUM" , ticker:"ETH", address:"NATIVE", logo:null},
+    {name:"WRAPPED BTC" , ticker:"WBTC", address:"NATIVE", logo:null},
+    {name:"USDT" , ticker:"USDT", address:"0x...", logo:null},
+    {name:"USDC" , ticker:"USDC", address:"0x..2", logo:null},
+    {name:"ICECREAMSWAP" , ticker:"ICE", address:"0x..3", logo:null},
 ]
 
 export const sectionText = [

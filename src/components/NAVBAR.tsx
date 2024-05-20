@@ -30,7 +30,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               <Image src={lgo} height={1000} width={1000} alt="logo" className='rounded-full border border-black object-cover'/>
           </div>
           <div> 
-            <h1 className='font-nunito text-[23px] md:text-[35px] lg:text-[45px] font-[700] hidden md:flex'>BOTS OF BITCOIN</h1>
+            <h1 className='font-fredoka leading-[40px] text-[23px] md:text-[35px] lg:text-[45px] font-[700] hidden md:flex'>BOTS OF BITCOIN</h1>
           </div>
         </div>
 
@@ -53,18 +53,20 @@ const Navbar: React.FC<NavbarProps> = () => {
           }
         </div>
         
-        <div className ="md:flex gap-[30px] hidden text-black">
+        <div className ="md:flex gap-[30px] md:gap-[15px] lg:gap-[35px] hidden text-black">
           <Link href={'/'}>
-          <button className='text-[22px] font-nunito font-semibold hover:scale-105'>Home</button> 
+          <button className='lg:text-[22px] md:text-[18px] font-nunito font-semibold hover:scale-105'>Home</button> 
           </Link>
-          <button className='text-[22px] font-nunito font-semibold hover:scale-105' onClick={()=> al()}>Mint</button>
-          <button className='text-[22px] font-nunito font-semibold hover:scale-105' onClick={()=> al()}>Pots</button>
-          <button className='text-[22px] font-nunito font-semibold hover:scale-105' onClick={()=> al()}>Vaults</button>
-          <button className='text-[22px] font-nunito font-semibold hover:scale-105'>Docs</button>
+          <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105' onClick={()=> al()}>Mint</button>
+          <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105' onClick={()=> al()}>Pots</button>
+          <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105' onClick={()=> al()}>Vaults</button>
+          <Link href={'https://botsofbtc.notion.site/BOTS-OF-BITCOIN-27ab822513f5459d861d07a6f11271ba?pvs=4'} target={'_blank'}>
+          <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105'>Docs</button>
+          </Link>
         </div>
 
-        <button className='md:flex hidden text-[22px] font-nunito p-[10px] text-white font-semibold bg-black rounded-full'>
-          {user.wallet ? <>0x...{user.wallet.slice(38)}</>: <div onClick={()=> connectWallet()} >LOG IN</div>}
+        <button className='md:flex hidden text-[22px] md:text-[18px] hover:scale-105 font-nunito p-[10px] pl-[20px] pr-[20px] text-white font-semibold bg-black rounded-full'>
+          {user.wallet ? <>0x...{user.wallet.slice(38)}</>: <div className='flex justify-center ' onClick={()=> connectWallet()} >LOG IN</div>}
         </button>
     </div>
   )
@@ -86,7 +88,9 @@ const MobileNav :React.FC <NavbarProps>=({openMobileMenu , userWallet, connectWa
           <p onClick={()=> al()} className=' font-nunito text-black text-[22px]'>Mint</p>
           <p onClick={()=> al()} className=' font-nunito text-black text-[22px]'>Lottery</p>
           <p onClick={()=> al()} className=' font-nunito text-black text-[22px]'>Vaults</p>
+          <Link href={'https://botsofbtc.notion.site/BOTS-OF-BITCOIN-27ab822513f5459d861d07a6f11271ba?pvs=4'} target={'_blank'}>
           <p onClick={()=> al()} className=' font-nunito text-black text-[22px]'>Docs</p>
+          </Link>
           <button onClick={()=>connectWallet()} className='text-black font-nunito text-[22px]'>{userWallet ? <>0x...{userWallet.slice(37)}</>:"Log In"}</button>
         </div>
         <button className='h-[4rem] font-nunito text-[22px] text-black p-[1rem] w-[12rem] justify-center flex ' onClick={()=>openMobileMenu()}>CLOSE</button>

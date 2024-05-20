@@ -13,6 +13,9 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'banner': "url('/bannerbg.png')",
+        'abstractBg': "url('/bg2.png')",
+        'bg2': "url('/yelloblackbg.png')",
+        'bg3': "url('/bg3.png')"
       },
     },
     fontFamily:{
