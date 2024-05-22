@@ -16,7 +16,9 @@ const Footer:React.FC = () => {
     <div className='bg-[#231F20] p-[2rem] md:p-[4rem] text-white flex flex-col justify-center items-center gap-[2rem]'>
         <div className=' grid gap-[4rem] items-center w-[80%] md:w-[50%] lg:w-[30%] justify-items-center justify-center grid-cols-2'>
           <div className='flex flex-col gap-[1rem]'>
+          <Link href={'https://botsofbtc.notion.site/BOTS-OF-BITCOIN-27ab822513f5459d861d07a6f11271ba?pvs=4'} target="_blank">
             <p>Docs</p>
+          </Link>
             <p>Contact Us</p>
             <Link href={'/faq'} target="_blank">
             <p>FAQs</p>
