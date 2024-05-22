@@ -19,7 +19,9 @@ const Footer:React.FC = () => {
           <Link href={'https://botsofbtc.notion.site/BOTS-OF-BITCOIN-27ab822513f5459d861d07a6f11271ba?pvs=4'} target="_blank">
             <p>Docs</p>
           </Link>
+            <Link href={'https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcRzBlBpMpZDSdtjWSkPzpMHPSjGlmrWHKpMSmVSLLHVQKJGcDPvgsNvcCkPLtnQjVnBjCgKk'} target={'_blank'} >
             <p>Contact Us</p>
+            </Link>
             <Link href={'/faq'} target="_blank">
             <p>FAQs</p>
             </Link>
