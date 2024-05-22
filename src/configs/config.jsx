@@ -13,8 +13,16 @@ export const teamConfig =[
 ]
 
 export const partnerInfo =[
-    {logo:partner1Logo,link:"https://gobob.xyz"},
-    {logo:icecream ,link:"https://icecreamswap.com"}
+    {logo:partner1Logo,link:"https://gobob.xyz", imgSizeData:{
+        sm:'100px',
+        md:'180px',
+        lg:'240px'
+    }},
+    {logo:icecream ,link:"https://icecreamswap.com",imgSizeData:{
+        sm:'180px',
+        md:'190px',
+        lg:'400px'
+    }}
 ]
 
 export const supportedList=[
