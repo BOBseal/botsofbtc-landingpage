@@ -89,7 +89,7 @@ const MobileNav :React.FC <NavbarProps>=({openMobileMenu , userWallet, connectWa
           <p onClick={()=> al()} className=' font-nunito text-black text-[20px]'>Lottery</p>
           <p onClick={()=> al()} className=' font-nunito text-black text-[20px]'>Vaults</p>
           <Link href={'https://botsofbtc.notion.site/BOTS-OF-BITCOIN-27ab822513f5459d861d07a6f11271ba?pvs=4'} target={'_blank'}>
-          <p onClick={()=> al()} className=' font-nunito text-black text-[20px]'>Docs</p>
+          <p className=' font-nunito text-black text-[20px]'>Docs</p>
           </Link>
           <button className='text-black font-nunito text-[22px]'>{userWallet ? <>0x...{userWallet.slice(37)}</>:<div onClick={()=>connectWallet()} >LOGIN</div>}</button>
         </div>
