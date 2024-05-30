@@ -12,7 +12,7 @@ const TeamCard = ({item}) => {
         <p className='text-[20px] md:text-[20px] font-semibold flex justify-center items-center h-[5rem] drop-shadow-2xl'>{item.designation}</p>
         <div className='flex gap-4'>
             {link ? <Image src={twit} height={30} width={30} className="bg-black p-1" alt="Linked In"/>:<div className='w-full h-full flex justify-start'>
-            <p className='text-[15px] over md:text-[14px] h-[7rem] md:h-[6rem] lg:w-[50%] drop-shadow-2xl'>{item.desc}</p>
+            <p className='text-[15px] over md:text-[14px] h-[11rem] md:h-[6rem] lg:w-[50%] drop-shadow-2xl'>{item.desc}</p>
             </div>}
         </div>
     </div>
