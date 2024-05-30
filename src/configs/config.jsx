@@ -6,8 +6,8 @@ import partner1Logo from "../assets/BOB_LOGO.png"
 import icecream from "../assets/icecreamLogo.png"
 
 export const teamConfig =[
-    {id:1 , name : "BOB" , designation:"Founder & CTO", desc:"Web3 Dev with a Vision to Serve the Ecosystem and Grow Along.", link:"", picture: bob},
-    {id:2 , name : "Deep" , designation:"Co-Founder/Graphics Lead", desc:"Funny & Obsessed Artist with an eye for details and a punch in his Artworks.", link:"", picture: deep},
+    {id:1 , name : "BOB" , designation:"Founder & CTO", desc:"Web3 Dev and a sucker for blockchain & AI tech. Self-Taught dev with 2+ years of experience in freelancing.", link:"", picture: bob},
+    {id:2 , name : "Deep" , designation:"Co-Founder/Graphics Lead", desc:"Funny & Obsessed Artist with an eye for details and a punch in his Artworks. Have a unique perspective for the world!", link:"", picture: deep},
     {id:3 , name : "S.Agarwal" , designation:"Co-Founder/Compliances", desc:"CA with magic-hand in finances & handles compliances.", link:"", picture: six},
     {id:4 , name : "Vishnu" , designation:"Co-Founder/COO", desc:"Ex-Yahoo Web Engineer , Advisor to the team & plan the bigger picture.", link:"", picture: v},
 ]
@@ -167,6 +167,9 @@ export const faqlist= [
     {question:"WHAT IS RP ?" , answer:"RP is the unique 'Point' Identifier for BOTS OF BITCOIN Rampage Events and is a way to accurately record and reward user contributions later on. Post TGE RP will be made convertible to $BOTS for a Specific Time window for Eligible 'Human' Users."},
     {question:"WHAT IS RAMPAGE ?" , answer:"RAMPAGE is the Genesis Event for BOTS OF BITCOIN Marking its Launch followed by Various Community Centric Events and Campaigns."},
     {question:"IS IT JUST A USELESS PFP PROJECT ?" , answer:"NO ! , We are not only a PFP Project but our Long term Goals revolve around utilizing the EVM on BTCOIN L2s for Various Community Approved NFT-FI , DEFI & Automation (Bot) Features."},
+    {question:"ARE SKIBBIDIES OF BITCOIN DIFFERENT FROM BOTS OF BITCOIN?", answer: "Both are Official Collections for BOTS OF BITCOIN Ecosystem, One being an Early Supporter Version and other being Primary Collection."},
+    {question:"WHAT IS SOB MINT PRICE ?", answer:"SOB is FREE to Mint!"},
+    {question:"WILL SOB & BOB COLLECTIONS HAVE SAME BENIFITS ?" , answer: "NO, Not all benifits are same for both the collections, each offer a different set of benifits."}
 ]
 
 export const banners = [
