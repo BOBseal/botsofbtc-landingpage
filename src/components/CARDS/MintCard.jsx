@@ -7,7 +7,7 @@ import ele from "../../assets/element.png"
 
 const MintCard = () => {
     const style = {
-        box:`flex flex-col md:flex-row w-full md:w-[95%] lg:w-[50%] md:justify-center bg-[#E5BD19] md:bg-[#231F20] drop-shadow-xl hover:drop-shadow-2xl md:border-none transition duration-500 ease-linear transform hover:scale-105 items-center h-[30rem] justify-between border-[2px] rounded-2xl border-[#E5BD19]`,
+        box:`flex flex-col md:flex-row w-[90%] lg:w-[50%] md:justify-center bg-[#E5BD19] md:bg-[#231F20] drop-shadow-xl hover:drop-shadow-2xl md:border-none transition duration-500 ease-linear transform hover:scale-105 items-center h-[30rem] justify-between border-[2px] rounded-2xl border-[#E5BD19]`,
         box2:`h-[90%] md:hidden flex w-full flex-col gap-[8px] justify-between pb-[20px] bg-[#231F20] rounded-2xl`,
         mintButt:`h-[10%] w-full flex items-center justify-center rounded-b-2xl md:hidden`,
         imageBox:`h-[70%] py-[1em] w-full flex flex-col justify-between items-center gap-[5px]`,

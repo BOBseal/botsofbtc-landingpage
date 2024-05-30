@@ -79,8 +79,10 @@ const SobBanner = () => {
             variants={activeVariants}
             >
             <div className='flex flex-col justify-between w-full items-center'>
-                <div className='w-full gap-2 flex flex-col-reverse h-full justify-center md:items-center'>
+                <div className='w-full gap-2 flex flex-col-reverse h-full justify-center items-center'>
+                  <div className='w-[90%] lg:w-[50%]'>
                   <Image onClick={()=>toggleActive()} className='mt-[20px] md:mt-[30px]' src={arrow} width={24} height={24} alt="arrow"/>
+                  </div>
                   <MintCard/>
                 </div>
             </div>
