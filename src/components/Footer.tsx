@@ -17,25 +17,25 @@ const Footer:React.FC = () => {
         <div className=' grid gap-[4rem] items-center w-[80%] md:w-[50%] lg:w-[30%] justify-items-center justify-center grid-cols-2'>
           <div className='flex flex-col gap-[1rem]'>
             <Link href={'https://botsofbtc.notion.site/BOTS-OF-BITCOIN-27ab822513f5459d861d07a6f11271ba?pvs=4'} target="_blank">
-            <p>Docs</p>
+            <p className='transition duration-500 ease-linear transform hover:scale-105'>Docs</p>
             </Link>
             <Link href={'https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcRzBlBpMpZDSdtjWSkPzpMHPSjGlmrWHKpMSmVSLLHVQKJGcDPvgsNvcCkPLtnQjVnBjCgKk'} target={'_blank'} >
-            <p>Contact Us</p>
+            <p className='transition duration-500 ease-linear transform hover:scale-105'>Contact Us</p>
             </Link>
             <Link href={'/faq'} target="_blank">
-            <p>FAQs</p>
+            <p className='transition duration-500 ease-linear transform hover:scale-105'>FAQs</p>
             </Link>
             <Link href={'https://t.me/botsofbtc'} target="_blank">
-            <Image src={telegram} className={`text-white bg-white rounded-full`} height={30} width={30} alt="Telegram"/>
+            <Image src={telegram} className={`text-white bg-white rounded-full transition duration-500 ease-linear transform hover:scale-110`} height={30} width={30} alt="Telegram"/>
             </Link>
           </div>
 
           <div className='flex flex-col gap-[1rem]'>
-            <p onClick={()=>al()}>Vaults</p>
-            <p onClick={()=>al()}>Mint</p>
-            <p onClick={()=>al()}>Lottery</p>
+            <p className='transition duration-500 ease-linear transform hover:scale-105' onClick={()=>al()}>Vaults</p>
+            <p className='transition duration-500 ease-linear transform hover:scale-105' onClick={()=>al()}>Mint</p>
+            <p className='transition duration-500 ease-linear transform hover:scale-105' onClick={()=>al()}>Lottery</p>
             <Link href={'https://twitter.com/BotsOfBtc'} target="_blank">
-            <Image src={twit} height={30} width={30} className={``} alt="Twitter / X"/>
+            <Image src={twit} height={30} width={30} className={`transition duration-500 ease-linear transform hover:scale-110`} alt="Twitter / X"/>
             </Link>
           </div>
         </div>

@@ -6,7 +6,7 @@ import linkedIn from "../../assets/Vector.svg"
 const TeamCard = ({item}) => {
   const link = false;
   return (
-    <div className='flex p-[1rem] h-full flex-col gap-[1rem] justify-center items-start font-nunito text-black'>
+    <div className='flex p-[1rem] h-full flex-col gap-[1rem] justify-center items-start font-nunito text-black transition duration-500 ease-linear transform hover:scale-105'>
         <Image src={item.picture} height={100} width={100} alt ={item.name} className="rounded-full border-black border flex justify-center drop-shadow object-cover"/>
         <p className='text-[20px] md:text-[20px] font-semibold h-[3rem] drop-shadow-2xl'>@{item.name}</p>
         <p className='text-[20px] md:text-[20px] font-semibold flex justify-center items-center h-[5rem] drop-shadow-2xl'>{item.designation}</p>
