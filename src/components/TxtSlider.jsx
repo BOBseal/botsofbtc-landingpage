@@ -43,7 +43,7 @@ const TxtSlider = () => {
          }}
          transition={{ ease: "easeInOut", duration: 0.8 }}
         >
-    <div className={`bg-[#231F20] flex justify-center md:flex-row md:justify-between items-center h-[600px] md:h-[600px] pt-[2rem] pb-[2rem] border-b border-white ${states.mobileMenuOpen ? "blur-md" : ""}`} >
+    <div className={`bg-[#231F20] flex justify-center md:flex-row md:justify-between items-center h-[600px] md:h-[600px] pt-[2rem] pb-[2rem] border-b border-[#E5BD19] ${states.mobileMenuOpen ? "blur-md" : ""}`} >
         <button className='text-white md:ml-[30px] flex' onClick={()=> goLeft()}><Image src={l} height={20} width={20} alt="pcbutton" className="hover:scale-125"/></button>
         
         <AnimatePresence mode="wait">

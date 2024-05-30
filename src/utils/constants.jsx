@@ -2,12 +2,13 @@ export const BOB_MAINNET = [
     {
         chainId:"0xed88",
         chainName:"BOB",
-        rpcUrls:["https://rpc.gobob.xyz"],
         nativeCurrency:{
-         name: "ETH",
+         name: "Ether",
          symbol:"ETH",
          decimals: 18,   
         },
+        rpcUrls:["https://rpc.gobob.xyz"],
+        blockExplorerUrls: ["https://explorer.gobob.xyz"],
     }
 ]
 

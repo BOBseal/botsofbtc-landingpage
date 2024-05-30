@@ -2,8 +2,7 @@
 import React,{useContext} from 'react'
 import Image from '../../node_modules/next/image'
 import img1 from "../assets/haha.gif"
-import img2 from "../assets/10.png"
-import img3 from "../assets/11.png"
+
 import { AppContext } from '@/context/AppContext'
 import {motion , AnimatePresence} from "framer-motion"
 
@@ -13,7 +12,7 @@ const HM = () => {
     main : `flex flex-col gap-[1rem] md:gap-[2rem] justify-between items-center h-full pt-[10px] pb-[50px] bg-gradient-to-b from-[#E5BD19] to-[#FFEB99]`,
     h1:`md:text-[96px] lg:text-[130px] text-[38px] font-extrabold drop-shadow-2xl font-fredoka text-black font-outline-1`,
     imgBox:`flex flex-col md:flex-row-reverse justify-center items-center md:justify-between w-[85%] md:w-[80%] lg:w-[55%] gap-[2rem]`,
-    img:`w-[250px] md:w-[450px] lg:w-[500px] object-cover drop-shadow-2xl`,
+    img:`w-[250px] md:w-[450px] lg:w-[500px] object-cover drop-shadow-2xl transition duration-500 ease-linear transform hover:scale-105`,
     h2:`md:text-[24px] uppercase text-[18px] leading-[30px] font-nunito text-black drop-shadow-2xl`
  } 
   

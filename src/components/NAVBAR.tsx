@@ -66,7 +66,7 @@ const Navbar: React.FC<NavbarProps> = () => {
         </div>
 
         <button className='md:flex hidden text-[22px] md:text-[18px] hover:scale-105 font-nunito p-[10px] pl-[20px] pr-[20px] text-white font-semibold bg-black rounded-full'>
-          {user.wallet ? <>0x...{user.wallet.slice(38)}</>: <div className='flex justify-center ' onClick={()=> connectWallet()} >LOG IN</div>}
+          {user.wallet ? <div>0x...{user.wallet.slice(38)}</div>: <div className='flex justify-center ' onClick={()=> connectWallet()} >LOG IN</div>}
         </button>
     </div>
   )
@@ -91,7 +91,7 @@ const MobileNav :React.FC <NavbarProps>=({openMobileMenu , userWallet, connectWa
           <Link href={'https://botsofbtc.notion.site/BOTS-OF-BITCOIN-27ab822513f5459d861d07a6f11271ba?pvs=4'} target={'_blank'}>
           <p className=' font-nunito text-black text-[20px]'>Docs</p>
           </Link>
-          <button className='text-black font-nunito text-[22px]'>{userWallet ? <>0x...{userWallet.slice(37)}</>:<div onClick={()=>connectWallet()} >LOGIN</div>}</button>
+          <button className='text-black font-nunito text-[22px]'>{userWallet ? <div>0x...{userWallet.slice(37)}</div>:<div onClick={()=>connectWallet()} >LOGIN</div>}</button>
         </div>
         <button className='h-[4rem] font-nunito text-[22px] text-black p-[1rem] w-[12rem] justify-center flex ' onClick={()=>openMobileMenu()}>CLOSE</button>
       </div>
