@@ -6,6 +6,8 @@ import Partners from "@/components/Partners"
 import Team from "@/components/Team"
 import Footer from "@/components/Footer"
 import FusionInvite from '@/components/Banners/FusionInvite'
+import SobBanner from "@/components/Banners/SobBanner.jsx"
+
 const CSS = {
 
 }
@@ -16,6 +18,7 @@ const HomeV2 = () => {
       <Navbar/>
       <>
       <HM/>
+      <SobBanner/>
       <TxtSlider />
       <Partners />
       <FusionInvite/>

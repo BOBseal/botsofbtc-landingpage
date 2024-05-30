@@ -5,7 +5,7 @@ import Image from 'next/image'
 const SliderCard =({data, index})=>{
 
     return(
-        <div className='h-full w-full p-[1rem] pb-[3rem] gap-[1rem] flex flex-col overflow-y-auto'>
+        <div className='h-full w-full p-[1rem] pb-[3rem] gap-[1rem] flex flex-col overflow-y-auto transition duration-500 ease-linear transform hover:scale-105'>
             {data.h1 ? <div className='text-[#E5BD19] leading-[30px] md:leading-[60px] font-fredoka text-[22px] md:text-[55px] flex justify-start font-bold uppercase md:w-[90%]'>{data.h1}</div>:""}
             {data.p1? <div className='w-[90%] text-white uppercase font-nunito mt-[20px] text-[15px]'>{data.p1}</div>:""}
             {data.h1a?<div className=''>
