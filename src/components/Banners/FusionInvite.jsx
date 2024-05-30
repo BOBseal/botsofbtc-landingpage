@@ -23,7 +23,7 @@ const FusionInvite = () => {
     className={`bg-banner bg-cover bg-center gap-[1rem] md:gap-[2rem] flex justify-between flex-col items-center h-full pt-[2rem] pb-[4rem] border-white `}
     >
       <div className='w-full flex justify-center'>
-      <Image src={Fusion} alt="BOB FUSION" height={100} width={100} className="w-[80%] md:w-[60%] lg:w-[40%] flex justify-center"/>
+      <Image src={Fusion} alt="BOB FUSION" height={100} width={100} className="w-[80%] md:w-[60%] lg:w-[40%] flex justify-center transition duration-500 ease-linear transform hover:scale-105"/>
       </div>
       <div className='items-center flex text-white  transition duration-500 ease-linear transform hover:scale-105 text-[30px] md:text-[48px] font-[700] font-fredoka flex-col w-[80%]'>
         <h1>{banners[0].a}</h1>
