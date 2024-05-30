@@ -11,7 +11,7 @@ const MintCard = () => {
         box2:`h-[90%] md:hidden flex w-full flex-col gap-[8px] justify-between pb-[20px] bg-[#231F20] rounded-2xl`,
         mintButt:`h-[10%] w-full flex items-center justify-center rounded-b-2xl md:hidden`,
         imageBox:`h-[70%] py-[1em] w-full flex flex-col justify-between items-center gap-[5px]`,
-        contentBox:`h-[30%%] flex-col gap-[0.15rem] flex pl-[35px] text-white`,
+        contentBox:`h-[30%%] flex-col gap-[0.15rem] flex pl-[45px] text-white`,
         mintButton:`font-fredoka text-[30px] font-[700]`,
         img:`w-[15.4rem] flex justify-center`
     }
