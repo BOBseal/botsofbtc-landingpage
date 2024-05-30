@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Image from '../../../node_modules/next/image'
-import ff from "../../assets/skibidi.gif"
+import ff from "../../assets/sobdemo.png"
 import escan from "../../assets/etherscan.png"
 import ele from "../../assets/element.png"
 
