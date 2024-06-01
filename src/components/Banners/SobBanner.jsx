@@ -7,16 +7,45 @@ import {motion , AnimatePresence} from "framer-motion"
 import Link from '../../../node_modules/next/link'
 import MintCard from "../CARDS/MintCard"
 import arrow from "../../assets/leftArrow.png"
+import { AppContext } from '@/context/AppContext'
+import { ethers } from '../../../node_modules/ethers/lib/index'
 
 
 const SobBanner = () => {
-  const [active , setActive] = useState(false)
+  const {mintStarted, getSupplyLeft, getCurrentRound, connectWallet, user, getUserMints} = useContext(AppContext);
+  const [active , setActive] = useState(false);
+  const [mintData , setMintData] = useState({})
+  const [started , setStarted] = useState(false);
+  const [loader , setLoader] = useState(false);
   const activeVariants = {
     hidden: { opacity: 25, x: 100 },
     visible: { opacity: 1, x: 0 },
     exit: { opacity: 0, x: -100 },
 }
-  const toggleActive=()=>{
+  const toggleActive=async(back)=>{
+    if(!user.wallet){
+      connectWallet();
+      return
+    }
+    if(!back){
+      setLoader(true)
+      let round = "Not Started";
+      const st = await mintStarted();
+      const left = await getSupplyLeft();
+      const cRound= await getCurrentRound();
+      const usrMint = await getUserMints();
+      const num =parseInt(Number(usrMint));
+      const cc =parseInt(Number(cRound));
+      const ss = parseInt(Number(left));
+      if(cc == 1){
+        round = "WL Round"
+      } else if(cc==2){
+        round = "Public Round"
+      }
+      setStarted(st);
+      setMintData({...mintData, supplyLeft:ss , currentRound: round, userMints:num});
+      setLoader(false)
+    }
     if(active){
       setActive(false);
     }
@@ -67,7 +96,9 @@ const SobBanner = () => {
                   </Link>
                 </div>
                 <div className='flex flex-col items-center justify-between'>
-                  <p onClick={()=> toggleActive()} className=' font-fredoka font-[700] text-[30px] bg-[#E5BD19] hover:text-[#E5BD19] hover:bg-black hover:border cursor-pointer border-[#E5BD19] text-black p-[10px] rounded-2xl transition duration-400 ease-linear transform hover:scale-105'>MINT NOW</p>
+                  <p onClick={()=> toggleActive(false)} className=' font-fredoka font-[700] text-[30px] bg-[#E5BD19] hover:text-[#E5BD19] hover:bg-black hover:border cursor-pointer border-[#E5BD19] text-black p-[10px] rounded-2xl transition duration-400 ease-linear transform hover:scale-105'>{user.wallet ? 
+                  <>{loader?"Loading ..." : "MINT NOW"}</>
+                  :"CONNECT WALLET"}</p>
                 </div>
               </div>
             </div>
@@ -84,9 +115,9 @@ const SobBanner = () => {
             <div className='flex flex-col justify-between w-full items-center'>
                 <div className='w-full gap-2 flex flex-col-reverse h-full justify-center items-center'>
                   <div className='w-[90%] lg:w-[50%]'>
-                  <Image onClick={()=>toggleActive()} className='mt-[20px] md:mt-[30px]' src={arrow} width={24} height={24} alt="arrow"/>
+                  <Image onClick={()=>toggleActive(true)} className='mt-[20px] md:mt-[30px]' src={arrow} width={24} height={24} alt="arrow"/>
                   </div>
-                  <MintCard/>
+                  <MintCard state={started} mintData={mintData}/>
                 </div>
             </div>
             </motion.div>

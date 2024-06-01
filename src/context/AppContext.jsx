@@ -14,7 +14,9 @@ import {
     walletSign,
     swapExactEthToToken,
     swapExactTokenToEth,
-    swapExactTokenToToken
+    swapExactTokenToToken,
+    getMinterContract,
+    getRpCoreContract
  } from "../utils/hooks"
 
 export const AppContext = React.createContext();
@@ -36,21 +38,22 @@ export const AppProvider =({children})=>{
         type:'NATIVE'
     })
     const [loading , setLoading] = useState(false);
-    
+    const [sobMint, setSobMint] = useState({
+        amount:1
+    })
     const connectWallet = async()=>{
         try {
-            const chain = await getChainId();
-            console.log(chain)
             const accounts = await connectMetamask();
             console.log(accounts)
             if(accounts.wallet){
                 const res = walletSign("BOTS OF BITCOIN wants you to sign in and confirm wallet ownership. ARE YOU FRIKKIN READY TO RAMPAGE !!?" , accounts.wallet);                
                 res.then(async()=>{
-                    setUser({...user , wallet: accounts.wallet});
+                    setUser({...user , wallet:accounts.wallet});
                 }).catch((err)=>{
                     alert("Sign In failed")
                 })
             }
+            return accounts.wallet;
         } catch (error) {
             console.log(error)
         }
@@ -79,55 +82,49 @@ export const AppProvider =({children})=>{
     }
     }
 
-    ///////ICE CREAM SWAP CALLS /////////////////
-
-    /////helpers////////
-    const iceRouterObj =async()=>{
+    const mintStarted = async()=>{
         try {
-            if(user.wallet){
-                const contract = await connectContract(IceRouterAddress, IceRouterAbi, user.wallet)
-                return contract   
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
-    ////////////////////
-
-    const WETH =async()=>{
-        try {
-            const contract = iceRouterObj();
-            const WETH = await contract.WETH();
-            return WETH
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    const getAmountsOut = async(amountIn, path)=>{
-        try {
-            const contract = iceRouterObj();
-            const amountOut =await contract.getAmountsOut(amountIn, path);
-            return amountOut
+            const ca =await getMinterContract();
+            const Bool = ca.mintStarted();
+            return Bool
         } catch (error) {
             console.log(error);
         }
     }
 
-    const getAmountsIn = async(amountOut) =>{
+    const getSupplyLeft =async()=>{
         try {
-            const contract = iceRouterObj();
-            const amountIn = await contract.getAmountsIn(amountOut, path);
+            const ca = await getMinterContract();
+            const supp = await ca.supplyLeft();
+            //console.log(supp);
+            return supp
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 
-    const executeSwap=async()=>{
+    const getCurrentRound = async()=>{
         try {
-            
+            const ca = await getMinterContract();
+            const round = await ca.getCurrentRound();
+            console.log(round)
+            return round;
         } catch (error) {
-            console.log(error)
+            console.log(error);
+        }
+    }
+
+    const getUserMints = async()=>{
+        try {
+            if(user.wallet){
+                const ca = await getMinterContract();
+                const round = await ca.getCurrentRound();
+                const rnd = parseInt(Number(round));
+                const num = await ca.counter(rnd,user.wallet);
+                return num;
+            }
+        } catch (error) {
+            console.log(error);
         }
     }
 
@@ -135,7 +132,9 @@ export const AppProvider =({children})=>{
 
     return(
         <>
-        <AppContext.Provider value={{connectWallet, user, act , fusionData,setAct, states, setStates, openMobileMenu, getFusionData , dexStates , setDexStates}}>
+        <AppContext.Provider value={{connectWallet, user, act ,mintStarted, fusionData,setAct, states, setStates, openMobileMenu, getFusionData , getSupplyLeft , dexStates , setDexStates,
+        getCurrentRound, getUserMints, setSobMint
+        }}>
             {children}
         </AppContext.Provider>
         </>
