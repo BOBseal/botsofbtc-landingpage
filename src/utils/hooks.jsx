@@ -1,5 +1,6 @@
 import React from "react";
 import { ethers } from "ethers";
+import { minter,pointCore } from "./constants";
 
 export const changeNetwork =async(chainId)=>{
     try {
@@ -38,6 +39,29 @@ export const getSwapData = async(amount,path)=>{
         return data
     } catch (error) {
         console.log(error)
+    }
+}
+
+export const getMinterContract = async(account)=>{
+    try {
+        const addr = minter[1].address;
+        const abi = minter[1].abi;
+        const contract = connectContract(addr,abi,account);
+        return contract
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const getRpCoreContract = async(chainId, account)=>{
+    try {
+        const addr = pointCore[chainId].address;
+        const abi = pointCore[chainId].abi;
+        const contract = connectContract(addr,abi,account);
+        console.log(`RP CORE Ca = ${addr}, OBJ = ${contract}`);
+        return contract
+    } catch (error) {
+        console.log(error);
     }
 }
 

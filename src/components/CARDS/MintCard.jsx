@@ -5,14 +5,14 @@ import ff from "../../assets/sobdemo.png"
 import escan from "../../assets/etherscan.png"
 import ele from "../../assets/element.png"
 
-const MintCard = () => {
+const MintCard = ({state, mintData}) => {
     const style = {
         box:`flex flex-col md:flex-row w-[90%] lg:w-[50%] md:justify-center bg-[#E5BD19] md:bg-[#231F20] drop-shadow-xl hover:drop-shadow-2xl md:border-none transition duration-500 ease-linear transform hover:scale-105 items-center h-[30rem] justify-between border-[2px] rounded-2xl border-[#E5BD19]`,
         box2:`h-[90%] md:hidden flex w-full flex-col gap-[8px] justify-between pb-[20px] bg-[#231F20] rounded-2xl`,
         mintButt:`h-[10%] w-full flex items-center justify-center rounded-b-2xl md:hidden`,
         imageBox:`h-[70%] py-[1em] w-full flex flex-col justify-between items-center gap-[5px]`,
         contentBox:`h-[30%%] flex-col gap-[0.15rem] flex pl-[45px] text-white`,
-        mintButton:`font-fredoka text-[30px] font-[700]`,
+        mintButton:`font-fredoka text-[30px] font-[700] cursor-pointer`,
         img:`w-[15.4rem] flex justify-center`
     }
   return (
@@ -27,19 +27,26 @@ const MintCard = () => {
                         <Image src={escan} width={20} height={20} alt="etherscan" className='hover:scale-105'/>
                     </div>
                     <div className='text-white'>
-                        <Image src={ele} width={20} height={20} alt="etherscan" className='hover:scale-105 rounded-full'/>
+                        {mintData.supplyLeft ? <>{mintData.supplyLeft} / 3456</>:"*/ 3456"}
                     </div>
                 </div>
             </div>
             <div className={style.contentBox}>
                 <p>Total Supply : 3456</p>
-                <p>Current Round : WL</p>
+                <p>Current Round : {mintData.currentRound ? <>{mintData.currentRound}</> : "NOT STARTED"}</p>
                 <p>Mint Price : Free</p>
-                <p>Your Mints : 1/15 </p>
+                <p>Your Mints : {mintData.userMints > 0? <>{mintData.userMints}</>:"0"}/{mintData.currentRound === "WL Round" ||mintData.currentRound ==="Not Started"  ? 15 : 10} SOB</p>
+                <div className='flex gap-[0.6rem]'>
+                   Select Amount : <input defaultValue={1} min={0} type={'number'} max={15} className="bg-transparent border w-[7rem]"/>
+                </div>
             </div>
         </div>
         <div className={style.mintButt}>
-            <button className={style.mintButton}>MINT</button>
+            <div className={style.mintButton}>{state ? 
+            <div className='flex justify-center items-center gap-[1rem]'>
+                MINT NOW
+            </div>
+            : "Coming Soon"}</div>
         </div>
 
 
@@ -54,7 +61,7 @@ const MintCard = () => {
                             <Image src={escan} width={30} height={30} alt="etherscan" className='hover:scale-105 cursor-pointer'/>
                         </div>
                         <div className='text-white'>
-                            <Image src={ele} width={30} height={30} alt="etherscan" className='hover:scale-105 rounded-full cursor-pointer'/>
+                        {mintData.supplyLeft ? <>{mintData.supplyLeft} / 3456</>:"*/ 3456"}
                         </div>
                     </div>
             </div>
@@ -67,12 +74,15 @@ const MintCard = () => {
             <div className='h-[70%] pt-[0.5rem] flex-col w-full items-center justify-between'>
                 <div className='flex flex-col text-[20px] h-[75%] pl-[1rem] justify-center gap-[0.5rem] text-white'>
                 <p>Total Supply : 3456</p>
-                <p>Current Round : WL</p>
+                <p>Current Round : {mintData.currentRound ? <>{mintData.currentRound}</> : "NOT STARTED"}</p>
                 <p>Mint Price : Free</p>
-                <p>Your Mints : 1/15 </p>
+                <p>Your Mints : {mintData.userMints > 0? <>{mintData.userMints}</>:"0"}/{mintData.currentRound === "WL Round" ||mintData.currentRound ==="Not Started"  ? 15 : 10} SOB</p>
+                <div className='flex gap-[1rem]'>
+                   Select Amount : <input min={0} type={'number'} max={15} className="bg-transparent border w-[10rem]"/>
+                </div>
                 </div>
                 <div className='flex justify-center items-center w-full'>
-                    <p className='bg-gradient-to-r cursor-pointer from-[#E5BD19] to-[#E56F19] px-[15px] py-[4px] rounded-full text-[25px] font-bold transition duration-400 ease-linear transform hover:scale-105 hover:drop-shadow-lg'>COMING SOON</p>
+                    <p className='bg-gradient-to-r cursor-pointer from-[#E5BD19] to-[#E56F19] px-[15px] py-[4px] rounded-full text-[25px] font-bold transition duration-400 ease-linear transform hover:scale-105 hover:drop-shadow-lg'>{state ? "Mint Now" : "Coming Soon"}</p>
                 </div>
             </div>
         </div>

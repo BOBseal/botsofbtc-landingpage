@@ -1,3 +1,6 @@
+import MintObj from "./MintingAbi.json"
+import RP from "./RPABI.json"
+
 export const BOB_MAINNET = [
     {
         chainId:"0xed88",
@@ -1210,3 +1213,24 @@ export const IERC20ABI = [
 ]
 
 export const IceRouterAddress = "0x698a912F8CA34Df9b46E6Ea4A2B2DB0B7151b083" 
+
+export const MintAbi = MintObj.abi;
+export const RpCoreAbi = RP.abi;
+
+export const minter =[
+    {
+        address:'0xDFf9631fa2446A143dDAa32f7eF4301Ba0588497',
+        abi:MintAbi,
+    },
+    {
+        address:'0xdD4443ae49764f5a18F0143aBe5686057559c29a',
+        abi:MintAbi
+    }
+]
+
+export const pointCore = {
+    0xed88:{
+        address:'0xCA9c5943Dd7d0fE1E6A0Cf12F2eA65d310A3b2AA',
+        abi:RpCoreAbi,
+    }
+}
