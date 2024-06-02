@@ -4,6 +4,7 @@ import Image from '../../../node_modules/next/image'
 import ff from "../../assets/sobdemo.png"
 import escan from "../../assets/etherscan.png"
 import ele from "../../assets/element.png"
+import Link from '../../../node_modules/next/link'
 
 const MintCard = ({state, mintData}) => {
     const style = {
@@ -24,7 +25,9 @@ const MintCard = ({state, mintData}) => {
                 </div>
                 <div className='flex w-[70%] justify-between'>
                     <div>
+                    <Link href={"https://explorer.gobob.xyz/address/0x3eFC90a28685d320F6916b76D8C679da67cc23DC"} target={'_blank'}>
                         <Image src={escan} width={20} height={20} alt="etherscan" className='hover:scale-105'/>
+                    </Link>
                     </div>
                     <div className='text-white'>
                         {mintData.supplyLeft ? <>{mintData.supplyLeft} / 3456</>:"*/ 3456"}
@@ -58,7 +61,9 @@ const MintCard = ({state, mintData}) => {
                     </div>
                     <div className='flex w-[90%] justify-between'>
                         <div>
+                            <Link href={"https://explorer.gobob.xyz/address/0x3eFC90a28685d320F6916b76D8C679da67cc23DC"} target={'_blank'}>
                             <Image src={escan} width={30} height={30} alt="etherscan" className='hover:scale-105 cursor-pointer'/>
+                            </Link>
                         </div>
                         <div className='text-white'>
                         {mintData.supplyLeft ? <>{mintData.supplyLeft} / 3456</>:"*/ 3456"}
@@ -78,7 +83,7 @@ const MintCard = ({state, mintData}) => {
                 <p>Mint Price : Free</p>
                 <p>Your Mints : {mintData.userMints > 0? <>{mintData.userMints}</>:"0"}/{mintData.currentRound === "WL Round" ||mintData.currentRound ==="Not Started"  ? 15 : 10} SOB</p>
                 <div className='flex gap-[1rem]'>
-                   Select Amount : <input min={0} type={'number'} max={15} className="bg-transparent border w-[10rem]"/>
+                   Select Amount : <input defaultValue={1} min={0} type={'number'} max={15} className="bg-transparent border w-[10rem]"/>
                 </div>
                 </div>
                 <div className='flex justify-center items-center w-full'>
