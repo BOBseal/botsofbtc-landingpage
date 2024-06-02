@@ -1223,7 +1223,7 @@ export const minter =[
         abi:MintAbi,
     },
     {
-        address:'0xdD4443ae49764f5a18F0143aBe5686057559c29a',
+        address:'0x81E92d75bCb173A970Cc2cBcA5ca6fc3908aF930',
         abi:MintAbi
     }
 ]
