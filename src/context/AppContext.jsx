@@ -128,12 +128,22 @@ export const AppProvider =({children})=>{
         }
     }
 
+    const mintMulti = async()=>{
+        try {
+            const ca = await getMinterContract();
+            const mint = await ca.mintMulti(sobMint.amount);
+            return mint;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     ////////////////////////////////////////////
 
     return(
         <>
         <AppContext.Provider value={{connectWallet, user, act ,mintStarted, fusionData,setAct, states, setStates, openMobileMenu, getFusionData , getSupplyLeft , dexStates , setDexStates,
-        getCurrentRound, getUserMints, setSobMint
+        getCurrentRound, getUserMints, setSobMint, sobMint, mintMulti
         }}>
             {children}
         </AppContext.Provider>
