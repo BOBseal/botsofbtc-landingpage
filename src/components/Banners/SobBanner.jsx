@@ -1,5 +1,5 @@
 'use client'
-import React, {useState , useContext} from 'react'
+import React, {useState , useContext, useEffect} from 'react'
 import { getChainId, changeNetwork,addNetwork } from '@/utils/hooks'
 import Image from '../../../node_modules/next/image'
 import sob from "../../assets/sobdemo.png"
@@ -18,6 +18,7 @@ const SobBanner = () => {
   const [mintData , setMintData] = useState({})
   const [started , setStarted] = useState(false);
   const [loader , setLoader] = useState(false);
+  const [chain , setChain] = useState(false);
   const activeVariants = {
     hidden: { opacity: 25, x: 100 },
     visible: { opacity: 1, x: 0 },
@@ -26,8 +27,8 @@ const SobBanner = () => {
   const toggleActive=async(back)=>{
     if(!user.wallet){
       connectWallet();
-      if(getChainId() != '0xed88'){
-        addNetwork(BOB_MAINNET[0])
+      if(getChainId() != BOB_MAINNET[0].chainId){
+        addNetwork(BOB_MAINNET)
       }
       return
     }
@@ -79,6 +80,13 @@ const SobBanner = () => {
       console.log(error)
     }
   }
+
+  useEffect(() => {
+    if(getChainId() === '0xed88'){
+      setChain(true);
+    }
+  }, [user.wallet])
+  
 
   const mint = async()=>{
     try {
