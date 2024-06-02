@@ -1,5 +1,5 @@
-import MintObj from "./MintingAbi.json"
-import RP from "./RPABI.json"
+import MintObj from "./ABIS/MintingABI.json"
+import RP from "./ABIS/RPABI.json"
 
 export const BOB_MAINNET = [
     {
