@@ -6,7 +6,7 @@ import partner1Logo from "../assets/BOB_LOGO.png"
 import icecream from "../assets/icecreamLogo.png"
 
 export const teamConfig =[
-    {id:1 , name : "BOB" , designation:"Founder & CTO", desc:"Web3 Dev and a sucker for blockchain & AI tech. Self-Taught dev with 2+ years of experience in freelancing.", link:"", picture: bob},
+    {id:1 , name : "BOB" , designation:"Founder & CTO", desc:"Web3 Dev and a sucker for blockchain & AI tech. Self-Taught dev with an Obsession for NFTs and DeFi.", link:"", picture: bob},
     {id:2 , name : "Deep" , designation:"Co-Founder/Graphics Lead", desc:"Funny & Obsessed Artist with an eye for details and a punch in his Artworks. Have a unique perspective for the world!", link:"", picture: deep},
     {id:3 , name : "S.Agarwal" , designation:"Co-Founder", desc:"CA with magic-hand in finances & also handles the compliances.", link:"", picture: six},
     {id:4 , name : "Vishnu" , designation:"Co-Founder/COO", desc:"Ex-Yahoo Web Engineer , Advisor to the team & plan the bigger picture.", link:"", picture: v},
