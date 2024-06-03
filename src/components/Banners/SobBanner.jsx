@@ -1,5 +1,6 @@
 'use client'
 import React, {useState , useContext} from 'react'
+import { getChainId, changeNetwork,addNetwork } from '@/utils/hooks'
 import Image from '../../../node_modules/next/image'
 import sob from "../../assets/sobdemo.png"
 import { skibbidi } from '@/configs/config'
@@ -9,7 +10,7 @@ import MintCard from "../CARDS/MintCard"
 import arrow from "../../assets/leftArrow.png"
 import { AppContext } from '@/context/AppContext'
 import { ethers } from '../../../node_modules/ethers/lib/index'
-
+import { BOB_MAINNET } from '@/utils/constants'
 
 const SobBanner = () => {
   const {mintStarted, getSupplyLeft, getCurrentRound, connectWallet, user, getUserMints, sobMint , setSobMint , mintMulti} = useContext(AppContext);
@@ -25,6 +26,9 @@ const SobBanner = () => {
   const toggleActive=async(back)=>{
     if(!user.wallet){
       connectWallet();
+      if(getChainId() != '0xed88'){
+        addNetwork(BOB_MAINNET)
+      }
       return
     }
     if(!back){
