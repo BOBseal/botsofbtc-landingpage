@@ -86,6 +86,14 @@ const MobileNav :React.FC <NavbarProps>=({openMobileMenu , userWallet, connectWa
     openMobileMenu();
     alert("Coming Soon");
   }
+  const scrollToHeight = () => {
+    openMobileMenu();
+    window.scrollBy({
+      top: 700, // Number of pixels to scroll vertically
+      behavior: 'smooth' // For smooth scrolling
+    });
+  };
+
   return(
     <div className='absolute md:hidden top-0 left-0 bg-[#E5BD19] h-[35rem] w-full z-50'>
       <div className='flex flex-col h-full border-b-[20px] border-black w-full justify-evenly items-center'>
@@ -93,7 +101,7 @@ const MobileNav :React.FC <NavbarProps>=({openMobileMenu , userWallet, connectWa
         <Link href={'/'}>
           <button className=' font-nunito text-black text-[20px]' onClick={()=>openMobileMenu()}>Home</button> 
           </Link>
-          <p onClick={()=> al()} className=' font-nunito text-black text-[20px]'>Mint</p>
+          <p onClick={()=>scrollToHeight()} className=' font-nunito text-black text-[20px]'>Mint</p>
           <p onClick={()=> al()} className=' font-nunito text-black text-[20px]'>Lottery</p>
           <p onClick={()=> al()} className=' font-nunito text-black text-[20px]'>Vaults</p>
           <Link href={'https://botsofbtc.notion.site/BOTS-OF-BITCOIN-27ab822513f5459d861d07a6f11271ba?pvs=4'} target={'_blank'}>

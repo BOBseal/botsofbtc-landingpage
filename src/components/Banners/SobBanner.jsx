@@ -13,7 +13,7 @@ import { ethers } from '../../../node_modules/ethers/lib/index'
 import { BOB_MAINNET } from '@/utils/constants'
 
 const SobBanner = () => {
-  const {mintStarted, getSupplyLeft, getCurrentRound, connectWallet, user, getUserMints, sobMint , setSobMint , mintMulti} = useContext(AppContext);
+  const {mintStarted, getSupplyLeft, getCurrentRound, connectWallet, user, getUserMints, sobMint ,states, setSobMint , mintMulti} = useContext(AppContext);
   const [active , setActive] = useState(false);
   const [mintData , setMintData] = useState({})
   const [started , setStarted] = useState(false);
@@ -106,7 +106,7 @@ const SobBanner = () => {
          }}
          transition={{ ease: "easeInOut", duration: 0.8 }}
         >
-      <div className={`h-full w-full flex justify-center items-center py-[2rem] bg-[#231F20] border-b border-[#E5BD19] ${active ? "pb-[1rem]":""} `}>
+      <div className={`h-full w-full flex justify-center items-center py-[2rem] bg-[#231F20] border-b border-[#E5BD19] ${active ? "pb-[1rem]":""} ${states.mobileMenuOpen ? "blur-md" : ""} `}>
       <div className='w-[90%] gap-[1rem] flex flex-col items-center'>
             <div className={`flex flex-col justify-between items-center  gap-[0.7rem]`}>
                 <h1 className=' font-fredoka font-[700] text-[28px] lg:text-[78px] md:text-[55px] text-[#E5BD19] cursor-pointer'>SKIBBIDIES OF BITCOIN</h1>
