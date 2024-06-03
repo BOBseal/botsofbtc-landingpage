@@ -20,6 +20,14 @@ const Navbar: React.FC<NavbarProps> = () => {
     visible: { opacity:1, y: 0 },
     exit: { opacity:60,  y: -100 },
 })
+
+  const scrollToHeight = () => {
+    window.scrollBy({
+      top: 700, // Number of pixels to scroll vertically
+      behavior: 'smooth' // For smooth scrolling
+    });
+  };
+
   const al =()=>{
     alert("Coming Soon");
   }
@@ -57,7 +65,7 @@ const Navbar: React.FC<NavbarProps> = () => {
           <Link href={'/'}>
           <button className='lg:text-[22px] md:text-[18px] font-nunito font-semibold hover:scale-105'>Home</button> 
           </Link>
-          <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105' onClick={()=> al()}>Mint</button>
+          <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105' onClick={()=> scrollToHeight()}>Mint</button>
           <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105' onClick={()=> al()}>Pots</button>
           <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105' onClick={()=> al()}>Vaults</button>
           <Link href={'https://botsofbtc.notion.site/BOTS-OF-BITCOIN-27ab822513f5459d861d07a6f11271ba?pvs=4'} target={'_blank'}>
