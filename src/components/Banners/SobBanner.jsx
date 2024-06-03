@@ -12,7 +12,7 @@ import { ethers } from '../../../node_modules/ethers/lib/index'
 
 
 const SobBanner = () => {
-  const {mintStarted, getSupplyLeft, getCurrentRound, connectWallet, user, getUserMints} = useContext(AppContext);
+  const {mintStarted, getSupplyLeft, getCurrentRound, connectWallet, user, getUserMints, sobMint , setSobMint , mintMulti} = useContext(AppContext);
   const [active , setActive] = useState(false);
   const [mintData , setMintData] = useState({})
   const [started , setStarted] = useState(false);
@@ -51,6 +51,36 @@ const SobBanner = () => {
     }
     if(!active){
       setActive(true)
+    }
+  }
+
+  const inputHandle=async(e)=>{
+    try {
+      const nm = parseInt(Number(e.target.value));
+      if(mintData.currentRound && mintData.currentRound === "WL Round"){
+        if(nm > 15){
+          alert("Cannot be more thn 15 for WL round")
+          return
+        }
+      }
+      if(mintData.currentRound === "Public Round"){
+        if(nm > 10){
+          alert("Cannot be more thn 10 for Public Round")
+          return
+        }
+      }
+      setSobMint({...sobMint, amount:nm})
+      console.log(sobMint);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const mint = async()=>{
+    try {
+      const mint = await mintMulti();
+    } catch (error) {
+      console.log(error);
     }
   }
   return (
@@ -117,7 +147,7 @@ const SobBanner = () => {
                   <div className='w-[90%] lg:w-[50%]'>
                   <Image onClick={()=>toggleActive(true)} className='mt-[20px] md:mt-[30px]' src={arrow} width={24} height={24} alt="arrow"/>
                   </div>
-                  <MintCard state={started} mintData={mintData}/>
+                  <MintCard state={started} mintData={mintData} inputHandle={inputHandle} mint={mint}/>
                 </div>
             </div>
             </motion.div>

@@ -4,8 +4,9 @@ import Image from '../../../node_modules/next/image'
 import ff from "../../assets/sobdemo.png"
 import escan from "../../assets/etherscan.png"
 import ele from "../../assets/element.png"
+import Link from '../../../node_modules/next/link'
 
-const MintCard = ({state, mintData}) => {
+const MintCard = ({state, mintData, inputHandle , mint}) => {
     const style = {
         box:`flex flex-col md:flex-row w-[90%] lg:w-[50%] md:justify-center bg-[#E5BD19] md:bg-[#231F20] drop-shadow-xl hover:drop-shadow-2xl md:border-none transition duration-500 ease-linear transform hover:scale-105 items-center h-[30rem] justify-between border-[2px] rounded-2xl border-[#E5BD19]`,
         box2:`h-[90%] md:hidden flex w-full flex-col gap-[8px] justify-between pb-[20px] bg-[#231F20] rounded-2xl`,
@@ -24,7 +25,9 @@ const MintCard = ({state, mintData}) => {
                 </div>
                 <div className='flex w-[70%] justify-between'>
                     <div>
+                    <Link href={"https://explorer.gobob.xyz/address/0x3eFC90a28685d320F6916b76D8C679da67cc23DC"} target={'_blank'}>
                         <Image src={escan} width={20} height={20} alt="etherscan" className='hover:scale-105'/>
+                    </Link>
                     </div>
                     <div className='text-white'>
                         {mintData.supplyLeft ? <>{mintData.supplyLeft} / 3456</>:"*/ 3456"}
@@ -37,13 +40,13 @@ const MintCard = ({state, mintData}) => {
                 <p>Mint Price : Free</p>
                 <p>Your Mints : {mintData.userMints > 0? <>{mintData.userMints}</>:"0"}/{mintData.currentRound === "WL Round" ||mintData.currentRound ==="Not Started"  ? 15 : 10} SOB</p>
                 <div className='flex gap-[0.6rem]'>
-                   Select Amount : <input defaultValue={1} min={0} type={'number'} max={15} className="bg-transparent border w-[7rem]"/>
+                   Select Amount : <input defaultValue={1} onChange={(e)=>inputHandle(e)} min={1} type={'number'} max={15} className="bg-transparent border w-[7rem]"/>
                 </div>
             </div>
         </div>
         <div className={style.mintButt}>
             <div className={style.mintButton}>{state ? 
-            <div className='flex justify-center items-center gap-[1rem]'>
+            <div onClick={()=> mint()} className='flex justify-center items-center gap-[1rem]'>
                 MINT NOW
             </div>
             : "Coming Soon"}</div>
@@ -58,7 +61,9 @@ const MintCard = ({state, mintData}) => {
                     </div>
                     <div className='flex w-[90%] justify-between'>
                         <div>
+                            <Link href={"https://explorer.gobob.xyz/address/0x3eFC90a28685d320F6916b76D8C679da67cc23DC"} target={'_blank'}>
                             <Image src={escan} width={30} height={30} alt="etherscan" className='hover:scale-105 cursor-pointer'/>
+                            </Link>
                         </div>
                         <div className='text-white'>
                         {mintData.supplyLeft ? <>{mintData.supplyLeft} / 3456</>:"*/ 3456"}
@@ -78,11 +83,11 @@ const MintCard = ({state, mintData}) => {
                 <p>Mint Price : Free</p>
                 <p>Your Mints : {mintData.userMints > 0? <>{mintData.userMints}</>:"0"}/{mintData.currentRound === "WL Round" ||mintData.currentRound ==="Not Started"  ? 15 : 10} SOB</p>
                 <div className='flex gap-[1rem]'>
-                   Select Amount : <input min={0} type={'number'} max={15} className="bg-transparent border w-[10rem]"/>
+                   Select Amount : <input defaultValue={1} onChange={(e)=>inputHandle(e)} min={1} type={'number'} max={15} className="bg-transparent border w-[10rem]"/>
                 </div>
                 </div>
                 <div className='flex justify-center items-center w-full'>
-                    <p className='bg-gradient-to-r cursor-pointer from-[#E5BD19] to-[#E56F19] px-[15px] py-[4px] rounded-full text-[25px] font-bold transition duration-400 ease-linear transform hover:scale-105 hover:drop-shadow-lg'>{state ? "Mint Now" : "Coming Soon"}</p>
+                    <div className='bg-gradient-to-r cursor-pointer from-[#E5BD19] to-[#E56F19] px-[15px] py-[4px] rounded-full text-[25px] font-bold transition duration-400 ease-linear transform hover:scale-105 hover:drop-shadow-lg'>{state ? <div onClick={()=> mint()}>Mint Now</div> : "Coming Soon"}</div>
                 </div>
             </div>
         </div>
