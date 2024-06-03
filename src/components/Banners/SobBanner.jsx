@@ -27,7 +27,7 @@ const SobBanner = () => {
     if(!user.wallet){
       connectWallet();
       if(getChainId() != '0xed88'){
-        addNetwork(BOB_MAINNET)
+        addNetwork(BOB_MAINNET[0])
       }
       return
     }
