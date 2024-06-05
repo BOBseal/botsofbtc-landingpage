@@ -46,9 +46,11 @@ export const AppProvider =({children})=>{
             const accounts = await connectMetamask();
             console.log(accounts)
             if(accounts.wallet){
+                const chainId = await getChainId();
+                const correctChain = chainId === BOB_MAINNET[0].chainId ? true : false;
                 const res = walletSign("BOTS OF BITCOIN wants you to sign in and confirm wallet ownership. ARE YOU FRIKKIN READY TO RAMPAGE !!?" , accounts.wallet);                
                 res.then(async()=>{
-                    setUser({...user , wallet:accounts.wallet});
+                    setUser({...user , wallet:accounts.wallet , chainId: chainId , correctChain: correctChain});
                 }).catch((err)=>{
                     alert("Sign In failed")
                 })
