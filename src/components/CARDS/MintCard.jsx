@@ -35,20 +35,19 @@ const MintCard = ({state, mintData, inputHandle , mint}) => {
                 </div>
             </div>
             <div className={style.contentBox}>
-                <p>Total Supply : 3456</p>
-                <p>Current Round : {mintData.currentRound ? <>{mintData.currentRound}</> : "NOT STARTED"}</p>
-                <p>Mint Price : Free</p>
-                <p>Your Mints : {mintData.userMints > 0? <>{mintData.userMints}</>:"0"}/{mintData.currentRound === "WL Round" ||mintData.currentRound ==="Not Started"  ? 15 : 10} SOB</p>
-                <div className='flex gap-[0.6rem]'>
+                {mintData.supplyLeft == 0 ?<p className='flex h-full w-full items-center text-center text-[25px]'>OOPS MINTED OUT !</p>:""} 
+                {mintData.supplyLeft != 0 ?<p>Total Supply : 3456</p>:""}
+                {mintData.supplyLeft != 0 ?<p>Current Round : {mintData.currentRound ? <>{mintData.currentRound}</> : "NOT STARTED"}</p>:""}
+                {mintData.supplyLeft != 0 ?<p>Mint Price : Free</p>:""}
+                {mintData.supplyLeft != 0 ?<p>Your Mints : {mintData.userMints > 0? <>{mintData.userMints}</>:"0"}/{mintData.currentRound === "WL Round" ||mintData.currentRound ==="Not Started"  ? 15 : 10} SOB</p>:""}
+                {mintData.supplyLeft != 0 ? <div className='flex gap-[0.6rem]'>
                    Select Amount : <input defaultValue={1} onChange={(e)=>inputHandle(e)} min={1} type={'number'} max={15} className="bg-transparent border w-[7rem]"/>
-                </div>
+                </div> :""}
             </div>
         </div>
         <div className={style.mintButt}>
             <div className={style.mintButton}>{state ? 
-            <div onClick={()=> mint()} className='flex justify-center items-center gap-[1rem]'>
-                MINT NOW
-            </div>
+            <div>{mintData.supplyLeft != 0 ? <div onClick={()=> mint()}>Mint Now</div>:<div>BUY NOW</div>}</div>
             : "Coming Soon"}</div>
         </div>
 
@@ -78,16 +77,17 @@ const MintCard = ({state, mintData, inputHandle , mint}) => {
             </div>
             <div className='h-[70%] pt-[0.5rem] flex-col w-full items-center justify-between'>
                 <div className='flex flex-col text-[20px] h-[75%] pl-[1rem] justify-center gap-[0.5rem] text-white'>
-                <p>Total Supply : 3456</p>
-                <p>Current Round : {mintData.currentRound ? <>{mintData.currentRound}</> : "NOT STARTED"}</p>
-                <p>Mint Price : Free</p>
-                <p>Your Mints : {mintData.userMints > 0? <>{mintData.userMints}</>:"0"}/{mintData.currentRound === "WL Round" ||mintData.currentRound ==="Not Started"  ? 15 : 10} SOB</p>
-                <div className='flex gap-[1rem]'>
+                {mintData.supplyLeft == 0 ?<p>OOPS MINTED OUT !</p>:""} 
+                {mintData.supplyLeft != 0 ? <p>Total Supply : 3456</p>:""}
+                {mintData.supplyLeft != 0 ? <p>Current Round : {mintData.currentRound ? <>{mintData.currentRound}</> : "NOT STARTED"}</p>:""}
+                {mintData.supplyLeft != 0 ? <p>Mint Price : Free</p>:""}
+                {mintData.supplyLeft != 0 ? <p>Your Mints : {mintData.userMints > 0? <>{mintData.userMints}</>:"0"}/{mintData.currentRound === "WL Round" ||mintData.currentRound ==="Not Started"  ? 15 : 10} SOB</p>:""}
+                {mintData.supplyLeft != 0 ? <div className='flex gap-[1rem]'>
                    Select Amount : <input defaultValue={1} onChange={(e)=>inputHandle(e)} min={1} type={'number'} max={15} className="bg-transparent border w-[10rem]"/>
-                </div>
+                </div>:""}
                 </div>
                 <div className='flex justify-center items-center w-full'>
-                    <div className='bg-gradient-to-r cursor-pointer from-[#E5BD19] to-[#E56F19] px-[15px] py-[4px] rounded-full text-[25px] font-bold transition duration-400 ease-linear transform hover:scale-105 hover:drop-shadow-lg'>{state ? <div onClick={()=> mint()}>Mint Now</div> : "Coming Soon"}</div>
+                    <div className='bg-gradient-to-r cursor-pointer from-[#E5BD19] to-[#E56F19] px-[15px] py-[4px] rounded-full text-[25px] font-bold transition duration-400 ease-linear transform hover:scale-105 hover:drop-shadow-lg'>{state ? <div>{mintData.supplyLeft != 0 ? <div onClick={()=> mint()}>Mint Now</div>:<div>BUY NOW</div>}</div> : "Coming Soon"}</div>
                 </div>
             </div>
         </div>
