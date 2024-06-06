@@ -47,7 +47,7 @@ const MintCard = ({state, mintData, inputHandle , mint}) => {
         </div>
         <div className={style.mintButt}>
             <div className={style.mintButton}>{state ? 
-            <div>{mintData.supplyLeft != 0 ? <div onClick={()=> mint()}>Mint Now</div>:<div>BUY NOW</div>}</div>
+            <div>{mintData.supplyLeft != 0 ? <div onClick={()=> mint()}>Mint Now</div>:<Link href={'https://element.market/collections/skibbidies-of-bitcoin-1'} target={'_blank'}><div>BUY NOW</div></Link>}</div>
             : "Coming Soon"}</div>
         </div>
 
@@ -87,7 +87,7 @@ const MintCard = ({state, mintData, inputHandle , mint}) => {
                 </div>:""}
                 </div>
                 <div className='flex justify-center items-center w-full'>
-                    <div className='bg-gradient-to-r cursor-pointer from-[#E5BD19] to-[#E56F19] px-[15px] py-[4px] rounded-full text-[25px] font-bold transition duration-400 ease-linear transform hover:scale-105 hover:drop-shadow-lg'>{state ? <div>{mintData.supplyLeft != 0 ? <div onClick={()=> mint()}>Mint Now</div>:<div>BUY NOW</div>}</div> : "Coming Soon"}</div>
+                    <div className='bg-gradient-to-r cursor-pointer from-[#E5BD19] to-[#E56F19] px-[15px] py-[4px] rounded-full text-[25px] font-bold transition duration-400 ease-linear transform hover:scale-105 hover:drop-shadow-lg'>{state ? <div>{mintData.supplyLeft != 0 ? <div onClick={()=> mint()}>Mint Now</div>:<Link href={'https://element.market/collections/skibbidies-of-bitcoin-1'} target={'_blank'}><div>BUY NOW</div></Link>}</div> : "Coming Soon"}</div>
                 </div>
             </div>
         </div>
