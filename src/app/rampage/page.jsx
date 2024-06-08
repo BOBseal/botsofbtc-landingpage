@@ -8,22 +8,72 @@ import img from "../../assets/lotterypage.png"
 import rimg from "../../assets/rampagelogin.png"
 
 const Page = () => {
-  const {user, connectWallet} = useContext(AppContext);
+  const {user, connectWallet, setRampageData, createRPAccount, rampageInitialized} = useContext(AppContext);
+
+  const [details , setDetails] = useState({});
+  
+  const checkStat = async()=>{
+    if(user.wallet){
+      const ans = await rampageInitialized();
+      setDetails({initialized: ans})
+    }
+  }
+
+  useEffect(() => {
+    try {
+      if(!user.wallet){
+        connectWallet();
+      }
+      checkStat();
+    } catch (error) {
+      console.log(error)
+    }
+  }, [user.wallet])
+  
 
   return (
     <>
     <Navbar/>
-    <div className=' bg-bg3 bg-no-repeat bg-cover w-full py-[1rem]'>
-        <div className='h-[45rem] w-full flex flex-col items-center'>
+    <div className=' bg-rp bg-cover bg-no-repeat w-full py-[1rem]'>
+        <div className='h-[50rem] w-full flex flex-col items-center'>
             {user.wallet ? 
-            <div className='flex flex-col items-center'>
+            <div className='flex flex-col items-center w-full h-full'>
               {user.correctChain ? 
-              <div className='flex flex-col items-center h-full w-full'>
-                  <div>
-                     <Image src={rimg} height={400} width={400} alt="RAMPAGE" className={`object-cover w-[300px] h-[300px] md:w-[400px]`}/>   
-                  </div>
+              <div className='flex flex-col items-center h-full w-full justify-center'>
+                  {details.initialized?
+                  <div className='flex flex-col items-center justify-center gap-[2rem] py-[2rem] border-[3px] border-black drop-shadow-2xl w-[90%] md:w-[75%] lg:mt-[100px] lg:w-[45%] h-[60%] md:h-[50%] bg-[#E5BD19] bg-cover bg-no-repeat rounded-lg'>
+                    <div className='flex flex-col items-center w-full gap-[14px] md:gap-[25px]'>
+                      <p className='font-fredoka text-[35px] md:text-[50px]] leading-[25px] font-extrabold'>WELCOME TO</p>
+                      <p className='font-fredoka text-[45px] md:text-[60px] leading-[30px] font-extrabold'>RAMPAGE</p>
+                    </div>
+                    <div className='flex flex-col items-center w-full gap-[20px] text-[20px]'>
+                      <div className='flex md:text-[25px] font-fredoka font-semibold flex-col py-[0.5rem] drop-shadow-lg bg-[black] text-[#E5BD19] px-[3rem] items-center rounded-lg'>
+                      <p>TOTAL $RP COLLECTED</p>
+                      <p>10000000000 $RP</p>
+                      </div>
+                    </div>
 
-                  {}
+                    <div className='w-[90%] md:w-[50%] gap-[20px] lg:w-[40%] text-[20px] font-nunito rounded-lg h-full flex flex-col'>
+                      <p>UserName : BLABLA</p>
+                      <p>Your $RP Balances : 1000</p>
+                    </div>
+                  </div>:
+                  <div className='flex flex-col items-center justify-center gap-[2rem] py-[2rem] border-[3px] border-black drop-shadow-2xl w-[90%] md:w-[75%] lg:w-[45%] h-[60%] md:h-[50%] lg:mt-[100px] bg-[#E5BD19] bg-cover bg-no-repeat rounded-lg'>
+                  <div className='flex flex-col items-center w-full gap-[14px] md:gap-[25px]'>
+                    <p className='font-fredoka text-[35px] md:text-[50px] leading-[25px] font-extrabold'>WELCOME TO</p>
+                    <p className='font-fredoka text-[45px] md:text-[60px] leading-[30px] font-extrabold'>RAMPAGE</p>
+                  </div>
+                  <div className='flex flex-col items-center w-full gap-[20px] text-[20px]'>
+                    <div className='flex md:text-[25px] font-fredoka font-semibold flex-col py-[0.5rem] drop-shadow-lg bg-[black] text-[#E5BD19] px-[0.5rem] md:px-[3rem] items-center rounded-lg'>
+                    <p>TO PARTICIPATE IN RAMPAGE</p>
+                    <p>CHOOSE USERNAME & MINT ID</p>
+                    </div>
+                  </div>
+                  <div className='w-[90%] md:w-[50%] gap-[20px] lg:w-[40%] text-[20px] font-nunito rounded-lg h-full flex flex-col'>
+                    <input type={'text'}/>
+                  </div>
+                </div>
+                }
               </div>:
               <div className={`h-full w-[90%] flex flex-col items-center justify-evenly pb-[2rem]`}>
               <div className='flex p-[10px]'>

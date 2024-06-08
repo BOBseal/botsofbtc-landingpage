@@ -1,6 +1,6 @@
 import React from "react";
 import { ethers } from "ethers";
-import { minter,pointCore } from "./constants";
+import { minter,pointCore , RampageV1 } from "./constants";
 
 export const changeNetwork =async(chainId)=>{
     try {
@@ -62,6 +62,15 @@ export const getRpCoreContract = async(chainId, account)=>{
         return contract
     } catch (error) {
         console.log(error);
+    }
+}
+
+export const getRampageCa = async(account)=>{
+    try {
+        const ca = connectContract(RampageV1[0].address,RampageV1[0].abi,account);
+        return ca
+    } catch (error) {
+        console.log(error)
     }
 }
 

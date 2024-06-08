@@ -16,7 +16,7 @@ import {
     swapExactTokenToEth,
     swapExactTokenToToken,
     getMinterContract,
-    getRpCoreContract
+    getRampageCa
  } from "../utils/hooks"
 
 export const AppContext = React.createContext();
@@ -41,6 +41,7 @@ export const AppProvider =({children})=>{
     const [sobMint, setSobMint] = useState({
         amount:1
     })
+    const [rampageData,setRampageData] = useState({})
     const connectWallet = async()=>{
         try {
             const accounts = await connectMetamask();
@@ -140,12 +141,40 @@ export const AppProvider =({children})=>{
         }
     }
 
+    const createRPAccount = async()=>{
+        try {
+            if(rampageData.name){
+                const encodedForm = ethers.utils.defaultAbiCoder.encode(["bytes"],rampageData.name);
+                if(encodedForm.length == 0){
+                    alert("Name Must not be empty");
+                    return
+                }
+                const ca = await getRampageCa(user.wallet)
+                const tx = await ca.createAccount("0x0000000000000000000000000000000000000000",rampageData.name);
+                return tx;
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const rampageInitialized = async() =>{
+        try {
+            const ca = await getRampageCa(user.wallet);
+            const isInit = await ca.userActivated(user.wallet);
+            console.log(isInit)
+            return isInit
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     ////////////////////////////////////////////
 
     return(
         <>
         <AppContext.Provider value={{connectWallet, user, act ,mintStarted, fusionData,setAct, states, setStates, openMobileMenu, getFusionData , getSupplyLeft , dexStates , setDexStates,
-        getCurrentRound, getUserMints, setSobMint, sobMint, mintMulti
+        getCurrentRound, getUserMints, setSobMint, sobMint, mintMulti , setRampageData, createRPAccount , rampageInitialized
         }}>
             {children}
         </AppContext.Provider>
