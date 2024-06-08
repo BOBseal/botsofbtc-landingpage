@@ -15,7 +15,8 @@ const config: Config = {
         'banner': "url('/bannerbg.png')",
         'abstractBg': "url('/bg2.png')",
         'bg2': "url('/yelloblackbg.png')",
-        'bg3': "url('/bg3.png')"
+        'bg3': "url('/bg3.png')",
+        'rp': "url('/rampage.svg')",
       },
     },
     fontFamily:{

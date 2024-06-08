@@ -138,9 +138,9 @@ const SobBanner = () => {
                   </Link>
                 </div>
                 <div className='flex flex-col items-center justify-between'>
-                  <p onClick={()=> toggleActive(false)} className=' font-fredoka font-[700] text-[30px] bg-[#E5BD19] hover:text-[#E5BD19] hover:bg-black hover:border cursor-pointer border-[#E5BD19] text-black p-[10px] rounded-2xl transition duration-400 ease-linear transform hover:scale-105'>{user.wallet ? 
-                  <>{loader?"Loading ..." : "MINT NOW"}</>
-                  :"CONNECT WALLET"}</p>
+                  <Link href={"https://element.market/collections/skibbidies-of-bitcoin-1"} target={'_blank'}>
+                  <p className=' font-fredoka font-[700] text-[30px] bg-[#E5BD19] hover:text-[#E5BD19] hover:bg-black hover:border cursor-pointer border-[#E5BD19] text-black p-[10px] rounded-2xl transition duration-400 ease-linear transform hover:scale-105'>BUY NOW</p>
+                  </Link>
                 </div>
               </div>
             </div>

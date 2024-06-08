@@ -16,6 +16,7 @@ import {
     swapExactTokenToEth,
     swapExactTokenToToken,
     getMinterContract,
+    getRampageCa,
     getRpCoreContract
  } from "../utils/hooks"
 
@@ -41,14 +42,17 @@ export const AppProvider =({children})=>{
     const [sobMint, setSobMint] = useState({
         amount:1
     })
+    const [rampageData,setRampageData] = useState({})
     const connectWallet = async()=>{
         try {
             const accounts = await connectMetamask();
             console.log(accounts)
             if(accounts.wallet){
+                const chainId = await getChainId();
+                const correctChain = chainId === BOB_MAINNET[0].chainId ? true : false;
                 const res = walletSign("BOTS OF BITCOIN wants you to sign in and confirm wallet ownership. ARE YOU FRIKKIN READY TO RAMPAGE !!?" , accounts.wallet);                
                 res.then(async()=>{
-                    setUser({...user , wallet:accounts.wallet});
+                    setUser({...user , wallet:accounts.wallet , chainId: chainId , correctChain: correctChain});
                 }).catch((err)=>{
                     alert("Sign In failed")
                 })
@@ -138,12 +142,68 @@ export const AppProvider =({children})=>{
         }
     }
 
+    const createRPAccountZero = async()=>{
+        try {
+            if(rampageData.name){
+                const ca = await getRampageCa(user.wallet)
+                const tx = await ca.createAccount("0x0000000000000000000000000000000000000000",rampageData.name,{value:12500000000000});
+                return tx;
+            }
+        } catch (error) {
+            alert(error.message)
+            console.log(error)
+        }
+    }
+
+    const getUserRampageData = async()=>{
+        try {
+            if(user.wallet){
+                const ca = await getRampageCa();
+                const rpca = await getRpCoreContract();
+                const totalPoints = await rpca.getTotalPoints();
+                const totalUsers = await rpca.getTotalUsers();
+                const userRpPerDay = await ca.userRpPerDay(user.wallet);
+                const userPoints = await ca.userPoints(user.wallet);
+                const userName = await ca.getUsername(user.wallet);
+                const nextSignTime = await ca.getUserNextSignTime(user.wallet);
+                console.log(totalPoints,totalUsers);
+                const tp = parseInt(Number(totalPoints));
+                const tu = parseInt(Number(totalUsers));
+                const pd = parseInt(Number(userRpPerDay));
+                const up = parseInt(Number(userPoints));
+                const nt = parseInt(Number(nextSignTime));
+                setRampageData({ ... rampageData,
+                    totalRP: tp, 
+                    totalUsers: tu, 
+                    pointPerDay: pd, 
+                    userPoints:up,
+                    userName:userName,
+                    nextTime: nt
+                })
+            }
+            else console.log("ERROR LOADING DATA")
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const rampageInitialized = async() =>{
+        try {
+            const ca = await getRampageCa(user.wallet);
+            const isInit = await ca.userActivated(user.wallet);
+            console.log(isInit)
+            return isInit
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     ////////////////////////////////////////////
 
     return(
         <>
         <AppContext.Provider value={{connectWallet, user, act ,mintStarted, fusionData,setAct, states, setStates, openMobileMenu, getFusionData , getSupplyLeft , dexStates , setDexStates,
-        getCurrentRound, getUserMints, setSobMint, sobMint, mintMulti
+        getCurrentRound, getUserMints, setSobMint, sobMint, mintMulti , rampageData, setRampageData, createRPAccountZero , rampageInitialized , getUserRampageData
         }}>
             {children}
         </AppContext.Provider>

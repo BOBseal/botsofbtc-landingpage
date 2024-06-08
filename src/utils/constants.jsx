@@ -1,6 +1,6 @@
 import MintObj from "./ABIS/MintingABI.json"
 import RP from "./ABIS/RPABI.json"
-
+import RAMP from "./ABIS/RAMPAGEv1.json"
 export const BOB_MAINNET = [
     {
         chainId:"0xed88",
@@ -1228,9 +1228,13 @@ export const minter =[
     }
 ]
 
-export const pointCore = {
-    0xed88:{
+export const pointCore = [
+    {
         address:'0xCA9c5943Dd7d0fE1E6A0Cf12F2eA65d310A3b2AA',
         abi:RpCoreAbi,
     }
-}
+]
+
+export const RampageV1 = [
+    {address:"0x3f0e560A40dB44Ff573c610c67e495Bd7Ce0FDDa" , abi:RAMP.abi}
+]
