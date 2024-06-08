@@ -16,7 +16,8 @@ import {
     swapExactTokenToEth,
     swapExactTokenToToken,
     getMinterContract,
-    getRampageCa
+    getRampageCa,
+    getRpCoreContract
  } from "../utils/hooks"
 
 export const AppContext = React.createContext();
@@ -141,18 +142,46 @@ export const AppProvider =({children})=>{
         }
     }
 
-    const createRPAccount = async()=>{
+    const createRPAccountZero = async()=>{
         try {
             if(rampageData.name){
-                const encodedForm = ethers.utils.defaultAbiCoder.encode(["bytes"],rampageData.name);
-                if(encodedForm.length == 0){
-                    alert("Name Must not be empty");
-                    return
-                }
                 const ca = await getRampageCa(user.wallet)
-                const tx = await ca.createAccount("0x0000000000000000000000000000000000000000",rampageData.name);
+                const tx = await ca.createAccount("0x0000000000000000000000000000000000000000",rampageData.name,{value:12500000000000});
                 return tx;
             }
+        } catch (error) {
+            alert(error.message)
+            console.log(error)
+        }
+    }
+
+    const getUserRampageData = async()=>{
+        try {
+            if(user.wallet){
+                const ca = await getRampageCa();
+                const rpca = await getRpCoreContract();
+                const totalPoints = await rpca.getTotalPoints();
+                const totalUsers = await rpca.getTotalUsers();
+                const userRpPerDay = await ca.userRpPerDay(user.wallet);
+                const userPoints = await ca.userPoints(user.wallet);
+                const userName = await ca.getUsername(user.wallet);
+                const nextSignTime = await ca.getUserNextSignTime(user.wallet);
+                console.log(totalPoints,totalUsers);
+                const tp = parseInt(Number(totalPoints));
+                const tu = parseInt(Number(totalUsers));
+                const pd = parseInt(Number(userRpPerDay));
+                const up = parseInt(Number(userPoints));
+                const nt = parseInt(Number(nextSignTime));
+                setRampageData({ ... rampageData,
+                    totalRP: tp, 
+                    totalUsers: tu, 
+                    pointPerDay: pd, 
+                    userPoints:up,
+                    userName:userName,
+                    nextTime: nt
+                })
+            }
+            else console.log("ERROR LOADING DATA")
         } catch (error) {
             console.log(error)
         }
@@ -174,7 +203,7 @@ export const AppProvider =({children})=>{
     return(
         <>
         <AppContext.Provider value={{connectWallet, user, act ,mintStarted, fusionData,setAct, states, setStates, openMobileMenu, getFusionData , getSupplyLeft , dexStates , setDexStates,
-        getCurrentRound, getUserMints, setSobMint, sobMint, mintMulti , setRampageData, createRPAccount , rampageInitialized
+        getCurrentRound, getUserMints, setSobMint, sobMint, mintMulti , rampageData, setRampageData, createRPAccountZero , rampageInitialized , getUserRampageData
         }}>
             {children}
         </AppContext.Provider>

@@ -55,10 +55,10 @@ export const getMinterContract = async(account)=>{
 
 export const getRpCoreContract = async(chainId, account)=>{
     try {
-        const addr = pointCore[chainId].address;
-        const abi = pointCore[chainId].abi;
+        const addr = pointCore[0].address;
+        const abi = pointCore[0].abi;
         const contract = connectContract(addr,abi,account);
-        console.log(`RP CORE Ca = ${addr}, OBJ = ${contract}`);
+        //console.log(`RP CORE Ca = ${addr}, OBJ = ${contract}`);
         return contract
     } catch (error) {
         console.log(error);

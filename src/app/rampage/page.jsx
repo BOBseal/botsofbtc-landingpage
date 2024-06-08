@@ -8,28 +8,59 @@ import img from "../../assets/lotterypage.png"
 import rimg from "../../assets/rampagelogin.png"
 
 const Page = () => {
-  const {user, connectWallet, setRampageData, createRPAccount, rampageInitialized} = useContext(AppContext);
+  const {user, connectWallet, setRampageData, rampageData, createRPAccountZero, rampageInitialized, getUserRampageData} = useContext(AppContext);
 
   const [details , setDetails] = useState({});
-  
-  const checkStat = async()=>{
-    if(user.wallet){
+  const [loading , setLoading] = useState(false);
+
+  const checkStat = async () => {
+    if (user.wallet) {
       const ans = await rampageInitialized();
-      setDetails({initialized: ans})
+      setDetails({ initialized: ans });
+      return ans;
+    }
+    return false;
+  };
+
+  const handler = async(e)=>{
+    try {
+      setRampageData({...rampageData, name:e.target.value})
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const mintHandler = async() =>{
+    try {
+      if(!rampageData.name){
+        alert("Name Cannot be Empty")
+        return
+      }
+      setLoading(true);
+      await createRPAccountZero();
+      setLoading(false);    
+    } catch (error) {
+      console.log(error);
     }
   }
 
   useEffect(() => {
-    try {
-      if(!user.wallet){
-        connectWallet();
+    const initialize = async () => {
+      try {
+        if (!user.wallet) {
+          await connectWallet();
+        }
+        const initialized = await checkStat();
+        
+        await getUserRampageData();
+        
+      } catch (error) {
+        console.log(error);
       }
-      checkStat();
-    } catch (error) {
-      console.log(error)
-    }
-  }, [user.wallet])
-  
+    };
+
+    initialize();
+  }, [user.wallet]);
 
   return (
     <>
@@ -41,24 +72,24 @@ const Page = () => {
               {user.correctChain ? 
               <div className='flex flex-col items-center h-full w-full justify-center'>
                   {details.initialized?
-                  <div className='flex flex-col items-center justify-center gap-[2rem] py-[2rem] border-[3px] border-black drop-shadow-2xl w-[90%] md:w-[75%] lg:mt-[100px] lg:w-[45%] h-[60%] md:h-[50%] bg-[#E5BD19] bg-cover bg-no-repeat rounded-lg'>
+                  <div className='flex flex-col items-center justify-center gap-[2rem] py-[2rem] border-[3px] border-black transition duration-500 ease-linear transform hover:scale-105 drop-shadow-xl hover:drop-shadow-2xl w-[90%] md:w-[75%] lg:mt-[100px] lg:w-[45%] h-[60%] md:h-[50%] bg-[#E5BD19] bg-cover bg-no-repeat rounded-lg'>
                     <div className='flex flex-col items-center w-full gap-[14px] md:gap-[25px]'>
                       <p className='font-fredoka text-[35px] md:text-[50px]] leading-[25px] font-extrabold'>WELCOME TO</p>
                       <p className='font-fredoka text-[45px] md:text-[60px] leading-[30px] font-extrabold'>RAMPAGE</p>
                     </div>
-                    <div className='flex flex-col items-center w-full gap-[20px] text-[20px]'>
-                      <div className='flex md:text-[25px] font-fredoka font-semibold flex-col py-[0.5rem] drop-shadow-lg bg-[black] text-[#E5BD19] px-[3rem] items-center rounded-lg'>
-                      <p>TOTAL $RP COLLECTED</p>
-                      <p>10000000000 $RP</p>
+                    <div className='flex flex-col items-center w-full gap-[20px] text-[18px] md:text-[25px]'>
+                      <div className='flex w-[90%] md:w-[80%] gap-[20px] lg:w-[70%] md:text-[25px] font-fredoka font-semibold flex-col py-[0.5rem] drop-shadow-lg bg-[black] text-[#E5BD19] px-[3rem] items-center rounded-lg'>
+                        <p className='flex w-full justify-center items-center gap-[8px]'>TOTAL USERS :{rampageData.totalUsers ? <div>{rampageData.totalUsers}</div> : "Loading..."}</p>
+                        <p className='flex w-full justify-center gap-[8px] items-center'>POINTS: {rampageData.totalRP ? <div>{rampageData.totalRP}</div> : "Loading..."} <span>$RP</span></p>
                       </div>
                     </div>
 
                     <div className='w-[90%] md:w-[50%] gap-[20px] lg:w-[40%] text-[20px] font-nunito rounded-lg h-full flex flex-col'>
-                      <p>UserName : BLABLA</p>
-                      <p>Your $RP Balances : 1000</p>
+                      <p>UserName : {rampageData.userName}</p>
+                      <p>Your $RP Balances : {rampageData.userPoints} $RP</p>
                     </div>
                   </div>:
-                  <div className='flex flex-col items-center justify-center gap-[2rem] py-[2rem] border-[3px] border-black drop-shadow-2xl w-[90%] md:w-[75%] lg:w-[45%] h-[60%] md:h-[50%] lg:mt-[100px] bg-[#E5BD19] bg-cover bg-no-repeat rounded-lg'>
+                  <div className='flex flex-col items-center justify-center gap-[2rem] py-[2rem] border-[3px] border-black transition duration-500 ease-linear transform hover:scale-105 drop-shadow-xl hover:drop-shadow-2xl drop-shadow-2xl w-[90%] md:w-[75%] lg:w-[45%] h-[60%] md:h-[50%] lg:mt-[100px] bg-[#E5BD19] bg-cover bg-no-repeat rounded-lg'>
                   <div className='flex flex-col items-center w-full gap-[14px] md:gap-[25px]'>
                     <p className='font-fredoka text-[35px] md:text-[50px] leading-[25px] font-extrabold'>WELCOME TO</p>
                     <p className='font-fredoka text-[45px] md:text-[60px] leading-[30px] font-extrabold'>RAMPAGE</p>
@@ -69,8 +100,17 @@ const Page = () => {
                     <p>CHOOSE USERNAME & MINT ID</p>
                     </div>
                   </div>
-                  <div className='w-[90%] md:w-[50%] gap-[20px] lg:w-[40%] text-[20px] font-nunito rounded-lg h-full flex flex-col'>
-                    <input type={'text'}/>
+                  <div className='w-[90%] md:w-[50%] pt-[3rem] md:pt-[1px] gap-[20px] lg:w-[40%] text-[20px] font-nunito rounded-lg h-full flex flex-col'>
+                    <div className='flex w-full'>
+                        <p className='w-[40%]'>Set Name:</p>
+                        <input onChange={(e)=> handler(e)} className='h-[2rem] bg-transparent border rounded-lg w-[60%] cursor-pointer md:w-[70%]' type={'text'}/>
+                    </div>
+
+                    <div className='flex w-full justify-center items-center pt-[1rem] md:pt-[1px]]'>
+                        <div onClick={()=> mintHandler()} className='flex bg-black px-[30px] py-[8px] transition duration-500 ease-linear transform hover:scale-105 cursor-pointer rounded-full text-[#E5BD19]'>
+                          {loading ? "LOADING" : "MINT PROFILE"}
+                        </div>
+                    </div>
                   </div>
                 </div>
                 }
@@ -98,6 +138,10 @@ const Page = () => {
                 </div>
             </div>
             }
+            
+            <div className=''>
+               
+            </div>
         </div>
     </div>
     <Footer/>
