@@ -31,9 +31,9 @@ const Footer:React.FC = () => {
           </div>
 
           <div className='flex flex-col gap-[1rem]'>
-            <p className='transition duration-500 ease-linear transform hover:scale-105' onClick={()=>al()}>Vaults</p>
-            <p className='transition duration-500 ease-linear transform hover:scale-105' onClick={()=>al()}>Mint</p>
-            <p className='transition duration-500 ease-linear transform hover:scale-105' onClick={()=>al()}>Lottery</p>
+            <p className='transition duration-500 ease-linear transform cursor-pointer hover:scale-105' onClick={()=>al()}>Vaults</p>
+            <p className='transition duration-500 ease-linear transform cursor-pointer hover:scale-105' onClick={()=>al()}>Mint BOB</p>
+            <p className='transition duration-500 ease-linear transform cursor-pointer hover:scale-105' onClick={()=>al()}>Lottery</p>
             <Link href={'https://twitter.com/BotsOfBtc'} target="_blank">
             <Image src={twit} height={30} width={30} className={`transition duration-500 ease-linear transform hover:scale-110`} alt="Twitter / X"/>
             </Link>
