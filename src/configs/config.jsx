@@ -37,7 +37,7 @@ export const sectionText = [
     {
         sectionName :"intro",
         h1: "What is BOTS OF BITCOIN ?",
-        p1: "BOTS OF BITCOIN revolves around PFPs, NFT-FI , De-Fi & Automation on Bitcoin EVM Layer2 Ecosystems. The BOTS OF BITCOIN Collection is the Main NFT Collection for BOTS OF BITCOIN Platform and $BOTS as the Ecosystem token , The platform is set to Incorporate NFT-FI and DE-FI on Bitcoin EVM Layer2 Ecosystems with the Vision to bring new uses to BTC besides being just a Store-Of-Value as well as to Re-Imagive uses of DLT for Trading Purposes. Powered by 'BitEVM' it aims to Fuse Bitcoin Value with Ethereum Utility.",
+        p1: "BOTS OF BITCOIN revolves around PFPs, NFT-FI , De-Fi & Automation on Bitcoin EVM Layer2 Ecosystems. The BOTS OF BITCOIN Collection is the Main NFT Collection for BOTS OF BITCOIN Platform and $BOTS as the Ecosystem token , The platform is set to Incorporate NFT-FI and DE-FI on Bitcoin EVM Layer2 Ecosystems with the Vision to bring new uses to BTC besides being just a Store-Of-Value as well as to Re-Imagine uses of DLT for Trading Purposes. Powered by 'BitEVM' it aims to Fuse Bitcoin Value with Ethereum Utility.",
         h2: "What are BitVMs & Why is it BIG ?",
         h2a: [
             "BitEVMs are one of the Latest Innovations in the Crypto Space making it Possible for the EVM to be Brought over to Bitcoin. It opens up a whole paradigm of Utility to be Brought over to BITCOIN as a Scaling Factor to Bitcoin as well as to Unite the BITCOIN & EVM Ecosystems.",
