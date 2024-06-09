@@ -146,7 +146,7 @@ export const AppProvider =({children})=>{
         try {
             if(rampageData.name){
                 const ca = await getRampageCa(user.wallet)
-                const tx = await ca.createAccount("0x0000000000000000000000000000000000000000",rampageData.name,{value:2500000000000});
+                const tx = await ca.createAccount("0x0000000000000000000000000000000000000000",rampageData.name,{value:25000000000000});
                 return tx;
             }
         } catch (error) {
@@ -158,7 +158,6 @@ export const AppProvider =({children})=>{
     const getUserRampageData = async()=>{
         try {
             if(user.wallet){
-                //await getFusionData();
                 const ca = await getRampageCa();
                 const rpca = await getRpCoreContract();
                 const totalPoints = await rpca.getTotalPoints();
