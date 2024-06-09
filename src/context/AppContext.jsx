@@ -158,6 +158,7 @@ export const AppProvider =({children})=>{
     const getUserRampageData = async()=>{
         try {
             if(user.wallet){
+                //await getFusionData();
                 const ca = await getRampageCa();
                 const rpca = await getRpCoreContract();
                 const totalPoints = await rpca.getTotalPoints();

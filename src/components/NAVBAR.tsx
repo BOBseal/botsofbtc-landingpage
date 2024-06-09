@@ -66,7 +66,7 @@ const Navbar: React.FC<NavbarProps> = () => {
           <button className='lg:text-[22px] md:text-[18px] font-nunito font-semibold hover:scale-105'>Home</button> 
           </Link>
           <Link href={'/rampage'} target={'_blank'}>
-          <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105' onClick={()=> al()}>Rampage</button>
+          <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105'>Rampage</button>
           </Link>
           <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105' onClick={()=> al()}>Pots</button>
           <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105' onClick={()=> al()}>Vaults</button>
@@ -104,7 +104,7 @@ const MobileNav :React.FC <NavbarProps>=({openMobileMenu , userWallet, connectWa
           <button className=' font-nunito text-black text-[20px]' onClick={()=>openMobileMenu()}>Home</button> 
           </Link>
           <Link href={'/rampage'} target={'_blank'}>
-          <p onClick={()=> al()} className=' font-nunito text-black text-[20px]'>Rampage</p>
+          <p  className=' font-nunito text-black text-[20px]'>Rampage</p>
           </Link>
           <p onClick={()=> al()} className=' font-nunito text-black text-[20px]'>Lottery</p>
           <p onClick={()=> al()} className=' font-nunito text-black text-[20px]'>Vaults</p>
