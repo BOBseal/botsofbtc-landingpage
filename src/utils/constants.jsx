@@ -1,6 +1,8 @@
 import MintObj from "./ABIS/MintingABI.json"
 import RP from "./ABIS/RPABI.json"
 import RAMP from "./ABIS/RAMPAGEv1.json"
+import sk from "./ABIS/SKIBBIDIESOFBITCOIN.json"
+
 export const BOB_MAINNET = [
     {
         chainId:"0xed88",
@@ -1237,4 +1239,8 @@ export const pointCore = [
 
 export const RampageV1 = [
     {address:"0x3f0e560A40dB44Ff573c610c67e495Bd7Ce0FDDa" , abi:RAMP.abi}
+]
+
+export const Skib = [
+    {address:"",abi:sk.abi}
 ]

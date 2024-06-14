@@ -1,6 +1,6 @@
 import React from "react";
 import { ethers } from "ethers";
-import { minter,pointCore , RampageV1 } from "./constants";
+import { minter,pointCore , RampageV1, Skib } from "./constants";
 
 export const changeNetwork =async(chainId)=>{
     try {
@@ -50,6 +50,17 @@ export const getMinterContract = async(account)=>{
         return contract
     } catch (error) {
         console.log(error);
+    }
+}
+
+export const getNFTCa = async(account)=>{
+    try {
+        const nftAddr = "0x3efc90a28685d320f6916b76d8c679da67cc23dc"
+        const nftAbi = Skib[0].abi;
+        const ca = connectContract(nftAddr,nftAbi,account);
+        return ca
+    } catch (error) {
+        console.log(error)
     }
 }
 

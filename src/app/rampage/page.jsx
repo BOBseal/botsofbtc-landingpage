@@ -8,7 +8,7 @@ import img from "../../assets/lotterypage.png"
 import rimg from "../../assets/rampagelogin.png"
 
 const Page = () => {
-  const {user, connectWallet, setRampageData, rampageData, createRPAccountZero, rampageInitialized, getUserRampageData} = useContext(AppContext);
+  const {user,loaders,connectWallet, setRampageData, rampageData, createRPAccountZero,dailyMine ,rampageInitialized, getUserRampageData} = useContext(AppContext);
 
   const [details , setDetails] = useState({});
   const [loading , setLoading] = useState(false);
@@ -66,13 +66,13 @@ const Page = () => {
     <>
     <Navbar/>
     <div className=' bg-rp bg-cover bg-no-repeat w-full py-[1rem]'>
-        <div className='h-[50rem] w-full flex flex-col items-center'>
+        <div className='h-full py-[5rem] w-full flex flex-col items-center text-black'>
             {user.wallet ? 
             <div className='flex flex-col items-center w-full h-full'>
               {user.correctChain ? 
               <div className='flex flex-col items-center h-full w-full justify-center'>
                   {details.initialized?
-                  <div className='flex flex-col items-center justify-center gap-[2rem] py-[2rem] border-[3px] border-black transition duration-500 ease-linear transform hover:scale-105 drop-shadow-xl hover:drop-shadow-2xl w-[90%] md:w-[75%] lg:mt-[100px] lg:w-[45%] h-[60%] md:h-[50%] bg-[#E5BD19] bg-cover bg-no-repeat rounded-lg'>
+                  <div className='flex flex-col items-center justify-center gap-[2rem] py-[2rem] border-[3px] border-black drop-shadow-xl hover:drop-shadow-2xl w-[90%] md:w-[75%] lg:mt-[100px] lg:w-[45%] h-[60%] md:h-[50%] bg-[#E5BD19] bg-cover bg-no-repeat rounded-lg'>
                     <div className='flex flex-col items-center w-full gap-[14px] md:gap-[25px]'>
                       <p className='font-fredoka text-[35px] md:text-[50px]] leading-[25px] font-extrabold'>WELCOME TO</p>
                       <p className='font-fredoka text-[45px] md:text-[60px] leading-[30px] font-extrabold'>RAMPAGE</p>
@@ -84,12 +84,20 @@ const Page = () => {
                       </div>
                     </div>
 
-                    <div className='w-[90%] md:w-[50%] gap-[20px] lg:w-[40%] text-[20px] font-nunito rounded-lg h-full flex flex-col'>
+                    <div className='w-[90%] md:w-[50%] gap-[10px] lg:w-[40%] text-[16px] md:text-[22px] font-nunito rounded-lg h-full flex flex-col'>
                       <p>UserName : {rampageData.userName}</p>
                       <p>Your $RP Balances : {rampageData.userPoints} $RP</p>
+                      <p>SOBs Held : {rampageData.skibHeld ? <>{rampageData.skibHeld}</>: "0"}</p>
+                      <p>Your Eligible RP/Day : {rampageData.pointPerDay ? <>{rampageData.pointPerDay}</>:"0"}</p>
+                    </div>
+
+                    <div className='w-[90%] h-full flex flex-col items-center'>
+                        <button onClick={()=>dailyMine()} className={`${rampageData.mintEnable ? "bg-black text-[#E5BD19]" : "text-gray-600 bg-[#E5BD19] border-black"} px-[20px] py-[5px] drop-shadow hover:drop-shadow-xl rounded-2xl border cursor-pointer transition duration-500 ease-linear transform hover:scale-105 hover:border-red-500 border-[#E5BD19] text-[25px] font-fredoka font-[700]`}>
+                            {loaders.dailyLogin ? "Loading...": "MINE DAILY RP"}
+                        </button>
                     </div>
                   </div>:
-                  <div className='flex flex-col items-center justify-center gap-[2rem] py-[2rem] border-[3px] border-black transition duration-500 ease-linear transform hover:scale-105 drop-shadow-xl hover:drop-shadow-2xl drop-shadow-2xl w-[90%] md:w-[75%] lg:w-[45%] h-[60%] md:h-[50%] lg:mt-[100px] bg-[#E5BD19] bg-cover bg-no-repeat rounded-lg'>
+                  <div className='flex flex-col items-center justify-center gap-[2rem] py-[2rem] border-[3px] border-black transition duration-500 ease-linear transform hover:scale-105 hover:drop-shadow-2xl drop-shadow-2xl w-[90%] md:w-[75%] lg:w-[45%] h-[60%] md:h-[50%] lg:mt-[100px] bg-[#E5BD19] bg-cover bg-no-repeat rounded-lg'>
                   <div className='flex flex-col items-center w-full gap-[14px] md:gap-[25px]'>
                     <p className='font-fredoka text-[35px] md:text-[50px] leading-[25px] font-extrabold'>WELCOME TO</p>
                     <p className='font-fredoka text-[45px] md:text-[60px] leading-[30px] font-extrabold'>RAMPAGE</p>
