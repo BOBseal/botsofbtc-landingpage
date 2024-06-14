@@ -84,7 +84,7 @@ const Page = () => {
                       </div>
                     </div>
 
-                    <div className='w-[90%] md:w-[50%] gap-[10px] lg:w-[40%] text-[16px] md:text-[22px] font-nunito rounded-lg h-full flex flex-col'>
+                    <div className='w-[90%] md:w-[50%] gap-[10px] lg:w-[40%] text-[16px] md:text-[20px] font-nunito rounded-lg h-full flex flex-col'>
                       <p>UserName : {rampageData.userName}</p>
                       <p>Your $RP Balances : {rampageData.userPoints} $RP</p>
                       <p>SOBs Held : {rampageData.skibHeld ? <>{rampageData.skibHeld}</>: "0"}</p>
