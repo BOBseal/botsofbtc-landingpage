@@ -160,7 +160,7 @@ export const AppProvider =({children})=>{
                 setLoaders({...loaders, dailyLogin: false})
                 return tx
             } else {
-                alert("Already Mined Today , Check Again Tomorrow")
+                alert("Already Signed In Today , Check Again after 24 Hours")
                 setLoaders({...loaders, dailyLogin: false})
                 return
             }
