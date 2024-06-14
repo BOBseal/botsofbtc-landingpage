@@ -92,8 +92,8 @@ const Page = () => {
                     </div>
 
                     <div className='w-[90%] h-full flex flex-col items-center'>
-                        <button onClick={()=>dailyMine()} className={`${rampageData.mintEnable ? "bg-black text-[#E5BD19]" : "text-gray-600 bg-[#E5BD19] border-black"} px-[20px] py-[5px] drop-shadow hover:drop-shadow-xl rounded-2xl border cursor-pointer transition duration-500 ease-linear transform hover:scale-105 hover:border-red-500 border-[#E5BD19] text-[25px] font-fredoka font-[700]`}>
-                            {loaders.dailyLogin ? "Loading...": "Sign In"}
+                        <button onClick={()=>dailyMine()} className={`${rampageData.mintEnable ? "bg-black text-[#E5BD19]" : "text-gray-600 bg-[#cda916] border-black"} px-[20px] py-[5px] drop-shadow hover:drop-shadow-xl rounded-2xl border cursor-pointer transition duration-500 ease-linear transform hover:scale-105 hover:border-red-500 border-[#E5BD19] text-[25px] font-fredoka font-[700]`}>
+                            {loaders.dailyLogin ? "Loading...": "Daily Mine RP"}
                         </button>
                     </div>
                   </div>:
