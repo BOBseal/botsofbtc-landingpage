@@ -6,7 +6,7 @@ import { AppContext } from '@/context/AppContext'
 import Image from 'next/image'
 import img from "../../assets/lotterypage.png"
 import { useSearchParams } from '../../../node_modules/next/navigation'
-import rimg from "../../assets/rampagelogin.png"
+//import rimg from "../../assets/rampagelogin.png"
 
 const Page = () => {
   const {user,loaders,connectWallet, setRampageData, rampageData, createRPAccountZero,dailyMine ,rampageInitialized, getUserRampageData} = useContext(AppContext);
