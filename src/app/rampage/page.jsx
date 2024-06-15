@@ -3,15 +3,22 @@ import React,{useContext , useEffect, useState} from 'react'
 import Navbar from '@/components/NAVBAR'
 import Footer from "@/components/Footer"
 import { AppContext } from '@/context/AppContext'
-import Image from '../../../node_modules/next/image'
+import Image from 'next/image'
 import img from "../../assets/lotterypage.png"
+import { useSearchParams } from '../../../node_modules/next/navigation'
 import rimg from "../../assets/rampagelogin.png"
 
 const Page = () => {
   const {user,loaders,connectWallet, setRampageData, rampageData, createRPAccountZero,dailyMine ,rampageInitialized, getUserRampageData} = useContext(AppContext);
-
+  const sp = useSearchParams();
+  const ref = sp.get('ref');  
+  console.log(ref);
   const [details , setDetails] = useState({});
   const [loading , setLoading] = useState(false);
+  const [referalAddress , setReferalAddress] = useState("0x0000000000000000000000000000000000000000");
+
+  const validReferal = ref? ref :referalAddress;
+  console.log(validReferal)
 
   const checkStat = async () => {
     if (user.wallet) {
@@ -37,7 +44,10 @@ const Page = () => {
         return
       }
       setLoading(true);
-      await createRPAccountZero();
+      const c = await createRPAccountZero();
+      c.wait(1).then(()=>{
+        window.location.reload();
+      })
       setLoading(false);    
     } catch (error) {
       console.log(error);
@@ -61,7 +71,7 @@ const Page = () => {
 
     initialize();
   }, [user.wallet]);
-
+  
   return (
     <>
     <Navbar/>
@@ -89,6 +99,7 @@ const Page = () => {
                       <p>Your $RP Balances : {rampageData.userPoints} $RP</p>
                       <p>SOBs Held : {rampageData.skibHeld ? <>{rampageData.skibHeld}</>: "0"}</p>
                       <p>Your Eligible RP/Day : {rampageData.pointPerDay ? <>{rampageData.pointPerDay}</>:"0"}</p>
+                      {/*<div>Your Referal Link : <span className='bg-[#352f31] p-[5px] text-[#E5BD19] cursor-pointer text-[14px] rounded-lg'>{`https://botsofbtc.com/rampage?...`} <button>Copy</button></span></div>*/}
                     </div>
 
                     <div className='w-[90%] h-full flex flex-col items-center'>
@@ -154,7 +165,6 @@ const Page = () => {
     </div>
     <Footer/>
     </>
-  )
-}
+  )}
 
 export default Page

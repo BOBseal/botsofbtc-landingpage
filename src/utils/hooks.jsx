@@ -1,6 +1,7 @@
 import React from "react";
 import { ethers } from "ethers";
 import { minter,pointCore , RampageV1, Skib } from "./constants";
+import { IceCream, BOB_MAINNET , IERC20ABI } from "./constants";
 
 export const changeNetwork =async(chainId)=>{
     try {
@@ -28,17 +29,57 @@ export const addNetwork =async(networkConfig)=>{
     }
 }
 
+export const getIceContract =async(addr)=>{
+    try {
+        const ca = connectContract(IceCream[0].contract ,IceCream[0].abi, addr);
+        return ca;
+    } catch (error) {
+        console.log(error);
+    }
+}
 
-export const getSwapData = async(amount,path)=>{
+export const getSwapData = async(amount,path,_from)=>{
     try {
         const baseLink = 'https://aggregator.icecreamswap.com/60808'
         const from = path[0]
         const to = path[1]
-        console.log(amount)
-        const data  = await fetch(`${baseLink}?src=${from}&dst=${to}&amount=${amount}`);
+        
+        const data  = await fetch(`${baseLink}?src=${from}&dst=${to}&amount=${amount}&from=${_from}`);
         return data
     } catch (error) {
         console.log(error)
+    }
+}
+
+export const getErc20Decimals=async(token, user)=>{
+    try {
+        const ca = await connectContract(token, IERC20ABI, user);
+        const tx = await ca.decimals();
+        return tx;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getErc20CA=async(token, user)=>{
+    try {
+        const ca = await connectContract(token, IERC20ABI, user);
+        return ca;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getErc20Balances=async(address ,user)=>{
+    try {
+        const ca = await getErc20CA(address , user);
+        const d = await ca.decimals();
+        const decimals = parseInt(Number(d));
+        const balance = await ca.balanceOf(user);
+        const parseBalance = ethers.utils.formatUnits(balance,decimals);
+        return parseBalance
+    } catch (error) {
+        console.log(error);
     }
 }
 

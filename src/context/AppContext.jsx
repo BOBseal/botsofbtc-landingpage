@@ -1,7 +1,7 @@
 'use client'
 
 import React, {useState , useEffect} from "react"
-import {BOB_MAINNET, IceRouterAbi , IceRouterAddress} from "../utils/constants"
+import {BOB_MAINNET, IceRouterAbi , IceRouterAddress, IceCream} from "../utils/constants"
 import { ethers } from "../../node_modules/ethers/lib/index"
 import { 
     addNetwork,
@@ -18,12 +18,20 @@ import {
     getMinterContract,
     getRampageCa,
     getRpCoreContract,
-    getNFTCa
+    getNFTCa,
+    getErc20CA,
+    getErc20Balances,
+    getIceContract
  } from "../utils/hooks"
+ import { supportedList } from "@/configs/config"
 
 export const AppContext = React.createContext();
 
 export const AppProvider =({children})=>{
+
+    const findTokenByTicker = (ticker) => {
+        return Object.values(supportedList).find(token => token.ticker === ticker);
+    };
 
     const [user , setUser] = useState({});
     const [act , setAct] = useState(0);
@@ -35,9 +43,11 @@ export const AppProvider =({children})=>{
     const [dexStates , setDexStates] = useState({
         amountOut:'',
         amountIn:'',
-        fromToken:'',
-        toToken:'',
-        type:'NATIVE'
+        tokenIn:'WETH',
+        tokenOut:'USDT',
+        type:'NATIVE',
+        outBalance:'',
+        inBalance:''
     })
     const [loaders , setLoaders] = useState({
         dailyLogin:false
@@ -55,8 +65,14 @@ export const AppProvider =({children})=>{
                 const res = walletSign("BOTS OF BITCOIN wants you to sign in and confirm wallet ownership. ARE YOU FRIKKIN READY TO RAMPAGE !!?" , accounts.wallet);                
                 res.then(async()=>{
                     setUser({...user , wallet:accounts.wallet , chainId: chainId , correctChain: correctChain});
+                    const tokenIn = findTokenByTicker(dexStates.tokenIn);
+                    const tokenOut = findTokenByTicker(dexStates.tokenOut);
+                    const tokenInBalances = await getErc20Balances(tokenIn.address,accounts.wallet);
+                    const tokenOutBalances = await getErc20Balances(tokenOut.address,accounts.wallet);
+                    console.log(tokenInBalances,tokenOutBalances)
+                    setDexStates({...dexStates,outBalance:tokenOutBalances , inBalance:tokenInBalances})
                 }).catch((err)=>{
-                    alert("Sign In failed")
+                    console.log(err)
                 })
             }
             return accounts.wallet;
@@ -235,12 +251,48 @@ export const AppProvider =({children})=>{
         }
     }
 
+    const executeSwap=async(dataObj,token,amount)=>{
+        try {
+            const ca = await getIceContract(user.wallet);
+           
+            if(!dataObj){
+                alert("Enter Amount")
+                return
+            }
+            const caTkn = await getErc20CA(token,user.wallet);
+            
+            console.log(caTkn)
+            const ss =await caTkn.allowance(user.wallet,IceCream[0].contract);
+            const intSs = parseInt(Number(ss));
+            const intAm = parseInt(Number(amount));
+            console.log(intSs,intAm,"Allowances")
+            if(intSs < intAm){
+                const tt = await caTkn.approve(IceCream[0].contract, amount);
+            tt.wait(1).then(async (receipt) => {
+                alert(`Approve Successful hash : ${tt.hash}`)
+            //tt.then(async()=>{
+                const exec = await ca.swap(dataObj.tx.to,dataObj.tx.data,token,amount,{value:dataObj.tx.value, gasLimit:300000});
+                exec.wait(1).then(async(a)=>{alert(`swap complete txhash: ${exec.hash}`);})
+                return exec
+                //console.log(exec)
+            //}).catch(e=>{
+                //console.log(e);
+            //})
+        })} else {
+            const execs = await ca.swap(dataObj.tx.to,dataObj.tx.data,token,amount,{value:dataObj.tx.value});
+            execs.wait(1).then(async(a)=>{alert(`swap complete txhash: ${execs.hash}`);})
+        }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     ////////////////////////////////////////////
 
     return(
         <>
         <AppContext.Provider value={{connectWallet, dailyMine,user, act ,mintStarted, fusionData,setAct, states, setStates, openMobileMenu, getFusionData , getSupplyLeft , dexStates , setDexStates,
-        getCurrentRound, getUserMints, setSobMint, sobMint, mintMulti , rampageData, setRampageData, createRPAccountZero , rampageInitialized , getUserRampageData, loaders
+        getCurrentRound, getUserMints, setSobMint, sobMint, mintMulti , rampageData, setRampageData, createRPAccountZero , rampageInitialized , getUserRampageData, loaders, executeSwap
         }}>
             {children}
         </AppContext.Provider>
