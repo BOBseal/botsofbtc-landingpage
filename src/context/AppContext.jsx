@@ -49,7 +49,6 @@ export const AppProvider =({children})=>{
     const connectWallet = async()=>{
         try {
             const accounts = await connectMetamask();
-            console.log(accounts)
             if(accounts.wallet){
                 const chainId = await getChainId();
                 const correctChain = chainId === BOB_MAINNET[0].chainId ? true : false;
