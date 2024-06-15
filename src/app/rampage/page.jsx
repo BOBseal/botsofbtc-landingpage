@@ -6,19 +6,19 @@ import { AppContext } from '@/context/AppContext'
 import Image from 'next/image'
 import img from "../../assets/lotterypage.png"
 import { useSearchParams } from '../../../node_modules/next/navigation'
-//import rimg from "../../assets/rampagelogin.png"
+import rimg from "../../assets/rampagelogin.png"
 
 const Page = () => {
   const {user,loaders,connectWallet, setRampageData, rampageData, createRPAccountZero,dailyMine ,rampageInitialized, getUserRampageData} = useContext(AppContext);
   const sp = useSearchParams();
   const ref = sp.get('ref');  
-  console.log(ref);
+  //console.log(ref);
   const [details , setDetails] = useState({});
   const [loading , setLoading] = useState(false);
   const [referalAddress , setReferalAddress] = useState("0x0000000000000000000000000000000000000000");
 
   const validReferal = ref? ref :referalAddress;
-  console.log(validReferal)
+  //console.log(validReferal)
 
   const checkStat = async () => {
     if (user.wallet) {
