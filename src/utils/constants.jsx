@@ -49,7 +49,7 @@ export const pointCore = [
 ]
 
 export const RampageV1 = [
-    {address:"0xC4f681699CCDfFB26be46f1E109896cBb13cF18F" , abi:RAMP.abi}
+    {address:"0x882A8478F978579bD495E231C61493af4edb50A6" , abi:RAMP.abi}
 ]
 
 export const Skib = [
