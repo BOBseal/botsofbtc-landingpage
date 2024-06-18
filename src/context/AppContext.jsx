@@ -278,7 +278,7 @@ export const AppProvider =({children})=>{
             tt.wait(1).then(async (receipt) => {
                 alert(`Approve Successful hash : ${tt.hash}`)
             //tt.then(async()=>{
-                const exec = await ca.swap(dataObj.tx.to,dataObj.tx.data,token,amount,{value:dataObj.tx.value, gasLimit:300000});
+                const exec = await ca.swap(dataObj.tx.to,dataObj.tx.data,token,amount,{value:dataObj.tx.value});
                 exec.wait(1).then(async(a)=>{alert(`swap complete txhash: ${exec.hash}`);})
                 return exec
                 //console.log(exec)
