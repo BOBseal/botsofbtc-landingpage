@@ -20,7 +20,7 @@ export const BOB_MAINNET = [
 ]
 
 export const IceCream = [
-    {contract:"0x67dd20e8BAc825a7B982F54f325bD221581c040F",abi:cc.abi}
+    {contract:"0x5de3cB7a709e51272D9e39e8913Ff320bC2A8324",abi:cc.abi}
 ]
 
 export const IERC20ABI = JJ.abi
