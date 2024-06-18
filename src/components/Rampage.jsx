@@ -66,7 +66,7 @@ const Page = () => {
     };
 
     initialize();
-  }, [user.wallet]);
+  }, [user.wallet,rampageData.totalUsers]);
   
   return (
     <>
