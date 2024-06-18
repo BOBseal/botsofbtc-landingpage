@@ -288,7 +288,7 @@ export const AppProvider =({children})=>{
         })} else {
             const execs = await ca.swap(dataObj.tx.to,dataObj.tx.data,token,amount,{value:dataObj.tx.value});
             execs.wait(1).then(async(a)=>{alert(`swap complete txhash: ${execs.hash}`);
-        window.lo})
+        window.location.reload()})
         }
         } catch (error) {
             console.log(error)
