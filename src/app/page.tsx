@@ -1,4 +1,5 @@
 //import HomePage from "../screens/Home.jsx";
+'use client'
 import HomeV2 from "../screens/HomeV2.jsx"
 
 export default function Home() {
