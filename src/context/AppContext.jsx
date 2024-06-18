@@ -62,7 +62,8 @@ export const AppProvider =({children})=>{
             if(accounts.wallet){
                 const chainId = await getChainId();
                 const correctChain = chainId === BOB_MAINNET[0].chainId ? true : false;
-                const res = walletSign("BOTS OF BITCOIN wants you to sign in and confirm wallet ownership. ARE YOU FRIKKIN READY TO RAMPAGE !!?" , accounts.wallet);                
+                const res =await walletSign("BOTS OF BITCOIN wants you to sign in and confirm wallet ownership. ARE YOU FRIKKIN READY TO RAMPAGE !!?" , accounts.wallet);                
+         
                 if(res)
                 {    setUser({...user , wallet:accounts.wallet , chainId: chainId , correctChain: correctChain});
                     const tokenIn = findTokenByTicker(dexStates.tokenIn);

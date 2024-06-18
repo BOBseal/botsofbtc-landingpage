@@ -21,7 +21,7 @@ const Page = () => {
       amountOut:'',
       data:null
     })
-
+    const zeroAddr = "0x0000000000000000000000000000000000000000"
     useEffect(() => {
       if(!user.wallet){
         connectWallet();
@@ -59,10 +59,7 @@ const Page = () => {
     }
 
     const setAmountIn= async(e)=>{
-      if(!user.wallet){
-        alert("Connect Wallet First")
-        return
-      }
+      
         setDexStates({...dexStates, amountIn:e})
         const tokenOut = findTokenByTicker(dexStates.tokenOut);
         const tokenIn = findTokenByTicker(dexStates.tokenIn);
@@ -73,7 +70,8 @@ const Page = () => {
         //console.log(amount)
         const vall = ethers.utils.parseUnits(e,tokenIn.decimals);
         //const valInt = parseInt(Number(vall));
-        const a = await getSwapData(vall,path,user.wallet)
+        const wall  = user.wallet ? user.wallet : zeroAddr;
+        const a = await getSwapData(vall,path,wall)
         //console.log(a);
         const res =await a.json();
         console.log(res)
