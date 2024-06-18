@@ -63,17 +63,15 @@ export const AppProvider =({children})=>{
                 const chainId = await getChainId();
                 const correctChain = chainId === BOB_MAINNET[0].chainId ? true : false;
                 const res = walletSign("BOTS OF BITCOIN wants you to sign in and confirm wallet ownership. ARE YOU FRIKKIN READY TO RAMPAGE !!?" , accounts.wallet);                
-                res.then(async()=>{
-                    setUser({...user , wallet:accounts.wallet , chainId: chainId , correctChain: correctChain});
+                if(res)
+                {    setUser({...user , wallet:accounts.wallet , chainId: chainId , correctChain: correctChain});
                     const tokenIn = findTokenByTicker(dexStates.tokenIn);
                     const tokenOut = findTokenByTicker(dexStates.tokenOut);
                     const tokenInBalances = await getErc20Balances(tokenIn.address,accounts.wallet);
                     const tokenOutBalances = await getErc20Balances(tokenOut.address,accounts.wallet);
                     console.log(tokenInBalances,tokenOutBalances)
                     setDexStates({...dexStates,outBalance:tokenOutBalances , inBalance:tokenInBalances})
-                }).catch((err)=>{
-                    console.log(err)
-                })
+                }
             }
             return accounts.wallet;
         } catch (error) {

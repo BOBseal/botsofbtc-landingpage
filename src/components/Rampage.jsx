@@ -56,9 +56,11 @@ const Page = () => {
         if (!user.wallet) {
           await connectWallet();
         }
+     
         const initialized = await checkStat();
         
         await getUserRampageData();
+     
         
       } catch (error) {
         console.log(error);
