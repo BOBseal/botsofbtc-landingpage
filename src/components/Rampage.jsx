@@ -40,7 +40,7 @@ const Page = () => {
         return
       }
       setLoading(true);
-      const c = await createRPAccountZero();
+      const c = await createRPAccountZero(zeroAddr);
       c.wait(1).then(()=>{
         window.location.reload();
       })
