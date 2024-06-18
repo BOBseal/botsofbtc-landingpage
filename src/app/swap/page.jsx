@@ -12,6 +12,7 @@ import { getEthBalance } from "@/utils/hooks";
 import { ethers } from "../../../node_modules/ethers/lib/index";
 import { getSwapData, getErc20CA, getErc20Balances } from "@/utils/hooks";
 import { IceCream } from "@/utils/constants";
+import iceee from "../../../public/spIce.svg"
 
 //const web3 = new Web3(`https://rpc.gobob.xyz`);
 
@@ -118,7 +119,10 @@ const Page = () => {
   return (
     <>
       <Navbar />
-      <div className="flex h-full min-h-[49rem] md:min-h-[53rem] gap-[2rem] justify-between pt-[3rem] border-b-[3px] border-[#E5BD19] pb-[2rem] items-center bg-[#231F20] bg-cover flex-col p-[1rem] md:p-[4rem] md:pt-[6rem]">
+      <div className="flex w-full h-full min-h-[49rem] md:min-h-[53rem] gap-[1rem] md:gap-[3rem] justify-between pt-[3rem] border-b-[3px] border-[#E5BD19] pb-[2rem] items-center bg-[#231F20] bg-cover flex-col p-[1rem] md:p-[4rem] md:pt-[3rem]">
+        <div className="flex h-[12rem] md:h-[10rem] w-[95%] md:w-[90%] justify-center">
+              <Image src={iceee} height={100} width={1000} className="object-cover flex rounded-lg justify-center"/> 
+        </div>
         <div className="w-[95%] lg:w-[40%] md:w-[75%] h-[38rem] md:h-[36rem] rounded-xl bg-[#352f31] bg-cover flex-col border-[#E5BD19] border-b drop-shadow-xl flex">
           <div className="flex bg-[#E5BD19] w-full h-[10%] rounded-t-xl">
             <h1 className="flex items-center w-full justify-center font-fredoka text-[35px] md:text-[45px] font-[700]">

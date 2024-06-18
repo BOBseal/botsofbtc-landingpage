@@ -17,6 +17,7 @@ const config: Config = {
         'bg2': "url('/yelloblackbg.png')",
         'bg3': "url('/bg3.png')",
         'rp': "url('/rp.svg')",
+        'icecream': "url('/spice.svg)",
       },
     },
     fontFamily:{

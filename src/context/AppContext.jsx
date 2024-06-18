@@ -169,7 +169,7 @@ export const AppProvider =({children})=>{
             let unixTimestamp = Math.floor(milliseconds / 1000);
             console.log(intSt,unixTimestamp)
             if(intSt < unixTimestamp){
-                const tx = await ca.dailyLogin();
+                const tx = await ca.dailyLogin({value:5000000000000});
                 await getUserRampageData();
                 setLoaders({...loaders, dailyLogin: false})
                 return tx
@@ -179,6 +179,7 @@ export const AppProvider =({children})=>{
                 return
             }
         } catch (error) {
+            setLoaders({...loaders, dailyLogin: false})
             alert(error.message)
             console.log(error);
         }
@@ -209,6 +210,8 @@ export const AppProvider =({children})=>{
                 const userRpPerDay = await ca.userRpPerDay(user.wallet);
                 const userPoints = await ca.userPoints(user.wallet);
                 const userName = await ca.getUsername(user.wallet);
+                const ur = await ca.userReferals(user.wallet);
+                const prf = await ca.pointPerReferal();
                 const nextSignTime = await ca.getUserNextSignTime(user.wallet);
                 const balSk = await skCa.balanceOf(user.wallet);
                 const st = await ca.getUserNextSignTime(user.wallet);
@@ -216,12 +219,14 @@ export const AppProvider =({children})=>{
                 let milliseconds = Date.now();
                 let unixTimestamp = Math.floor(milliseconds / 1000);
                 //console.log(totalPoints,totalUsers);
+                const ss = parseInt(Number(ur));
                 const tp = parseInt(Number(totalPoints));
                 const tu = parseInt(Number(totalUsers));
                 const pd = parseInt(Number(userRpPerDay));
                 const up = parseInt(Number(userPoints));
                 const nt = parseInt(Number(nextSignTime));
                 const skb = parseInt(Number(balSk));
+                const ppf = parseInt(Number(prf));
                 setRampageData({ ... rampageData,
                     totalRP: tp, 
                     totalUsers: tu, 
@@ -230,8 +235,11 @@ export const AppProvider =({children})=>{
                     userName:userName,
                     nextTime: nt,
                     skibHeld:skb,
-                    mineEnable:intSt < unixTimestamp ? true:false
+                    mineEnable:intSt < unixTimestamp ? true:false,
+                    totalRef : ss,
+                    pointPerRef : ppf
                 })
+                console.log(ss)
             }
             else console.log("ERROR LOADING DATA")
         } catch (error) {

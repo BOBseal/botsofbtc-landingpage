@@ -7,11 +7,14 @@ import Image from 'next/image'
 import img from "../assets/lotterypage.png"
 import { useSearchParams } from 'next/navigation'
 import rimg from "../assets/rampagelogin.png"
+import { ethers } from 'ethers'
+import copyImg from "../assets/copy.svg"
 
 const Page = () => {
   const {user,loaders,connectWallet, setRampageData, rampageData, createRPAccountZero,dailyMine ,rampageInitialized, getUserRampageData} = useContext(AppContext);
   const sp = useSearchParams();
   const ref = sp.get('ref');
+  console.log(ref)
   const zeroAddr = "0x0000000000000000000000000000000000000000"
   const [details , setDetails] = useState({});
   const [loading , setLoading] = useState(false);
@@ -39,16 +42,36 @@ const Page = () => {
         alert("Name Cannot be Empty")
         return
       }
+      const isA = ref ? ethers.utils.isAddress(ref):false;
+      let Addr = isA ? ref : zeroAddr; 
+      if(!isA){
+        alert("InvalidReferal Detected , Initializing as Fresh Registrant  !")
+      }
       setLoading(true);
-      const c = await createRPAccountZero(zeroAddr);
+      const c = await createRPAccountZero(Addr);
       c.wait(1).then(()=>{
         window.location.reload();
       })
       setLoading(false);    
     } catch (error) {
       console.log(error);
+      setLoading(false); 
     }
   }
+
+  const copyToClipboard = () => {
+    if(user.wallet){
+      const text = `https://botsofbtc.com/rampage?ref=${user.wallet}`
+      navigator.clipboard.writeText(text)
+      .then(() => {
+        alert(`Copied to clipboard: ${text}`);
+      })
+      .catch((error) => {
+        console.error('Unable to copy to clipboard.', error);
+        alert('Failed to copy to clipboard.');
+      });
+    } 
+  };
 
   useEffect(() => {
     const initialize = async () => {
@@ -93,16 +116,18 @@ const Page = () => {
                     </div>
 
                     <div className='w-[90%] md:w-[50%] gap-[10px] lg:w-[40%] text-[16px] md:text-[20px] font-nunito rounded-lg h-full flex flex-col'>
-                      <div>UserName : {rampageData.userName}</div>
+                      <div>UserName : {rampageData.userName ? <>{rampageData.userName}</> : "Loading ..."}</div>
                       <div>Your $RP Balances : {rampageData.userPoints} $RP</div>
-                      <div>SOBs Held : {rampageData.skibHeld ? <>{rampageData.skibHeld}</>: "0"}</div>
-                      <div>Your Eligible RP/Day : {rampageData.pointPerDay ? <>{rampageData.pointPerDay}</>:"0"}</div>
-                      {/*<div>Your Referal Link : <span className='bg-[#352f31] div-[5px] text-[#E5BD19] cursor-pointer text-[14px] rounded-lg'>{`https://botsofbtc.com/rampage?...`} <button>Copy</button></span></div>*/}
+                      <div>SOBs Held : {rampageData.skibHeld ? <>{rampageData.skibHeld}</>: "0"} SOB</div>
+                      <div>Your Eligible RP/Day : {rampageData.pointPerDay ? <>{rampageData.pointPerDay}</>:"0"} RP</div>
+                      <div>RP Per Referal : {rampageData.pointPerRef ? <>{rampageData.pointPerRef}</>: "0"} RP</div>
+                      <div>Your Total Referals : {rampageData.totalRef ? <>{rampageData.totalRef}</>:"0"} Users</div>
+                      <div>Your Referal Link : <span onClick={()=>copyToClipboard()} className='bg-[#352f31] div-[5px] text-[#E5BD19] cursor-pointer text-[14px] flex items-center px-[10px] justify-between w-[90%] rounded-lg'>{`https://botsofbtc.com/rampage?...`} <Image src={copyImg} height={30} width={30} alt=""/> </span></div>
                     </div>
 
                     <div className='w-[90%] h-full flex flex-col items-center'>
                         <button onClick={()=>dailyMine()} className={`${rampageData.mintEnable ? "bg-black text-[#E5BD19]" : "text-gray-600 bg-[#cda916] border-black"} px-[20px] py-[5px] drop-shadow hover:drop-shadow-xl rounded-2xl border cursor-pointer transition duration-500 ease-linear transform hover:scale-105 hover:border-red-500 border-[#E5BD19] text-[25px] font-fredoka font-[700]`}>
-                            {loaders.dailyLogin ? "Loading...": "Daily Mine RP"}
+                            {loaders.dailyLogin ? "Loading...": `Mine Daily RP`}
                         </button>
                     </div>
                   </div>:
