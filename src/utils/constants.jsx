@@ -20,7 +20,7 @@ export const BOB_MAINNET = [
 ]
 
 export const IceCream = [
-    {contract:"0x5de3cB7a709e51272D9e39e8913Ff320bC2A8324",abi:cc.abi}
+    {contract:"0x882A8478F978579bD495E231C61493af4edb50A6",abi:cc.abi}
 ]
 
 export const IERC20ABI = JJ.abi
@@ -49,7 +49,7 @@ export const pointCore = [
 ]
 
 export const RampageV1 = [
-    {address:"0x882A8478F978579bD495E231C61493af4edb50A6" , abi:RAMP.abi}
+    {address:"0xC4f681699CCDfFB26be46f1E109896cBb13cF18F" , abi:RAMP.abi}
 ]
 
 export const Skib = [
