@@ -105,7 +105,7 @@ export const getNFTCa = async(account)=>{
     }
 }
 
-export const getRpCoreContract = async(chainId, account)=>{
+export const getRpCoreContract = async(account)=>{
     try {
         const addr = pointCore[0].address;
         const abi = pointCore[0].abi;

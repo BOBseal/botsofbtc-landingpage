@@ -185,11 +185,11 @@ export const AppProvider =({children})=>{
         }
     }
 
-    const createRPAccountZero = async()=>{
+    const createRPAccountZero = async(ref)=>{
         try {
             if(rampageData.name){
                 const ca = await getRampageCa(user.wallet)
-                const tx = await ca.createAccount("0x0000000000000000000000000000000000000000",rampageData.name,{value:150000000000000});
+                const tx = await ca.createAccount(ref,rampageData.name,{value:150000000000000});
                 return tx;
             }
         } catch (error) {
@@ -201,8 +201,8 @@ export const AppProvider =({children})=>{
     const getUserRampageData = async()=>{
         try {
             if(user.wallet){
-                const ca = await getRampageCa();
-                const rpca = await getRpCoreContract();
+                const ca = await getRampageCa(user.wallet);
+                const rpca = await getRpCoreContract(user.wallet);
                 const skCa = await getNFTCa(user.wallet);
                 //console.log(skCa)
                 const totalPoints = await rpca.getTotalPoints();
