@@ -121,6 +121,7 @@ const Page = () => {
                       <div>SOBs Held : {rampageData.skibHeld ? <>{rampageData.skibHeld}</>: "0"} SOB</div>
                       <div>Your Eligible RP/Day : {rampageData.pointPerDay ? <>{rampageData.pointPerDay}</>:"0"} RP</div>
                       <div>RP Per Referal : {rampageData.pointPerRef ? <>{rampageData.pointPerRef}</>: "0"} RP</div>
+                      <div>Your Total Referals : {rampageData.totalRef ? <>{rampageData.totalRef}</>:"0"} Users</div>
                       <div>Your Referal Link : <span onClick={()=>copyToClipboard()} className='bg-[#352f31] div-[5px] text-[#E5BD19] cursor-pointer text-[14px] flex items-center px-[10px] justify-between w-[90%] rounded-lg'>{`https://botsofbtc.com/rampage?...`} <Image src={copyImg} height={30} width={30} alt=""/> </span></div>
                     </div>
 
