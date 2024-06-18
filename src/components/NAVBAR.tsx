@@ -69,10 +69,10 @@ const Navbar: React.FC<NavbarProps> = () => {
           <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105'>Rampage</button>
           </Link>
           
-          <Link href={'/'} target={'_blank'}>
+          <Link href={'/swap'} target={'_blank'}>
           <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105'>Swap</button>
           </Link>
-          
+
           <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105' onClick={()=> al()}>Pots</button>
           
           <Link href={'https://botsofbtc.notion.site/BOTS-OF-BITCOIN-27ab822513f5459d861d07a6f11271ba?pvs=4'} target={'_blank'}>
@@ -111,7 +111,7 @@ const MobileNav :React.FC <NavbarProps>=({openMobileMenu , userWallet, connectWa
           <Link href={'/rampage'} target={'_blank'}>
           <p  className=' font-nunito text-black text-[20px]'>Rampage</p>
           </Link>
-          <Link href={'/'} target={'_blank'}>
+          <Link href={'/swap'} target={'_blank'}>
           <p className=' font-nunito text-black text-[20px]'>Swap</p>
           </Link>
           <p onClick={()=> al()} className=' font-nunito text-black text-[20px]'>Pots</p>
