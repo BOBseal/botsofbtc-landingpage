@@ -9,6 +9,8 @@ import { useSearchParams } from 'next/navigation'
 import rimg from "../assets/rampagelogin.png"
 import { ethers } from 'ethers'
 import copyImg from "../assets/copy.svg"
+import NetworkError from './CARDS/NetworkError'
+import WalletError from './CARDS/WalletError'
 
 const Page = () => {
   const {user,loaders,connectWallet, setRampageData, rampageData, createRPAccountZero,dailyMine ,rampageInitialized, getUserRampageData} = useContext(AppContext);
@@ -157,28 +159,10 @@ const Page = () => {
                 </div>
                 }
               </div>:
-              <div className={`h-full w-[90%] flex flex-col items-center justify-evenly pb-[2rem]`}>
-              <div className='flex div-[10px]'>
-                 <Image src={img} height={400} width={400} alt="Connect Wallet" className={`object-cover w-[380px] h-[380px] md:w-[400px]`}/>
-              </div>
-              <div className='text-white text-center rounded-lg text-[20px] font-bold flex flex-col items-center gap-[1rem] font-fredoka border-[2px] border-[#E5BD19] bg-[#231F20] div-[1rem]'>
-                <div className='animate-pulse'>WRONG NETWORK DETECTED !</div>
-                <div className='animate-pulse'>SWITCH TO BOB MAINNET & REFRESH THIS PAGE.</div>
-              </div>
-          </div>  
+              <NetworkError/>
             }
             </div>:
-            <div className={`h-full w-full flex flex-col items-center justify-evenly pb-[2rem]`}>
-                <div className='flex div-[10px]'>
-                   <Image src={img} height={400} width={400} alt="Connect Wallet" className={`object-cover w-[380px] h-[380px] md:w-[400px]`}/>
-                </div>
-                <div className='text-white -mt-[2rem] rounded-lg text-[20px] font-bold font-fredoka border-[2px] border-[#E5BD19] bg-[#231F20] div-[1rem]'>
-                  <div className='animate-pulse'>OOPS WALLET NOT DETECTED !</div>
-                </div>
-                <div onClick={()=>connectWallet()} className='text-white rounded-lg cursor-pointer text-[20px] font-bold font-fredoka border-[2px] border-[#E5BD19] bg-[#231F20] div-[1rem]'>
-                  <div>CONNECT WALLET</div>
-                </div>
-            </div>
+            <WalletError/>
             }
             
             <div className=''>

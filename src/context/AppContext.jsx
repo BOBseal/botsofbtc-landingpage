@@ -35,6 +35,7 @@ export const AppProvider =({children})=>{
 
     const [user , setUser] = useState({});
     const [act , setAct] = useState(0);
+    const [utils , setUtils] = useState(0);
     const [states, setStates] = useState({
         mobileMenuOpen: false ,
         contentsSubmenuOpen: false,
@@ -67,12 +68,15 @@ export const AppProvider =({children})=>{
                 const res =await walletSign("BOTS OF BITCOIN wants you to sign in and confirm wallet ownership. ARE YOU FRIKKIN READY TO RAMPAGE !!?" , accounts.wallet);                
          
                 if(res)
-                {    setUser({...user , wallet:accounts.wallet , chainId: chainId , correctChain: correctChain});
+
+                {   
+                    const ethBalances = await getEthBalance(accounts.wallet); 
+                    setUser({...user , wallet:accounts.wallet , chainId: chainId , correctChain: correctChain , ethBalance: ethBalances});
                     const tokenIn = findTokenByTicker(dexStates.tokenIn);
                     const tokenOut = findTokenByTicker(dexStates.tokenOut);
                     let tokenInBalances,tokenOutBalances;
                     if(tokenIn.address === zeroAddr){
-                        tokenInBalances = await getEthBalance(accounts.wallet);
+                        tokenInBalances = ethBalances;
                     }
                     if(tokenOut.address === zeroAddr){
                         tokenOutBalances = await getEthBalance(accounts.wallet);
@@ -318,7 +322,7 @@ export const AppProvider =({children})=>{
     return(
         <>
         <AppContext.Provider value={{connectWallet, dailyMine,user, act ,mintStarted, fusionData,setAct, states, setStates, openMobileMenu, getFusionData , getSupplyLeft , dexStates , setDexStates,
-        getCurrentRound, getUserMints, setSobMint, sobMint, mintMulti , rampageData, setRampageData, createRPAccountZero , rampageInitialized , getUserRampageData, loaders, executeSwap
+        getCurrentRound, getUserMints,utils,setUtils, setSobMint, sobMint, mintMulti , rampageData, setRampageData, createRPAccountZero , rampageInitialized , getUserRampageData, loaders, executeSwap
         }}>
             {children}
         </AppContext.Provider>
