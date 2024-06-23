@@ -40,6 +40,7 @@ export const AppProvider =({children})=>{
         contentsSubmenuOpen: false,
       })
     const [fusionData, setFusionData] = useState({})
+    const zeroAddr = "0x0000000000000000000000000000000000000000"
     const [dexStates , setDexStates] = useState({
         amountOut:'',
         amountIn:'',
@@ -50,7 +51,8 @@ export const AppProvider =({children})=>{
         inBalance:''
     })
     const [loaders , setLoaders] = useState({
-        dailyLogin:false
+        dailyLogin:false,
+        swap:""
     });
     const [sobMint, setSobMint] = useState({
         amount:1
@@ -68,8 +70,19 @@ export const AppProvider =({children})=>{
                 {    setUser({...user , wallet:accounts.wallet , chainId: chainId , correctChain: correctChain});
                     const tokenIn = findTokenByTicker(dexStates.tokenIn);
                     const tokenOut = findTokenByTicker(dexStates.tokenOut);
-                    const tokenInBalances = await getErc20Balances(tokenIn.address,accounts.wallet);
-                    const tokenOutBalances = await getErc20Balances(tokenOut.address,accounts.wallet);
+                    let tokenInBalances,tokenOutBalances;
+                    if(tokenIn.address === zeroAddr){
+                        tokenInBalances = await getEthBalance(accounts.wallet);
+                    }
+                    if(tokenOut.address === zeroAddr){
+                        tokenOutBalances = await getEthBalance(accounts.wallet);
+                    }
+                    if(tokenIn.address != zeroAddr){
+                        tokenInBalances = await getErc20Balances(tokenIn.address,accounts.wallet);
+                    }
+                    if(tokenOut.address != zeroAddr){
+                        tokenOutBalances = await getErc20Balances(tokenOut.address,accounts.wallet);
+                    }
                     console.log(tokenInBalances,tokenOutBalances)
                     setDexStates({...dexStates,outBalance:tokenOutBalances , inBalance:tokenInBalances})
                 }
@@ -260,6 +273,7 @@ export const AppProvider =({children})=>{
 
     const executeSwap=async(dataObj,token,amount)=>{
         try {
+            setLoaders({...loaders, swap:"Loading"});
             const ca = await getIceContract(user.wallet);
            
             if(!dataObj){
@@ -274,21 +288,25 @@ export const AppProvider =({children})=>{
             const intAm = parseInt(Number(amount));
             console.log(intSs,intAm,"Allowances")
             if(intSs < intAm){
+                setLoaders({...loaders, swap:"Approving"});
                 const tt = await caTkn.approve(IceCream[0].contract, amount);
             tt.wait(1).then(async (receipt) => {
                 alert(`Approve Successful hash : ${tt.hash}`)
             //tt.then(async()=>{
+                setLoaders({...loaders, swap:"Swapping"});
                 const exec = await ca.swap(dataObj.tx.to,dataObj.tx.data,token,amount,{value:dataObj.tx.value});
                 exec.wait(1).then(async(a)=>{alert(`swap complete txhash: ${exec.hash}`);})
+                setLoaders({...loaders, swap:""});
                 return exec
                 //console.log(exec)
             //}).catch(e=>{
                 //console.log(e);
             //})
         })} else {
+            setLoaders({...loaders, swap:"Swapping"});
             const execs = await ca.swap(dataObj.tx.to,dataObj.tx.data,token,amount,{value:dataObj.tx.value});
             execs.wait(1).then(async(a)=>{alert(`swap complete txhash: ${execs.hash}`);
-        window.location.reload()})
+            setLoaders({...loaders, swap:""});})
         }
         } catch (error) {
             console.log(error)
