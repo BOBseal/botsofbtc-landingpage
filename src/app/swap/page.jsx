@@ -13,6 +13,7 @@ import { ethers } from "../../../node_modules/ethers/lib/index";
 import { getSwapData, getErc20CA, getErc20Balances } from "@/utils/hooks";
 import { IceCream } from "@/utils/constants";
 import iceee from "../../../public/nigger.svg"
+import Link from "../../../node_modules/next/link";
 
 //const web3 = new Web3(`https://rpc.gobob.xyz`);
 
@@ -230,7 +231,9 @@ const Page = () => {
 
         <p className="text-[15px] w-[95%] md:w-auto font-fredoka flex items-center bg-black text-white p-[5px] rounded-2xl ">
           Powered By{" "}
+          <Link href={"https://icecreamswap.com"} target={'_blank'}>
           <Image src={partnerInfo[1].logo} height={100} width={200} />{" "}
+          </Link>
         </p>
       </div>
       <Footer />
