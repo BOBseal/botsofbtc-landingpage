@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { AnimatePresence, motion } from "framer-motion";
 import { partnerInfo } from "@/configs/config";
 import Image from "../../../node_modules/next/image";
+import img from "../../assets/lotterypage.png"
 import { supportedList } from "@/configs/config";
 import updown from "../../assets/updownarrow.svg";
 import { AppContext } from "@/context/AppContext";
@@ -17,7 +18,7 @@ import iceee from "../../../public/nigger.svg"
 //const web3 = new Web3(`https://rpc.gobob.xyz`);
 
 const Page = () => {
-    const {dexStates , setDexStates, getAmountsOut,user, connectWallet, getFusionData, executeSwap} = useContext(AppContext);
+    const {dexStates , setDexStates, getAmountsOut,user, connectWallet, loaders,getFusionData, executeSwap} = useContext(AppContext);
     const [states, setStates] = useState({
       amountOut:'',
       data:null
@@ -60,8 +61,7 @@ const Page = () => {
     }
 
     const setAmountIn= async(e)=>{
-      
-        setDexStates({...dexStates, amountIn:e})
+      setDexStates({...dexStates, amountIn:e})     
         const tokenOut = findTokenByTicker(dexStates.tokenOut);
         const tokenIn = findTokenByTicker(dexStates.tokenIn);
         const path = [tokenIn.address,tokenOut.address]
@@ -74,6 +74,7 @@ const Page = () => {
         const wall  = user.wallet ? user.wallet : zeroAddr;
         const a = await getSwapData(vall,path,wall)
         //console.log(a);
+        
         const res =await a.json();
         console.log(res)
         const outAmountBG = ethers.BigNumber.from(res.toAmount);
@@ -104,19 +105,23 @@ const Page = () => {
 
     const swapHandle = async()=>{
       try {
+        if(!dexStates.amountIn ){
+          alert("Cannot Swap 0 Amount")
+          return
+        }
         const tokenIn = findTokenByTicker(dexStates.tokenIn);
         const am = ethers.utils.parseUnits(dexStates.amountIn,tokenIn.decimals);
         console.log(am)
         const aa = await executeSwap(states.data,tokenIn.address,am);
-        aa.wait(1).then(()=>{
-          
-        })
+        
         //console.log(states.data)
       } catch (error) {
         console.log(error)
       }
     }
-  return (
+   
+   
+    return (
     <>
       <Navbar />
       <div className="flex w-full h-full min-h-[49rem] md:min-h-[53rem] gap-[1rem] md:gap-[3rem] justify-between pt-[3rem] border-b-[3px] border-[#E5BD19] pb-[2rem] items-center bg-[#231F20] bg-cover flex-col p-[1rem] md:p-[4rem] md:pt-[3rem]">
@@ -129,103 +134,115 @@ const Page = () => {
               SWAP
             </h1>
           </div>
+          
+          {user.correctChain ?
           <div className="w-full h-[90%] flex flex-col text-white">
-            <div className="h-[90%] w-full flex flex-col justify-between pt-[1rem] pb-[1rem]">
-              <div className="flex justify-evenly flex-col h-[45%] pl-[1rem] pr-[1rem]">
-                <div className="w-full flex flex-col md:items-center md:flex-row justify-between gap-[2rem]">
-                  <div className="flex flex-col md:flex-row md:items-center gap-[1rem] md:w-[60%]">
-                    <p className="flex text-[#E5BD19] font-fredoka text-[26px] leading-[20px] drop-shadow-lg">
-                      FROM :
-                    </p>
-                    <select
-                      value={dexStates.tokenIn}
-                      className="p-[7px] flex bg-black rounded-xl drop-shadow-lg"
-                      onChange={(e) => setTokenIn(e.target.value)}
-                    >
-                      {/* {supportedList.map((obj, key) => (
-                        <option key={key}>
-                          {obj.name} - {obj.ticker}
-                        </option>
-                      ))} */}
-                      <option value="WETH">WETH</option>
-                      <option value="USDT">USDT</option>
-                      <option value="USDC">USDC</option>
-                      <option value="WBTC">WBTC</option>
-                    </select>
-                  </div>
-                  <p className="flex text-[12px] drop-shadow-lg">
-                    Balances: {dexStates.inBalance ? <>{dexStates.inBalance.slice(0,10)}</>:"Loading..."} {dexStates.tokenIn}
+          <div className="h-[90%] w-full flex flex-col justify-between pt-[1rem] pb-[1rem]">
+            <div className="flex justify-evenly flex-col h-[45%] pl-[1rem] pr-[1rem]">
+              <div className="w-full flex flex-col md:items-center md:flex-row justify-between gap-[2rem]">
+                <div className="flex flex-col md:flex-row md:items-center gap-[1rem] md:w-[60%]">
+                  <p className="flex text-[#E5BD19] font-fredoka text-[26px] leading-[20px] drop-shadow-lg">
+                    FROM :
                   </p>
+                  <select
+                    value={dexStates.tokenIn}
+                    className="p-[7px] flex bg-black rounded-xl drop-shadow-lg"
+                    onChange={(e) => setTokenIn(e.target.value)}
+                  >
+                    {/* {supportedList.map((obj, key) => (
+                      <option key={key}>
+                        {obj.name} - {obj.ticker}
+                      </option>
+                    ))} */}
+                    <option value="WETH">WETH</option>
+                    <option value="USDT">USDT</option>
+                    <option value="USDC">USDC</option>
+                    <option value="WBTC">WBTC</option>
+                  </select>
                 </div>
-                <div className="w-full justify-center items-center flex">
-                  <input
-                    type="text"
-                    placeholder="Amount"
-                    className="w-full outline-none text-white px-4 bg-black h-[4rem] drop-shadow-lg md:h-[8rem] rounded-xl"
-                    defaultValue={0}
-                    value={dexStates.amountIn}
-                    onChange={(e) => setAmountIn(e.target.value)}
-                  />
-                </div>
+                <p className="flex text-[12px] drop-shadow-lg">
+                  Balances: {dexStates.inBalance ? <>{dexStates.inBalance.slice(0,10)}</>:"Loading..."} {dexStates.tokenIn}
+                </p>
               </div>
-
-              <div className="flex h-[13%] justify-center items-center">
-                <Image
-                onClick={()=>switchToken()}
-                  src={updown}
-                  height={50}
-                  width={50}
-                  alt="UP DOWN"
-                  className="drop-shadow-lg cursor-pointer hover:scale-105"
+              <div className="w-full justify-center items-center flex">
+                <input
+                  type="text"
+                  placeholder="Amount"
+                  className="w-full outline-none text-white px-4 bg-black h-[4rem] drop-shadow-lg md:h-[8rem] rounded-xl"
+                  defaultValue={0}
+                  value={dexStates.amountIn}
+                  onChange={(e) => setAmountIn(e.target.value)}
                 />
               </div>
-             
-              <div className="flex justify-evenly flex-col h-[45%] pl-[1rem] pr-[1rem]">
-                <div className="w-full flex flex-col md:items-center md:flex-row justify-between gap-[2rem]">
-                  <div className="flex flex-col md:flex-row md:items-center gap-[1rem] md:w-[50%]">
-                    <p className="flex text-[#E5BD19] font-fredoka text-[26px] leading-[20px] drop-shadow-lg">
-                      TO :
-                    </p>
-                    <select
-                      className="p-[7px] flex bg-black rounded-xl drop-shadow-lg"
-                      value={dexStates.tokenOut}
-                      onChange={(e) => setTokenOut(e.target.value)}
-                    >
-                      {/* {supportedList.map((obj, key) => (
-                        <option key={key}>
-                          {obj.name} - {obj.ticker}
-                        </option>
-                      ))} */}
-                      <option value="USDT">USDT</option>
-                      <option value="USDC">USDC</option>
-                      <option value="WBTC">WBTC</option>
-                      <option value="WETH">WETH</option>
-                    </select>
-                  </div>
-                  <p className="flex text-[12px] drop-shadow-lg">
-                    Balances: { dexStates.outBalance ? <>{dexStates.outBalance.slice(0,10)}</>:"Loading..."} {dexStates.tokenOut}
-                  </p>
-                </div>
-                <div className="w-full justify-center items-center flex">
-                  <input
-                    type="text"
-                    placeholder="0.0"
-                    value={states.amountOut}
-                    readOnly={true}
-                    className="w-full outline-none text-white px-4 bg-black h-[4rem] drop-shadow-lg md:h-[8rem] rounded-xl"
-                  />
-                </div>
-              </div>
             </div>
-            <div className="h-[10%] w-full  justify-center items-center flex pb-[2rem]">
-              <div
-               
-                className="p-[5px] pl-[12px] pr-[12px] text-black rounded-xl text-[22px] font-fredoka bg-[#E5BD19] font-[600]"
-              >
-                {user.wallet ? <button onClick={()=>swapHandle()}>SWAP NOW</button> : <button onClick={()=>connectWallet()}>Connect Wallet</button>}
+
+            <div className="flex h-[13%] justify-center items-center">
+              <Image
+              onClick={()=>switchToken()}
+                src={updown}
+                height={50}
+                width={50}
+                alt="UP DOWN"
+                className="drop-shadow-lg cursor-pointer hover:scale-105"
+              />
+            </div>
+           
+            <div className="flex justify-evenly flex-col h-[45%] pl-[1rem] pr-[1rem]">
+              <div className="w-full flex flex-col md:items-center md:flex-row justify-between gap-[2rem]">
+                <div className="flex flex-col md:flex-row md:items-center gap-[1rem] md:w-[50%]">
+                  <p className="flex text-[#E5BD19] font-fredoka text-[26px] leading-[20px] drop-shadow-lg">
+                    TO :
+                  </p>
+                  <select
+                    className="p-[7px] flex bg-black rounded-xl drop-shadow-lg"
+                    value={dexStates.tokenOut}
+                    onChange={(e) => setTokenOut(e.target.value)}
+                  >
+                    {/* {supportedList.map((obj, key) => (
+                      <option key={key}>
+                        {obj.name} - {obj.ticker}
+                      </option>
+                    ))} */}
+                    <option value="USDT">USDT</option>
+                    <option value="USDC">USDC</option>
+                    <option value="WBTC">WBTC</option>
+                    <option value="WETH">WETH</option>
+                  </select>
+                </div>
+                <p className="flex text-[12px] drop-shadow-lg">
+                  Balances: { dexStates.outBalance ? <>{dexStates.outBalance.slice(0,10)}</>:"Loading..."} {dexStates.tokenOut}
+                </p>
+              </div>
+              <div className="w-full justify-center items-center flex">
+                <input
+                  type="text"
+                  placeholder="0.0"
+                  value={states.amountOut}
+                  readOnly={true}
+                  className="w-full outline-none text-white px-4 bg-black h-[4rem] drop-shadow-lg md:h-[8rem] rounded-xl"
+                />
               </div>
             </div>
           </div>
+          <div className="h-[10%] w-full  justify-center items-center flex pb-[2rem]">
+            <div
+             
+              className="p-[5px] pl-[12px] pr-[12px] text-black rounded-xl text-[22px] font-fredoka bg-[#E5BD19] font-[600]"
+            >
+              {user.wallet ? <button onClick={()=>swapHandle()}>{loaders.swap ? <>{loaders.swap}</>:"SWAP NOW"}</button> : <button onClick={()=>connectWallet()}>Connect Wallet</button>}
+            </div>
+          </div>
+        </div>:
+        <div className={`h-full w-full flex flex-col items-center justify-center pb-[2rem]`}>
+        <div className='flex div-[10px]'>
+           <Image src={img} height={400} width={400} alt="Connect Wallet" className={`object-cover w-[380px] h-[380px] md:w-[400px]`}/>
+        </div>
+        <div className='text-white text-center rounded-lg text-[20px] font-bold flex flex-col items-center gap-[1rem] font-fredoka border-[2px] border-[#E5BD19] bg-[#231F20] div-[1rem]'>
+          <div className='animate-pulse'>WRONG NETWORK DETECTED !</div>
+          <div className='animate-pulse'>SWITCH TO BOB MAINNET & REFRESH THIS PAGE.</div>
+        </div>
+    </div>  
+          }
         </div>
 
         <p className="text-[15px] w-[95%] md:w-auto font-fredoka flex items-center bg-black text-white p-[5px] rounded-2xl ">

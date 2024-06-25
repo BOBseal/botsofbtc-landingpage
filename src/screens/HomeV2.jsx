@@ -7,6 +7,7 @@ import Team from "@/components/Team"
 import Footer from "@/components/Footer"
 import FusionInvite from '@/components/Banners/FusionInvite'
 import SobBanner from "@/components/Banners/SobBanner.jsx"
+import RampageHome from "@/components/RampageHome.jsx"
 
 const CSS = {
 
