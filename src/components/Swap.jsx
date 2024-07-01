@@ -128,7 +128,7 @@ const Swap = () => {
         {/*<div className="flex h-[12rem] md:h-[10rem] w-[95%] md:w-[90%] justify-center">
               <Image src={iceee} height={100} width={1000} className="object-cover flex rounded-lg justify-center"/> 
     </div>*/}
-        <div className="w-[95%] md:w-[38rem] h-full rounded-xl bg-[#352f31] bg-cover flex-col border-[#E5BD19] border-b drop-shadow-xl flex">
+        <div className="w-[95%] md:w-[33rem] lg:w-[40rem] h-full rounded-xl bg-[#352f31] bg-cover flex-col border-[#E5BD19] border-b drop-shadow-xl flex">
           <div className="flex bg-[#E5BD19] w-full h-[12%] rounded-t-xl">
             <h1 className="flex items-center w-full justify-center font-fredoka text-[35px] md:text-[45px] font-[700]">
               SWAP
@@ -224,7 +224,7 @@ const Swap = () => {
               </div>
             </div>
           </div>
-          <div className="h-[10%] w-full  justify-center items-center flex pb-[2rem]">
+          <div className="h-[10%] w-full  justify-center items-center flex pb-[0.5rem]">
             <div
              
               className="p-[5px] pl-[12px] pr-[12px] text-black rounded-xl text-[22px] font-fredoka bg-[#E5BD19] font-[600]"

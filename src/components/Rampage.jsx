@@ -13,7 +13,7 @@ import NetworkError from './CARDS/NetworkError'
 import WalletError from './CARDS/WalletError'
 
 const Page = () => {
-  const {user,loaders,connectWallet, setRampageData, rampageData, createRPAccountZero,dailyMine ,rampageInitialized, getUserRampageData} = useContext(AppContext);
+  const {user,loaders,connectWallet, fusionData,setRampageData, rampageData, createRPAccountZero,dailyMine ,rampageInitialized, getUserRampageData} = useContext(AppContext);
   const sp = useSearchParams();
   const ref = sp.get('ref');
   console.log(ref)
@@ -114,6 +114,7 @@ const Page = () => {
                       <div className='flex w-[90%] md:w-[80%] gap-[20px] lg:w-[70%] md:text-[25px] font-fredoka font-semibold flex-col py-[0.5rem] drop-shadow-lg bg-[black] text-[#E5BD19] px-[3rem] items-center rounded-lg'>
                         <div className='flex w-full justify-center items-center gap-[8px]'>TOTAL USERS :{rampageData.totalUsers ? <div>{rampageData.totalUsers}</div> : "Loading..."}</div>
                         <div className='flex w-full justify-center gap-[8px] items-center'>POINTS: {rampageData.totalRP ? <div>{rampageData.totalRP}</div> : "Loading..."} <span>$RP</span></div>
+                        <div className='flex w-full justify-center items-center gap-[8px]'>TOTAL SPICE :{fusionData.projectData ? <div>{fusionData.projectData.total_points}</div> : ""}</div>
                       </div>
                     </div>
 

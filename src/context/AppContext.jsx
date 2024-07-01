@@ -21,6 +21,7 @@ import {
     getNFTCa,
     getErc20CA,
     getErc20Balances,
+    formatNumber,
     getIceContract
  } from "../utils/hooks"
  import { supportedList } from "@/configs/config"
@@ -40,6 +41,7 @@ export const AppProvider =({children})=>{
         mobileMenuOpen: false ,
         contentsSubmenuOpen: false,
       })
+    const projectCode = "lqh3jh"
     const [fusionData, setFusionData] = useState({})
     const zeroAddr = "0x0000000000000000000000000000000000000000"
     const [dexStates , setDexStates] = useState({
@@ -113,7 +115,10 @@ export const AppProvider =({children})=>{
     try {
         const res = await fetch("https://fusion-api.gobob.xyz/partners");
         const data = await res.json();
-        setFusionData({...fusionData, apiResponse: data, ok: res.ok})
+        const ourProject = data.partners[25];
+        const ourPoints = ourProject.total_points;
+        const nnnn = formatNumber(ourPoints);
+        setFusionData({...fusionData, apiResponse: data, ok: res.ok , projectData:ourProject, totalPoints:nnnn});
         console.log(data)
     } catch (error) {
         console.log(error)
@@ -316,6 +321,13 @@ export const AppProvider =({children})=>{
             console.log(error)
         }
     }
+
+    useEffect(() => {
+        if(!fusionData.projectData){
+            getFusionData();
+        }
+    }, [])
+    
 
     ////////////////////////////////////////////
 

@@ -94,6 +94,26 @@ export const getMinterContract = async(account)=>{
     }
 }
 
+export const formatNumber =(numStr)=> {
+    // Parse the string to a number
+    let num = parseFloat(numStr);
+    
+    // Check if the parsed number is valid
+    if (isNaN(num)) {
+        return 'Invalid number';
+    }
+
+    if (num < 1000) {
+        return num.toString();
+    } else if (num >= 1000 && num < 1000000) {
+        return (num / 1000).toFixed(1) + 'K';
+    } else if (num >= 1000000 && num < 1000000000) {
+        return (num / 1000000).toFixed(1) + 'M';
+    } else {
+        return (num / 1000000000).toFixed(1) + 'B';
+    }
+}
+
 export const getNFTCa = async(account)=>{
     try {
         const nftAddr = "0x3efc90a28685d320f6916b76d8c679da67cc23dc"
