@@ -72,7 +72,7 @@ const Swap = () => {
         if(tokenIn.ticker === "WETH"){
           
         }
-        let e = event;
+        let e = event.target.value;
         console.log(e)
         setDexStates({...dexStates, amountIn:e})
         //onst decimals = tknOutD.decimals;
@@ -184,7 +184,7 @@ const Swap = () => {
                   className="w-full outline-none text-white px-4 bg-black h-[6rem] drop-shadow-lg md:h-[6rem] rounded-xl"
                   defaultValue={0}
                   value={dexStates.amountIn}
-                  onChange={(e) => setAmountIn(e.target.value)}
+                  onChange={(e) => setAmountIn(e)}
                 />
               </div>
             </div>
