@@ -16,6 +16,7 @@ import { IceCream } from "@/utils/constants";
 import iceee from "../../public/nigger.svg"
 import Link from "next/link";
 import NetworkError from "./CARDS/NetworkError";
+import WalletError from "./CARDS/WalletError"
 
 //const web3 = new Web3(`https://rpc.gobob.xyz`);
 
@@ -25,6 +26,7 @@ const Swap = () => {
       amountOut:'',
       data:null
     })
+    let max = 0.5
     const zeroAddr = "0x0000000000000000000000000000000000000000"
     useEffect(() => {
       if(!user.wallet){
@@ -62,35 +64,44 @@ const Swap = () => {
         
     }
 
-    const setAmountIn= async(e)=>{
-      setDexStates({...dexStates, amountIn:e})     
+    const setAmountIn= async(event)=>{
+           
         const tokenOut = findTokenByTicker(dexStates.tokenOut);
         const tokenIn = findTokenByTicker(dexStates.tokenIn);
         const path = [tokenIn.address,tokenOut.address]
-        
+        if(tokenIn.ticker === "WETH"){
+          
+        }
+        let e = event;
+        console.log(e)
+        setDexStates({...dexStates, amountIn:e})
         //onst decimals = tknOutD.decimals;
         //let amount
         //console.log(amount)
         const vall = ethers.utils.parseUnits(e,tokenIn.decimals);
         //const valInt = parseInt(Number(vall));
         const wall  = user.wallet ? user.wallet : zeroAddr;
-        const a = await getSwapData(vall,path,wall)
+        let res,oA, outAmountBG;
+        try {
+           const a = await getSwapData(vall,path,wall)
+           res =await a.json();
+        
+           if(a.ok){
+            outAmountBG =await ethers.BigNumber.from(res.toAmount);
+            oA = await ethers.utils.formatUnits(outAmountBG,tokenOut.decimals);
+            setStates({...states,data:res,amountOut:oA})
+          } 
+          if(!a.ok){
+            setStates({...states,data:null , amountOut:"ERROR OCURRED , RETRY TYPING"})
+            return
+          }
+        } catch (error) {
+          setStates({...states,data:null , amountOut:"ERROR OCURRED WHEN CALCULATING"})
+          console.log(error)
+        }
         //console.log(a);
         
-        const res =await a.json();
-        console.log(res)
-        const outAmountBG = ethers.BigNumber.from(res.toAmount);
-        const oA = ethers.utils.formatUnits(outAmountBG,tokenOut.decimals);
-        console.log(oA)
-        
-        setStates({...states,data:res,amountOut:oA})
-        //if(dexStates.amountIn){
-        //  amount = ethers.utils.parseUnits(dexStates.amountIn , decimals)
-        //}
-        //const amountsOut = await getAmountsOut(amount , path);
-        //const amt0 = ethers.utils.formatUnits(amountOut[0],decimals)
-        //const amt1 = ethers.utils.formatUnits(amountOut[1],decimals)
-       // console.log("REturn val:",amountsOut)
+      
     }
 
     const switchToken =()=>{
@@ -166,7 +177,9 @@ const Swap = () => {
               </div>
               <div className="w-full justify-center items-center flex">
                 <input
-                  type="text"
+                  type="number"
+                  
+                  min={0}
                   placeholder="Amount"
                   className="w-full outline-none text-white px-4 bg-black h-[6rem] drop-shadow-lg md:h-[6rem] rounded-xl"
                   defaultValue={0}
@@ -233,7 +246,7 @@ const Swap = () => {
             </div>
           </div>
         </div>:
-          <NetworkError/>
+          <WalletError/>
           }
         </div>
       </div>

@@ -18,7 +18,7 @@ const RampageHome = () => {
     })
 
     const goRight =()=>{
-        if(utils == 1){
+        if(utils == 2){
             return
         }
         const s = utils
@@ -44,9 +44,9 @@ const RampageHome = () => {
          }}
          transition={{ ease: "easeInOut", duration: 0.8 }}
         >
-    <div className={`bg-[#231F20] w-screen flex justify-center flex-col md:justify-between items-center h-full pt-[2rem] pb-[2rem] border-b border-[#E5BD19] ${states.mobileMenuOpen ? "blur-md" : ""}`} >
+    <div className={`bg-[#231F20] w-screen flex justify-center flex-col md:justify-between items-center h-full pt-[2rem] pb-[2rem] border-b-[3px] border-[#E5BD19] ${states.mobileMenuOpen ? "blur-md" : ""}`} >
         <div>
-            <div className='text-[#E5BD19] leading-[30px] md:leading-[60px] font-fredoka text-[42px] md:text-[75px] flex justify-start font-bold uppercase'>QUICK UTILITIES</div>
+            <div className='text-[#E5BD19] leading-[30px] md:leading-[60px] font-fredoka text-[42px] md:text-[75px] flex justify-start font-bold uppercase'>QUICK ACTIONS</div>
         </div>
         <div className='flex justify-center w-full md:flex-row md:justify-between items-center'>
         <button className='text-white md:ml-[30px] flex' onClick={()=> goLeft()}><Image src={l} height={20} width={20} alt="pcbutton" className="hover:scale-125"/></button>

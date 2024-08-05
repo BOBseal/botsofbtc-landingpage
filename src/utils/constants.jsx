@@ -4,6 +4,9 @@ import RAMP from "./ABIS/RAMPAGEv1.json"
 import sk from "./ABIS/SKIBBIDIESOFBITCOIN.json"
 import cc from "./ABIS/Sp_IcyExecutioner.json"
 import JJ from "./ABIS/ERC20.json"
+import Lotto from "./ABIS/Lottery.json"
+import wrappRp from "./ABIS/WrappedRP.json"
+import stake from './ABIS/StakingRP.json'
 
 export const BOB_MAINNET = [
     {
@@ -52,6 +55,18 @@ export const RampageV1 = [
     {address:"0xC4f681699CCDfFB26be46f1E109896cBb13cF18F" , abi:RAMP.abi}
 ]
 
+export const Lottery = [
+    {lotteryValue:3 , address:"0x781045DFE60068B3DE75e9Ba7AB535d2D991E343" , abi:Lotto.abi}
+]
+
+export const wrappedRp =[
+    {address:"0xB29fc8Fa0d3455fB6482fF38C7c3a686Ef8A6E6D",abi:wrappRp.abi}
+]
+
+export const SkibStake = [
+    {address:"0xEa3314DB2A586853bC7c1097f667EbE15CBF658a",abi:stake.abi}
+]
+
 export const Skib = [
-    {address:"",abi:sk.abi}
+    {address:"0x3efc90a28685d320f6916b76d8c679da67cc23dc",abi:sk.abi}
 ]

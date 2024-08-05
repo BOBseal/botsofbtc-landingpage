@@ -20,8 +20,8 @@ const HomeV2 = () => {
       <>
       <HM/>
       <RampageHome/>
-      <TxtSlider />
       <Partners />
+      <TxtSlider />
       <FusionInvite/>
       <Team />
       <Footer />

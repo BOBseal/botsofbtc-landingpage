@@ -1,7 +1,7 @@
 'use client'
 
 import React, {useState , useEffect} from "react"
-import {BOB_MAINNET, IceRouterAbi , IceRouterAddress, IceCream} from "../utils/constants"
+import {BOB_MAINNET, IceRouterAbi , IceRouterAddress, IceCream,Skib} from "../utils/constants"
 import { ethers } from "../../node_modules/ethers/lib/index"
 import { 
     addNetwork,
@@ -22,7 +22,8 @@ import {
     getErc20CA,
     getErc20Balances,
     formatNumber,
-    getIceContract
+    getIceContract,
+    connectRPCCa
  } from "../utils/hooks"
  import { supportedList } from "@/configs/config"
 
@@ -111,11 +112,20 @@ export const AppProvider =({children})=>{
         }
     }
 
+    function getPartnerByName(partners, name) {
+        // Find the partner object with the matching name
+        const partner = partners.find(partner => partner.name === name);
+        
+        // Return the found partner object or null if not found
+        return partner || null;
+      }
+
     const getFusionData=async()=>{
     try {
         const res = await fetch("https://fusion-api.gobob.xyz/partners");
         const data = await res.json();
-        const ourProject = data.partners[25];
+        const ourProject = getPartnerByName(data.partners,"BOTS OF BITCOIN");
+        console.log(ourProject)
         const ourPoints = ourProject.total_points;
         const nnnn = formatNumber(ourPoints);
         setFusionData({...fusionData, apiResponse: data, ok: res.ok , projectData:ourProject, totalPoints:nnnn});
@@ -304,7 +314,11 @@ export const AppProvider =({children})=>{
             //tt.then(async()=>{
                 setLoaders({...loaders, swap:"Swapping"});
                 const exec = await ca.swap(dataObj.tx.to,dataObj.tx.data,token,amount,{value:dataObj.tx.value});
-                exec.wait(1).then(async(a)=>{alert(`swap complete txhash: ${exec.hash}`);})
+                exec.wait(1).then(async(a)=>{
+                    alert(`swap complete txhash: ${exec.hash}`);
+                    await getErc20Balances(dexStates.tokenIn, user.wallet);
+                    await getErc20Balances(dexStates.tokenOut, user.wallet);
+                })
                 setLoaders({...loaders, swap:""});
                 return exec
                 //console.log(exec)
@@ -323,7 +337,7 @@ export const AppProvider =({children})=>{
     }
 
     useEffect(() => {
-        if(!fusionData.projectData){
+        if(!fusionData.apiResponse){
             getFusionData();
         }
     }, [])

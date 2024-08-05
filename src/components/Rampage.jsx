@@ -110,11 +110,11 @@ const Page = () => {
                       <div className='font-fredoka text-[35px] md:text-[50px]] leading-[25px] font-extrabold'>WELCOME TO</div>
                       <div className='font-fredoka text-[45px] md:text-[60px] leading-[30px] font-extrabold'>RAMPAGE</div>
                     </div>
-                    <div className='flex flex-col items-center w-full gap-[20px] text-[18px] md:text-[25px]'>
-                      <div className='flex w-[90%] md:w-[80%] gap-[20px] lg:w-[70%] md:text-[25px] font-fredoka font-semibold flex-col py-[0.5rem] drop-shadow-lg bg-[black] text-[#E5BD19] px-[3rem] items-center rounded-lg'>
-                        <div className='flex w-full justify-center items-center gap-[8px]'>TOTAL USERS :{rampageData.totalUsers ? <div>{rampageData.totalUsers}</div> : "Loading..."}</div>
-                        <div className='flex w-full justify-center gap-[8px] items-center'>POINTS: {rampageData.totalRP ? <div>{rampageData.totalRP}</div> : "Loading..."} <span>$RP</span></div>
-                        <div className='flex w-full justify-center items-center gap-[8px]'>TOTAL SPICE :{fusionData.projectData ? <div>{fusionData.projectData.total_points}</div> : ""}</div>
+                    <div className='flex flex-col items-center w-full gap-[20px] text-[16px] md:text-[25px]'>
+                      <div className='flex w-[95%] md:w-[80%] gap-[20px] lg:w-[70%] md:text-[25px] font-fredoka font-semibold flex-col py-[0.5rem] drop-shadow-lg bg-[black] text-[#E5BD19] px-[3rem] items-center rounded-lg'>
+                        <div className='flex w-full md:justify-center items-center gap-[8px]'>Total Users :{rampageData.totalUsers ? <div>{rampageData.totalUsers}</div> : "Loading..."}</div>
+                        <div className='flex w-full md:justify-center gap-[8px] items-center'>Total RP: {rampageData.totalRP ? <div>{rampageData.totalRP}</div> : "Loading..."} <span>$RP</span></div>
+                        {/*<div className='flex w-full justify-center items-center gap-[8px]'>TOTAL SPICE :{fusionData.projectData ? <div>{fusionData.projectData.total_points}</div> : ""}</div>*/}
                       </div>
                     </div>
 
