@@ -107,7 +107,7 @@ const Page = () => {
                   {details.initialized?
                   <div className='flex flex-col items-center justify-center gap-[2rem] py-[2rem] border-[3px] border-black drop-shadow-xl hover:drop-shadow-2xl w-[90%] md:w-[75%] lg:mt-[100px] lg:w-[45%] h-[60%] md:h-[50%] bg-[#E5BD19] bg-cover bg-no-repeat rounded-lg'>
                     <div className='flex flex-col items-center w-full gap-[14px] md:gap-[25px]'>
-                      <div className='font-fredoka text-[35px] md:text-[50px]] leading-[25px] font-extrabold'>WELCOME TO</div>
+                      <div className='font-fredoka text-[35px] md:text-[50px] leading-[25px] font-extrabold'>WELCOME TO</div>
                       <div className='font-fredoka text-[45px] md:text-[60px] leading-[30px] font-extrabold'>RAMPAGE</div>
                     </div>
                     <div className='flex flex-col items-center w-full gap-[20px] text-[16px] md:text-[25px]'>

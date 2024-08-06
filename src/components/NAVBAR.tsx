@@ -2,10 +2,12 @@
 import React,{useContext, useState} from 'react'
 import Image from 'next/image'
 import lgo from "../assets/dp.jpg"
+import cros from "../assets/crosssign.svg"
 import menu from "../assets/threelinemenu.svg"
 import { AppContext } from '@/context/AppContext'
 import { AnimatePresence , motion } from 'framer-motion'
 import Link from '../../node_modules/next/link'
+
 
 interface NavbarProps {
   openMobileMenu: () => void;
@@ -68,9 +70,11 @@ const Navbar: React.FC<NavbarProps> = () => {
           <Link href={'/rampage'} target={'_blank'}>
           <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105'>Rampage</button>
           </Link>
-
-          <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105' onClick={()=> al()}>Pots</button>
           
+          <Link href={'/stake'} target={'_blank'}>
+          <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105'>Stake</button>
+          </Link>
+
           <Link href={'https://botsofbtc.notion.site/BOTS-OF-BITCOIN-27ab822513f5459d861d07a6f11271ba?pvs=4'} target={'_blank'}>
           <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105'>Docs</button>
           </Link>
@@ -107,13 +111,17 @@ const MobileNav :React.FC <NavbarProps>=({openMobileMenu , userWallet, connectWa
           <Link href={'/rampage'} target={'_blank'}>
           <p  className=' font-nunito text-black text-[20px]'>Rampage</p>
           </Link>
-          <p onClick={()=> al()} className=' font-nunito text-black text-[20px]'>Pots</p>
+          <Link href={'/stake'} target={'_blank'}>
+          <p className=' font-nunito text-black text-[20px]'>Stake</p>
+          </Link>
           <Link href={'https://botsofbtc.notion.site/BOTS-OF-BITCOIN-27ab822513f5459d861d07a6f11271ba?pvs=4'} target={'_blank'}>
           <p className=' font-nunito text-black text-[20px]'>Docs</p>
           </Link>
           <button className='text-black font-nunito text-[22px]'>{userWallet ? <div>0x...{userWallet.slice(37)}</div>:<div onClick={()=>connectWallet()} >LOGIN</div>}</button>
         </div>
-        <button className='h-[4rem] font-nunito text-[22px] text-black p-[1rem] w-[12rem] justify-center flex ' onClick={()=>openMobileMenu()}>CLOSE</button>
+        <button className='h-[4rem] font-nunito text-[22px] text-black p-[1rem] pt-0 w-[12rem] justify-center flex ' onClick={()=>openMobileMenu()}>
+          <Image src={cros} height={40} width={40} alt="close"/>
+        </button>
       </div>
     </div>
   )

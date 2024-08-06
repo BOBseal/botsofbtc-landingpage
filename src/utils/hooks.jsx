@@ -3,6 +3,7 @@ import { ethers } from "ethers";
 import { minter,pointCore , RampageV1, Skib , Lottery,SkibStake , wrappedRp } from "./constants";
 import { IceCream, BOB_MAINNET , IERC20ABI } from "./constants";
 
+
 export const changeNetwork =async(chainId)=>{
     try {
         await window.ethereum.request({
@@ -252,6 +253,21 @@ export const getEthBalance=async(account)=>{
 //            console.log(balanceInEth);
             return balanceInEth
         }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getHolderData = async()=>{
+    try {
+        const res = await fetch(`http://api-internal.botsofbtc.com:8000/holderList`);
+        //console.log(res)
+        if(!res.ok){
+            throw new Error(`${res.status}`)
+        }
+        const data = res.json();
+        //console.log(data)
+        return data;        
     } catch (error) {
         console.log(error)
     }
