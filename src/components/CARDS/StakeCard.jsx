@@ -41,7 +41,7 @@ const StakeCard = ({data,stake,approve}) => {
                         <option value={2592000} className='text-black'>30 Days</option>
                       </select>
                       </div>
-                      <p>RP/Day : {data.perDay} RP</p>
+                      <p>wRP/Day : {data.perDay} RP</p>
                       {!data.isApproved?
                       <button onClick={()=>approve()} className='bg-[#E5BD19] text-black font-nunito p-[15px] text-[22px] py-[4px] hover:scale-105 rounded-2xl'>APPROVE</button>
                       :

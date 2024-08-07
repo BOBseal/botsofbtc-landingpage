@@ -1,7 +1,7 @@
 'use client'
 import React,{useState , useContext, useEffect} from 'react'
 import { AppContext } from '@/context/AppContext'
-import { getHolderData, getNFTCa, getStakingContract, getErc20CA, getRampageCa } from '@/utils/hooks'
+import { getHolderData, getNFTCa, getStakingContract, getErc20CA, getRampageCa, getWrappedRPContract } from '@/utils/hooks'
 import { ethers } from '../../node_modules/ethers/lib/index'
 import Image from '../../node_modules/next/image'
 import StakeDashboard from "./StakeDashboard"
@@ -20,7 +20,9 @@ const StakePage = () => {
   const [ data , setData] = useState({
     stakeData:[]
   })
-
+  const [claiming , setClaiming] = useState(false);
+  const [unstaking , setUnstaking] = useState(false)
+  const [unwrapping , setUnwrapping] = useState(false)
 
   const getAndSave = async()=>{
     try {
@@ -71,7 +73,7 @@ const StakePage = () => {
           const claimableRp = await ca.checkClaimableRp(user.wallet,a);
           const claimableBalance = ethers.utils.formatEther(claimableRp);
           totalClaimable = totalClaimable + Number(claimableBalance);
-          const obj = {data:_stakeData , claimable: claimableBalance}
+          const obj = {data:_stakeData , claimable: claimableBalance , index:a}
           activeStakes.push(obj);
         }
       }
@@ -81,6 +83,7 @@ const StakePage = () => {
       setLoading(false);
     } catch (error) {
       console.log(error)
+      setLoading(false);
     }
   }
 
@@ -111,7 +114,7 @@ const StakePage = () => {
       const staketx =  await stakingCa.stake(id,timeframe);
       staketx.wait(1).then(()=>{
         alert(`Transaction Successful https://explorer.gobob.xyz/tx/${staketx.hash}`)
-        window.location.reload();
+        getAndSave()
       })
       //setLoaders({...loaders,a1: false})
      //const unstake = await stakingCa.claimRPYield(0)
@@ -121,9 +124,51 @@ const StakePage = () => {
     }
   }
 
-  const claimYeild =async()=>{
+  const claimYeild =async(index)=>{
+    try {
+      setClaiming(true)
+      const ca = await getStakingContract(user.wallet);
+      const claim = await ca.claimRPYield(index);
+      claim.wait(1).then(()=>{
+        getStakedData();
+      })
+      setClaiming(false)
+    } catch (error) {
+      console.log(error)
+      setClaiming(false)
+    }
+  }
+  
+  const unstake = async(index)=>{
+    try {
+      setUnstaking(true)
+      const ca = await getStakingContract(user.wallet)
+      const unstake = await ca.unstake(index);
+      unstake.wait(1).then(()=>{
+        getStakedData();
+      })
+      setUnstaking(false)
+    } catch (error) {
+      setUnstaking(false)
+      alert(error.message)
+      console.log(error)
+    }
+  }
 
-  } 
+  const unwrap=async(wholeRp)=>{
+    try {
+      setUnwrapping(true)
+      const ca = await getWrappedRPContract(user.wallet)
+      const unwrap = await ca.unwrap(wholeRp,{gasLimit:500000})
+      unwrap.wait(1).then(()=>{
+        getStakedData();
+      })
+      setUnwrapping(false)
+    } catch (error) {
+      console.log(error)
+      setUnwrapping(false)
+    }
+  }
 
   const toggleDashboard =async()=>{
     try {
@@ -155,10 +200,13 @@ const StakePage = () => {
        </div>
 
        <div className='py-[1rem] w-full h-full'>
-          {states.dashboard ? <StakeDashboard userData={data} states={loading}/> :""}
+          {states.dashboard ? <StakeDashboard userData={data} states={loading} claimY={claimYeild} claiming={claiming} unstake={unstake} unstaking={unstaking} unwrap={unwrap} unwrapping={unwrapping}/> :""}
        </div>
       <div className='flex flex-col items-center justify-between pb-[1rem] px-[1.5rem] text-white font-nunito'>
-        {data.userNfts == null ? "0 Skibbidies Held" :
+        {data.userNfts == null ? 
+        <div className='h-[10rem] md:h-[14rem] w-full flex justify-center items-center'>
+            {loading ? "Loading ..." : "You Hold 0 Skibbidies"}
+        </div> :
         <div className={` flex-col justify-center items-center w-full h-full ${states.dashboard ? "hidden":"flex"}`}>
           <h1 className='pb-[1rem] text-[28px] font-fredoka font-bold text-[#E5BD19]'>Stake New</h1>
           <div className='flex h-[25rem] md:h-[20rem] flex-col overflow-auto  gap-1 p-[1rem] md:flex-row justify-between items-center w-screen md:px-[2rem]'>
