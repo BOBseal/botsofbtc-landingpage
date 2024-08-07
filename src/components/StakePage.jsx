@@ -1,22 +1,25 @@
 'use client'
 import React,{useState , useContext, useEffect} from 'react'
 import { AppContext } from '@/context/AppContext'
-import { getHolderData, getNFTCa, getStakingContract } from '@/utils/hooks'
+import { getHolderData, getNFTCa, getStakingContract, getErc20CA, getRampageCa } from '@/utils/hooks'
 import { ethers } from '../../node_modules/ethers/lib/index'
 import Image from '../../node_modules/next/image'
-import l from "../assets/leftArrow.png"
-import r from "../assets/rightArrow.png"
+import StakeDashboard from "./StakeDashboard"
 import { SkibStake } from '@/utils/constants'
 import StakeCard from "./CARDS/StakeCard"
 
 const StakePage = () => {
   const {user, connectWallet} = useContext(AppContext);
   const [states , setStates] = useState({
-    totalStaked:0,
-    timeframe:604800,
-    approved:false,
+    dashboard:false,
+    stakeData:[],
+    dashboardLoading:false,
+    holdingLoading:false
   })
-  const [ data , setData] = useState({})
+  const[loading,setLoading] = useState(false);
+  const [ data , setData] = useState({
+    stakeData:[]
+  })
 
 
   const getAndSave = async()=>{
@@ -43,6 +46,41 @@ const StakePage = () => {
       }
     } catch (error) {
         console.log(error);
+    }
+  }
+
+  const getStakedData = async()=>{
+    try {
+      setLoading(true)
+      const ca = await getStakingContract(user.wallet);
+      const wRp = await ca.tokenizedRP();
+      const rampCa = await getRampageCa(user.wallet);
+      const userPoints = await rampCa.userPoints(user.wallet)
+      const WRP = await getErc20CA(wRp,user.wallet);
+      const balance = await WRP.balanceOf(user.wallet);
+      const bal = ethers.utils.formatEther(balance);
+      console.log(wRp)
+      const stakeData = await ca.stakers(user.wallet);
+      const totalSt = Number(stakeData[0]);
+      let activeStakes = []
+      let totalClaimable = 0;
+      for(let a = 0 ; a < totalSt; a++){
+        const _stakeData = await ca.userStakes(user.wallet,a);
+        const unstaked = stakeData[5];
+        if(!unstaked){
+          const claimableRp = await ca.checkClaimableRp(user.wallet,a);
+          const claimableBalance = ethers.utils.formatEther(claimableRp);
+          totalClaimable = totalClaimable + Number(claimableBalance);
+          const obj = {data:_stakeData , claimable: claimableBalance}
+          activeStakes.push(obj);
+        }
+      }
+      const tsc = totalClaimable.toString();
+      console.log(activeStakes);
+      setData({...data,stakeData:activeStakes, totalStaked:totalSt, activeStaked:Number(stakeData[1]) , wrpBalance:bal, totalClaimable:tsc, userRp: Number(userPoints)});
+      setLoading(false);
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -83,6 +121,25 @@ const StakePage = () => {
     }
   }
 
+  const claimYeild =async()=>{
+
+  } 
+
+  const toggleDashboard =async()=>{
+    try {
+      if(states.dashboard){
+        setStates({...states,dashboard:false})
+      } 
+      if(!states.dashboard){
+        setStates({...states,dashboard:true})
+        await getStakedData();
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     
       getAndSave()
@@ -94,24 +151,28 @@ const StakePage = () => {
 
 
        <div className='text-black font-fredoka py-[1rem] px-[3rem] pb-[0] md:pt-[3rem] grid grid-cols-1 gap-[1rem] md:flex w-full md:w-[80%] md:items-center md:justify-center'>
-          <button className='bg-[#E5BD19] text-[22px] border-black h-[3rem] border-b-[3px] p-[10px] py-[4px] hover:scale-105 rounded-2xl font-semibold'>Open Dashboard</button>
+          <button onClick={()=>toggleDashboard()} className='bg-[#E5BD19] text-[22px] border-black h-[3rem] border-b-[3px] p-[10px] py-[4px] hover:scale-105 rounded-2xl font-semibold'>{states.dashboard ? "Close Dashboard":"Open Dashboard"}</button>
        </div>
-      <div className='flex flex-col items-center justify-between py-[1rem] px-[1.5rem] text-white font-nunito'>
+
+       <div className='py-[1rem] w-full h-full'>
+          {states.dashboard ? <StakeDashboard userData={data} states={loading}/> :""}
+       </div>
+      <div className='flex flex-col items-center justify-between pb-[1rem] px-[1.5rem] text-white font-nunito'>
         {data.userNfts == null ? "0 Skibbidies Held" :
-        <div className='flex flex-col justify-center items-center w-full h-full'>
+        <div className={` flex-col justify-center items-center w-full h-full ${states.dashboard ? "hidden":"flex"}`}>
+          <h1 className='pb-[1rem] text-[28px] font-fredoka font-bold text-[#E5BD19]'>Stake New</h1>
           <div className='flex h-[25rem] md:h-[20rem] flex-col overflow-auto  gap-1 p-[1rem] md:flex-row justify-between items-center w-screen md:px-[2rem]'>
                 <StakeCard stake={stakeNft} data={data} approve={approveNft}/>
           </div>
-          {<div className='flex flex-col justify-center items-center w-full h-full'>
+        </div>} 
+        {<div className='flex flex-col justify-center items-center w-full h-full'>
             <div className='flex pt-[2rem] flex-col items-center justify-between py-[1rem] w-full'>
               <h1 className='text-[#E5BD19] font-fredoka text-[28px] font-bold'>SKIBBIDI STAKING 1.0</h1>
             </div>
             <div className='flex flex-col items-center justify-between py-[1rem] px-[1.5rem] text-white font-nunito pb-[1.5rem]'>
-              <p className='w-full '>Stake your IDLE Skibbidies Of Bitcoin to get RPs . RPs generated from Staking are in a Wrapped Format & Needs to be Unwrapped for being included into Spice Distributions based on RP holdings. Tokenizing RPs is an Experimental Feature & will pave way for us to have an Active User Participation in Testings without the risk to lose real tokens. RPs are currently not Tradeable or Transferrable  We do not make any guarantees of RPs being a "Real Value Token".</p>
+              <p className='w-full '>Stake your IDLE Skibbidies Of Bitcoin to get RPs . RPs generated from Staking are in a Wrapped Format & Needs to be Unwrapped for being included into Spice Distributions based on RP holdings. Tokenizing RPs is an Experimental Feature & will pave way for us to have an Active User Participation in Testings without the risk to lose real tokens. RPs are currently not Tradeable or Transferrable  We do not make any guarantees of RPs being a Real Token.</p>
             </div>
           </div>}
-        
-        </div>} 
       </div>
     </div>
   )
