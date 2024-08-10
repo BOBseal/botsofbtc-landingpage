@@ -30,8 +30,8 @@ const StakeCard = ({data,stake,approve}) => {
 
   return (
     <>
-      {data.userNfts.ownedIds.map((d)=>(
-                    <div key={d} className='flex font-fredoka min-h-[11.5rem] md:min-h-[15rem] md:min-w-[18rem] flex-col w-full border-b border-[#E5BD19] border-r justify-evenly items-center rounded-2xl'>
+      {data.userNfts.ownedIds.map((d,k)=>(
+                    <div key={k} className='flex font-fredoka min-h-[11.5rem] md:min-h-[15rem] md:min-w-[18rem] flex-col w-full border-b border-[#E5BD19] border-r justify-evenly items-center rounded-2xl'>
                       <h2 className='font-bold text-[22px]'>Skibbidi Bot #{d}</h2>
                       <div>
                       Timeframe :
