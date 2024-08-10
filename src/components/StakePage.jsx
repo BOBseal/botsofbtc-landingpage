@@ -187,9 +187,7 @@ const StakePage = () => {
   }
 
   useEffect(() => {
-    if(!loaded){
       getAndSave()
-    }
     }, [user.wallet])
   
   
