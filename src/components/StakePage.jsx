@@ -31,6 +31,7 @@ const StakePage = () => {
       }
       let nftArray = [] 
       const _data = await getHolderData();
+      //console.log(_data)
       if(user.wallet){
         const user_ = ethers.utils.getAddress(user.wallet)
         const stakeCa = await getStakingContract(user.wallet);
@@ -41,12 +42,11 @@ const StakePage = () => {
         const weiPsfN = Number(weiPsF);
         const weiDay = weiPsfN * 86400;
         //console.log(weiDay,stakeCa); 
-        const objes = findObjectByAddress(user_,_data);
-        //console.log(objes , nftArray)
-        setData({...data , allHolders:_data  , userNfts:objes,holdings:nftArray,perDay:weiDay,isApproved:isApproved})
+        const objes = findObjectByAddress(user.wallet,_data);
+        //console.log(objes)
+        setData({...data,allHolders:_data,userNfts:objes,holdings:nftArray,perDay:weiDay,isApproved:isApproved})
           //console.log(data);
       }
-      setLoaded(true);
     } catch (error) {
         console.log(error);
     }
@@ -62,7 +62,7 @@ const StakePage = () => {
       const WRP = await getErc20CA(wRp,user.wallet);
       const balance = await WRP.balanceOf(user.wallet);
       const bal = ethers.utils.formatEther(balance);
-      console.log(wRp)
+      //console.log(wRp)
       const stakeData = await ca.stakers(user.wallet);
       const totalSt = Number(stakeData[0]);
       let activeStakes = []
