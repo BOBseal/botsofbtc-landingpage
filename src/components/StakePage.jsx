@@ -42,7 +42,7 @@ const StakePage = () => {
         const weiPsfN = Number(weiPsF);
         const weiDay = weiPsfN * 86400;
         //console.log(weiDay,stakeCa); 
-        const objes = findObjectByAddress(user.wallet,_data);
+        const objes = findObjectByAddress(user_,_data);
         //console.log(objes)
         setData({...data,allHolders:_data,userNfts:objes,holdings:nftArray,perDay:weiDay,isApproved:isApproved})
           //console.log(data);
