@@ -31,7 +31,7 @@ const StakePage = () => {
       }
       let nftArray = [] 
       const _data = await getHolderData();
-      if(user.wallet && data != null){
+      if(user.wallet){
         const user_ = ethers.utils.getAddress(user.wallet)
         const stakeCa = await getStakingContract(user.wallet);
         const nftCa = await getNFTCa(user.wallet);
@@ -190,7 +190,7 @@ const StakePage = () => {
     if(!loaded){
       getAndSave()
     }
-    }, [user.wallet,loaded])
+    }, [user.wallet])
   
   
     return (
