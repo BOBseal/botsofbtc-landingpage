@@ -188,7 +188,7 @@ const StakePage = () => {
 
   useEffect(() => {
       getAndSave()
-    }, [user.wallet])
+    }, [user.wallet,data.userNfts])
   
   
     return (
