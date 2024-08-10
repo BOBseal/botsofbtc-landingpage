@@ -23,7 +23,7 @@ const StakePage = () => {
   const [claiming , setClaiming] = useState(false);
   const [unstaking , setUnstaking] = useState(false)
   const [unwrapping , setUnwrapping] = useState(false)
-
+  const [loaded , setLoaded] = useState(false);
   const getAndSave = async()=>{
     try {
       if(!user.wallet){
@@ -46,6 +46,7 @@ const StakePage = () => {
         setData({...data , allHolders:_data  , userNfts:objes,holdings:nftArray,perDay:weiDay,isApproved:isApproved})
           //console.log(data);
       }
+      setLoaded(true);
     } catch (error) {
         console.log(error);
     }
@@ -186,10 +187,10 @@ const StakePage = () => {
   }
 
   useEffect(() => {
-    if(!data.allHolders){
+    if(!loaded){
       getAndSave()
     }
-    }, [user.wallet,data.allHolders])
+    }, [user.wallet,loaded])
   
   
     return (

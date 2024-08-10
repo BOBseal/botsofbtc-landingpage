@@ -60,7 +60,7 @@ export const Lottery = [
 ]
 
 export const wrappedRp =[
-    {address:"0xB29fc8Fa0d3455fB6482fF38C7c3a686Ef8A6E6D",abi:wrappRp.abi}
+    {address:"0xc5d16A63ac69591BDC10912ee49aB5FAa3FEC5Ea",abi:wrappRp.abi}
 ]
 
 export const SkibStake = [
