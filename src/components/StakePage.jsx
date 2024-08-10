@@ -31,7 +31,7 @@ const StakePage = () => {
       }
       let nftArray = [] 
       const _data = await getHolderData();
-      if(user.wallet){
+      if(user.wallet && data != null){
         const user_ = ethers.utils.getAddress(user.wallet)
         const stakeCa = await getStakingContract(user.wallet);
         const nftCa = await getNFTCa(user.wallet);
@@ -40,7 +40,7 @@ const StakePage = () => {
         const weiPsF = ethers.utils.formatEther(weiPs);
         const weiPsfN = Number(weiPsF);
         const weiDay = weiPsfN * 86400;
-        console.log(weiDay,stakeCa); 
+        //console.log(weiDay,stakeCa); 
         const objes = findObjectByAddress(user_,_data);
         //console.log(objes , nftArray)
         setData({...data , allHolders:_data  , userNfts:objes,holdings:nftArray,perDay:weiDay,isApproved:isApproved})
@@ -186,8 +186,9 @@ const StakePage = () => {
   }
 
   useEffect(() => {
-    
+    if(!data.allHolders){
       getAndSave()
+    }
     }, [user.wallet,data.allHolders])
   
   

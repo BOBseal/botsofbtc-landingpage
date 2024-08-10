@@ -261,10 +261,12 @@ export const getEthBalance=async(account)=>{
 export const getHolderData = async()=>{
     try {
         const res = await fetch(`https://api.botsofbtc.com/holderList`);
-        console.log(res)
+        //console.log(res)
+        if(res.ok){
         const data = res.json();
         //console.log(data)
-        return data;        
+        return data;
+        } else return null
     } catch (error) {
         console.log(error)
     }

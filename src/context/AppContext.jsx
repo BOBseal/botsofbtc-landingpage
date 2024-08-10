@@ -337,9 +337,7 @@ export const AppProvider =({children})=>{
     }
 
     useEffect(() => {
-        if(!fusionData.apiResponse){
-            getFusionData();
-        }
+        
     }, [])
     
 
