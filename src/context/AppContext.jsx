@@ -316,8 +316,9 @@ export const AppProvider =({children})=>{
                 const exec = await ca.swap(dataObj.tx.to,dataObj.tx.data,token,amount,{value:dataObj.tx.value});
                 exec.wait(1).then(async(a)=>{
                     alert(`swap complete txhash: ${exec.hash}`);
-                    await getErc20Balances(dexStates.tokenIn, user.wallet);
-                    await getErc20Balances(dexStates.tokenOut, user.wallet);
+                    const tokenInBal = await getErc20Balances(dexStates.tokenIn, user.wallet);
+                    const tokenOutBal = await getErc20Balances(dexStates.tokenOut, user.wallet);
+                    setDexStates({...dexStates,inBalance:tokenInBal ,outBalance:tokenOutBal})
                 })
                 setLoaders({...loaders, swap:""});
                 return exec
