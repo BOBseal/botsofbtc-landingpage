@@ -77,14 +77,14 @@ const StakePage = () => {
           const obj = {data:_stakeData , claimable: claimableBalance , index:a}
           activeStakes.push(obj);
         }
+
       }
       const tsc = totalClaimable.toString();
-      console.log(activeStakes);
       setData({...data,stakeData:activeStakes, totalStaked:totalSt, activeStaked:Number(stakeData[1]) , wrpBalance:bal, totalClaimable:tsc, userRp: Number(userPoints)});
-      setLoading(false);
+      setLoading(false)
     } catch (error) {
       console.log(error)
-      setLoading(false);
+      setLoading(false)
     }
   }
 
@@ -178,7 +178,9 @@ const StakePage = () => {
       } 
       if(!states.dashboard){
         setStates({...states,dashboard:true})
-        await getStakedData();
+        if(!data.wrpBalance){
+          await getStakedData();
+        }
       }
 
     } catch (error) {
@@ -188,7 +190,7 @@ const StakePage = () => {
 
   useEffect(() => {
       getAndSave()
-    }, [user.wallet,data.userNfts])
+    }, [user.wallet])
   
   
     return (
