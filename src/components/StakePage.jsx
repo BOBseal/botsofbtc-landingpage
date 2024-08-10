@@ -160,7 +160,7 @@ const StakePage = () => {
     try {
       setUnwrapping(true)
       const ca = await getWrappedRPContract(user.wallet)
-      const unwrap = await ca.unwrap(wholeRp,{gasLimit:500000})
+      const unwrap = await ca.unwrap(wholeRp)
       unwrap.wait(1).then(()=>{
         getStakedData();
       })
