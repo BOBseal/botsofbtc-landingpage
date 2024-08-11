@@ -69,7 +69,7 @@ const StakePage = () => {
       let totalClaimable = 0;
       for(let a = 0 ; a < totalSt; a++){
         const _stakeData = await ca.userStakes(user.wallet,a);
-        const unstaked = stakeData[5];
+        const unstaked = _stakeData[5];
         if(!unstaked){
           const claimableRp = await ca.checkClaimableRp(user.wallet,a);
           const claimableBalance = ethers.utils.formatEther(claimableRp);
