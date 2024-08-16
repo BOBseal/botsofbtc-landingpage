@@ -3,6 +3,7 @@ import React,{useState , useContext, useEffect} from 'react'
 import { AppContext } from '@/context/AppContext'
 import { getHolderData, getNFTCa, getStakingContract, getErc20CA, getRampageCa, getWrappedRPContract } from '@/utils/hooks'
 import { ethers } from '../../node_modules/ethers/lib/index'
+import {motion} from 'framer-motion'
 import Image from '../../node_modules/next/image'
 import StakeDashboard from "./StakeDashboard"
 import { SkibStake } from '@/utils/constants'
@@ -132,6 +133,7 @@ const StakePage = () => {
       const claim = await ca.claimRPYield(index);
       claim.wait(1).then(()=>{
         getStakedData();
+        //return claim;
       })
       setClaiming(false)
     } catch (error) {
@@ -144,11 +146,25 @@ const StakePage = () => {
     try {
       setUnstaking(true)
       const ca = await getStakingContract(user.wallet)
-      const unstake = await ca.unstake(index);
-      unstake.wait(1).then(()=>{
-        getStakedData();
-      })
-      setUnstaking(false)
+      const _clm = await ca.checkClaimableRp(user.wallet,index);
+      const claimableBalance = ethers.utils.formatEther(_clm);
+      //let unstake;
+      if(Number(claimableBalance) > 1){
+        const claim = await ca.claimRPYield(index);
+        claim.wait(1).then(async()=>{
+        const unstake = await ca.unstake(index);
+        setUnstaking(false)
+        unstake.wait(1).then(()=>{
+          getStakedData();
+        })
+        })
+      } else {
+        const unstake = await ca.unstake(index);
+        setUnstaking(false)
+        unstake.wait(1).then(()=>{
+          getStakedData();
+        })
+      }
     } catch (error) {
       setUnstaking(false)
       alert(error.message)
@@ -202,7 +218,14 @@ const StakePage = () => {
        </div>
 
        <div className='py-[1rem] w-full h-full'>
+       <motion.div
+        initial={{ height: 0, opacity: 0 }}
+        animate={{ height: states.dashboard ? 'auto' : 0, opacity: states.dashboard ? 1 : 0 }}
+        transition={{ duration: 0.5 }}
+        className='overflow-hidden w-full'
+      >
           {states.dashboard ? <StakeDashboard userData={data} states={loading} claimY={claimYeild} claiming={claiming} unstake={unstake} unstaking={unstaking} unwrap={unwrap} unwrapping={unwrapping}/> :""}
+      </motion.div> 
        </div>
       <div className='flex flex-col items-center justify-between pb-[1rem] px-[1.5rem] text-white font-nunito'>
         {data.userNfts == null ? 

@@ -41,8 +41,9 @@ const StakeDashboard = ({userData,states , claimY, claiming, unstake, unstaking,
         <h1 className='pt-[1rem] text-[28px] font-fredoka font-bold text-[#E5BD19]'>Your Stakes</h1>
         <div className='h-[25rem] md:h-[20rem] overflow-auto flex-col md:flex-row flex w-full px-[1rem] py-[2rem]'>
             {!states ? <div className='w-full h-full flex-col md:flex-row flex'>
+            {userData.stakeData.length == 0 ? <div className='flex w-full h-full font-fredoka items-center justify-center text-white'>No Stakes Found</div>:""}
             {userData.stakeData.map((data,index)=>(
-                <div key={index} className='flex font-fredoka text-white min-h-[11.5rem] md:min-h-[15rem] md:min-w-[18rem] flex-col w-full border-b border-[#E5BD19] border-r justify-evenly items-center rounded-2xl'>
+                <div key={index} className='flex font-fredoka text-white min-h-[11.5rem] md:min-h-[15rem] md:min-w-[28rem] md:w-[28rem] w-full flex-col border-b border-[#E5BD19] border-r justify-evenly items-center rounded-2xl'>
                     <h2 className='font-bold text-[22px]'>Skibbidi Bot #{Number(data.data[0])}</h2>
                     <h2>Claimable : {data.claimable} wRP</h2>
                     <h2>Unlock at : {unixToGeneralTime(Number(data.data[2]))}</h2>
