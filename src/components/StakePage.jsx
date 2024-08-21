@@ -243,7 +243,8 @@ const StakePage = () => {
               <h1 className='text-[#E5BD19] font-fredoka text-[28px] font-bold'>SKIBBIDI STAKING 1.0</h1>
             </div>
             <div className='flex flex-col items-center justify-between py-[1rem] px-[1.5rem] text-white font-nunito pb-[1.5rem]'>
-              <p className='w-full '>Stake your IDLE Skibbidies Of Bitcoin to get RPs . RPs generated from Staking are in a Wrapped Format & Needs to be Unwrapped for being included into Spice Distributions based on RP holdings. Tokenizing RPs is an Experimental Feature & will pave way for us to have an Active User Participation in Testings without the risk to lose real tokens. RPs are currently not Tradeable or Transferrable  We do not make any guarantees of RPs being a Real Token.</p>
+              <p className='w-full '>Stake your IDLE Skibbidies Of Bitcoin to get RPs . RPs generated from Staking are in a Wrapped Format & Needs to be 
+              Unwrapped for being included into Spice Distributions based on RP holdings.</p>
             </div>
           </div>}
       </div>
