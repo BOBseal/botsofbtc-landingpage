@@ -257,6 +257,7 @@ export const AppProvider =({children})=>{
                 const pd = parseInt(Number(userRpPerDay));
                 const up = parseInt(Number(userPoints));
                 const nt = parseInt(Number(nextSignTime));
+                const dateTime= unixToGeneralTime(nt)
                 const skb = parseInt(Number(balSk));
                 const ppf = parseInt(Number(prf));
                 setRampageData({ ... rampageData,
@@ -265,7 +266,7 @@ export const AppProvider =({children})=>{
                     pointPerDay: pd, 
                     userPoints:up,
                     userName:userName,
-                    nextTime: nt,
+                    nextTime: dateTime,
                     skibHeld:skb,
                     mineEnable:intSt < unixTimestamp ? true:false,
                     totalRef : ss,

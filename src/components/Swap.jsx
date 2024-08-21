@@ -135,7 +135,7 @@ const Swap = () => {
    
    
     return (
-      <div className="flex w-full h-full gap-[1rem] justify-between pt-[1.5rem] border-b-[3px] border-[#E5BD19] items-center bg-[#231F20] bg-cover flex-col p-[1rem]">
+      <div className="flex w-full h-full gap-[1rem] justify-between pt-[1.5rem] border-b-[3px] border-[#E5BD19] items-center bg-transparent bg-cover flex-col p-[1rem]">
         {/*<div className="flex h-[12rem] md:h-[10rem] w-[95%] md:w-[90%] justify-center">
               <Image src={iceee} height={100} width={1000} className="object-cover flex rounded-lg justify-center"/> 
     </div>*/}
