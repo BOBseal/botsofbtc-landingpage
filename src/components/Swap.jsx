@@ -4,26 +4,29 @@ import Navbar from "@/components/NAVBAR";
 import Footer from "@/components/Footer";
 import { AnimatePresence, motion } from "framer-motion";
 import { partnerInfo } from "@/configs/config";
-import Image from "../../../node_modules/next/image";
-import img from "../../assets/lotterypage.png"
+import Image from "next/image";
+import img from "../assets/lotterypage.png"
 import { supportedList } from "@/configs/config";
-import updown from "../../assets/updownarrow.svg";
+import updown from "../assets/updownarrow.svg";
 import { AppContext } from "@/context/AppContext";
 import { getEthBalance } from "@/utils/hooks";
-import { ethers } from "../../../node_modules/ethers/lib/index";
+import { ethers } from "ethers";
 import { getSwapData, getErc20CA, getErc20Balances } from "@/utils/hooks";
 import { IceCream } from "@/utils/constants";
-import iceee from "../../../public/nigger.svg"
-import Link from "../../../node_modules/next/link";
+import iceee from "../../public/nigger.svg"
+import Link from "next/link";
+import NetworkError from "./CARDS/NetworkError";
+import WalletError from "./CARDS/WalletError"
 
 //const web3 = new Web3(`https://rpc.gobob.xyz`);
 
-const Page = () => {
+const Swap = () => {
     const {dexStates , setDexStates, getAmountsOut,user, connectWallet, loaders,getFusionData, executeSwap} = useContext(AppContext);
     const [states, setStates] = useState({
       amountOut:'',
       data:null
     })
+    let max = 0.5
     const zeroAddr = "0x0000000000000000000000000000000000000000"
     useEffect(() => {
       if(!user.wallet){
@@ -61,35 +64,44 @@ const Page = () => {
         
     }
 
-    const setAmountIn= async(e)=>{
-      setDexStates({...dexStates, amountIn:e})     
+    const setAmountIn= async(event)=>{
+           
         const tokenOut = findTokenByTicker(dexStates.tokenOut);
         const tokenIn = findTokenByTicker(dexStates.tokenIn);
         const path = [tokenIn.address,tokenOut.address]
-        
+        if(tokenIn.ticker === "WETH"){
+          
+        }
+        let e = event.target.value;
+        console.log(e)
+        setDexStates({...dexStates, amountIn:e})
         //onst decimals = tknOutD.decimals;
         //let amount
         //console.log(amount)
         const vall = ethers.utils.parseUnits(e,tokenIn.decimals);
         //const valInt = parseInt(Number(vall));
         const wall  = user.wallet ? user.wallet : zeroAddr;
-        const a = await getSwapData(vall,path,wall)
+        let res,oA, outAmountBG;
+        try {
+           const a = await getSwapData(vall,path,wall)
+           res =await a.json();
+        
+           if(a.ok){
+            outAmountBG =await ethers.BigNumber.from(res.toAmount);
+            oA = await ethers.utils.formatUnits(outAmountBG,tokenOut.decimals);
+            setStates({...states,data:res,amountOut:oA})
+          } 
+          if(!a.ok){
+            setStates({...states,data:null , amountOut:"ERROR OCURRED , RETRY TYPING"})
+            return
+          }
+        } catch (error) {
+          setStates({...states,data:null , amountOut:"ERROR OCURRED WHEN CALCULATING"})
+          console.log(error)
+        }
         //console.log(a);
         
-        const res =await a.json();
-        console.log(res)
-        const outAmountBG = ethers.BigNumber.from(res.toAmount);
-        const oA = ethers.utils.formatUnits(outAmountBG,tokenOut.decimals);
-        console.log(oA)
-        
-        setStates({...states,data:res,amountOut:oA})
-        //if(dexStates.amountIn){
-        //  amount = ethers.utils.parseUnits(dexStates.amountIn , decimals)
-        //}
-        //const amountsOut = await getAmountsOut(amount , path);
-        //const amt0 = ethers.utils.formatUnits(amountOut[0],decimals)
-        //const amt1 = ethers.utils.formatUnits(amountOut[1],decimals)
-       // console.log("REturn val:",amountsOut)
+      
     }
 
     const switchToken =()=>{
@@ -123,14 +135,12 @@ const Page = () => {
    
    
     return (
-    <>
-      <Navbar />
-      <div className="flex w-full h-full min-h-[49rem] md:min-h-[53rem] gap-[1rem] md:gap-[3rem] justify-between pt-[3rem] border-b-[3px] border-[#E5BD19] pb-[2rem] items-center bg-[#231F20] bg-cover flex-col p-[1rem] md:p-[4rem] md:pt-[3rem]">
-        {<div className="flex h-[12rem] md:h-[10rem] w-[95%] md:w-[90%] justify-center">
+      <div className="flex w-full h-full gap-[1rem] justify-between pt-[1.5rem] border-b-[3px] border-[#E5BD19] items-center bg-transparent bg-cover flex-col p-[1rem]">
+        {/*<div className="flex h-[12rem] md:h-[10rem] w-[95%] md:w-[90%] justify-center">
               <Image src={iceee} height={100} width={1000} className="object-cover flex rounded-lg justify-center"/> 
-  </div>}
-        <div className="w-[95%] lg:w-[40%] md:w-[75%] h-[38rem] md:h-[36rem] rounded-xl bg-[#352f31] bg-cover flex-col border-[#E5BD19] border-b drop-shadow-xl flex">
-          <div className="flex bg-[#E5BD19] w-full h-[10%] rounded-t-xl">
+    </div>*/}
+        <div className="w-[95%] md:w-[33rem] lg:w-[40rem] h-full rounded-xl bg-[#352f31] bg-cover flex-col border-[#E5BD19] border-b drop-shadow-xl flex">
+          <div className="flex bg-[#E5BD19] w-full h-[12%] rounded-t-xl">
             <h1 className="flex items-center w-full justify-center font-fredoka text-[35px] md:text-[45px] font-[700]">
               SWAP
             </h1>
@@ -167,22 +177,24 @@ const Page = () => {
               </div>
               <div className="w-full justify-center items-center flex">
                 <input
-                  type="text"
+                  type="number"
+                  
+                  min={0}
                   placeholder="Amount"
-                  className="w-full outline-none text-white px-4 bg-black h-[4rem] drop-shadow-lg md:h-[8rem] rounded-xl"
+                  className="w-full outline-none text-white px-4 bg-black h-[6rem] drop-shadow-lg md:h-[6rem] rounded-xl"
                   defaultValue={0}
                   value={dexStates.amountIn}
-                  onChange={(e) => setAmountIn(e.target.value)}
+                  onChange={(e) => setAmountIn(e)}
                 />
               </div>
             </div>
 
-            <div className="flex h-[13%] justify-center items-center">
+            <div className="flex h-[13%] mt-[1rem] justify-center items-center">
               <Image
               onClick={()=>switchToken()}
                 src={updown}
-                height={50}
-                width={50}
+                height={30}
+                width={30}
                 alt="UP DOWN"
                 className="drop-shadow-lg cursor-pointer hover:scale-105"
               />
@@ -220,12 +232,12 @@ const Page = () => {
                   placeholder="0.0"
                   value={states.amountOut}
                   readOnly={true}
-                  className="w-full outline-none text-white px-4 bg-black h-[4rem] drop-shadow-lg md:h-[8rem] rounded-xl"
+                  className="w-full outline-none text-white px-4 bg-black h-[6rem] drop-shadow-lg md:h-[6rem] rounded-xl"
                 />
               </div>
             </div>
           </div>
-          <div className="h-[10%] w-full  justify-center items-center flex pb-[2rem]">
+          <div className="h-[10%] w-full  justify-center items-center flex pb-[0.5rem]">
             <div
              
               className="p-[5px] pl-[12px] pr-[12px] text-black rounded-xl text-[22px] font-fredoka bg-[#E5BD19] font-[600]"
@@ -234,28 +246,11 @@ const Page = () => {
             </div>
           </div>
         </div>:
-        <div className={`h-full w-full flex flex-col items-center justify-center pb-[2rem]`}>
-        <div className='flex div-[10px]'>
-           <Image src={img} height={400} width={400} alt="Connect Wallet" className={`object-cover w-[380px] h-[380px] md:w-[400px]`}/>
-        </div>
-        <div className='text-white text-center rounded-lg text-[20px] font-bold flex flex-col items-center gap-[1rem] font-fredoka border-[2px] border-[#E5BD19] bg-[#231F20] div-[1rem]'>
-          <div className='animate-pulse'>WRONG NETWORK DETECTED !</div>
-          <div className='animate-pulse'>SWITCH TO BOB MAINNET & REFRESH THIS PAGE.</div>
-        </div>
-    </div>  
+          <WalletError/>
           }
         </div>
-
-        <p className="text-[15px] w-[95%] md:w-auto font-fredoka flex items-center bg-black text-white p-[5px] rounded-2xl ">
-          Powered By{" "}
-          <Link href={"https://icecreamswap.com"} target={'_blank'}>
-          <Image src={partnerInfo[1].logo} height={100} width={200} />{" "}
-          </Link>
-        </p>
       </div>
-      <Footer />
-    </>
   );
 };
 
-export default Page;
+export default Swap;

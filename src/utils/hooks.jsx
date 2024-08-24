@@ -1,7 +1,8 @@
 import React from "react";
 import { ethers } from "ethers";
-import { minter,pointCore , RampageV1, Skib } from "./constants";
+import { minter,pointCore , RampageV1, Skib , Lottery,SkibStake , wrappedRp } from "./constants";
 import { IceCream, BOB_MAINNET , IERC20ABI } from "./constants";
+
 
 export const changeNetwork =async(chainId)=>{
     try {
@@ -94,6 +95,26 @@ export const getMinterContract = async(account)=>{
     }
 }
 
+export const formatNumber =(numStr)=> {
+    // Parse the string to a number
+    let num = parseFloat(numStr);
+    
+    // Check if the parsed number is valid
+    if (isNaN(num)) {
+        return 'Invalid number';
+    }
+
+    if (num < 1000) {
+        return num.toString();
+    } else if (num >= 1000 && num < 1000000) {
+        return (num / 1000).toFixed(1) + 'K';
+    } else if (num >= 1000000 && num < 1000000000) {
+        return (num / 1000000).toFixed(1) + 'M';
+    } else {
+        return (num / 1000000000).toFixed(1) + 'B';
+    }
+}
+
 export const getNFTCa = async(account)=>{
     try {
         const nftAddr = "0x3efc90a28685d320f6916b76d8c679da67cc23dc"
@@ -114,6 +135,39 @@ export const getRpCoreContract = async(account)=>{
         return contract
     } catch (error) {
         console.log(error);
+    }
+}
+
+export const getLotteryContract = async(account)=>{
+    try {
+        const address = Lottery[0].address;
+        const abi = Lottery[0].abi;
+        const ca = connectContract(address,abi,account)
+        return ca;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getWrappedRPContract = async(account)=>{
+    try {
+        const address = wrappedRp[0].address;
+        const abi = wrappedRp[0].abi;
+        const ca = connectContract(address,abi,account)
+        return ca;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getStakingContract = async(account)=>{
+    try {
+        const address = SkibStake[0].address;
+        const abi = SkibStake[0].abi;
+        const ca = connectContract(address,abi,account)
+        return ca;
+    } catch (error) {
+        console.log(error)
     }
 }
 
@@ -144,6 +198,25 @@ export const connectContract = async (address, abi, account) => {
         return null;
     }
 };
+
+export const connectRPCCa = async(address , abi , account , rpc)=>{
+    try {
+
+        // Request account access if needed
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+        // Create a new Web3 provider and signer
+        const provider = new ethers.providers.JsonRpcProvider(rpc);
+        const signer = provider.getSigner(account);
+
+        // Connect to the contract
+        const contract = new ethers.Contract(address, abi, signer);
+        return contract;
+    } catch (error) {
+        console.error("Failed to connect to contract:", error);
+        return null;
+    }
+}
 
 export const connectMetamask = async()=>{
     try {
@@ -180,6 +253,20 @@ export const getEthBalance=async(account)=>{
 //            console.log(balanceInEth);
             return balanceInEth
         }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getHolderData = async()=>{
+    try {
+        const res = await fetch(`https://api.botsofbtc.com/holderList`);
+        //console.log(res)
+        if(res.ok){
+        const data = res.json();
+        //console.log(data)
+        return data;
+        } else return null
     } catch (error) {
         console.log(error)
     }

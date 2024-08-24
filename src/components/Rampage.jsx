@@ -8,16 +8,27 @@ import img from "../assets/lotterypage.png"
 import { useSearchParams } from 'next/navigation'
 import rimg from "../assets/rampagelogin.png"
 import { ethers } from 'ethers'
-import copyImg from "../assets/copy.svg"
+import NetworkError from './CARDS/NetworkError'
+import WalletError from './CARDS/WalletError'
+import RampageCard from "./CARDS/RampageCard"
 
 const Page = () => {
-  const {user,loaders,connectWallet, setRampageData, rampageData, createRPAccountZero,dailyMine ,rampageInitialized, getUserRampageData} = useContext(AppContext);
+  const {user,loaders,connectWallet, fusionData,setRampageData, rampageData, createRPAccountZero,dailyMine ,rampageInitialized, getUserRampageData} = useContext(AppContext);
   const sp = useSearchParams();
   const ref = sp.get('ref');
   console.log(ref)
   const zeroAddr = "0x0000000000000000000000000000000000000000"
   const [details , setDetails] = useState({});
   const [loading , setLoading] = useState(false);
+  const [exitVariants , setActiveVariants] = useState({
+    hidden: { opacity: 25, x: 100 },
+    visible: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -100 },
+})
+  const [states,setStates] = useState({
+    acNo:0,
+    activities:false
+  });
 
   const checkStat = async () => {
     if (user.wallet) {
@@ -96,41 +107,15 @@ const Page = () => {
   return (
     <>
     <Navbar/>
-    <div className=' bg-rp bg-cover bg-no-repeat w-full py-[1rem]'>
-        <div className='h-full py-[5rem] w-full flex flex-col items-center text-black'>
+    <div className=' flex flex-col items-center justify-center bg-rp2 md:bg-rp bg-cover bg-no-repeat w-full py-[0.2rem] h-full'>
+        <div className='h-full py-[1rem] w-full flex flex-col items-center text-black'>
             {user.wallet ? 
             <div className='flex flex-col items-center w-full h-full'>
               {user.correctChain ? 
               <div className='flex flex-col items-center h-full w-full justify-center'>
                   {details.initialized?
-                  <div className='flex flex-col items-center justify-center gap-[2rem] py-[2rem] border-[3px] border-black drop-shadow-xl hover:drop-shadow-2xl w-[90%] md:w-[75%] lg:mt-[100px] lg:w-[45%] h-[60%] md:h-[50%] bg-[#E5BD19] bg-cover bg-no-repeat rounded-lg'>
-                    <div className='flex flex-col items-center w-full gap-[14px] md:gap-[25px]'>
-                      <div className='font-fredoka text-[35px] md:text-[50px]] leading-[25px] font-extrabold'>WELCOME TO</div>
-                      <div className='font-fredoka text-[45px] md:text-[60px] leading-[30px] font-extrabold'>RAMPAGE</div>
-                    </div>
-                    <div className='flex flex-col items-center w-full gap-[20px] text-[18px] md:text-[25px]'>
-                      <div className='flex w-[90%] md:w-[80%] gap-[20px] lg:w-[70%] md:text-[25px] font-fredoka font-semibold flex-col py-[0.5rem] drop-shadow-lg bg-[black] text-[#E5BD19] px-[3rem] items-center rounded-lg'>
-                        <div className='flex w-full justify-center items-center gap-[8px]'>TOTAL USERS :{rampageData.totalUsers ? <div>{rampageData.totalUsers}</div> : "Loading..."}</div>
-                        <div className='flex w-full justify-center gap-[8px] items-center'>POINTS: {rampageData.totalRP ? <div>{rampageData.totalRP}</div> : "Loading..."} <span>$RP</span></div>
-                      </div>
-                    </div>
-
-                    <div className='w-[90%] md:w-[50%] gap-[10px] lg:w-[40%] text-[16px] md:text-[20px] font-nunito rounded-lg h-full flex flex-col'>
-                      <div>UserName : {rampageData.userName ? <>{rampageData.userName}</> : "Loading ..."}</div>
-                      <div>Your $RP Balances : {rampageData.userPoints} $RP</div>
-                      <div>SOBs Held : {rampageData.skibHeld ? <>{rampageData.skibHeld}</>: "0"} SOB</div>
-                      <div>Your Eligible RP/Day : {rampageData.pointPerDay ? <>{rampageData.pointPerDay}</>:"0"} RP</div>
-                      <div>RP Per Referal : {rampageData.pointPerRef ? <>{rampageData.pointPerRef}</>: "0"} RP</div>
-                      <div>Your Total Referals : {rampageData.totalRef ? <>{rampageData.totalRef}</>:"0"} Users</div>
-                      <div>Your Referal Link : <span onClick={()=>copyToClipboard()} className='bg-[#352f31] div-[5px] text-[#E5BD19] cursor-pointer text-[14px] flex items-center px-[10px] justify-between w-[90%] rounded-lg'>{`https://botsofbtc.com/rampage?...`} <Image src={copyImg} height={30} width={30} alt=""/> </span></div>
-                    </div>
-
-                    <div className='w-[90%] h-full flex flex-col items-center'>
-                        <button onClick={()=>dailyMine()} className={`${rampageData.mintEnable ? "bg-black text-[#E5BD19]" : "text-gray-600 bg-[#cda916] border-black"} px-[20px] py-[5px] drop-shadow hover:drop-shadow-xl rounded-2xl border cursor-pointer transition duration-500 ease-linear transform hover:scale-105 hover:border-red-500 border-[#E5BD19] text-[25px] font-fredoka font-[700]`}>
-                            {loaders.dailyLogin ? "Loading...": `Mine Daily RP`}
-                        </button>
-                    </div>
-                  </div>:
+                  <RampageCard rampageData={rampageData} copyToClipboard={copyToClipboard} dailyMine={dailyMine} loaders={loaders} variants={exitVariants} states={states} setStates={setStates}/>
+                  :
                   <div className='flex flex-col items-center justify-center gap-[2rem] py-[2rem] border-[3px] border-black transition duration-500 ease-linear transform hover:scale-105 hover:drop-shadow-2xl drop-shadow-2xl w-[90%] md:w-[75%] lg:w-[45%] h-[60%] md:h-[50%] lg:mt-[100px] bg-[#E5BD19] bg-cover bg-no-repeat rounded-lg'>
                   <div className='flex flex-col items-center w-full gap-[14px] md:gap-[25px]'>
                     <div className='font-fredoka text-[35px] md:text-[50px] leading-[25px] font-extrabold'>WELCOME TO</div>
@@ -157,28 +142,10 @@ const Page = () => {
                 </div>
                 }
               </div>:
-              <div className={`h-full w-[90%] flex flex-col items-center justify-evenly pb-[2rem]`}>
-              <div className='flex div-[10px]'>
-                 <Image src={img} height={400} width={400} alt="Connect Wallet" className={`object-cover w-[380px] h-[380px] md:w-[400px]`}/>
-              </div>
-              <div className='text-white text-center rounded-lg text-[20px] font-bold flex flex-col items-center gap-[1rem] font-fredoka border-[2px] border-[#E5BD19] bg-[#231F20] div-[1rem]'>
-                <div className='animate-pulse'>WRONG NETWORK DETECTED !</div>
-                <div className='animate-pulse'>SWITCH TO BOB MAINNET & REFRESH THIS PAGE.</div>
-              </div>
-          </div>  
+              <NetworkError/>
             }
             </div>:
-            <div className={`h-full w-full flex flex-col items-center justify-evenly pb-[2rem]`}>
-                <div className='flex div-[10px]'>
-                   <Image src={img} height={400} width={400} alt="Connect Wallet" className={`object-cover w-[380px] h-[380px] md:w-[400px]`}/>
-                </div>
-                <div className='text-white -mt-[2rem] rounded-lg text-[20px] font-bold font-fredoka border-[2px] border-[#E5BD19] bg-[#231F20] div-[1rem]'>
-                  <div className='animate-pulse'>OOPS WALLET NOT DETECTED !</div>
-                </div>
-                <div onClick={()=>connectWallet()} className='text-white rounded-lg cursor-pointer text-[20px] font-bold font-fredoka border-[2px] border-[#E5BD19] bg-[#231F20] div-[1rem]'>
-                  <div>CONNECT WALLET</div>
-                </div>
-            </div>
+            <WalletError/>
             }
             
             <div className=''>

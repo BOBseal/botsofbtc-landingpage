@@ -19,9 +19,9 @@ const HomeV2 = () => {
       <Navbar/>
       <>
       <HM/>
-      <SobBanner/>
-      <TxtSlider />
+      <RampageHome/>
       <Partners />
+      <TxtSlider />
       <FusionInvite/>
       <Team />
       <Footer />

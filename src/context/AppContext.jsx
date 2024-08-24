@@ -1,7 +1,7 @@
 'use client'
 
 import React, {useState , useEffect} from "react"
-import {BOB_MAINNET, IceRouterAbi , IceRouterAddress, IceCream} from "../utils/constants"
+import {BOB_MAINNET, IceRouterAbi , IceRouterAddress, IceCream,Skib} from "../utils/constants"
 import { ethers } from "../../node_modules/ethers/lib/index"
 import { 
     addNetwork,
@@ -21,7 +21,9 @@ import {
     getNFTCa,
     getErc20CA,
     getErc20Balances,
-    getIceContract
+    formatNumber,
+    getIceContract,
+    connectRPCCa
  } from "../utils/hooks"
  import { supportedList } from "@/configs/config"
 
@@ -35,10 +37,12 @@ export const AppProvider =({children})=>{
 
     const [user , setUser] = useState({});
     const [act , setAct] = useState(0);
+    const [utils , setUtils] = useState(0);
     const [states, setStates] = useState({
         mobileMenuOpen: false ,
         contentsSubmenuOpen: false,
       })
+    const projectCode = "lqh3jh"
     const [fusionData, setFusionData] = useState({})
     const zeroAddr = "0x0000000000000000000000000000000000000000"
     const [dexStates , setDexStates] = useState({
@@ -67,12 +71,15 @@ export const AppProvider =({children})=>{
                 const res =await walletSign("BOTS OF BITCOIN wants you to sign in and confirm wallet ownership. ARE YOU FRIKKIN READY TO RAMPAGE !!?" , accounts.wallet);                
          
                 if(res)
-                {    setUser({...user , wallet:accounts.wallet , chainId: chainId , correctChain: correctChain});
+
+                {   
+                    const ethBalances = await getEthBalance(accounts.wallet); 
+                    setUser({...user , wallet:accounts.wallet , chainId: chainId , correctChain: correctChain , ethBalance: ethBalances});
                     const tokenIn = findTokenByTicker(dexStates.tokenIn);
                     const tokenOut = findTokenByTicker(dexStates.tokenOut);
                     let tokenInBalances,tokenOutBalances;
                     if(tokenIn.address === zeroAddr){
-                        tokenInBalances = await getEthBalance(accounts.wallet);
+                        tokenInBalances = ethBalances;
                     }
                     if(tokenOut.address === zeroAddr){
                         tokenOutBalances = await getEthBalance(accounts.wallet);
@@ -105,11 +112,23 @@ export const AppProvider =({children})=>{
         }
     }
 
+    function getPartnerByName(partners, name) {
+        // Find the partner object with the matching name
+        const partner = partners.find(partner => partner.name === name);
+        
+        // Return the found partner object or null if not found
+        return partner || null;
+      }
+
     const getFusionData=async()=>{
     try {
         const res = await fetch("https://fusion-api.gobob.xyz/partners");
         const data = await res.json();
-        setFusionData({...fusionData, apiResponse: data, ok: res.ok})
+        const ourProject = getPartnerByName(data.partners,"BOTS OF BITCOIN");
+        console.log(ourProject)
+        const ourPoints = ourProject.total_points;
+        const nnnn = formatNumber(ourPoints);
+        setFusionData({...fusionData, apiResponse: data, ok: res.ok , projectData:ourProject, totalPoints:nnnn});
         console.log(data)
     } catch (error) {
         console.log(error)
@@ -238,6 +257,7 @@ export const AppProvider =({children})=>{
                 const pd = parseInt(Number(userRpPerDay));
                 const up = parseInt(Number(userPoints));
                 const nt = parseInt(Number(nextSignTime));
+                const dateTime= unixToGeneralTime(nt)
                 const skb = parseInt(Number(balSk));
                 const ppf = parseInt(Number(prf));
                 setRampageData({ ... rampageData,
@@ -246,7 +266,7 @@ export const AppProvider =({children})=>{
                     pointPerDay: pd, 
                     userPoints:up,
                     userName:userName,
-                    nextTime: nt,
+                    nextTime: dateTime,
                     skibHeld:skb,
                     mineEnable:intSt < unixTimestamp ? true:false,
                     totalRef : ss,
@@ -295,7 +315,12 @@ export const AppProvider =({children})=>{
             //tt.then(async()=>{
                 setLoaders({...loaders, swap:"Swapping"});
                 const exec = await ca.swap(dataObj.tx.to,dataObj.tx.data,token,amount,{value:dataObj.tx.value});
-                exec.wait(1).then(async(a)=>{alert(`swap complete txhash: ${exec.hash}`);})
+                exec.wait(1).then(async(a)=>{
+                    alert(`swap complete txhash: ${exec.hash}`);
+                    const tokenInBal = await getErc20Balances(dexStates.tokenIn, user.wallet);
+                    const tokenOutBal = await getErc20Balances(dexStates.tokenOut, user.wallet);
+                    setDexStates({...dexStates,inBalance:tokenInBal ,outBalance:tokenOutBal})
+                })
                 setLoaders({...loaders, swap:""});
                 return exec
                 //console.log(exec)
@@ -313,12 +338,17 @@ export const AppProvider =({children})=>{
         }
     }
 
+    useEffect(() => {
+        
+    }, [])
+    
+
     ////////////////////////////////////////////
 
     return(
         <>
         <AppContext.Provider value={{connectWallet, dailyMine,user, act ,mintStarted, fusionData,setAct, states, setStates, openMobileMenu, getFusionData , getSupplyLeft , dexStates , setDexStates,
-        getCurrentRound, getUserMints, setSobMint, sobMint, mintMulti , rampageData, setRampageData, createRPAccountZero , rampageInitialized , getUserRampageData, loaders, executeSwap
+        getCurrentRound, getUserMints,utils,setUtils, setSobMint, sobMint, mintMulti , rampageData, setRampageData, createRPAccountZero , rampageInitialized , getUserRampageData, loaders, executeSwap
         }}>
             {children}
         </AppContext.Provider>
