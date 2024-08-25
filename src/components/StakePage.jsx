@@ -243,8 +243,8 @@ const StakePage = () => {
               <h1 className='text-[#E5BD19] font-fredoka text-[28px] font-bold'>SKIBBIDI STAKING 1.0</h1>
             </div>
             <div className='flex flex-col items-center justify-between py-[1rem] px-[1.5rem] text-white font-nunito pb-[1.5rem] lowercase'>
-              <p className='w-full '>Stake your IDLE <span className='uppercase'>Skibbidies Of Bitcoin</span> to get <span className='uppercase'>RP</span>s .It is Important to note that <span className='uppercase'>RP</span>s generated from Staking are in a Wrapped Format & Needs to be 
-              Unwrapped for being included into <span className='uppercase'>Spice</span> Distributions based on <span className='uppercase'>RP</span> holdings & unclaimed w<span className='uppercase'>RP</span> are lost upon Unstaking</p>
+              <p className='w-full '><span className='uppercase'>S</span>take your IDLE <span className='uppercase'>Skibbidies Of Bitcoin</span> to get <span className='uppercase'>RP</span>s . <span className='uppercase'>I</span>t is Important to note that <span className='uppercase'>RP</span>s generated from Staking are in a Wrapped Format & Needs to be 
+              Unwrapped for being included into <span className='uppercase'>Spice</span> Distributions based on <span className='uppercase'>RP</span> holdings & unclaimed w<span className='uppercase'>RP</span> are lost upon Unstaking.</p>
             </div>
           </div>}
       </div>
