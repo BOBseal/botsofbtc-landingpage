@@ -62,6 +62,7 @@ export const AppProvider =({children})=>{
         amount:1
     })
     const [rampageData,setRampageData] = useState({})
+    const [lotteryData,setLotteryData]= useState({})
     const connectWallet = async()=>{
         try {
             const accounts = await connectMetamask();
@@ -348,7 +349,8 @@ export const AppProvider =({children})=>{
     return(
         <>
         <AppContext.Provider value={{connectWallet, dailyMine,user, act ,mintStarted, fusionData,setAct, states, setStates, openMobileMenu, getFusionData , getSupplyLeft , dexStates , setDexStates,
-        getCurrentRound, getUserMints,utils,setUtils, setSobMint, sobMint, mintMulti , rampageData, setRampageData, createRPAccountZero , rampageInitialized , getUserRampageData, loaders, executeSwap
+        getCurrentRound, getUserMints,utils,setUtils, setSobMint, sobMint, mintMulti , rampageData, setRampageData, createRPAccountZero , rampageInitialized , getUserRampageData, loaders, executeSwap,
+        lotteryData,setLotteryData
         }}>
             {children}
         </AppContext.Provider>

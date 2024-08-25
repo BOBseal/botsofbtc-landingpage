@@ -2,7 +2,8 @@
 import React from 'react'
 import Image from '../../../node_modules/next/image'
 import copyImg from "../../assets/copy.svg"
-import DailyLogin from "@/components/Activities/DailyLogin.jsx" 
+import DailyLogin from "@/components/Activities/DailyLogin.jsx"
+import Lottery from "@/components/Activities/Lottery.jsx" 
 import l from "../../assets/leftArrow.png"
 import r from "../../assets/rightArrow.png"
 import SwapAc from "../Activities/SwapAc"
@@ -82,7 +83,7 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
                         >
                     {states.acNo == 0 ? <DailyLogin dailyMine={dailyMine} data={rampageData} loaders={loaders}/> :""}
                     {states.acNo == 1 ? <SwapAc/> :""}
-                    {states.acNo == 2 ? <DailyLogin/> :""}
+                    {states.acNo == 2 ? <Lottery/> :""}
                     {states.acNo == 3 ? <DailyLogin/> :""}
                     {states.acNo == 4 ? <DailyLogin/> :""}
                     {states.acNo == 5 ? <DailyLogin/> :""}
@@ -111,7 +112,7 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
                         >
                     {states.acNo == 0 ? <DailyLogin dailyMine={dailyMine} data={rampageData} loaders={loaders}/> :""}
                     {states.acNo == 1 ? <SwapAc/> :""}
-                    {states.acNo == 2 ? <DailyLogin/> :""}
+                    {states.acNo == 2 ? <Lottery/> :""}
                     {states.acNo == 3 ? <DailyLogin/> :""}
                     {states.acNo == 4 ? <DailyLogin/> :""}
                     {states.acNo == 5 ? <DailyLogin/> :""}
