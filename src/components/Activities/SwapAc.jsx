@@ -3,7 +3,7 @@ import Swap from "../Swap.jsx"
 
 const SwapAc = () => {
   return (
-    <div className='flex w-full h-[42rem]'>
+    <div className='flex w-full h-[42rem] md:h-[40rem]'>
         <Swap/>
     </div>
   )
