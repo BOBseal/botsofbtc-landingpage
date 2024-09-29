@@ -4,14 +4,11 @@
 import { useState, useEffect } from 'react'
 //import { Card, CardContent } from "@/components/ui/card"
 
-type CountdownTimerProps = {
-  targetDate: string
-}
 
-export default function CountdownTimer({ targetDate }: CountdownTimerProps = { targetDate: '2024-12-31' }) {
+export default function CountdownTimer({ targetDate }= { targetDate: '2024-12-31' }) {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
 
-  function parseTargetDate(dateString: string): Date {
+  function parseTargetDate(dateString){
     const [year, month, day, hour, minute] = dateString.split('-').map(Number)
     return new Date(Date.UTC(year, month - 1, day, hour, minute))
   }
