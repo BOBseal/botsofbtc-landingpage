@@ -51,6 +51,7 @@ export const sectionText = [
         h3:"BOTS OF BITCOIN <> BOB FUSION",
         p3:"As Fusion Partners Users who Interact with BOTS OF BITCOIN's PFP Mints , Lottery Pools and Rampage Event Tasks are eligible to Earn BONUS SPICE along with RP (on certain activities). RP and SPICE is Distributed Actively on any given Interactions. More Details will be announced soon , Stay Tuned !"
     },
+    /*
     {
         sectionName : "utility",
         h1:"BOTS OF BITCOIN PFP UTILITY & BENIFITS :",
@@ -71,6 +72,7 @@ export const sectionText = [
             "SPICE Bonus : Minters would be eligible to claim SPICE points based on Minted Count & Referals done."
         ],
     },
+    
     {
         sectionName:"oilpots",
         h1: "OIL POTS (LOTTERY)",
@@ -133,6 +135,7 @@ export const sectionText = [
         h4: "Total Supply : 690,000,000 (690 Million) $BOTS",
         p5 :"Upto a total of 50% of all Revenue Generated in the Plaform (in BTC) is used to Buy-Back $BOTS and Distributed back to Ecosystem Contributors such as Stakers. Ecosystem Allocation is Utilized for Liquidity , Partnerships , Future Events and it's Utilization will be decided by Community through Voting."
     },
+    */
 ]
 
 const tokenomics = {
