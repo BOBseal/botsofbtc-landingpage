@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 'use client'
 import React,{useContext , useEffect, useState} from 'react'
 import { useSearchParams } from 'next/navigation'
