@@ -55,7 +55,7 @@ export const BOBNFT =[
 
 export const BOBMinter = [
     {
-        address:"0x23eC5c93737931DC0eE53d819E2cDcdDed89E333",
+        address:"0xf3Ec7a501e3E7A181B88Aa7b901001591ac30f8a",
         abi:BOBMINTERJSON.abi
     }
 ]

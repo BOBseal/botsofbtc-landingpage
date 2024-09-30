@@ -75,27 +75,11 @@ const BOBMint=()=>{
         }
     }
     
-    const mintWL=async()=>{
+    const mint=async()=>{
         try {
             
         } catch (error) {
-            console.log(error);
-        }
-    }
-
-    const mintWaitlist=async()=>{
-        try {
-            
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    const mintPublic=async()=>{
-        try {
-            
-        } catch (error) {
-            console.log(error);
+            console.log(error)
         }
     }
 
@@ -161,7 +145,7 @@ const BOBMint=()=>{
                             several utilities & be of use for several services in the platform. They are also set apart by the fact that each BOTS OF BITCOIN PFP can 
                             Transform its looks to look like other select NFT Collections. In future BOTS OF BITCOIN NFTs may also serve as licensing for any node/DLT features launched.
                         </div>
-                        <div className='px-[2.5rem] text-[20px] font-bold'>
+                        <div className='px-[2.5rem] text-[20px] font-bold font-fredoka'>
                             <li>Dynamic PFPs</li>
                         
                             <li>Governance</li>
@@ -179,18 +163,21 @@ const BOBMint=()=>{
                     </div>
                     
                     <div className='flex flex-col w-full h-full'>
-                        <div className='p-[1.5rem]'>
-                            Minting Process of BOTS OF BITCOIN collection will follow 2 stages, Waitlist Mint & Public Mint
+                        <div className='px-[1.5rem] py-[1.5rem] text-[20px] font-nunito flex-wrap text-wrap'>
+                            Minting Process of BOTS OF BITCOIN collection will follow 2 stages, Waitlist Mint & Public Mint. Users who have either held or staked 
+                            SOB are eligible for a guaranteed entry & discount upto 50% on Mint Price during Waitlist Mint stage. Moreover 10 Random Lucky NFTs minted will
+                            stand a chance to share 10% of entire raised amount in ETH , each Minted is counted as Entry Ticket. There is also a Referal Program where 
+                            you can Earn 5% of your referal's mints in ETH.Minter addresses are counted as Early Supporters & are eligible for future bonuses.
                         </div>
-                        <div className='p-[1.5rem] text-[20px] font-bold '>
-                            <li className='px-[15px] py-[10px]'>Waitlist Mint Time: 14:30 UTC 7 Oct</li>
-                            <li className='px-[15px] py-[10px]'>Public Mint Time: 14:30 UTC 8 Oct</li>
-                            <li className='px-[15px] py-[10px]'>Mint Price : 0.02 ETH</li>
-                            <li className='px-[15px] py-[10px]'>6.9% Royalties for ID's Minter - ERC2981 Compliant Marketplaces only.</li>
-                            <li className='px-[15px] py-[10px]'>1% Discount for each SOB held, upto 50%.</li>
-                            <li className='px-[15px] py-[10px]'>Earn 5% of mint cost from referal mints.</li>
-                            <li className='px-[15px] py-[10px]'>Early Supporter Role for Minters.</li>
-                            <li className='px-[15px] py-[10px]'>10 Random BOTs Minted & its Owners can win a lucky draw.</li>
+                        <div className='px-[1.5rem] text-[20px] font-bold font-fredoka'>
+                            <li className='px-[15px] py-[8px]'>Waitlist Mint Time: 14:30 UTC 7 Oct</li>
+                            <li className='px-[15px] py-[8px]'>Public Mint Time: 14:30 UTC 8 Oct</li>
+                            <li className='px-[15px] py-[8px]'>Mint Price : 0.02 ETH</li>
+                            <li className='px-[15px] py-[8px]'>6.9% Royalties for ID's Minter - ERC2981 Compliant Marketplaces only.</li>
+                            <li className='px-[15px] py-[8px]'>1% Discount for each SOB held, upto 50%.</li>
+                            <li className='px-[15px] py-[8px]'>Earn 5% of mint cost from referal mints.</li>
+                            <li className='px-[15px] py-[8px]'>Early Supporter Role for Minters.</li>
+                            <li className='px-[15px] py-[8px]'>10 Random BOTs Minted & its Owners can win a lucky draw.</li>
                         </div>
                     </div>
 
