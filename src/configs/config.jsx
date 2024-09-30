@@ -51,6 +51,7 @@ export const sectionText = [
         h3:"BOTS OF BITCOIN <> BOB FUSION",
         p3:"As Fusion Partners Users who Interact with BOTS OF BITCOIN's PFP Mints , Lottery Pools and Rampage Event Tasks are eligible to Earn BONUS SPICE along with RP (on certain activities). RP and SPICE is Distributed Actively on any given Interactions. More Details will be announced soon , Stay Tuned !"
     },
+    
     {
         sectionName : "utility",
         h1:"BOTS OF BITCOIN PFP UTILITY & BENIFITS :",
@@ -62,15 +63,19 @@ export const sectionText = [
                 "Discounts and Bonuses - BOB Collection holders also enjoy many Discounts on Platform Service Fees and Bonuses on many Events and Products in the Ecosystem.",
                 "Platform Revenue Sharing - BOB Collection holders are eligible to earn upto 30% of Platform Revenue through Staking their pfps.",
                 "Token Incentives - Upto a Total of 2% Supply Reserved for NFT Holders.",
+                "Dynamic PFPs - BOTS OF BITCOIN (BOB) PFPs are dynamic in nature and are able to store limitless amounts of Looks/Transformations that includes but are not limited to Other NFT Collections , Artworks, On-Chain Avatars . Look Packs & Avatars will be launched in the future.",
                 "More Added as we Grow & Through Community approvals."
         ],
         h3:"Genesis Minter Benifits :",
         h3a:[
-            "6.9% Royalties Forever : All addresses which participate in the Genesis Mint and mints a PFP are eligible to Earn 6.9% Royalty from secondary sales of their minted PFPs Forever!",
+            "6.9% Royalties Forever : All addresses which participate in the Genesis Mint and mints a PFP are eligible to Earn 6.9% Royalty from secondary sales of their minted PFPs Forever! ERC2981 Supported Marketplaces Sales only",
             "Early Supporter : Will be counted as an Early Supporter and recieve many benifits in the future.",
-            "SPICE Bonus : Minters would be eligible to claim SPICE points based on Minted Count & Referals done."
+            "Grand Lucky Draw : 10 Random NFTs minted will be eligible to claim a Pool of 10% of all Sales and the end of the Mints",
+            "SPICE Bonus : New Spice Distribution Rules in Accordance with BOB Fusion S3 will be announced on Socials."
         ],
     },
+
+   /*
     {
         sectionName:"oilpots",
         h1: "OIL POTS (LOTTERY)",
@@ -133,6 +138,7 @@ export const sectionText = [
         h4: "Total Supply : 690,000,000 (690 Million) $BOTS",
         p5 :"Upto a total of 50% of all Revenue Generated in the Plaform (in BTC) is used to Buy-Back $BOTS and Distributed back to Ecosystem Contributors such as Stakers. Ecosystem Allocation is Utilized for Liquidity , Partnerships , Future Events and it's Utilization will be decided by Community through Voting."
     },
+    */
 ]
 
 const tokenomics = {

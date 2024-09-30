@@ -1,6 +1,6 @@
 import React from "react";
 import { ethers } from "ethers";
-import { minter,pointCore , RampageV1, Skib , Lottery,SkibStake , wrappedRp } from "./constants";
+import { minter,pointCore , RampageV1, Skib , Lottery,SkibStake , wrappedRp, BOBMinter,BOBNFT } from "./constants";
 import { IceCream, BOB_MAINNET , IERC20ABI } from "./constants";
 
 
@@ -29,6 +29,7 @@ export const addNetwork =async(networkConfig)=>{
         }
     }
 }
+
 
 export const getIceContract =async(addr)=>{
     try {
@@ -132,6 +133,28 @@ export const getRpCoreContract = async(account)=>{
         const abi = pointCore[0].abi;
         const contract = connectContract(addr,abi,account);
         //console.log(`RP CORE Ca = ${addr}, OBJ = ${contract}`);
+        return contract
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const getBobMinterCa=async(account)=>{
+    try {
+        const addr = BOBMinter[0].address;
+        const abi = BOBMinter[0].abi;
+        const contract = connectContract(addr,abi,account);
+        return contract
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getBobNftCa=async(account)=>{
+    try {
+        const addr = BOBNFT[0].address;
+        const abi = BOBNFT[0].abi;
+        const contract = connectContract(addr,abi,account);
         return contract
     } catch (error) {
         console.log(error);

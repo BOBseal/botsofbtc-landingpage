@@ -7,6 +7,8 @@ import JJ from "./ABIS/ERC20.json"
 import Lotto from "./ABIS/Lottery.json"
 import wrappRp from "./ABIS/WrappedRP.json"
 import stake from './ABIS/StakingRP.json'
+import BOBNFTJSON from "./ABIS/BOTSOFBITCOIN.json";
+import BOBMINTERJSON from "./ABIS/NFTMinter.json";
 
 export const BOB_MAINNET = [
     {
@@ -41,6 +43,20 @@ export const minter =[
     {
         address:'0xaeF1425a798A3205520706ABbfC5FF8Ed6142Bc5',
         abi:MintAbi
+    }
+]
+
+export const BOBNFT =[
+    {
+        address:"0xbbd700C856c5e0936E7F6b426B6F168C2a77640e",
+        abi:BOBNFTJSON.abi
+    }
+]
+
+export const BOBMinter = [
+    {
+        address:"0xf5BaeBfe5F8C0AA829c482BF62b20a3c82959b4F",
+        abi:BOBMINTERJSON.abi
     }
 ]
 
