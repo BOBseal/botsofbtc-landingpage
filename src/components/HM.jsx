@@ -37,7 +37,7 @@ const HM = () => {
             <div className={st.h2}>
             BOTS OF BITCOIN is a Collection of 10k Unique Revenue Sharing BOT PFPs with Utility on BOB. Mint one and Earn 6.9% Royalties on your Minted PFPs Forever and a Bonus Airdrop of Platform Tokens!
             <div className=' text-[#E5BD19] md:pt-[15px]  hover:scale-105 flex flex-col justify-center items-center pt-[20px] md:pt-[20px]'>
-                <Link href={'/'} target={'_blank'}><button className='font-nunito rounded-2xl text-[22px] text-[28px] border shadow-lg border-[#E5BD19] px-[20px] lg:px-[40px] py-[6px] font-800 bg-[#231F20]'>MINT 0.02 ETH</button></Link>
+                <Link href={'/mint'} target={'_blank'}><button className='font-nunito rounded-2xl text-[22px] text-[28px] border shadow-lg border-[#E5BD19] px-[20px] lg:px-[40px] py-[6px] font-800 bg-[#231F20]'>MINT 0.02 ETH</button></Link>
             </div>
             </div>    
         </div>
