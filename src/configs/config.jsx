@@ -51,7 +51,7 @@ export const sectionText = [
         h3:"BOTS OF BITCOIN <> BOB FUSION",
         p3:"As Fusion Partners Users who Interact with BOTS OF BITCOIN's PFP Mints , Lottery Pools and Rampage Event Tasks are eligible to Earn BONUS SPICE along with RP (on certain activities). RP and SPICE is Distributed Actively on any given Interactions. More Details will be announced soon , Stay Tuned !"
     },
-    /*
+    
     {
         sectionName : "utility",
         h1:"BOTS OF BITCOIN PFP UTILITY & BENIFITS :",
@@ -74,7 +74,8 @@ export const sectionText = [
             "SPICE Bonus : New Spice Distribution Rules in Accordance with BOB Fusion S3 will be announced on Socials."
         ],
     },
-    
+
+   /*
     {
         sectionName:"oilpots",
         h1: "OIL POTS (LOTTERY)",
