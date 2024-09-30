@@ -63,13 +63,15 @@ export const sectionText = [
                 "Discounts and Bonuses - BOB Collection holders also enjoy many Discounts on Platform Service Fees and Bonuses on many Events and Products in the Ecosystem.",
                 "Platform Revenue Sharing - BOB Collection holders are eligible to earn upto 30% of Platform Revenue through Staking their pfps.",
                 "Token Incentives - Upto a Total of 2% Supply Reserved for NFT Holders.",
+                "Dynamic PFPs - BOTS OF BITCOIN (BOB) PFPs are dynamic in nature and are able to store limitless amounts of Looks/Transformations that includes but are not limited to Other NFT Collections , Artworks, On-Chain Avatars . Look Packs & Avatars will be launched in the future.",
                 "More Added as we Grow & Through Community approvals."
         ],
         h3:"Genesis Minter Benifits :",
         h3a:[
-            "6.9% Royalties Forever : All addresses which participate in the Genesis Mint and mints a PFP are eligible to Earn 6.9% Royalty from secondary sales of their minted PFPs Forever!",
+            "6.9% Royalties Forever : All addresses which participate in the Genesis Mint and mints a PFP are eligible to Earn 6.9% Royalty from secondary sales of their minted PFPs Forever! ERC2981 Supported Marketplaces Sales only",
             "Early Supporter : Will be counted as an Early Supporter and recieve many benifits in the future.",
-            "SPICE Bonus : Minters would be eligible to claim SPICE points based on Minted Count & Referals done."
+            "Grand Lucky Draw : 10 Random NFTs minted will be eligible to claim a Pool of 10% of all Sales and the end of the Mints",
+            "SPICE Bonus : New Spice Distribution Rules in Accordance with BOB Fusion S3 will be announced on Socials."
         ],
     },
     
