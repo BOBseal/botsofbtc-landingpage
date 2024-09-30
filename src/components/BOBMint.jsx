@@ -19,6 +19,7 @@ import { ethers } from 'ethers'
 
 
 const BOBMint=()=>{
+    const totalSupply = 10000;
     const {user,connectWallet} = useContext(AppContext);
     const [data,setData] = useState({});
 
@@ -35,6 +36,8 @@ const BOBMint=()=>{
             const mCost = await mintCa.mintCost();
             const mintCostDefault = ethers.utils.formatEther(mCost);
             const dCost = await mintCa._calculateDiscount(user.wallet);
+            const nextIdToMint = await mintCa._nextIdToMint();
+            const totalLeft = totalSupply - Number(nextIdToMint);
             const actualMintCost = ethers.utils.formatEther(dCost);
             const mData = await mintCa.getMinterData(user.wallet);
             const publicMintsNo = Number(mData[0])
@@ -65,7 +68,9 @@ const BOBMint=()=>{
                 isWhitelisted:isWhitelisted,
                 referalBonus:referalBonus,
                 sobOwned:Number(totalSOBOwned),
-                smartBalances:minterBalances
+                smartBalances:minterBalances,
+                nextId:Number(nextIdToMint),
+                mintsLeft:totalLeft
             }
             setData(obj);
             //console.log(totalSOBOwned);
