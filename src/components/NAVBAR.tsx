@@ -67,6 +67,10 @@ const Navbar: React.FC<NavbarProps> = () => {
           <Link href={'/'}>
           <button className='lg:text-[22px] md:text-[18px] font-nunito font-semibold hover:scale-105'>Home</button> 
           </Link>
+
+          <Link href={'/mint'}>
+          <button className='lg:text-[22px] md:text-[18px] font-nunito font-semibold hover:scale-105'>Mint BOB</button> 
+          </Link>
           <Link href={'/rampage'} target={'_blank'}>
           <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105'>Rampage</button>
           </Link>
@@ -107,6 +111,9 @@ const MobileNav :React.FC <NavbarProps>=({openMobileMenu , userWallet, connectWa
         <div className='flex flex-col h-[80%] justify-center gap-[2rem]'>
         <Link href={'/'}>
           <button className=' font-nunito text-black text-[20px]' onClick={()=>openMobileMenu()}>Home</button> 
+          </Link>
+          <Link href={'/mint'} target={'_blank'}>
+          <p  className=' font-nunito text-black text-[20px]'>Mint BOB</p>
           </Link>
           <Link href={'/rampage'} target={'_blank'}>
           <p  className=' font-nunito text-black text-[20px]'>Rampage</p>
