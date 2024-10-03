@@ -26,7 +26,7 @@ const Page = () => {
     exit: { opacity: 0, x: -100 },
 })
   const [states,setStates] = useState({
-    acNo:0,
+    acNo:2,
     activities:false
   });
 

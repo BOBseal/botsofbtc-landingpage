@@ -161,10 +161,10 @@ export const getBobNftCa=async(account)=>{
     }
 }
 
-export const getLotteryContract = async(account)=>{
+export const getLotteryContract = async(account,token)=>{
     try {
-        const address = Lottery[0].address;
-        const abi = Lottery[0].abi;
+        const address = Lottery[token].address;
+        const abi = Lottery[token].abi;
         const ca = connectContract(address,abi,account)
         return ca;
     } catch (error) {

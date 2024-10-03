@@ -17,6 +17,11 @@
   }
 }
 
+.text-stroke {
+  color: black; /* Make the text transparent */
+  -webkit-text-stroke: 3px #E5BD19; /* Black stroke */
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

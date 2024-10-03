@@ -71,9 +71,13 @@ export const RampageV1 = [
     {address:"0xC4f681699CCDfFB26be46f1E109896cBb13cF18F" , abi:RAMP.abi}
 ]
 
-export const Lottery = [
-    {lotteryValue:3 , address:"0x781045DFE60068B3DE75e9Ba7AB535d2D991E343" , abi:Lotto.abi}
-]
+export const Lottery = {
+    "0x236f8c0a61dA474dB21B693fB2ea7AAB0c803894":{address:"0x4A0E0dfc66c8995708c3499559374a0A2e260a1e" , abi:Lotto.abi},
+    "0x03C7054BCB39f7b2e5B2c7AcB37583e32D70Cfa3":{address:"0x5393B1d1bA6058Ceb42E012036161E30ACD0825c" , abi:Lotto.abi},
+    "0xe75D0fB2C24A55cA1e3F96781a2bCC7bdba058F0":{address:"0xF617A31A61E3d02CcEF4eC11202d377eDB2b84D7" , abi:Lotto.abi},
+    "0x4200000000000000000000000000000000000006":{address:"0x228D6B4c1DA545422B05b2d8cC21a608E4619c93" , abi:Lotto.abi},
+    "0xc5d16A63ac69591BDC10912ee49aB5FAa3FEC5Ea":{address:"0x6e921afBEdf8CAcC77e3Ae4Ab144B972550B6BD8" , abi:Lotto.abi},
+}
 
 export const wrappedRp =[
     {address:"0xc5d16A63ac69591BDC10912ee49aB5FAa3FEC5Ea",abi:wrappRp.abi}
