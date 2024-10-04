@@ -95,7 +95,7 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
                 </div> :""}
 
                 {/* Desktop */}
-                <div className='md:flex hidden flex-col justify-center gap-[10px] items-center w-full h-full overflow-y-scroll'>
+                <div className='md:flex hidden flex-col justify-center gap-[10px] items-center w-full h-full'>
                     <div className='w-[90%] md:w-[60%] lg:w-[48%] h-full flex justify-between'>
                        <button className='text-white md:ml-[30px] flex' onClick={()=> goLeft()}><Image src={l} height={30} width={30} alt="pcbutton" className="hover:scale-125"/></button>
                        <button className='text-white md:mr-[30px] flex' onClick={()=> goRight()}><Image src={r} height={30} width={30} alt="pcbutton" className="hover:scale-125"/></button>

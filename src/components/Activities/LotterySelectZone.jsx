@@ -88,11 +88,11 @@ const LotterySelectZone=()=>{
                             </div>
                             <div className="flex flex-col overflow-auto w-fulll h-full w-full border-x-[2px] rounded-xl bg-[#231F20]">
                                 {listData.length ? 
-                                    <div className="w-full h-full gap-[15px] flex shadow-2xl flex-col overflow-auto p-[15px]">
+                                    <div className="w-full h-full gap-[15px] flex shadow-2xl flex-col p-[15px]">
                                         {listData.map((data)=>(
                                             <div onClick={()=> selectTokenHandler(data.address)} className="flex border-b-[#E5BD19] border-r-[#E5BD19] gap-[15px] border-b-[3px] border-r-[3px] rounded-2xl drop-shadow-2xl w-full min-h-[14rem] items-center cursor-pointer justify-between" key={data.address}>
                                                 <div className="w-[30%] h-full flex justify-center items-center">
-                                                    <Image src={placeHolderImg} width={100} height={100} alt="Logo"/>
+                                                    <Image src={data.image} width={65} height={65} alt="Logo" className="rounded-full"/>
                                                 </div>
                                                 <div className="h-full items-center flex flex-col w-[70%] py-[1.5rem] justify-center">
                                                     <h3 className="font-fredoka font-bold text-[#E5BD19] text-[32px] pb-[0.3rem]">{data.ticker}</h3>

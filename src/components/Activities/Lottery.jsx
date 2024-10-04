@@ -211,16 +211,15 @@ const LotteryPage = ({tokenAddress,_Function}) => {
     
     
     return (
-        <div className='flex justify-center items-center px-[1.3rem] w-[90%] md:w-[70%] lg:w-[45%] h-[35rem]'>
+        <div className='flex justify-center items-center px-[1.3rem] w-[90%] md:w-[70%] lg:w-[45%] h-[35rem] md:h-[28rem]'>
            <div className='flex bg-[#231F20] w-full flex-col h-full border-b-[3px] border-r-[3px] rounded-2xl'>
                 <div className='flex-col overflow-y-scroll flex items-center justify-between w-full h-full'>
                     <div className='flex w-full h-full justify-between items-center' >
-                        <div className='flex pl-[1rem] h-[60px] w-[60px] pt-[1rem]'>
+                        <div className='flex pl-[1rem] h-[40px] w-[40px] pt-[1rem]'>
                             <Image onClick={()=> _Function()} className='cursor-pointer' src={l} alt='back' height={30} width={30}/>
                         </div>
                         <div className='flex w-[90%] flex-col text-[#E5BD19] font-nunito text-stroke text-[50px] items-center justify-center'>
                             <p>${lotteryData.ticker ? <>{lotteryData.ticker}</>:"Loading..."}</p> 
-                            <p>OIL POTS</p>
                         </div>
                     </div>
                     <div className='flex flex-col w-full p-[1rem] border-y-[2px] text-white font-fredoka border-y-[#E5BD19] rounded-x-xl rounded-t-xl'>
@@ -228,7 +227,7 @@ const LotteryPage = ({tokenAddress,_Function}) => {
                         <p className='flex w-full justify-center text-[24px] pb-[10px]' onClick={()=>buyTicket()}>Round {lotteryData.currentRound}</p>
                         <p className='text-[18px]'>Tickets Left : {lotteryData.ticketsLeft ?<>{lotteryData.ticketsLeft}/{lotteryData.maxTickets}</>:"Loading ..."}</p>
                         <p className='text-[18px]'>Ticket Price : {lotteryData.ticketPrice ? <>{lotteryData.ticketPrice} {lotteryData.ticker}</>:"Loading ..."}</p>
-                        <p className='text-[18px]'>Your Tickets : {lotteryData.userTicketCount? <>{lotteryData.userTicketCount}/{lotteryData.ticketPerUser}</>:"Loading ..."}</p>
+                        <p className='text-[18px]'>Your Tickets : { lotteryData.ticketPerUser ? <>{lotteryData.userTicketCount}/{lotteryData.ticketPerUser}</>:"Loading ..."}</p>
                         <p className='text-[18px]'>Balance : {lotteryData.walletBalances ? <>{lotteryData.walletBalances} {lotteryData.ticker}</>:"Loading ..."}</p>
                         {lotteryData.userTicketCount>0? 
                         <div className='w-full items-center h-[8rem] flex text-[18px] gap-1 py-[10px]'>
