@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/layout.tsx", "src/components/Footer.tsx", "src/components/NAVBAR.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/layout.tsx", "src/components/Footer.tsx", "src/components/NAVBAR.tsx", "src/components/Utils/Timer.jsx"],
   "exclude": ["node_modules"]
 }

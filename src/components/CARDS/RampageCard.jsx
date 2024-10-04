@@ -3,7 +3,7 @@ import React from 'react'
 import Image from '../../../node_modules/next/image'
 import copyImg from "../../assets/copy.svg"
 import DailyLogin from "@/components/Activities/DailyLogin.jsx"
-import Lottery from "@/components/Activities/Lottery.jsx" 
+import LotterySelectZone from "@/components/Activities/LotterySelectZone.jsx" 
 import l from "../../assets/leftArrow.png"
 import r from "../../assets/rightArrow.png"
 import SwapAc from "../Activities/SwapAc"
@@ -20,7 +20,7 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
     }
 
     const goRight=()=>{
-        if(states.acNo == 1){
+        if(states.acNo == 2){
             return
         }
         const a = states.acNo;
@@ -83,7 +83,7 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
                         >
                     {states.acNo == 0 ? <DailyLogin dailyMine={dailyMine} data={rampageData} loaders={loaders}/> :""}
                     {states.acNo == 1 ? <SwapAc/> :""}
-                    {states.acNo == 2 ? <Lottery/> :""}
+                    {states.acNo == 2 ? <LotterySelectZone/> :""}
                     {states.acNo == 3 ? <DailyLogin/> :""}
                     {states.acNo == 4 ? <DailyLogin/> :""}
                     {states.acNo == 5 ? <DailyLogin/> :""}
@@ -95,7 +95,7 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
                 </div> :""}
 
                 {/* Desktop */}
-                <div className='md:flex hidden flex-col justify-center gap-[10px] items-center w-full h-full overflow-y-scroll'>
+                <div className='md:flex hidden flex-col justify-center gap-[10px] items-center w-full h-full'>
                     <div className='w-[90%] md:w-[60%] lg:w-[48%] h-full flex justify-between'>
                        <button className='text-white md:ml-[30px] flex' onClick={()=> goLeft()}><Image src={l} height={30} width={30} alt="pcbutton" className="hover:scale-125"/></button>
                        <button className='text-white md:mr-[30px] flex' onClick={()=> goRight()}><Image src={r} height={30} width={30} alt="pcbutton" className="hover:scale-125"/></button>
@@ -112,7 +112,7 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
                         >
                     {states.acNo == 0 ? <DailyLogin dailyMine={dailyMine} data={rampageData} loaders={loaders}/> :""}
                     {states.acNo == 1 ? <SwapAc/> :""}
-                    {states.acNo == 2 ? <Lottery/> :""}
+                    {states.acNo == 2 ? <LotterySelectZone/> :""}
                     {states.acNo == 3 ? <DailyLogin/> :""}
                     {states.acNo == 4 ? <DailyLogin/> :""}
                     {states.acNo == 5 ? <DailyLogin/> :""}

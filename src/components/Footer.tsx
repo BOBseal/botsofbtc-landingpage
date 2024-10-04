@@ -34,7 +34,10 @@ const Footer:React.FC = () => {
             <Link href={'/mint'} target={'_blank'}>
             <p className='transition duration-500 ease-linear transform cursor-pointer hover:scale-105'>Mint BOB</p>
             </Link>
-            <p className='transition duration-500 ease-linear transform cursor-pointer hover:scale-105' onClick={()=>al()}>Lottery</p>
+
+            <Link href={'/rampage'} target={'_blank'}>
+            <p className='transition duration-500 ease-linear transform cursor-pointer hover:scale-105' onClick={()=>al()}>Rampage</p>
+            </Link>
             <Link href={'https://twitter.com/BotsOfBtc'} target="_blank">
             <Image src={twit} height={30} width={30} className={`transition duration-500 ease-linear transform hover:scale-110`} alt="Twitter / X"/>
             </Link>

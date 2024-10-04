@@ -148,7 +148,7 @@ const BOBMint=()=>{
                         <div className='p-[1.5rem] text-[20px] font-nunito'>
                             BOTS OF BITCOIN NFTs are meant to serve as one of the cores of the platform, thus along with Dynamic PFPs they are also poised to serve 
                             several utilities & be of use for several services in the platform. They are also set apart by the fact that each BOTS OF BITCOIN PFP can 
-                            Transform its looks to look like other select NFT Collections. In future BOTS OF BITCOIN NFTs may also serve as licensing for any node/DLT features launched.
+                            Transform its looks to other select NFT Collections. In future BOTS OF BITCOIN NFTs may also serve as licensing for any node/DLT features launched.
                         </div>
                         <div className='px-[2.5rem] text-[20px] font-bold font-fredoka'>
                             <li>Dynamic PFPs</li>
@@ -159,7 +159,7 @@ const BOBMint=()=>{
 
                             <li>Revenue Sharing through Staking</li>
                             
-                            <li>Platform Token Incentives</li>
+                            <li>Platform Token Incentives (AIRDROP)</li>
                         </div>
                     </div>
                     

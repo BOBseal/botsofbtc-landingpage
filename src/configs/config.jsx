@@ -4,7 +4,10 @@ import deep from "../assets/11.png"
 import six from "../assets/12.png"
 import partner1Logo from "../assets/BOB_LOGO.png"
 import icecream from "../assets/icecreamLogo.png"
-
+import btcLogo  from "../assets/btcLogo.svg"
+import ethLogo from "../assets/ethLogo.svg"
+import usdcLogo from "../assets/usdcLogo.svg"
+import BotsLogo from "../assets/dp.jpg"
 export const teamConfig =[
     {id:1 , name : "BOB" , designation:"Founder & CTO", desc:"Web3 Dev and a sucker for blockchain & AI tech. Self-Taught dev with an Obsession for NFTs and DeFi.", link:"", picture: bob},
     {id:2 , name : "Deep" , designation:"Co-Founder/Graphics Lead", desc:"Funny & Obsessed Artist with an eye for details and a punch in his Artworks. Have a unique perspective for the world!", link:"", picture: deep},
@@ -24,6 +27,14 @@ export const partnerInfo =[
         lg:'400px'
     }}
 ]
+
+export const lotteryTokenConfigs ={
+    btc:{name:"UniBTC" , ticker:"UniBTC" , address:"0x236f8c0a61dA474dB21B693fB2ea7AAB0c803894" ,img:btcLogo},
+    usdc:{name:"USDC" , ticker:"USDC" , address:"0xe75D0fB2C24A55cA1e3F96781a2bCC7bdba058F0",img:usdcLogo},
+    weth:{name:"WRAPPED ETHER" , ticker:"WETH" , address:"0x4200000000000000000000000000000000000006",img:ethLogo},
+    wrp:{name:"WRAPPED RP" , ticker:"wRP" , address:"0xc5d16A63ac69591BDC10912ee49aB5FAa3FEC5Ea",img:BotsLogo},
+    wbtc:{name:"WRAPPED BTC" , ticker:"WBTC" , address:"0x03C7054BCB39f7b2e5B2c7AcB37583e32D70Cfa3",img:btcLogo},
+}
 
 export const supportedList={
     weth:{name:"WRAPPED ETHER" , ticker:"WETH", address:"0x4200000000000000000000000000000000000006", logo:null , decimals:18},
