@@ -199,7 +199,7 @@ const BOBMint=()=>{
                         </div>
 
                         {
-                            states.dashboardOn ?
+                            !states.dashboardOn ?
                         <div className='flex w-full md:w-[50%] flex-col gap-[18px] flex-wrap text-wrap'>
                             {data.currentRound ==null ? 
                             <div className='w-full h-full flex justify-center'>
