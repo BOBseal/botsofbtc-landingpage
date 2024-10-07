@@ -46,9 +46,9 @@ export default function CountdownTimer({ targetDate }= { targetDate: '2024-12-31
 
   return (
       <div className="p-1">
-        <h2 className="text-[38px] font-semibold text-center mb-4">MINT STARTS IN</h2>
+        {timerComponents.length ? <h2 className="text-[38px] font-semibold text-center mb-4">MINT STARTS IN</h2>:""}
         <div className="flex flex-wrap justify-center items-center">
-          {timerComponents.length ? timerComponents : <span className="text-2xl">Time's up!</span>}
+          {timerComponents.length ? timerComponents : <span className="text-[38px] font-semibold text-center font-fredoka">MINT STARTED !</span>}
         </div>
       </div>
 

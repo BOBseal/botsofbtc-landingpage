@@ -181,7 +181,7 @@ const LotteryPage = ({tokenAddress,_Function}) => {
             //const allowanceFormatted = ethers.utils.formatUnits(allowance,decimals);
             const amountFormatted = ethers.utils.parseUnits(data.withdrawAmount,decimals);
             const withdraw = await contract.withdraw(user.wallet,amountFormatted);
-            withdraw.wait(1).then(()=>{
+            withdraw.wait(1).then(async()=>{
                 setData({...data,withdraw:"Withdraw"})
                 setLotteryData({})
                 getLotteryInfo();

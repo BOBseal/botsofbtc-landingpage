@@ -48,14 +48,14 @@ export const minter =[
 
 export const BOBNFT =[
     {
-        address:"0xbbd700C856c5e0936E7F6b426B6F168C2a77640e",
+        address:"0x2E8aF9C5922623058aa92A183b391E62cb6b2d12",
         abi:BOBNFTJSON.abi
     }
 ]
 
 export const BOBMinter = [
     {
-        address:"0xf5BaeBfe5F8C0AA829c482BF62b20a3c82959b4F",
+        address:"0x024789f444BED5b8D9D3e8B13845a83CA5aa120D",
         abi:BOBMINTERJSON.abi
     }
 ]

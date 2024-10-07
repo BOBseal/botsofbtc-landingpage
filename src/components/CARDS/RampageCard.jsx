@@ -40,8 +40,7 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
             <div className='w-full h-full flex items-center justify-center gap-[1rem] flex-col pb-[1rem]'>
                 <h1 className='text-[38px] md:text-[60px] lg:text-[70px] font-fredoka text-[#E5BD19] font-bold'>RAMPAGE</h1>
                 <div className='font-fredoka text-white px-[0.9rem] text-[15px]'>
-                Collect RP through various Interactions on the Platform. Complete Simple Tasks & get RPs as well as get BOB Fusion Spice based on your RP Holdings. 
-                5% of Project Spice is Distributed every 24 Hours to All RAMPAGE Registrants based on their RP holdings.
+                Collect RP through various Interactions on the Platform. Complete Simple Tasks & Earn RP. RPs are eligible for Airdrop post TGE. Season 3 BOB Fusion Sice Distributions will start post BOB Mint.
                 </div>
             </div>
 
