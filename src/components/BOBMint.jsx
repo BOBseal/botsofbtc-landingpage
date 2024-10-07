@@ -138,7 +138,7 @@ const BOBMint=()=>{
           connectWallet();
         }
         getMintInfo();
-      }, [user.wallet])
+      }, [user.wallet,data.currentRound])
   
     return(
         <>
