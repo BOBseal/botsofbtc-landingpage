@@ -56,7 +56,7 @@ const BOBMint=()=>{
             const userDBalances = await mintCa.getMinterBalances(user.wallet,"0x0000000000000000000000000000000000000000")
             const minterBalances = ethers.utils.formatEther(userDBalances);
             const obj = {
-                currentRound:0,//Number(currentRoundNo),
+                currentRound:Number(currentRoundNo),
                 roundName:roundDescription,
                 userBalances:userEthBalance,
                 mintPrice:mintCostDefault,
