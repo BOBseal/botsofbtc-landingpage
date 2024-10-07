@@ -96,7 +96,9 @@ const BOBMint=()=>{
                 return
             }
             if(Number(round) == 1){
-
+                const cost = await ca._calculateDiscount(user.wallet);
+                const mintTx = await ca.waitMint(Addr,{value:cost});
+                
             }
             if(Number(round) == 2){
                 
@@ -149,6 +151,9 @@ const BOBMint=()=>{
                         <div className='flex w-full md:w-[50%] flex-col gap-[18px] flex-wrap text-wrap'>
                             {data.currentRound == 0?
                             <div className='w-full h-full'>
+                                <div className='font-nunito text-[#E5BD19] py-[0.25rem] text-[24px] md:text-[28px]'>
+                                        MINTS STARTING SOON
+                                    </div>
                                 <div className='font-nunito text-[16px] md:text-[18px]'>
                                 Mint Date : 2:30 pm UTC , 7th October
                                 </div>
@@ -190,7 +195,9 @@ const BOBMint=()=>{
                                         <p>Referal Link : </p>
                                         <div onClick={()=>copyToClipboard()}>https://botsofbtc.com/mints?...</div> 
                                     </div>
-                                    
+                                    <div className='font-nunito text-[16px] md:text-[18px]'>
+                                        Your Balance : {data.userBalances ?<>{data.userBalances.slice(0,8)}</>:"0"} ETH
+                                    </div>
                                     <div className='w-full flex justify-center pt-[1rem]'>
                                         <button className='bg-[#E5BD19] hover:scale-105 text-black font-nunito text-[20px] px-[10px] py-[4px] rounded-full'>
                                             Open Dashboard    
@@ -218,7 +225,9 @@ const BOBMint=()=>{
                                     <p>Referal Link : </p>
                                     <div onClick={()=>copyToClipboard()}>https://botsofbtc.com/mints?...</div> 
                                 </div>
-                                
+                                <div className='font-nunito text-[16px] md:text-[18px]'>
+                                        Your Balances : {data.userBalances ?<>{data.userBalances.slice(0,8)}</>:"0"} ETH
+                                </div>
                                 <div className='w-full flex justify-center pt-[1rem]'>
                                     <button className='bg-[#E5BD19] hover:scale-105 text-black font-nunito text-[20px] px-[10px] py-[4px] rounded-full'>
                                         Open Dashboard    
@@ -234,7 +243,7 @@ const BOBMint=()=>{
                         
                         <div className='border-[#E5BD19] border-[3px] px-[20px] py-[5px] text-[25px] font-fredoka rounded-xl hover:scale-105 cursor-pointer' 
                         onClick={()=>mint()}>
-                            MINT {data.currentRound <2 ? data.userMintPrice :"0.02"} ETH
+                            MINT {data.currentRound ==2 ? data.userMintPrice :"0.02"} ETH
                         </div>
                         
                     </div>
