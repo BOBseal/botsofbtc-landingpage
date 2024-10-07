@@ -66,7 +66,7 @@ const BOBMint=()=>{
                 totalReferals:totalReferals,
                 referer:referer,
                 maxPublicMints:Number(maxPublicMintPerWallet),
-                maxWaitlistMint:Number(maxWaitlistMintPerWallet),
+                maxWaitlistMint:Number(maxWaitlistMintPerWallet) +1,
                 maxWinners:Number(maxDrawWinners),
                 //isWhitelisted:isWhitelisted,
                 referalBonus:referalBonus,
