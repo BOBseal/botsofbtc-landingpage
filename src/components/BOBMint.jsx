@@ -40,7 +40,7 @@ const BOBMint=()=>{
             const mintCostDefault = ethers.utils.formatEther(mCost);
             const dCost = await mintCa._calculateDiscount(user.wallet);
             const nextIdToMint = await mintCa._nextIdToMint();
-            const totalLeft = totalSupply - Number(nextIdToMint);
+            const totalLeft = totalSupply - Number(nextIdToMint) + 1;
             const actualMintCost = ethers.utils.formatEther(dCost);
             const mData = await mintCa.getMinterData(user.wallet);
             const publicMintsNo = Number(mData[0])
@@ -85,26 +85,37 @@ const BOBMint=()=>{
     
     const mint=async()=>{
         try {
+            setStates({...states,loading:true})
             const ca = await getBobMinterCa(user.wallet);
-            const round = await ca.currentRound();
+            const round = data.currentRound//await ca.currentRound();
             const isA = ref ? ethers.utils.isAddress(ref):false;
-            
+            //console.log(ref,isA)
             let Addr = isA ? ref : zeroAddr;
-
+            
             if(Number(round) == 0){
                 alert("Mints not started")
+                setStates({...states,loading:false})
                 return
             }
             if(Number(round) == 1){
                 const cost = await ca._calculateDiscount(user.wallet);
                 const mintTx = await ca.waitMint(Addr,{value:cost});
-                
+                mintTx.wait(1).then((data)=>{
+                    getMintInfo();
+                    setStates({...states,loading:false})
+                })
             }
             if(Number(round) == 2){
-                
+                const cost = await ca.mintCost();
+                const mintTx = await ca.pubMint(Addr,{value:cost});
+                mintTx.wait(1).then((data)=>{
+                    getMintInfo();
+                    setStates({...states,loading:false})
+                })
             }
         } catch (error) {
             console.log(error)
+            setStates({...states,loading:false})
         }
     }
 
@@ -149,6 +160,13 @@ const BOBMint=()=>{
                         </div>
 
                         <div className='flex w-full md:w-[50%] flex-col gap-[18px] flex-wrap text-wrap'>
+                            {data.currentRound ==null ? 
+                            <div className='w-full h-full flex justify-center'>
+                            <div className='font-nunito text-[#E5BD19] py-[0.25rem] text-[24px] md:text-[28px]'>
+                                    LOADING ...
+                            </div>
+                            </div>:""
+                            }
                             {data.currentRound == 0?
                             <div className='w-full h-full'>
                                 <div className='font-nunito text-[#E5BD19] py-[0.25rem] text-[24px] md:text-[28px]'>
@@ -169,10 +187,10 @@ const BOBMint=()=>{
                                         Current Round :  Waitlist
                                     </div>
                                     <div className='font-nunito text-[16px] md:text-[18px]'>
-                                        Eligible For Mint : {data.sobOwned > 0 ? "True":"False"}    
+                                        NFTs Left : {data.mintsLeft ? <>{data.mintsLeft}/10000</> :"10000"}
                                     </div>
                                     <div className='font-nunito text-[16px] md:text-[18px]'>
-                                        SOBs Held or Staked : {data.sobOwned ? data.sobOwned :"0"} 
+                                        Eligible For Mint : {data.sobOwned > 0 ? "True":"False"}    
                                     </div>
                                     <div className='font-nunito text-[16px] md:text-[18px]'>
                                         Applicable Discount : {data.sobOwned ? data.sobOwned :"0"}%
@@ -241,10 +259,17 @@ const BOBMint=()=>{
 
                     <div className='flex flex-col gap-[2rem] h-full pt-[1rem]'>
                         
+                        {
+                        !states.loading ?
                         <div className='border-[#E5BD19] border-[3px] px-[20px] py-[5px] text-[25px] font-fredoka rounded-xl hover:scale-105 cursor-pointer' 
                         onClick={()=>mint()}>
-                            MINT {data.currentRound ==2 ? data.userMintPrice :"0.02"} ETH
+                            MINT {data.currentRound ==1 ? data.userMintPrice :"0.02"} ETH
+                        </div> :
+                        <div className='border-[#E5BD19] border-[3px] px-[20px] py-[5px] text-[25px] font-fredoka rounded-xl hover:scale-105 cursor-pointer' 
+                        >
+                            Minting
                         </div>
+                        }
                         
                     </div>
                 </div>
