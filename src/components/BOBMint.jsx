@@ -50,7 +50,7 @@ const BOBMint=()=>{
             const maxPublicMintPerWallet = await mintCa.maxMintPerWallet();
             const maxWaitlistMintPerWallet = await mintCa.maxWlMint();
             const maxDrawWinners = await mintCa.maxWinners();
-            const isWhitelisted = await mintCa.wlZero(user.wallet);
+            //const isWhitelisted = await mintCa.wlZero(user.wallet);
             const referalBonus = await mintCa.referalBonus();
             const totalSOBOwned = await mintCa.getTotalSOBOwned(user.wallet);
             const userDBalances = await mintCa.getMinterBalances(user.wallet,"0x0000000000000000000000000000000000000000")
@@ -68,7 +68,7 @@ const BOBMint=()=>{
                 maxPublicMints:Number(maxPublicMintPerWallet),
                 maxWaitlistMint:Number(maxWaitlistMintPerWallet),
                 maxWinners:Number(maxDrawWinners),
-                isWhitelisted:isWhitelisted,
+                //isWhitelisted:isWhitelisted,
                 referalBonus:referalBonus,
                 sobOwned:Number(totalSOBOwned),
                 smartBalances:minterBalances,
@@ -82,6 +82,19 @@ const BOBMint=()=>{
             console.log(error);
         }
     }
+
+    const toggleDashboard=()=>{
+        try {
+            if(states.dashboardOn){
+                setStates({...states,dashboardOn:false})
+            } else 
+            {
+                setStates({...states,dashboardOn:true})
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
     
     const mint=async()=>{
         try {
@@ -93,9 +106,13 @@ const BOBMint=()=>{
             let Addr = isA ? ref : zeroAddr;
             
             if(Number(round) == 0){
-                alert("Mints not started")
-                setStates({...states,loading:false})
-                return
+                //alert("Mints not started")
+                //setStates({...states,loading:false})
+                const mintTx = await ca.wlMint(Addr);
+                mintTx.wait(1).then((data)=>{
+                    getMintInfo();
+                    setStates({...states,loading:false})
+                })
             }
             if(Number(round) == 1){
                 const cost = await ca._calculateDiscount(user.wallet);
@@ -116,6 +133,28 @@ const BOBMint=()=>{
         } catch (error) {
             console.log(error)
             setStates({...states,loading:false})
+        }
+    }
+
+    const withdraw=async()=>{
+        try {
+            setStates({...states,loading1:true})
+            const ca = await getBobMinterCa(user.wallet);
+            const userDBalances = await ca.getMinterBalances(user.wallet,"0x0000000000000000000000000000000000000000")
+            const mintCostDefault = ethers.utils.formatEther(userDBalances);
+            if(Number(mintCostDefault) == 0){
+                alert("No Balances On Contract to withdraw")
+                setStates({...states,loading1:false})
+                return
+            }
+            const txCall = await ca.withdrawUserBalances("0x0000000000000000000000000000000000000000",userDBalances);
+            txCall.wait(1).then((data)=>{
+                getMintInfo();
+                setStates({...states,loading1:false})
+            })
+        } catch (error) {
+            console.log(error)
+            setStates({...states,loading1:false})
         }
     }
 
@@ -159,6 +198,8 @@ const BOBMint=()=>{
                             <Image src={imgBOB} height={400} width={400}/>
                         </div>
 
+                        {
+                            states.dashboardOn ?
                         <div className='flex w-full md:w-[50%] flex-col gap-[18px] flex-wrap text-wrap'>
                             {data.currentRound ==null ? 
                             <div className='w-full h-full flex justify-center'>
@@ -217,7 +258,7 @@ const BOBMint=()=>{
                                         Your Balance : {data.userBalances ?<>{data.userBalances.slice(0,8)}</>:"0"} ETH
                                     </div>
                                     <div className='w-full flex justify-center pt-[1rem]'>
-                                        <button className='bg-[#E5BD19] hover:scale-105 text-black font-nunito text-[20px] px-[10px] py-[4px] rounded-full'>
+                                        <button onClick={()=>toggleDashboard()} className='bg-[#E5BD19] hover:scale-105 text-black font-nunito text-[20px] px-[10px] py-[4px] rounded-full'>
                                             Open Dashboard    
                                         </button>
                                     </div>                              
@@ -233,7 +274,7 @@ const BOBMint=()=>{
                                 </div>
                                 
                                 <div className='font-nunito text-[16px] md:text-[18px]'>
-                                    Your Mints : {data.userWaitlistMints ? <>{data.userWaitlistMints} / {data.maxWaitlistMint}</>:<>0 / {data.maxWaitlistMint} Mints</>}
+                                    Your Mints : {data.userWaitlistMint ? <>{data.userPublicMints} / {data.maxPublicMints}</>:<>0 / {data.maxWaitlistMint} Mints</>}
                                 </div>
                                 <div className='font-nunito text-[16px] md:text-[18px]'>
                                     Total Referals : {data.totalReferals ? <>{data.totalReferals}</>:"0"}
@@ -247,13 +288,48 @@ const BOBMint=()=>{
                                         Your Balances : {data.userBalances ?<>{data.userBalances.slice(0,8)}</>:"0"} ETH
                                 </div>
                                 <div className='w-full flex justify-center pt-[1rem]'>
-                                    <button className='bg-[#E5BD19] hover:scale-105 text-black font-nunito text-[20px] px-[10px] py-[4px] rounded-full'>
+                                    <button onClick={()=>toggleDashboard()} className='bg-[#E5BD19] hover:scale-105 text-black font-nunito text-[20px] px-[10px] py-[4px] rounded-full'>
                                         Open Dashboard    
                                     </button>
                                 </div>                              
                             </div>
                             :""}
                         </div>
+                        :
+                        <div className='flex w-full md:w-[50%] flex-col gap-[18px] flex-wrap text-wrap'>
+                            <div className='font-nunito text-[#E5BD19] py-[0.25rem] text-[24px] md:text-[28px]'>                                    
+                                Referal Dashboard
+                            </div>
+                            <div className='font-nunito text-[16px] md:text-[18px]'>
+                                Total Minted : {data.userWaitlistMints + data.userPublicMints}
+                            </div>
+                            
+                            <div className='font-nunito text-[16px] md:text-[18px]'>
+                                Total Referals : {data.totalReferals}
+                            </div>
+
+                            <div className='font-nunito text-[16px] md:text-[18px]'>
+                                Dashboard Balances : {data.smartBalances} ETH
+                            </div>
+
+                            <div className='font-nunito text-[16px] md:text-[18px]'>
+                                Wallet Balances : {data.userBalances ?<>{data.userBalances.slice(0,8)}</>:"0"} ETH
+                            </div>
+
+                            <div className='flex cursor-pointer flex-col py-[0.2rem] w-full font-nunito text-[18px] md:text-[20px]'>
+                                <p>Referal Link : </p>
+                                <div onClick={()=>copyToClipboard()}>https://botsofbtc.com/mints?...</div> 
+                            </div>
+                            <div className='w-full flex justify-between py-[1rem]'>
+                                <button onClick={()=>toggleDashboard()} className='bg-[#E5BD19] hover:scale-105 text-black font-nunito text-[20px] px-[10px] py-[4px] rounded-full'>
+                                   Go Back    
+                                </button>
+                                <button onClick={()=>withdraw()} className='bg-[#E5BD19] hover:scale-105 text-black font-nunito text-[20px] px-[10px] py-[4px] rounded-full'>
+                                    {!states.loading1 ? "Withdraw" :"Withdrawing"}    
+                                </button>
+                            </div> 
+                        </div>
+                        }
 
                     </div>
 
@@ -312,7 +388,7 @@ const BOBMint=()=>{
                     </div>
 
                     <div className='p-[1.5rem] text-[20px] font-nunito flex flex-col w-full h-full'>
-                            BOB Fusion Spice S3 generated from the NFT mints will be available to claim everyday on Rampage Section.
+                            BOB Fusion Spice S3 generated from the NFT mints will be available to claim everyday on Rampage Section. 
                     </div>
                     <div className='px-[1.5rem] text-[20px] font-bold font-fredoka'>
                             <li className='px-[15px] py-[8px]'>Fusion Season 3 Spice based on Number of PFPs held.</li>      
