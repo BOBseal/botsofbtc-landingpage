@@ -274,7 +274,7 @@ const BOBMint=()=>{
                                 </div>
                                 
                                 <div className='font-nunito text-[16px] md:text-[18px]'>
-                                    Your Mints : {data.max ? <>{data.userPublicMints} / {data.maxPublicMints}</>:<>0 / {data.maxPublicMints} Mints</>}
+                                    Your Mints : {data.maxPublicMints ? <>{data.userPublicMints} / {data.maxPublicMints}</>:<>0 / {data.maxPublicMints} Mints</>}
                                 </div>
                                 <div className='font-nunito text-[16px] md:text-[18px]'>
                                     Total Referals : {data.totalReferals ? <>{data.totalReferals}</>:"0"}
