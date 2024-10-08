@@ -272,7 +272,9 @@ const BOBMint=()=>{
                                 <div className='font-nunito text-[16px] md:text-[18px]'>
                                     Mint Price : 0.02 ETH
                                 </div>
-                                
+                                 <div className='font-nunito text-[16px] md:text-[18px]'>
+                                        NFTs Left : {data.mintsLeft ? <>{data.mintsLeft}/10000</> :"10000"}
+                                </div>
                                 <div className='font-nunito text-[16px] md:text-[18px]'>
                                     Your Mints : {data.maxPublicMints ? <>{data.userPublicMints} / {data.maxPublicMints}</>:<>0 / {data.maxPublicMints} Mints</>}
                                 </div>
