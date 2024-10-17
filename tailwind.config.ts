@@ -18,7 +18,10 @@ const config: Config = {
         'bg3': "url('/bg3.png')",
         'rp': "url('/rp2.png')",
         'rp2': "url('/rp.svg')",
-        'icecream': "url('/spice.svg)",
+        'icecream': "url('/spice.svg')",
+        "botsbanner-sm":"url('/botsbanner_mobile.svg')",
+        "botsbanner":"url('/botsbanner.svg')",
+        "bubbles":"url('/pixel-bubble.svg')",
       },
     },
     fontFamily:{

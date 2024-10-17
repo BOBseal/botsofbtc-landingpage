@@ -22,8 +22,8 @@ export const partnerInfo =[
         lg:'240px'
     }},
     {logo:icecream ,link:"https://icecreamswap.com",imgSizeData:{
-        sm:'180px',
-        md:'190px',
+        sm:'110px',
+        md:'180px',
         lg:'400px'
     }}
 ]

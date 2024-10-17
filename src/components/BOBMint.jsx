@@ -16,7 +16,9 @@ import {
     getStakingContract 
 } from '@/utils/hooks'
 import { ethers } from 'ethers'
-
+import bot5 from "../assets/5.png"
+import goto from "../assets/button_goto.svg"
+import Link from 'next/link'
 
 const BOBMint=()=>{
     const totalSupply = 10000;
@@ -66,7 +68,7 @@ const BOBMint=()=>{
                 totalReferals:totalReferals,
                 referer:referer,
                 maxPublicMints:Number(maxPublicMintPerWallet),
-                maxWaitlistMint:Number(maxWaitlistMintPerWallet) +1,
+                maxWaitlistMint:Number(maxWaitlistMintPerWallet),
                 maxWinners:Number(maxDrawWinners),
                 //isWhitelisted:isWhitelisted,
                 referalBonus:referalBonus,
@@ -188,7 +190,36 @@ const BOBMint=()=>{
                     <h1>PFPs</h1>
                 </div>
                 <div className='flex justify-center w-full h-full items-center'>
-                    <CountdownTimer targetDate={"2024-10-7-14-30"}/>
+                    <div className='flex w-full h-full px-[0.4rem] justify-center items-center pb-[1rem]'>
+                    <div className='bg-[#231F20] md:w-[90%] lg:w-[55%] w-full p-[2px] rounded-xl h-full'>
+                        <div className='bg-bubbles flex p-[5px] justify-between bg-center rounded-xl border border-[#E5BD19] bg-cover bg-no-repeat md:h-[10rem] h-[8rem] flex w-full'>
+                            <div className='w-full md:w-[65%] flex flex-col items-center pt-[1rem]'>
+                                <Link href={'http://fusion.gobob.xyz/?refCode=lqh3jh'} target={'_blank'}>
+                                <div className='bg-black hover:scale-105 px-[10px] py-[3px] flex gap-[10px] rounded-full justify-center items-center cursor-pointer'>
+                                    <h1 className='text-[20px] md:text-[25px] font-fredoka'>Join Fusion S3</h1>
+                                    
+                                    <div className='flex items-center'>
+                                        <Image src={goto} alt='button' height={13} width={13}/>
+                                    </div>
+                                    
+                                </div>
+                                </Link>
+                                
+                                <div className='flex w-full h-full items-center justify-center'>
+                                    <h2 className='text-[#FFFF33] hover:scale-105 cursor-pointer bg-black px-[5px] rounded-full text-stroke-1 border-r border-[#FFFF33] border-b text-[30px] md:text-[38px] lg:text-[42px] font-extrabold font-nunito'>
+                                        Mint BOB & Claim Spice
+                                    </h2>
+                                </div>
+                                
+                            </div>
+                            <div className='hidden md:w-[35%] md:flex justify-center items-center'>
+                                <div className='w-full h-full flex items-center justify-center'>
+                                    <Image alt="bot-chan" src={bot5} height={200} width={200} className='object-cover hover:scale-105 cursor-pointer border-[2px] border-[#E5BD19] rounded-full w-[120px] h-[120px] md:w-[150px] md:h-[150px]'/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
                 </div>
 
                 <div className='flex flex-col w-full h-full justify-center items-center px-[2.5rem] pt-[1rem] md:pt-[2rem]'>
@@ -272,11 +303,14 @@ const BOBMint=()=>{
                                 <div className='font-nunito text-[16px] md:text-[18px]'>
                                     Mint Price : 0.02 ETH
                                 </div>
-                                 <div className='font-nunito text-[16px] md:text-[18px]'>
+                                <div className='font-nunito text-[16px] md:text-[18px]'>
                                         NFTs Left : {data.mintsLeft ? <>{data.mintsLeft}/10000</> :"10000"}
                                 </div>
                                 <div className='font-nunito text-[16px] md:text-[18px]'>
-                                    Your Mints : {data.maxPublicMints ? <>{data.userPublicMints} / {data.maxPublicMints}</>:<>0 / {data.maxPublicMints} Mints</>}
+                                    Your Mints : {data.userWaitlistMint ? <>{data.userPublicMints} / {data.maxPublicMints}</>:<>0 / {data.maxWaitlistMint} Mints</>}
+                                </div>
+                                <div className='font-nunito text-[16px] md:text-[18px]'>
+                                    Spice/Mint : 400 Mint Spice + Daily Spice Claims
                                 </div>
                                 <div className='font-nunito text-[16px] md:text-[18px]'>
                                     Total Referals : {data.totalReferals ? <>{data.totalReferals}</>:"0"}
@@ -351,6 +385,7 @@ const BOBMint=()=>{
                         
                     </div>
                 </div>
+                    
 
                 <div className='flex flex-col w-full md:w-[95%] lg:w-[70%] h-full items-center justify-center pt-[2rem] md:pt-[3rem]'>
                     <div className='flex border-b items-center justify-center md:w-[50%] text-[29px] font-fredoka w-[70%]'>
@@ -394,7 +429,9 @@ const BOBMint=()=>{
                     </div>
                     <div className='px-[1.5rem] text-[20px] font-bold font-fredoka'>
                             <li className='px-[15px] py-[8px]'>Fusion Season 3 Spice based on Number of PFPs held.</li>      
-                            <li className='px-[15px] py-[8px]'>Spice Up for Claims everyday.</li>
+                            <li className='px-[15px] py-[8px]'>Claim 400 Spice instantly for Each Mint.</li>
+                            <li className='px-[15px] py-[8px]'>Spice Up for Claims everyday based on BOB NFTs held, SOB NFTs held, RP & Value across services held.</li>
+                            <p className='px-[15px] py-[8px]'>Read more...</p>
                     </div>
 
                     <div className='flex pt-[1rem] border-b items-center justify-center md:w-[50%] text-[29px] font-fredoka w-[70%]'>

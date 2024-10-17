@@ -8,7 +8,7 @@ import l from "../../assets/leftArrow.png"
 import r from "../../assets/rightArrow.png"
 import SwapAc from "../Activities/SwapAc"
 import {motion,AnimatePresence} from "framer-motion"
-
+import ClaimSpice from "../../components/CARDS/ClaimSpice"
 const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , setStates,variants}) => {
 
     const goLeft =()=>{
@@ -20,7 +20,7 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
     }
 
     const goRight=()=>{
-        if(states.acNo == 2){
+        if(states.acNo == 3){
             return
         }
         const a = states.acNo;
@@ -40,7 +40,7 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
             <div className='w-full h-full flex items-center justify-center gap-[1rem] flex-col pb-[1rem]'>
                 <h1 className='text-[38px] md:text-[60px] lg:text-[70px] font-fredoka text-[#E5BD19] font-bold'>RAMPAGE</h1>
                 <div className='font-fredoka text-white px-[0.9rem] text-[15px]'>
-                Collect RP through various Interactions on the Platform. Complete Simple Tasks & Earn RP. RPs are eligible for Airdrop post TGE. Season 3 BOB Fusion Sice Distributions will start post BOB Mint.
+                    Rampage is the Incentivised Phase of Launch for BOTS OF BITCOIN. Collect $RP , Fusion S3 Spice & many more as we launch our incentivised services.Users can complete various taks or simply use our services to get a load of Platform points from Us , Build On Bitcoin & partner projects. S3 Spice follows a value based caluclation for correct distribution of spice . $RP and partner airdrop points.
                 </div>
             </div>
 
@@ -80,14 +80,15 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
                             transition={{ duration: 0.3 }}
                             className='w-full h-full'
                         >
-                    {states.acNo == 0 ? <DailyLogin dailyMine={dailyMine} data={rampageData} loaders={loaders}/> :""}
-                    {states.acNo == 1 ? <SwapAc/> :""}
-                    {states.acNo == 2 ? <LotterySelectZone/> :""}
-                    {states.acNo == 3 ? <DailyLogin/> :""}
+                    {states.acNo == 0 ? <ClaimSpice/> :""} 
+                    {states.acNo == 1 ? <DailyLogin dailyMine={dailyMine} data={rampageData} loaders={loaders}/> :""}
+                    {states.acNo == 2 ? <SwapAc/> :""}
+                    {states.acNo == 3 ? <LotterySelectZone/> :""}
                     {states.acNo == 4 ? <DailyLogin/> :""}
                     {states.acNo == 5 ? <DailyLogin/> :""}
                     {states.acNo == 6 ? <DailyLogin/> :""}
                     {states.acNo == 7 ? <DailyLogin/> :""}
+                    {states.acNo == 8 ? <DailyLogin/> :""}
                     </motion.div>
                     </AnimatePresence>
                     
@@ -109,10 +110,11 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
                             transition={{ duration: 0.3 }}
                             className='w-full h-full'
                         >
-                    {states.acNo == 0 ? <DailyLogin dailyMine={dailyMine} data={rampageData} loaders={loaders}/> :""}
-                    {states.acNo == 1 ? <SwapAc/> :""}
-                    {states.acNo == 2 ? <LotterySelectZone/> :""}
-                    {states.acNo == 3 ? <DailyLogin/> :""}
+                    {states.acNo == 0 ? <ClaimSpice/> :""} 
+                    {states.acNo == 1 ? <DailyLogin dailyMine={dailyMine} data={rampageData} loaders={loaders}/> :""}
+                    {states.acNo == 2 ? <SwapAc/> :""}
+                    {states.acNo == 3 ? <LotterySelectZone/> :""}
+                    {states.acNo == 4 ? <DailyLogin/> :""}
                     {states.acNo == 4 ? <DailyLogin/> :""}
                     {states.acNo == 5 ? <DailyLogin/> :""}
                     {states.acNo == 6 ? <DailyLogin/> :""}
