@@ -144,7 +144,7 @@ const ClaimSpice = () => {
                         <p className="text-[17px] lg:text-[22px]">BOB Held: {data.bobHeld ? <>{data.bobHeld}</> : "0"} BOB</p>
                         <p className="text-[17px] lg:text-[22px]">Spice Per SOB/day: {data.spicePerSOB} Spice</p>
 
-                        <p className="text-[17px] lg:text-[22px]">BOB Held: {data.sobHeld ? <>{data.sobHeld}</> : "0"} SOB</p>
+                        <p className="text-[17px] lg:text-[22px]">SOB Held: {data.sobHeld ? <>{data.sobHeld}</> : "0"} SOB</p>
                         <p className="text-[17px] lg:text-[22px]">Spice Per RP/day: {data.spicePerRP} Spice</p>
                         <p className="text-[17px] lg:text-[22px]">RP Balance: {data.rpBalance ? <>{data.rpBalance}</> : "0"} $RP</p>
                         {data.claimableIds > 0 ?
