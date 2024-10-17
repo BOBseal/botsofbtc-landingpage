@@ -196,7 +196,7 @@ const BOBMint=()=>{
                             <div className='w-full md:w-[65%] flex flex-col items-center pt-[1rem]'>
                                 <Link href={'http://fusion.gobob.xyz/?refCode=lqh3jh'} target={'_blank'}>
                                 <div className='bg-black hover:scale-105 px-[10px] py-[3px] flex gap-[10px] rounded-full justify-center items-center cursor-pointer'>
-                                    <h1 className='text-[20px] md:text-[25px] font-fredoka'>Join Fusion S3</h1>
+                                    <h1 className='text-[20px] md:text-[25px] text-white font-fredoka'>Join Fusion S3</h1>
                                     
                                     <div className='flex items-center'>
                                         <Image src={goto} alt='button' height={13} width={13}/>
