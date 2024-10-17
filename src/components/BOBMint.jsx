@@ -375,11 +375,11 @@ const BOBMint=()=>{
                         
                         {
                         !states.loading ?
-                        <div className='border-[#E5BD19] border-[3px] px-[20px] py-[5px] text-[25px] font-fredoka rounded-xl hover:scale-105 cursor-pointer' 
+                        <div className='border-[#E5BD19] text-white border-[3px] px-[20px] py-[5px] text-[25px] font-fredoka rounded-xl hover:scale-105 cursor-pointer' 
                         onClick={()=>mint()}>
                             MINT {data.currentRound ==1 ? data.userMintPrice :"0.02"} ETH
                         </div> :
-                        <div className='border-[#E5BD19] border-[3px] px-[20px] py-[5px] text-[25px] font-fredoka rounded-xl hover:scale-105 cursor-pointer' 
+                        <div className='border-[#E5BD19] text-white border-[3px] px-[20px] py-[5px] text-[25px] font-fredoka rounded-xl hover:scale-105 cursor-pointer' 
                         >
                             Minting
                         </div>
