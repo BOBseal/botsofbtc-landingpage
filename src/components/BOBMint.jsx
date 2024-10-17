@@ -206,9 +206,11 @@ const BOBMint=()=>{
                                 </Link>
                                 
                                 <div className='flex w-full h-full items-center justify-center'>
+                                <Link href={'/rampage'} target={'_blank'}>
                                     <h2 className='text-[#FFFF33] hover:scale-105 cursor-pointer bg-black px-[5px] rounded-full text-stroke-1 border-r border-[#FFFF33] border-b text-[30px] md:text-[38px] lg:text-[42px] font-extrabold font-nunito'>
                                         Mint BOB & Claim Spice
                                     </h2>
+                                </Link>
                                 </div>
                                 
                             </div>
