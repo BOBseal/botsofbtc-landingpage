@@ -298,7 +298,7 @@ const BOBMint=()=>{
                                 </div>
                             :""}
                             {data.currentRound ==2? 
-                                <div className='w-full h-full flex flex-col justify-center md:justify-between'>
+                                <div className='w-full h-full text-white flex flex-col justify-center md:justify-between'>
                                 <div className='font-nunito text-[#E5BD19] py-[0.25rem] text-[24px] md:text-[28px]'>
                                     Current Round :  FCFS
                                 </div>
@@ -309,7 +309,7 @@ const BOBMint=()=>{
                                         NFTs Left : {data.mintsLeft ? <>{data.mintsLeft}/10000</> :"10000"}
                                 </div>
                                 <div className='font-nunito text-[16px] md:text-[18px]'>
-                                    Your Mints : {data.userWaitlistMint ? <>{data.userPublicMints} / {data.maxPublicMints}</>:<>0 / {data.maxWaitlistMint} Mints</>}
+                                    Your Mints : {data.userPublicMints ? <>{data.userPublicMints} / {data.maxPublicMints}</>:<>0 / {data.maxPublicMints} Mints</>}
                                 </div>
                                 <div className='font-nunito text-[16px] md:text-[18px]'>
                                     Spice/Mint : 400 Mint Spice + Daily Spice Claims
@@ -334,7 +334,7 @@ const BOBMint=()=>{
                             :""}
                         </div>
                         :
-                        <div className='flex w-full md:w-[50%] flex-col gap-[18px] flex-wrap text-wrap'>
+                        <div className='flex w-full md:w-[50%] text-white flex-col gap-[18px] flex-wrap text-wrap'>
                             <div className='font-nunito text-[#E5BD19] py-[0.25rem] text-[24px] md:text-[28px]'>                                    
                                 Referal Dashboard
                             </div>
