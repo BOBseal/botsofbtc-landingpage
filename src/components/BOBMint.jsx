@@ -393,7 +393,7 @@ const BOBMint=()=>{
                     <div className='flex border-b items-center justify-center md:w-[50%] text-[29px] font-fredoka w-[70%]'>
                         <h2 className='text-[#E5BD19]'>About :</h2>
                     </div>
-                    <div className='font-nunito p-[1rem] text-[16px] md:text-[18px]'>
+                    <div className='font-nunito text-white p-[1rem] text-[16px] md:text-[18px]'>
                                 BOTS OF BITCOIN (BOB) PFPs are 10k ERC721 NFTs each featuring an Unique BOT PFP along the ability for its holders to morph 
                                 its Looks into select other NFTs & Image Assets that the Holder Own. Not
                                 being just a PFP , BOTS OF BITCOIN (BOB) NFTs also will serve in Governance of the Platform & as a "VIP Pass" to BOTS OF BITCOIN Ecosystem.
@@ -403,7 +403,7 @@ const BOBMint=()=>{
                         <h2 className='text-[#E5BD19]'>Utilities & Benifits</h2>
                     </div>
                     
-                    <div className='flex flex-col w-full h-full'>
+                    <div className='flex flex-col text-white w-full h-full'>
                         <div className='p-[1.5rem] text-[20px] font-nunito'>
                             BOTS OF BITCOIN NFTs are meant to serve as one of the cores of the platform, thus along with Dynamic PFPs they are also poised to serve 
                             several utilities & be of use for several services in the platform. They are also set apart by the fact that each BOTS OF BITCOIN PFP can 
@@ -426,10 +426,10 @@ const BOBMint=()=>{
                         <h2 className='text-[#E5BD19]'>Fusion S3 Spice :</h2>
                     </div>
 
-                    <div className='p-[1.5rem] text-[20px] font-nunito flex flex-col w-full h-full'>
+                    <div className='p-[1.5rem] text-[20px] text-white font-nunito flex flex-col w-full h-full'>
                             BOB Fusion Spice S3 generated from the NFT mints will be available to claim everyday on Rampage Section. 
                     </div>
-                    <div className='px-[1.5rem] text-[20px] font-bold font-fredoka'>
+                    <div className='px-[1.5rem] text-[20px] font-bold text-white font-fredoka'>
                             <li className='px-[15px] py-[8px]'>Fusion Season 3 Spice based on Number of PFPs held.</li>      
                             <li className='px-[15px] py-[8px]'>Claim 400 Spice instantly for Each Mint.</li>
                             <li className='px-[15px] py-[8px]'>Spice Up for Claims everyday based on BOB NFTs held, SOB NFTs held, RP & Value across services held.</li>
@@ -440,7 +440,7 @@ const BOBMint=()=>{
                         <h2 className='text-[#E5BD19]'>Mint Details :</h2>
                     </div>
                     
-                    <div className='flex flex-col w-full h-full'>
+                    <div className='flex flex-col text-white w-full h-full'>
                         
                         <div className='px-[1.5rem] py-[1.5rem] text-[20px] font-nunito flex-wrap text-wrap'>
                             Minting Process of BOTS OF BITCOIN collection will follow 2 stages, Waitlist Mint & Public Mint. Users who have either held or staked 
