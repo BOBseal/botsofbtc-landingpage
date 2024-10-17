@@ -40,7 +40,7 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
             <div className='w-full h-full flex items-center justify-center gap-[1rem] flex-col pb-[1rem]'>
                 <h1 className='text-[38px] md:text-[60px] lg:text-[70px] font-fredoka text-[#E5BD19] font-bold'>RAMPAGE</h1>
                 <div className='font-fredoka text-white px-[0.9rem] text-[15px]'>
-                    Rampage is the Incentivised Phase of Launch for BOTS OF BITCOIN. Collect $RP , Fusion S3 Spice & many more as we launch our incentivised services.Users can complete various taks or simply use our services to get a load of Platform points from Us , Build On Bitcoin & partner projects. S3 Spice follows a value based caluclation for correct distribution of spice . $RP and partner airdrop points.
+                    Rampage is the Incentivised Phase of Launch for BOTS OF BITCOIN. Collect $RP , Fusion S3 Spice & many more as we launch our incentivised services.Users can complete various taks or simply use our services to get a load of Platform points from Us , Build On Bitcoin & partner projects. S3 Spice follows a value based caluclation for correct distribution of spice.
                 </div>
             </div>
 
