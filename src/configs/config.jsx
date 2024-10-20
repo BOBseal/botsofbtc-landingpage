@@ -176,7 +176,8 @@ const tokenomics = {
 }
 
 export const faqlist= [
-    {question:"WHEN IS THE MINT ?" , answer:"Mint Date & Time will be announced very soon on our Socials. Be sure to Subscribe to them and turn on Notifications!!"},
+    {question:"WHEN IS THE MINT ?" , answer:"Mint for BOTS OF BITCOIN (BOB) Collection are currently ongoing."},
+    {question:"WHAT MAKES THIS COLLECTION UNIQUE?" , answer: "BOTS OF BITCOIN(BOB) collection is set apart from any other PFPs on Bitcoin L2s as each NFT can transform into any Look that the holder owns, it can be Partner NFTs, Skins Packs or any form of Metadata."},
     {question:"WHAT IS THE TOTAL SUPPLY OF BOB PFPs ?" , answer:"BOTS OF BITCOIN (BOB) PFPs are set to have a Max Supply of 10k Units."},
     {question:"IS BOTS OF BITCOIN - BOB & BUILD ON BITCOIN SAME ?" , answer:"NO BOTH THE ABOVE 'BOBS' ARE SEPERATE ENTITIES, FORMER BEING A PLATOFRM ON THE LATTER AND ARE NOT AFFILIATED TO ONE ANOTHER."},
     {question:"WILL THERE BE AN ECOSYSTEM TOKEN ?" , answer:"Yes , BOTS OF BITCOIN will have $BOTS as the ECOSYSTEM TOKEN."},
@@ -185,7 +186,13 @@ export const faqlist= [
     {question:"IS IT JUST A USELESS PFP PROJECT ?" , answer:"NO ! , We are not only a PFP Project but our Long term Goals revolve around utilizing the EVM on BTCOIN L2s for Various Community Approved NFT-FI , DEFI & Automation (Bot) Features."},
     {question:"ARE SKIBBIDIES OF BITCOIN DIFFERENT FROM BOTS OF BITCOIN?", answer: "Both are Official Collections for BOTS OF BITCOIN Ecosystem, One being an Early Supporter Version and other being Primary Collection."},
     {question:"WHAT IS SOB MINT PRICE ?", answer:"SOB is FREE to Mint!"},
-    {question:"WILL SOB & BOB COLLECTIONS HAVE SAME BENIFITS ?" , answer: "NO, Not all benifits are same for both the collections, each offer a different set of benifits."}
+    {question:"WILL SOB & BOB COLLECTIONS HAVE SAME BENIFITS ?" , answer: "NO, Not all benifits are same for both the collections, each offer a different set of benifits."},
+    {question:"BESIDES THE NFTS WHAT ARE BOTS OF BITCOIN BUILDING?" , answer: "We are building a Restaking Protocol along with several other niche features. Bots Of Bitcoin is also commited to build the first Decentralized Automation Framework on Bitcoin Layer2s , adding the ability to have Native Automations even on Chains that do not support Automation."},
+    {question:"WHAT THE HELL IS RESTAKING?" , answer: ""},
+    {question:"" , answer: ""},
+    {question:"" , answer: ""},
+    {question:"" , answer: ""},
+    {question:"" , answer: ""},
 ]
 
 export const banners = [
