@@ -187,12 +187,14 @@ export const faqlist= [
     {question:"ARE SKIBBIDIES OF BITCOIN DIFFERENT FROM BOTS OF BITCOIN?", answer: "Both are Official Collections for BOTS OF BITCOIN Ecosystem, One being an Early Supporter Version and other being Primary Collection."},
     {question:"WHAT IS SOB MINT PRICE ?", answer:"SOB is FREE to Mint!"},
     {question:"WILL SOB & BOB COLLECTIONS HAVE SAME BENIFITS ?" , answer: "NO, Not all benifits are same for both the collections, each offer a different set of benifits."},
+    /*
     {question:"BESIDES THE NFTS WHAT ARE BOTS OF BITCOIN BUILDING?" , answer: "We are building a Restaking Protocol along with several other niche features. Bots Of Bitcoin is also commited to build the first Decentralized Automation Framework on Bitcoin Layer2s , adding the ability to have Native Automations even on Chains that do not support Automation."},
     {question:"WHAT THE HELL IS RESTAKING?" , answer: ""},
     {question:"" , answer: ""},
     {question:"" , answer: ""},
     {question:"" , answer: ""},
     {question:"" , answer: ""},
+    */
 ]
 
 export const banners = [
