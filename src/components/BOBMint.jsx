@@ -312,7 +312,10 @@ const BOBMint=()=>{
                                     Your Mints : {data.userPublicMints ? <>{data.userPublicMints} / {data.maxPublicMints}</>:<>0 / {data.maxPublicMints} Mints</>}
                                 </div>
                                 <div className='font-nunito text-[16px] md:text-[18px]'>
-                                    Spice/Mint : 400 Mint Spice + Daily Spice Claims
+                                    Spice Bonus/Mint : 400 Spice Bonus
+                                </div>
+                                <div className='font-nunito text-[16px] md:text-[18px]'>
+                                    Daily Spice : 200 Spice/Day, 6k Spice per Month !!
                                 </div>
                                 <div className='font-nunito text-[16px] md:text-[18px]'>
                                     Total Referals : {data.totalReferals ? <>{data.totalReferals}</>:"0"}

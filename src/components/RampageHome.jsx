@@ -44,7 +44,7 @@ const RampageHome = () => {
          }}
          transition={{ ease: "easeInOut", duration: 0.8 }}
         >
-    <div className={`bg-[#231F20] w-screen flex justify-center flex-col md:justify-between items-center h-full pt-[2rem] pb-[2rem] border-b-[3px] border-[#E5BD19] ${states.mobileMenuOpen ? "blur-md" : ""}`} >
+    <div className={`bg-[#231F20] w-full flex justify-center flex-col md:justify-between items-center h-full pt-[2rem] pb-[2rem] border-b-[3px] border-[#E5BD19] ${states.mobileMenuOpen ? "blur-md" : ""}`} >
         <div>
             <div className='text-[#E5BD19] leading-[30px] md:leading-[60px] font-fredoka text-[42px] md:text-[75px] flex justify-start font-bold uppercase'>QUICK ACTIONS</div>
         </div>
