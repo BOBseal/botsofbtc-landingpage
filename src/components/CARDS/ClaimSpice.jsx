@@ -14,7 +14,8 @@ const ClaimSpice = () => {
     const [loaders, setLoaders] = useState({
         initial: false,
         claim: "Claim Spice",
-        bonus: "Claim Bonus"
+        bonus: "Claim Bonus",
+        vote:"Voter Claim"
     })
     const apiUrl = `https://api.botsofbtc.com`
 
@@ -28,6 +29,17 @@ const ClaimSpice = () => {
             const sobCa = await getNFTCa(user.wallet)
             const coreCa = await getRpCoreContract(user.wallet);
             const bobHolderList = await fetch(`${apiUrl}/holderListBOB`);
+            const eligibleSpice = await fetch(`${apiUrl}/eligibleSobSpice?address=${user.wallet}`)
+            let vtSpc = 0;
+            let elig = false;
+            if(eligibleSpice.status == 200){
+                const response = await eligibleSpice.json();
+                elig = true;
+                vtSpc = response.claimable 
+            } 
+            if(eligibleSpice.status == 400){
+                vtSpc = "Ineligible or Already Claimed"
+            }
             if (bobHolderList.ok) {
 
                 const holderListData = await bobHolderList.json();
@@ -45,7 +57,7 @@ const ClaimSpice = () => {
                     }
                 }
             }
-
+            //console.log(vtSpc)
             const bobHeld = await bobCa.balanceOf(user.wallet)
             const sobHeld = await sobCa.balanceOf(user.wallet)
             const rpData = await coreCa.getUser(user.wallet)
@@ -62,6 +74,8 @@ const ClaimSpice = () => {
                 dailyClaimable: dailyClaim,
                 mintClaimable: claimableMintSpice,
                 totalClaimable: Number(claimableMintSpice) + Number(dailyClaim),
+                voteSpice:vtSpc,
+                eligible:elig,
                 processed: true
             })
             setLoaders({ ...loaders, initial: false })
@@ -95,6 +109,27 @@ const ClaimSpice = () => {
             setLoaders({ ...loaders, claim: "Claim Spice" })
         }
     }
+
+    const claimVoteSpice = async()=>{
+        try {
+            setLoaders({ ...loaders, vote: "Claiming" })
+            const userFormat = ethers.utils.getAddress(user.wallet)
+            const calldata = { address: userFormat}
+            const call = await fetch(`${apiUrl}/voterClaim`, {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(calldata)
+            })
+            if (call.ok) {
+                alert(`Claimed ${data.voteSpice} Spice for voting for BOTS OF BITCOIN on Fusion Voting in last round`)
+                await getSpiceData()
+            }
+            setLoaders({ ...loaders, vote: "Voter Claim" })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    
 
     const claimMintBonus = async () => {
         try {
@@ -147,6 +182,13 @@ const ClaimSpice = () => {
                         <p className="text-[17px] lg:text-[22px]">SOB Held: {data.sobHeld ? <>{data.sobHeld}</> : "0"} SOB</p>
                         <p className="text-[17px] lg:text-[22px]">Spice Per RP/day: {data.spicePerRP} Spice</p>
                         <p className="text-[17px] lg:text-[22px]">RP Balance: {data.rpBalance ? <>{data.rpBalance}</> : "0"} $RP</p>
+                        {
+                            data.eligible?
+                            <div className="flex text-white gap-[5px] flex flex-col w-full">
+                                <p className="text-[17px] lg:text-[22px]">Voting SOB Rewards: {data.voteSpice >0 ? <>{data.voteSpice}</> : "0"} Spice</p>
+                            </div>
+                            :""
+                        }
                         {data.claimableIds > 0 ?
                             <div className="flex text-white gap-[5px] flex flex-col w-full">
                                 <p className="text-[17px] lg:text-[22px]">Unclaimed BOB Mints: {data.claimableIds ? <>{data.claimableIds}</> : "0"} BOB</p>
@@ -167,6 +209,12 @@ const ClaimSpice = () => {
                     <div className="flex w-[50%] justify-center items-center">
                         <button onClick={() => claimDailySpice()} className="bg-yellow-500 px-[10px] py-[3px] rounded-full font-fredoka">{loaders.claim}</button>
                     </div>
+                    {
+                            data.eligible?
+                    <div className="flex w-[50%] justify-center items-center">
+                        <button onClick={() => claimVoteSpice()} className="bg-yellow-500 px-[10px] py-[3px] rounded-full font-fredoka">{loaders.vote}</button>
+                    </div>
+                    :""}
                 </div>
             </div>
         </div>
