@@ -325,7 +325,7 @@ const BOBMint=()=>{
                                     Your Mints : {data.userPublicMints ? <>{data.userPublicMints} / {data.maxPublicMints}</>:<>0 / {data.maxPublicMints} Mints</>}
                                 </div>
                                 <div className='font-nunito text-[16px] md:text-[18px]'>
-                                    Spice Bonus/Mint : 400 Spice Bonus
+                                    Spice Bonus/Mint : 1000 Spice Bonus
                                 </div>
                                 <div className='font-nunito text-[16px] md:text-[18px]'>
                                     Daily Spice : 200 Spice/Day

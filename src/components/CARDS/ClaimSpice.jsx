@@ -192,7 +192,7 @@ const ClaimSpice = () => {
                         {data.claimableIds > 0 ?
                             <div className="flex text-white gap-[5px] flex flex-col w-full">
                                 <p className="text-[17px] lg:text-[22px]">Unclaimed BOB Mints: {data.claimableIds ? <>{data.claimableIds}</> : "0"} BOB</p>
-                                <p className="text-[17px] lg:text-[22px]">Bonus Per Mint: 400 Spice</p>
+                                <p className="text-[17px] lg:text-[22px]">Bonus Per Mint: 1000 Spice</p>
                                 <p className="text-[17px] lg:text-[22px]">Claimable Bonus: {data.mintClaimable ? <>{data.mintClaimable}</> : "0"} Spice</p>
                             </div> : ""
                         }
