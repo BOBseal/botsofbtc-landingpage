@@ -477,7 +477,7 @@ const BOBMint=()=>{
                             <li className='px-[15px] py-[8px]'>Waitlist Mint Time : 14:30 UTC 7 Oct</li>
                             <li className='px-[15px] py-[8px]'>Public Mint Time : 14:30 UTC 8 Oct</li>
                             <li className='px-[15px] py-[8px]'>Public Mint Amount : {data.maxPublicMints ? <>{data.maxPublicMints}</>:"0"}</li>      
-                            <li className='px-[15px] py-[8px]'>Mint Price : 0.02 ETH</li>
+                            <li className='px-[15px] py-[8px]'>Mint Price : 0.005 ETH</li>
                             <li className='px-[15px] py-[8px]'>6.9% Royalties for ID's Minter - ERC2981 Compliant Marketplaces only.</li>
                             <li className='px-[15px] py-[8px]'>1% Discount for each SOB held, upto 50%.</li>
                             <li className='px-[15px] py-[8px]'>Earn 5% of mint cost from referal mints.</li>
