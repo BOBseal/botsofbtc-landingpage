@@ -57,6 +57,10 @@ const BOBMint=()=>{
             const totalSOBOwned = await mintCa.getTotalSOBOwned(user.wallet);
             const userDBalances = await mintCa.getMinterBalances(user.wallet,"0x0000000000000000000000000000000000000000")
             const minterBalances = ethers.utils.formatEther(userDBalances);
+            const whitelistData = await mintCa.wlZero(user.wallet);
+            const amountAllowed = Number(whitelistData[1]);
+            const amountMinted = Number(whitelistData[2]);
+            console.log(amountAllowed,amountMinted) 
             const obj = {
                 currentRound:Number(currentRoundNo),
                 roundName:roundDescription,
@@ -75,7 +79,10 @@ const BOBMint=()=>{
                 sobOwned:Number(totalSOBOwned),
                 smartBalances:minterBalances,
                 nextId:Number(nextIdToMint),
-                mintsLeft:totalLeft
+                mintsLeft:totalLeft,
+                wlEligible:whitelistData[0],
+                wlAmtAllowed : amountAllowed,
+                wlAmtMinted : amountMinted
             }
             setData(obj);
             //console.log(totalSOBOwned);
@@ -125,8 +132,17 @@ const BOBMint=()=>{
                 })
             }
             if(Number(round) == 2){
-                const cost = await ca.mintCost();
-                const mintTx = await ca.pubMint(Addr,{value:cost});
+                const whitelistData = await ca.wlZero(user.wallet);
+                const amountAllowed = Number(whitelistData[1]);
+                const amountMinted = Number(whitelistData[2]);
+                let mintTx;
+                if(amountMinted < amountAllowed){
+                    mintTx = await ca.wlMint(Addr);
+                } else {
+                    const cost = await ca.mintCost();
+                    mintTx = await ca.pubMint(Addr,{value:cost});
+                }
+                
                 mintTx.wait(1).then((data)=>{
                     getMintInfo();
                     setStates({...states,loading:false})
@@ -207,7 +223,7 @@ const BOBMint=()=>{
                                 
                                 <div className='flex w-full h-full items-center justify-center'>
                                 <Link href={'/rampage'} target={'_blank'}>
-                                    <h2 className='text-[#FFFF33] hover:scale-105 cursor-pointer bg-black px-[5px] rounded-full text-stroke-1 border-r border-[#FFFF33] border-b text-[30px] md:text-[38px] lg:text-[42px] font-extrabold font-nunito'>
+                                    <h2 className='text-[#FFFF33] hover:scale-105 cursor-pointer bg-black px-[5px] rounded-full text-stroke-1 border-r border-[#FFFF33] border-b text-[25px] md:text-[38px] lg:text-[42px] font-extrabold font-nunito'>
                                         Mint BOB & Claim Spice
                                     </h2>
                                 </Link>
@@ -299,11 +315,8 @@ const BOBMint=()=>{
                             :""}
                             {data.currentRound ==2? 
                                 <div className='w-full h-full text-white flex flex-col justify-center md:justify-between'>
-                                <div className='font-nunito text-[#E5BD19] py-[0.25rem] text-[24px] md:text-[28px]'>
-                                    Current Round :  FCFS
-                                </div>
                                 <div className='font-nunito text-[16px] md:text-[18px]'>
-                                    Mint Price : 0.02 ETH
+                                    Mint Price : 0.005 ETH
                                 </div>
                                 <div className='font-nunito text-[16px] md:text-[18px]'>
                                         NFTs Left : {data.mintsLeft ? <>{data.mintsLeft}/10000</> :"10000"}
@@ -315,12 +328,20 @@ const BOBMint=()=>{
                                     Spice Bonus/Mint : 400 Spice Bonus
                                 </div>
                                 <div className='font-nunito text-[16px] md:text-[18px]'>
-                                    Daily Spice : 200 Spice/Day, 6k Spice per Month !!
+                                    Daily Spice : 200 Spice/Day
                                 </div>
                                 <div className='font-nunito text-[16px] md:text-[18px]'>
                                     Total Referals : {data.totalReferals ? <>{data.totalReferals}</>:"0"}
                                 </div>
-                                
+                                {
+                                    data.wlAmtMinted < data.wlAmtMinted?
+                                    <div className='w-full h-full'>
+                                        <div className='font-nunito text-[16px] md:text-[18px]'>
+                                            Free Mints: {data.wlAmtMinted}/{data.wlAmtAllowed}
+                                        </div>
+                                    </div>:
+                                    ""
+                                }
                                 <div className='flex flex-col py-[0.2rem] w-full font-nunito text-[18px] md:text-[20px]'>
                                     <p>Referal Link : </p>
                                     <div onClick={()=>copyToClipboard()}>https://botsofbtc.com/mints?...</div> 
@@ -380,7 +401,7 @@ const BOBMint=()=>{
                         !states.loading ?
                         <div className='border-[#E5BD19] text-white border-[3px] px-[20px] py-[5px] text-[25px] font-fredoka rounded-xl hover:scale-105 cursor-pointer' 
                         onClick={()=>mint()}>
-                            MINT {data.currentRound ==1 ? data.userMintPrice :"0.02"} ETH
+                            MINT {data.wlAmtMinted < data.wlAmtAllowed ? "0" :"0.005"} ETH
                         </div> :
                         <div className='border-[#E5BD19] text-white border-[3px] px-[20px] py-[5px] text-[25px] font-fredoka rounded-xl hover:scale-105 cursor-pointer' 
                         >
