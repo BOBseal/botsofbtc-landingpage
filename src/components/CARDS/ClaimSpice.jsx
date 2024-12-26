@@ -50,7 +50,7 @@ const ClaimSpice = () => {
                         const ic = await fetch(`${apiUrl}/idClaimed?tokenId=${j}`)
                         const isClaimed = await ic.json();
                         if (!isClaimed) {
-                            claimableMintSpice = claimableMintSpice + 400;
+                            claimableMintSpice = claimableMintSpice + 1000;
                             //claimableIds = claimableIds + 1;
                             unclaimedIds.push(j);
                         }
