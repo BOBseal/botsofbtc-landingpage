@@ -87,7 +87,7 @@ const ClaimSpice = () => {
 
     const claimDailySpice = async () => {
         try {
-            setLoaders({ ...loaders, claim: "Claiming" })
+            setLoaders({ ...loaders, claim: "Claiming" ,claimLoader:true})
             if (loaders.initial) {
                 setLoaders({ ...loaders, claim: "Claim Spice" })
                 alert("Info loading , claim after states are loaded")
@@ -103,16 +103,16 @@ const ClaimSpice = () => {
             else {
                 alert(`Something went wrong when claiming`)
             }
-            setLoaders({ ...loaders, claim: "Claim Spice" })
+            setLoaders({ ...loaders, claim: "Claim Spice" ,claimLoader:false})
         } catch (error) {
             console.log(error)
-            setLoaders({ ...loaders, claim: "Claim Spice" })
+            setLoaders({ ...loaders, claim: "Claim Spice" ,claimLoader:false})
         }
     }
 
     const claimVoteSpice = async()=>{
         try {
-            setLoaders({ ...loaders, vote: "Claiming" })
+            setLoaders({ ...loaders, vote: "Claiming" ,voteClaimLoader:true})
             const userFormat = ethers.utils.getAddress(user.wallet)
             const calldata = { address: userFormat}
             const call = await fetch(`${apiUrl}/voterClaim`, {
@@ -124,7 +124,7 @@ const ClaimSpice = () => {
                 alert(`Claimed ${data.voteSpice} Spice for voting for BOTS OF BITCOIN on Fusion Voting in last round`)
                 await getSpiceData()
             }
-            setLoaders({ ...loaders, vote: "Voter Claim" })
+            setLoaders({ ...loaders, vote: "Voter Claim" ,voteClaimLoader:false})
         } catch (error) {
             console.log(error)
         }
@@ -133,7 +133,7 @@ const ClaimSpice = () => {
 
     const claimMintBonus = async () => {
         try {
-            setLoaders({ ...loaders, bonus: "Claiming" })
+            setLoaders({ ...loaders, bonus: "Claiming" ,mintBonusLoader:true})
             if (loaders.initial) {
                 setLoaders({ ...loaders, bonus: "Claim Bonus" })
                 alert("Info loading , claim after states are loaded")
@@ -154,10 +154,10 @@ const ClaimSpice = () => {
                 alert(`Claimed ${data.claimableIds} mints`)
                 await getSpiceData()
             }
-            setLoaders({ ...loaders, bonus: "Claim Bonus" })
+            setLoaders({ ...loaders, bonus: "Claim Bonus" ,mintBonusLoader:false})
 
         } catch (error) {
-            setLoaders({ ...loaders, bonus: "Claim Bonus" })
+            setLoaders({ ...loaders, bonus: "Claim Bonus" ,mintBonusLoader:false})
             console.log(error)
         }
     }
@@ -202,17 +202,17 @@ const ClaimSpice = () => {
                 <div className={`w-full text-[20px] lg:text-[25px] h-[15%] pb-[1rem] px-[1rem] flex ${data.claimableIds > 0 ? "justify-between" : "justify-center"}`}>
                     {data.claimableIds > 0 ?
                         <div className="flex w-[50%] justify-center items-center">
-                            <button onClick={() => claimMintBonus()} className="bg-yellow-500 px-[10px] py-[3px] rounded-full font-fredoka">{loaders.bonus}</button>
+                            <button onClick={() => claimMintBonus()} disabled={loaders.mintBonusLoader} className="bg-yellow-500 px-[10px] py-[3px] rounded-full font-fredoka">{loaders.bonus}</button>
                         </div>
                         : ""}
 
                     <div className="flex w-[50%] justify-center items-center">
-                        <button onClick={() => claimDailySpice()} className="bg-yellow-500 px-[10px] py-[3px] rounded-full font-fredoka">{loaders.claim}</button>
+                        <button onClick={() => claimDailySpice()} disabled={loaders.claimLoader} className="bg-yellow-500 px-[10px] py-[3px] rounded-full font-fredoka">{loaders.claim}</button>
                     </div>
                     {
                             data.eligible?
                     <div className="flex w-[50%] justify-center items-center">
-                        <button onClick={() => claimVoteSpice()} className="bg-yellow-500 px-[10px] py-[3px] rounded-full font-fredoka">{loaders.vote}</button>
+                        <button onClick={() => claimVoteSpice()} disabled={loaders.voteClaimLoader} className="bg-yellow-500 px-[10px] py-[3px] rounded-full font-fredoka">{loaders.vote}</button>
                     </div>
                     :""}
                 </div>
