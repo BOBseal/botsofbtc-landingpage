@@ -40,9 +40,10 @@ const HM = () => {
                     <div className='bg-[#231F20] md:w-[90%] lg:w-[55%] w-[90%] p-[2px] rounded-xl h-full'>
                         <div className='bg-bubbles flex p-[5px] justify-between bg-center rounded-xl border border-[#E5BD19] bg-cover bg-no-repeat md:h-[10rem] h-[8rem] flex w-full'>
                             <div className='w-full md:w-[65%] flex flex-col items-center pt-[1rem]'>
+                                <div className='flex'>
                                 <Link href={'http://fusion.gobob.xyz/?refCode=lqh3jh'} target={'_blank'}>
                                 <div className='bg-black hover:scale-105 px-[10px] py-[3px] flex gap-[10px] rounded-full justify-center items-center cursor-pointer'>
-                                    <h1 className='text-[20px] md:text-[25px] font-fredoka text-white'>Join Fusion S3</h1>
+                                    <h1 className='text-[20px] md:text-[25px] font-fredoka text-white'>Join Fusion</h1>
                                     
                                     <div className='flex items-center'>
                                         <Image src={goto} alt='button' height={13} width={13}/>
@@ -50,7 +51,18 @@ const HM = () => {
                                     
                                 </div>
                                 </Link>
-                                
+
+                                <Link href={'https://thedapplist.com/project/bots-of-bitcoin'} target={'_blank'}>
+                                <div className='bg-black hover:scale-105 px-[10px] py-[3px] flex gap-[10px] rounded-full justify-center items-center cursor-pointer'>
+                                    <h1 className='text-[20px] md:text-[25px] font-fredoka text-white'>DappList</h1>
+                                    
+                                    <div className='flex items-center'>
+                                        <Image src={goto} alt='button' height={13} width={13}/>
+                                    </div>
+                                    
+                                </div>
+                                </Link>
+                                </div>
                                 <div className='flex w-full h-full items-center justify-center'>
                                     <Link href={'/mint'} target={'_blank'}>
                                 
