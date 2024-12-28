@@ -6,9 +6,9 @@ import { getBobNftCa, getNFTCa, getRpCoreContract } from "@/utils/hooks";
 const ClaimSpice = () => {
     const { connectWallet, user } = useContext(AppContext)
     const [data, setData] = useState({
-        spicePerBOB: 200,
-        spicePerSOB: 20,
-        spicePerRP: 0.0075,
+        spicePerBOB: 500,
+        spicePerSOB: 100,
+        spicePerRP: 0.075,
         maxRpCalculated: 150000
     })
     const [loaders, setLoaders] = useState({
