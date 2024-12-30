@@ -202,17 +202,17 @@ const ClaimSpice = () => {
                 <div className={`w-full text-[20px] lg:text-[25px] h-[15%] pb-[1rem] px-[1rem] flex ${data.claimableIds > 0 ? "justify-between" : "justify-center"}`}>
                     {data.claimableIds > 0 ?
                         <div className="flex w-[50%] justify-center items-center">
-                            <button onClick={() => claimMintBonus()} disabled={loaders.mintBonusLoader} className="bg-yellow-500 px-[10px] py-[3px] rounded-full font-fredoka">{loaders.bonus}</button>
+                            <button onClick={() => claimMintBonus()} disabled={true} /*disabled={loaders.mintBonusLoader}*/ className="bg-yellow-500 px-[10px] py-[3px] rounded-full font-fredoka">{loaders.bonus}</button>
                         </div>
                         : ""}
 
                     <div className="flex w-[50%] justify-center items-center">
-                        <button onClick={() => claimDailySpice()} disabled={loaders.claimLoader} className="bg-yellow-500 px-[10px] py-[3px] rounded-full font-fredoka">{loaders.claim}</button>
+                        <button onClick={() => claimDailySpice()} disabled={true} /*disabled={loaders.claimLoader}*/ className="bg-yellow-500 px-[10px] py-[3px] rounded-full font-fredoka">{loaders.claim}</button>
                     </div>
                     {
                             data.eligible?
                     <div className="flex w-[50%] justify-center items-center">
-                        <button onClick={() => claimVoteSpice()} disabled={loaders.voteClaimLoader} className="bg-yellow-500 px-[10px] py-[3px] rounded-full font-fredoka">{loaders.vote}</button>
+                        <button onClick={() => claimVoteSpice()} disabled={true} /*disabled={loaders.voteClaimLoader}*/ className="bg-yellow-500 px-[10px] py-[3px] rounded-full font-fredoka">{loaders.vote}</button>
                     </div>
                     :""}
                 </div>
