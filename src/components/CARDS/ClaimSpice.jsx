@@ -164,7 +164,7 @@ const ClaimSpice = () => {
 
     useEffect(() => {
         getSpiceData();
-    }, [user.wallet, data.processed]);
+    }, [user.wallet]);
 
     return (
         <div className="w-full h-full flex flex-col items-center justify-center">
