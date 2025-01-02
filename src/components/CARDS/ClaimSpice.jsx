@@ -163,7 +163,13 @@ const ClaimSpice = () => {
     }
 
     useEffect(() => {
-        getSpiceData();
+        if (user.wallet) {
+            const timeout = setTimeout(() => {
+                getSpiceData();
+            }, 300); // Debounce delay
+    
+            return () => clearTimeout(timeout); // Cleanup
+        }
     }, [user.wallet]);
 
     return (
