@@ -23,8 +23,7 @@ import {
     getErc20Balances,
     formatNumber,
     getIceContract,
-    connectRPCCa,
-    getBobNftCa
+    connectRPCCa
  } from "../utils/hooks"
  import { supportedList } from "@/configs/config"
 
@@ -57,93 +56,13 @@ export const AppProvider =({children})=>{
     })
     const [loaders , setLoaders] = useState({
         dailyLogin:false,
-        swap:"",
-        initial: false,
-        claim: "Claim Spice",
-        bonus: "Claim Bonus",
-        vote:"Voter Claim"
+        swap:""
     });
     const [sobMint, setSobMint] = useState({
         amount:1
     })
     const [rampageData,setRampageData] = useState({})
     const [lotteryData,setLotteryData]= useState({})
-    const [data, setData] = useState({
-        spicePerBOB: 500,
-        spicePerSOB: 100,
-        spicePerRP: 0.075,
-        maxRpCalculated: 150000
-    })
-    
-    const apiUrl = `https://api.botsofbtc.com`
-
-    const getSpiceData = async () => {
-        console.log(`getting spice data`)
-        try {
-            setLoaders({ ...loaders, initial: true })
-            let unclaimedIds = []
-            let claimableMintSpice = 0;
-            const userFormat = ethers.utils.getAddress(user.wallet)
-            const bobCa = await getBobNftCa(user.wallet)
-            const sobCa = await getNFTCa(user.wallet)
-            const coreCa = await getRpCoreContract(user.wallet);
-            const bobHolderList = await fetch(`${apiUrl}/holderListBOB`);
-            const eligibleSpice = await fetch(`${apiUrl}/eligibleSobSpice?address=${userFormat}`)
-            let vtSpc = 0;
-            let elig = false;
-            if(eligibleSpice.status == 200){
-                const response = await eligibleSpice.json();
-                elig = true;
-                vtSpc = response.claimable 
-            } 
-            if(eligibleSpice.status == 400){
-                vtSpc = "Ineligible or Already Claimed"
-            }
-            if (bobHolderList.ok) {
-
-                const holderListData = await bobHolderList.json();
-                const holderData = holderListData[userFormat];
-                //console.log(dailyClaimSpice.claimable)
-                if (holderData) {
-                    for (const j of holderData.ownedIds) {
-                        const ic = await fetch(`${apiUrl}/idClaimed?tokenId=${j}`)
-                        const isClaimed = await ic.json();
-                        if (!isClaimed) {
-                            claimableMintSpice = claimableMintSpice + 1000;
-                            //claimableIds = claimableIds + 1;
-                            unclaimedIds.push(j);
-                        }
-                    }
-                }
-            }
-            //console.log(vtSpc)
-            const bobHeld = await bobCa.balanceOf(user.wallet)
-            const sobHeld = await sobCa.balanceOf(user.wallet)
-            const rpData = await coreCa.getUser(user.wallet)
-            const dca = await fetch(`${apiUrl}/claimableSpice?address=${userFormat}`)
-            const dCa = await dca.json();
-            const dailyClaim = dCa.claimable;
-            setData({
-                ...data,
-                bobHeld: Number(bobHeld),
-                sobHeld: Number(sobHeld),
-                unclaimedIds: unclaimedIds,
-                claimableIds: unclaimedIds.length,
-                rpBalance: Number(rpData[1]),
-                dailyClaimable: dailyClaim,
-                mintClaimable: claimableMintSpice,
-                totalClaimable: Number(claimableMintSpice) + Number(dailyClaim),
-                voteSpice:vtSpc,
-                eligible:elig,
-                processed: true
-            })
-            setLoaders({ ...loaders, initial: false })
-        } catch (error) {
-            console.log(error)
-            setLoaders({ ...loaders, initial: false })
-        }
-    }
-    
     const connectWallet = async()=>{
         try {
             const accounts = await connectMetamask();
@@ -431,7 +350,7 @@ export const AppProvider =({children})=>{
         <>
         <AppContext.Provider value={{connectWallet, dailyMine,user, act ,mintStarted, fusionData,setAct, states, setStates, openMobileMenu, getFusionData , getSupplyLeft , dexStates , setDexStates,
         getCurrentRound, getUserMints,utils,setUtils, setSobMint, sobMint, mintMulti , rampageData, setRampageData, createRPAccountZero , rampageInitialized , getUserRampageData, loaders, executeSwap,
-        lotteryData,setLotteryData, data , setData, getSpiceData
+        lotteryData,setLotteryData
         }}>
             {children}
         </AppContext.Provider>

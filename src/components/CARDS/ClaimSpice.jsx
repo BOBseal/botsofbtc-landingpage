@@ -4,8 +4,86 @@ import { AppContext } from "@/context/AppContext";
 import { ethers } from "ethers";
 import { getBobNftCa, getNFTCa, getRpCoreContract } from "@/utils/hooks";
 const ClaimSpice = () => {
-    const { connectWallet, user, getSpiceData, loaders, setLoaders, data , setData } = useContext(AppContext)
+    const { connectWallet, user } = useContext(AppContext)
+    const [data, setData] = useState({
+        spicePerBOB: 500,
+        spicePerSOB: 100,
+        spicePerRP: 0.075,
+        maxRpCalculated: 150000
+    })
+    const [loaders, setLoaders] = useState({
+        initial: false,
+        claim: "Claim Spice",
+        bonus: "Claim Bonus",
+        vote:"Voter Claim"
+    })
     const apiUrl = `https://api.botsofbtc.com`
+
+    const getSpiceData = async () => {
+        try {
+            setLoaders({ ...loaders, initial: true })
+            let unclaimedIds = []
+            let claimableMintSpice = 0;
+            const userFormat = ethers.utils.getAddress(user.wallet)
+            const bobCa = await getBobNftCa(user.wallet)
+            const sobCa = await getNFTCa(user.wallet)
+            const coreCa = await getRpCoreContract(user.wallet);
+            const bobHolderList = await fetch(`${apiUrl}/holderListBOB`);
+            const eligibleSpice = await fetch(`${apiUrl}/eligibleSobSpice?address=${user.wallet}`)
+            let vtSpc = 0;
+            let elig = false;
+            if(eligibleSpice.status == 200){
+                const response = await eligibleSpice.json();
+                elig = true;
+                vtSpc = response.claimable 
+            } 
+            if(eligibleSpice.status == 400){
+                vtSpc = "Ineligible or Already Claimed"
+            }
+            if (bobHolderList.ok) {
+
+                const holderListData = await bobHolderList.json();
+                const holderData = holderListData[userFormat];
+                //console.log(dailyClaimSpice.claimable)
+                if (holderData) {
+                    for (const j of holderData.ownedIds) {
+                        const ic = await fetch(`${apiUrl}/idClaimed?tokenId=${j}`)
+                        const isClaimed = await ic.json();
+                        if (!isClaimed) {
+                            claimableMintSpice = claimableMintSpice + 1000;
+                            //claimableIds = claimableIds + 1;
+                            unclaimedIds.push(j);
+                        }
+                    }
+                }
+            }
+            //console.log(vtSpc)
+            const bobHeld = await bobCa.balanceOf(user.wallet)
+            const sobHeld = await sobCa.balanceOf(user.wallet)
+            const rpData = await coreCa.getUser(user.wallet)
+            const dca = await fetch(`${apiUrl}/claimableSpice?address=${userFormat}`)
+            const dCa = await dca.json();
+            const dailyClaim = dCa.claimable;
+            setData({
+                ...data,
+                bobHeld: Number(bobHeld),
+                sobHeld: Number(sobHeld),
+                unclaimedIds: unclaimedIds,
+                claimableIds: unclaimedIds.length,
+                rpBalance: Number(rpData[1]),
+                dailyClaimable: dailyClaim,
+                mintClaimable: claimableMintSpice,
+                totalClaimable: Number(claimableMintSpice) + Number(dailyClaim),
+                voteSpice:vtSpc,
+                eligible:elig,
+                processed: true
+            })
+            setLoaders({ ...loaders, initial: false })
+        } catch (error) {
+            console.log(error)
+            setLoaders({ ...loaders, initial: false })
+        }
+    }
 
     const claimDailySpice = async () => {
         try {
@@ -66,7 +144,7 @@ const ClaimSpice = () => {
                 alert("No Unclaimed Mints left")
                 return
             }
-            const calldata = {address:user.wallet}
+            const calldata = { tokenIds: data.unclaimedIds}
             const call = await fetch(`${apiUrl}/minterClaim`, {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
@@ -83,22 +161,10 @@ const ClaimSpice = () => {
             console.log(error)
         }
     }
-    const handler =async()=>{
-        try {
-            await getSpiceData();
-        } catch (error) {
-            console.log(error);
-        }
-    }
+
     useEffect(() => {
-        if (user.wallet) {
-            const timeout = setTimeout(() => {
-                handler();
-            }, 300); // Debounce delay
-    
-            return () => clearTimeout(timeout); // Cleanup
-        }
-    }, [user.wallet]);
+        getSpiceData();
+    }, [user.wallet, data.processed]);
 
     return (
         <div className="w-full h-full flex flex-col items-center justify-center">
