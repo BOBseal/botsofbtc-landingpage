@@ -29,7 +29,7 @@ const ClaimSpice = () => {
             const sobCa = await getNFTCa(user.wallet)
             const coreCa = await getRpCoreContract(user.wallet);
             const bobHolderList = await fetch(`${apiUrl}/holderListBOB`);
-            const eligibleSpice = await fetch(`${apiUrl}/eligibleSobSpice?address=${user.wallet}`)
+            const eligibleSpice = await fetch(`${apiUrl}/eligibleSobSpice?address=${userFormat}`)
             let vtSpc = 0;
             let elig = false;
             if(eligibleSpice.status == 200){
