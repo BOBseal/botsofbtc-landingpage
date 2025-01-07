@@ -21,8 +21,7 @@ const ClaimSpice = () => {
 
     const getterloader = async() =>{
         try {
-                await getSpiceData();
-            
+            await getSpiceData();
         } catch (error) {
             console.log(error)
         }
@@ -171,7 +170,7 @@ const ClaimSpice = () => {
     }
 
     useEffect(() => {
-        getterloader
+        getterloader()
     }, [user.wallet]);
 
     return (
