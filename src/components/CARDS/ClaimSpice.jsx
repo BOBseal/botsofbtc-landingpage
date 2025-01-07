@@ -21,9 +21,8 @@ const ClaimSpice = () => {
 
     const getterloader = async() =>{
         try {
-            if(user.wallet){
                 await getSpiceData();
-            }
+            
         } catch (error) {
             console.log(error)
         }
