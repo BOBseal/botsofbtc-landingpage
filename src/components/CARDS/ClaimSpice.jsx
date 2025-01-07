@@ -19,6 +19,15 @@ const ClaimSpice = () => {
     })
     const apiUrl = `https://api.botsofbtc.com`
 
+    const getterloader = async() =>{
+        try {
+            if(user.wallet){
+                await getSpiceData();
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
     const getSpiceData = async () => {
         try {
             setLoaders({ ...loaders, initial: true })
@@ -163,8 +172,8 @@ const ClaimSpice = () => {
     }
 
     useEffect(() => {
-        getSpiceData();
-    }, [user.wallet, data.processed]);
+        getterloader
+    }, []);
 
     return (
         <div className="w-full h-full flex flex-col items-center justify-center">
