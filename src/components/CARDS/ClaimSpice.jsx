@@ -151,7 +151,8 @@ const ClaimSpice = () => {
                 alert("No Unclaimed Mints left")
                 return
             }
-            const calldata = { tokenIds: data.unclaimedIds}
+            const formatAddress = ethers.utils.getAddress(user.wallet)
+            const calldata = { address:formatAddress}
             const call = await fetch(`${apiUrl}/minterClaim`, {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
