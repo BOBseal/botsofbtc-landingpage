@@ -22,8 +22,8 @@ const Partners = () => {
          transition={{ ease: "easeInOut", duration: 0.8 }}
         >
     <div className={`bg-[#231F20] border-b-[3px] border-[#E5BD19]  flex p-[2rem] md:pb-[4rem] md:pt-[3rem] gap-[2rem] flex-col items-center ${states.mobileMenuOpen ? "blur-lg" : ""}`}>
-        <p className='text-white font-nunito underline underline-offset-3'>Ecosystem Partners</p>
-        <div className='w-full lg:w-[70%] flex flex-col justify-evenly gap-[1rem] items-center md:grid md:grid-cols-2'>
+        <p className='text-white font-nunito underline underline-offset-3'>Partners & Integrations</p>
+        <div className='w-full lg:w-[70%] flex flex-col justify-evenly gap-[1rem] items-center md:grid md:grid-cols-3'>
         {partnerInfo.map((o,k)=>(
         <div key={k} className='flex justify-center items-center'>
         <Link href={o.link} target={'_blank'}>

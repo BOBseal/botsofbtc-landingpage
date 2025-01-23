@@ -8,6 +8,7 @@ import btcLogo  from "../assets/btcLogo.svg"
 import ethLogo from "../assets/ethLogo.svg"
 import usdcLogo from "../assets/usdcLogo.svg"
 import BotsLogo from "../assets/dp.jpg"
+import dappListLogo from "../assets/dapplistlogo.svg"
 export const teamConfig =[
     {id:1 , name : "BOB" , designation:"Founder & CTO", desc:"Web3 Dev and a sucker for blockchain & AI tech. Self-Taught dev with an Obsession for NFTs and DeFi.", link:"", picture: bob},
     {id:2 , name : "Deep" , designation:"Co-Founder/Graphics Lead", desc:"Funny & Obsessed Artist with an eye for details and a punch in his Artworks. Have a unique perspective for the world!", link:"", picture: deep},
@@ -23,7 +24,12 @@ export const partnerInfo =[
     }},
     {logo:icecream ,link:"https://icecreamswap.com",imgSizeData:{
         sm:'110px',
-        md:'180px',
+        md:'190px',
+        lg:'400px'
+    }},
+    {logo:dappListLogo ,link:"https://thedapplist.com/project/bots-of-bitcoin",imgSizeData:{
+        sm:'90px',
+        md:'150px',
         lg:'400px'
     }}
 ]
