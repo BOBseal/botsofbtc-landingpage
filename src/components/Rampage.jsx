@@ -142,7 +142,7 @@ const Page = () => {
                 </div>
                 }
               </div>:
-              <NetworkError/>
+              <NetworkError data={"BOB MAINNET"}/>
             }
             </div>:
             <WalletError/>

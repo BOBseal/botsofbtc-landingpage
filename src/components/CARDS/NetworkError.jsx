@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import img from "../../assets/lotterypage.png"
-const NetworkError = () => {
+const NetworkError = ({data}) => {
   return (
     <div className={`h-full w-full flex flex-col items-center justify-center pb-[2rem]`}>
         <div className='flex div-[10px]'>
@@ -9,7 +9,7 @@ const NetworkError = () => {
         </div>
         <div className='text-white text-center rounded-lg text-[20px] font-bold flex flex-col items-center gap-[1rem] font-fredoka border-[2px] border-[#E5BD19] bg-[#231F20] div-[1rem]'>
           <div className='animate-pulse'>WRONG NETWORK DETECTED !</div>
-          <div className='animate-pulse'>SWITCH TO BOB MAINNET & REFRESH THIS PAGE.</div>
+          <div className='animate-pulse'>SWITCH TO <>{data}</> & REFRESH THIS PAGE.</div>
         </div>
     </div> 
   )

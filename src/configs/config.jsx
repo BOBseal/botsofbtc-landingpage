@@ -48,6 +48,9 @@ export const supportedList={
     wbtc:{name:"WRAPPED BTC" , ticker:"WBTC", address:"0x03C7054BCB39f7b2e5B2c7AcB37583e32D70Cfa3", logo:null, decimals:8},
     usdt:{name:"USDT" , ticker:"USDT", address:"0x05D032ac25d322df992303dCa074EE7392C117b9", logo:null, decimals:6},
     usdc:{name:"USDC" , ticker:"USDC", address:"0xe75D0fB2C24A55cA1e3F96781a2bCC7bdba058F0", logo:null, decimals:6},
+    sov:{name:"SOVRYN" , ticker:"SOV", address:"0xba20a5e63eeEFfFA6fD365E7e540628F8fC61474", img:null, decimals:18},
+    dai:{name:"DAI" , ticker:"DAI", address:"0x6c851F501a3F24E29A8E39a29591cddf09369080", img:null, decimals:18},
+    stone:{name:"STAKE STONE" , ticker:"STONE", address:"0x96147A9Ae9a42d7Da551fD2322ca15B71032F342", img:null, decimals:18}
 }
 export const sectionText = [
     {
@@ -208,5 +211,5 @@ export const banners = [
 ]
 
 export const skibbidi = {
-    h1:"Introducing 'Skibbidies Of Bitcoin (SOB)', the hilarious official spin-off from the upcoming BOTS OF BITCOIN collection. Explore 3,456 unique Skibbidi Bots, inspired by the zany Skibidi Toilet and JoJo's Bizarre Adventure. This early NFT collection offers exclusive perks and a sneak peek into the BOTS OF BITCOIN universe. Get ready for laughs and special benefits with Skibbidies Of Bitcoin!"
+    h1:"Introducing 'Skibbidies Of Bitcoin (SOB)', the hilarious official spin-off/Meme Collection by BOTS OF BITCOIN. Explore 3,456 unique Skibbidi Bots, inspired by the zany Skibidi Toilet and JoJo's Bizarre Adventure. This early NFT collection offers exclusive perks and a sneak peek into the BOTS OF BITCOIN universe. Get ready for laughs and special benefits with Skibbidies Of Bitcoin!"
 }

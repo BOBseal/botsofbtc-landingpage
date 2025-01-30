@@ -7,6 +7,7 @@ import { Analytics } from '@vercel/analytics/react';
 //import NAVBAR from "../components/NAVBAR"
 import {Fredoka , Varela_Round , Saira, Nunito} from 'next/font/google'
 //import Footer from '@/components/Footer'
+//import { Web3Provider } from '../components/Providers/Web3Provider.jsx';
 
 const fredoka = Saira({
   subsets:['latin'],

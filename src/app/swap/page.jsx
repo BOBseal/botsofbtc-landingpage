@@ -40,6 +40,7 @@ const Page = () => {
       console.log(tokenOut) 
       const balance = await getErc20Balances(tokenOut.address,user.wallet);
       console.log(balance)
+      setStates({...states,data:null , amountOut:0,amountIn:0})
       setDexStates({...dexStates, tokenIn:e , inBalance:balance})
         
     }
@@ -55,9 +56,10 @@ const Page = () => {
         return
       }
       const tokenOut = findTokenByTicker(e);  
+      console.log(tokenOut)
       const balance = await getErc20Balances(tokenOut.address,user.wallet);
-      setDexStates({...dexStates, tokenOut:e , outBalance:balance})
-        
+      setStates({...states,data:null , amountOut:0,amountIn:0})
+      setDexStates({...dexStates, tokenOut:e , outBalance:balance})        
     }
 
     const setAmountIn= async(e)=>{
@@ -77,7 +79,8 @@ const Page = () => {
         
         const res =await a.json();
         console.log(res)
-        const outAmountBG = ethers.BigNumber.from(res.toAmount);
+        const nums = res.toAmount.toString();
+        const outAmountBG = ethers.BigNumber.from(nums);
         const oA = ethers.utils.formatUnits(outAmountBG,tokenOut.decimals);
         console.log(oA)
         
@@ -125,10 +128,7 @@ const Page = () => {
     <>
       <Navbar />
       <div className="flex w-full h-full min-h-[49rem] md:min-h-[53rem] gap-[1rem] md:gap-[3rem] justify-between pt-[3rem] border-b-[3px] border-[#E5BD19] pb-[2rem] items-center bg-[#231F20] bg-cover flex-col p-[1rem] md:p-[4rem] md:pt-[3rem]">
-        {<div className="flex h-[12rem] md:h-[10rem] w-[95%] md:w-[90%] justify-center">
-              <Image src={iceee} height={100} width={1000} className="object-cover flex rounded-lg justify-center"/> 
-  </div>}
-        <div className="w-[95%] lg:w-[40%] md:w-[75%] h-[38rem] md:h-[36rem] rounded-xl bg-[#352f31] bg-cover flex-col border-[#E5BD19] border-b drop-shadow-xl flex">
+        <div className="w-[95%] lg:w-[35%] md:w-[68%] h-[38rem] md:h-[32rem] rounded-xl bg-[#352f31] bg-cover flex-col border-[#E5BD19] border-b drop-shadow-xl flex md:mt-[5rem]">
           <div className="flex bg-[#E5BD19] w-full h-[10%] rounded-t-xl">
             <h1 className="flex items-center w-full justify-center font-fredoka text-[35px] md:text-[45px] font-[700]">
               SWAP
@@ -158,6 +158,9 @@ const Page = () => {
                     <option value="USDT">USDT</option>
                     <option value="USDC">USDC</option>
                     <option value="WBTC">WBTC</option>
+                    <option value="SOV">SOV</option>
+                    <option value="DAI">DAI</option>
+                    <option value="STONE">STONE</option>
                   </select>
                 </div>
                 <p className="flex text-[12px] drop-shadow-lg">
@@ -180,8 +183,8 @@ const Page = () => {
               <Image
               onClick={()=>switchToken()}
                 src={updown}
-                height={50}
-                width={50}
+                height={40}
+                width={40}
                 alt="UP DOWN"
                 className="drop-shadow-lg cursor-pointer hover:scale-105"
               />
@@ -207,6 +210,9 @@ const Page = () => {
                     <option value="USDC">USDC</option>
                     <option value="WBTC">WBTC</option>
                     <option value="WETH">WETH</option>
+                    <option value="SOV">SOV</option>
+                    <option value="DAI">DAI</option>
+                    <option value="STONE">STONE</option>
                   </select>
                 </div>
                 <p className="flex text-[12px] drop-shadow-lg">

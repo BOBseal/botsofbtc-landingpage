@@ -23,7 +23,8 @@ import {
     getErc20Balances,
     formatNumber,
     getIceContract,
-    connectRPCCa
+    connectRPCCa,
+    getBobNftCa
  } from "../utils/hooks"
  import { supportedList } from "@/configs/config"
 
@@ -54,6 +55,10 @@ export const AppProvider =({children})=>{
         outBalance:'',
         inBalance:''
     })
+    const [butState , setButState] = useState({
+        nft:false,
+        defi:false
+      })
     const [loaders , setLoaders] = useState({
         dailyLogin:false,
         swap:""
@@ -237,6 +242,7 @@ export const AppProvider =({children})=>{
                 const ca = await getRampageCa(user.wallet);
                 const rpca = await getRpCoreContract(user.wallet);
                 const skCa = await getNFTCa(user.wallet);
+                const bobCa = await getBobNftCa(user.wallet);
                 //console.log(skCa)
                 const totalPoints = await rpca.getTotalPoints();
                 const totalUsers = await rpca.getTotalUsers();
@@ -247,11 +253,13 @@ export const AppProvider =({children})=>{
                 const prf = await ca.pointPerReferal();
                 const nextSignTime = await ca.getUserNextSignTime(user.wallet);
                 const balSk = await skCa.balanceOf(user.wallet);
+                const balBob = await bobCa.balanceOf(user.wallet);
                 const st = await ca.getUserNextSignTime(user.wallet);
                 const intSt = parseInt(Number(st));
                 let milliseconds = Date.now();
                 let unixTimestamp = Math.floor(milliseconds / 1000);
                 //console.log(totalPoints,totalUsers);
+                const bobbalances = parseInt(Number(balBob));
                 const ss = parseInt(Number(ur));
                 const tp = parseInt(Number(totalPoints));
                 const tu = parseInt(Number(totalUsers));
@@ -271,7 +279,8 @@ export const AppProvider =({children})=>{
                     skibHeld:skb,
                     mineEnable:intSt < unixTimestamp ? true:false,
                     totalRef : ss,
-                    pointPerRef : ppf
+                    pointPerRef : ppf,
+                    bobHeld:bobbalances
                 })
                 console.log(ss)
             }
@@ -291,7 +300,7 @@ export const AppProvider =({children})=>{
             console.log(error);
         }
     }
-
+    
     const executeSwap=async(dataObj,token,amount)=>{
         try {
             setLoaders({...loaders, swap:"Loading"});
@@ -310,16 +319,20 @@ export const AppProvider =({children})=>{
             console.log(intSs,intAm,"Allowances")
             if(intSs < intAm){
                 setLoaders({...loaders, swap:"Approving"});
-                const tt = await caTkn.approve(IceCream[0].contract, amount);
+                const tt = await caTkn.approve(dataObj.tx.to, amount);
             tt.wait(1).then(async (receipt) => {
                 alert(`Approve Successful hash : ${tt.hash}`)
             //tt.then(async()=>{
                 setLoaders({...loaders, swap:"Swapping"});
-                const exec = await ca.swap(dataObj.tx.to,dataObj.tx.data,token,amount,{value:dataObj.tx.value});
+                const provider = new ethers.providers.Web3Provider(window.ethereum);
+                const sign = await provider.getSigner();
+                const exec = await sign.sendTransaction({to:dataObj.tx.to,data:dataObj.tx.data,value:dataObj.tx.value});
                 exec.wait(1).then(async(a)=>{
                     alert(`swap complete txhash: ${exec.hash}`);
-                    const tokenInBal = await getErc20Balances(dexStates.tokenIn, user.wallet);
-                    const tokenOutBal = await getErc20Balances(dexStates.tokenOut, user.wallet);
+                    const tknInAdd = findTokenByTicker(dexStates.tokenIn);
+                    const tknOutAdd = findTokenByTicker(dexStates.tokenOut)
+                    const tokenInBal = await getErc20Balances(tknInAdd.address, user.wallet);
+                    const tokenOutBal = await getErc20Balances(tknOutAdd.address, user.wallet);
                     setDexStates({...dexStates,inBalance:tokenInBal ,outBalance:tokenOutBal})
                 })
                 setLoaders({...loaders, swap:""});
@@ -335,6 +348,7 @@ export const AppProvider =({children})=>{
             setLoaders({...loaders, swap:""});})
         }
         } catch (error) {
+            setLoaders({...loaders, swap:"Swap Now"});
             console.log(error)
         }
     }
@@ -350,7 +364,7 @@ export const AppProvider =({children})=>{
         <>
         <AppContext.Provider value={{connectWallet, dailyMine,user, act ,mintStarted, fusionData,setAct, states, setStates, openMobileMenu, getFusionData , getSupplyLeft , dexStates , setDexStates,
         getCurrentRound, getUserMints,utils,setUtils, setSobMint, sobMint, mintMulti , rampageData, setRampageData, createRPAccountZero , rampageInitialized , getUserRampageData, loaders, executeSwap,
-        lotteryData,setLotteryData
+        lotteryData,setLotteryData,setButState,butState
         }}>
             {children}
         </AppContext.Provider>
