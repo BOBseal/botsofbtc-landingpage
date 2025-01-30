@@ -25,7 +25,7 @@ const Page = () => {
           <div>
           {
           user.correctChain ? 
-          <UserCard user={user ? user:null}/> : <NetworkError/>  
+          <UserCard user={user ? user:null}/> : <NetworkError data={"BOB MAINNET"}/>  
           }
           </div>
           :

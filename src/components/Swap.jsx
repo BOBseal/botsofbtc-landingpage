@@ -45,6 +45,7 @@ const Swap = () => {
       const balance = await getErc20Balances(tokenOut.address,user.wallet);
       console.log(balance)
       setDexStates({...dexStates, tokenIn:e , inBalance:balance})
+      setStates({...states,data:null , amountOut:0,amountIn:0})
         
     }
 
@@ -60,6 +61,7 @@ const Swap = () => {
       }
       const tokenOut = findTokenByTicker(e);  
       const balance = await getErc20Balances(tokenOut.address,user.wallet);
+      setStates({...states,data:null , amountOut:0, amountIn:0})
       setDexStates({...dexStates, tokenOut:e , outBalance:balance})
         
     }
@@ -87,7 +89,8 @@ const Swap = () => {
            res =await a.json();
         
            if(a.ok){
-            outAmountBG =await ethers.BigNumber.from(res.toAmount);
+            const amtNum = res.toAmount.toString();
+            outAmountBG =await ethers.BigNumber.from(amtNum);
             oA = await ethers.utils.formatUnits(outAmountBG,tokenOut.decimals);
             setStates({...states,data:res,amountOut:oA})
           } 
@@ -111,6 +114,7 @@ const Swap = () => {
         const bal1 = dexStates.inBalance
         const bal2 = dexStates.outBalance
         setDexStates({...dexStates,tokenIn:tkn2,tokenOut:tkn1, inBalance:bal2, outBalance:bal1});
+        
       } catch (error) {
         console.log(error)
       }
@@ -169,6 +173,9 @@ const Swap = () => {
                     <option value="USDT">USDT</option>
                     <option value="USDC">USDC</option>
                     <option value="WBTC">WBTC</option>
+                    <option value="SOV">SOV</option>
+                    <option value="DAI">DAI</option>
+                    <option value="STONE">STONE</option>
                   </select>
                 </div>
                 <p className="flex text-[12px] drop-shadow-lg">
@@ -220,6 +227,9 @@ const Swap = () => {
                     <option value="USDC">USDC</option>
                     <option value="WBTC">WBTC</option>
                     <option value="WETH">WETH</option>
+                    <option value="SOV">SOV</option>
+                    <option value="DAI">DAI</option>
+                    <option value="STONE">STONE</option>
                   </select>
                 </div>
                 <p className="flex text-[12px] drop-shadow-lg">

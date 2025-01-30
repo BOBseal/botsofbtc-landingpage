@@ -24,6 +24,10 @@ export const BOB_MAINNET = [
     }
 ]
 
+export const SepoliaChain = {
+    chainId:"0xaa36a7"
+}
+
 export const IceCream = [
     {contract:"0x882A8478F978579bD495E231C61493af4edb50A6",abi:cc.abi}
 ]

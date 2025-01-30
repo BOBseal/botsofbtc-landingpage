@@ -48,6 +48,7 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
                 <div className='flex w-[95%] border-white border md:w-[65%] lg:w-[45%] rounded-2xl p-[10px] h-full justify-center items-center bg-[#E5BD19]'>
                     <div className='w-full font-fredoka rounded-2xl pl-[0.5rem] md:pl-[2rem] md:text-[22px] text-black h-full py-[0.4rem] gap-[7px] flex flex-col'>
                         <div>Username : <span className='font-nunito'>{rampageData.userName ? <>{rampageData.userName.trim(0,10)}</> : "Loading ..."}</span></div>
+                        <div>BOBs Held : <span className='font-nunito'>{rampageData.bobHeld ? <>{rampageData.bobHeld}</>: "0"} BOB</span></div>
                         <div>SOBs Held : <span className='font-nunito'>{rampageData.skibHeld ? <>{rampageData.skibHeld}</>: "0"} SOB</span></div>
                         <div>RP Balances : <span className='font-nunito'>{rampageData.userPoints ? <>{rampageData.userPoints}</> :"Loading ..."} $RP</span></div>
                         <div>RP Per Referal : <span className='font-nunito'>{rampageData.pointPerRef ? <>{rampageData.pointPerRef}</>: "0"} RP </span></div>

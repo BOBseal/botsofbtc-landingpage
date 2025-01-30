@@ -8,14 +8,14 @@ import Footer from "@/components/Footer"
 import FusionInvite from '@/components/Banners/FusionInvite'
 import SobBanner from "@/components/Banners/SobBanner.jsx"
 import RampageHome from "@/components/RampageHome.jsx"
-
+import NFTHover from "@/components/NavbarDropdowns/NftButtonDesktop"
 const CSS = {
 
 }
 
 const HomeV2 = () => {
   return (
-    <div className={`flex flex-col w-full justify-center h-full`}>
+    <div className={`flex flex-col w-full h-full`}>
       <Navbar/>
       <>
       <HM/>
