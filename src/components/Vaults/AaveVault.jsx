@@ -46,7 +46,9 @@ const AaveVault=()=>{
         faucetLoaderUSDT:'Claim 10k Test USDT',
         faucetLoaderUSDC:'Claim 10k Test USDC',
         usdtDepositLoader:"BuyShares",
-        usdtRedeemLoader:"SellShares"
+        usdtRedeemLoader:"SellShares",
+        usdcDepositLoader:"BuyShares",
+        usdcRedeemLoader:"SellShares",
     })
 
     const getDataResolver =async()=>{
@@ -340,6 +342,106 @@ const AaveVault=()=>{
         }
     }
 
+    const usdcDeposit=async()=>{
+        try {
+            setLoaders({...loaders,usdcDepositLoader:"Approving"})
+            const lendUsdtCa = await connectContract(lnUSDCAddress,VaultABI,user.wallet);
+            const usdtCa = await connectContract(USDCAddress,erc20Abi,user.wallet)
+            const decimals = await lendUsdtCa.decimals();
+            if(inputData.usdcDepositInput == 0){
+                alert("Minimum shares to buy must be Greater than 0")
+                setLoaders({...loaders,usdcDepositLoader:"BuyShares"})
+                return
+            }
+            const value = inputData.usdcDepositInput.toString()
+            const formattedNum = ethers.utils.parseUnits(value,decimals);
+            const usdtAmount = await lendUsdtCa.previewMint(formattedNum);
+            const formatAmount = ethers.utils.formatUnits(usdtAmount,6);
+            const addToFormat = Number(formatAmount) + 1;
+            const formatToStr = addToFormat.toString();
+            const reformat = ethers.utils.parseUnits(formatToStr,6);
+            const userUsdtBalance = await usdtCa.balanceOf(user.wallet);
+            const formattedBalance = ethers.utils.formatUnits(userUsdtBalance,6);
+            ///// BALANCE CHECK //////
+            if(Number(formattedBalance)<formatAmount){
+                alert("Not Enough USDT , Claim some test USDT and try again");
+                setLoaders({...loaders,usdcDepositLoader:"BuyShares"})
+                return
+            }
+            /////// APPROVAL //////
+            const approve =await usdtCa.approve(lnUSDCAddress,reformat);
+            approve.wait().then(async()=>{
+                ////// MINT SHARES ///////
+                setLoaders({...loaders,usdcDepositLoader:"Buying"})
+                const mint = await lendUsdtCa.mint(formattedNum,user.wallet);
+                setLoaders({...loaders,usdcDepositLoader:"BuyShares"})
+                mint.wait().then(async()=>{
+                    await getVaultData()
+                })
+            })
+        } catch (error) {
+            setLoaders({...loaders,usdcDepositLoader:"BuyShares"})
+            console.log(error)
+        }
+    }
+
+    const usdcRedeem=async()=>{
+        try {
+            setLoaders({...loaders,usdcRedeemLoader:"Selling"})
+            const lendUsdtCa = await connectContract(lnUSDCAddress,VaultABI,user.wallet);
+            const num = inputData.usdcRedeemInput;
+            const bal = await lendUsdtCa.balanceOf(user.wallet)
+            const balanceFormat = ethers.utils.formatEther(bal)
+            if(Number(balanceFormat)<num){
+                alert("Cannot redeem more Shares than you hold")
+                setLoaders({...loaders,usdcRedeemLoader:"SellShares"})
+                return
+            }
+            const numStr = num.toString();
+            const numFormat = ethers.utils.parseUnits(numStr,18);
+            const redeem = await lendUsdtCa.redeem(numFormat,user.wallet,user.wallet);
+            redeem.wait().then(async()=>{
+                await getVaultData()
+                setLoaders({...loaders,usdcRedeemLoader:"SellShares"})
+            })
+        } catch (error) {
+            setLoaders({...loaders,usdcRedeemLoader:"SellShares"})
+            console.log(error)
+        }
+    }
+
+    const estimateMaxUsdtDeposit = async()=>{
+        try {
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const estimateMaxUsdtRedeem = async()=>{
+        try {
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const estimateMaxUsdcDeposit = async()=>{
+        try {
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const estimateMaxUsdcRedeem = async()=>{
+        try {
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
         try {
             resolveChain();
@@ -352,13 +454,14 @@ const AaveVault=()=>{
     return(
         <div className="bg-[#231F20] h-full w-full border-b-[3px] border-[#E5BD19]">
             <div className="flex flex-col items-center w-full h-full py-[20px]">
-                <h1 className="font-fredoka text-[28px] md:text-[35px] text-[#E5BD19]">LENDING VAULTS</h1>
+                <h1 className="font-fredoka text-[28px] md:text-[35px] text-[#E5BD19]">LENDING VAULTS - BETA</h1>
                 {/* NETWORK ERROR*/}
                 {states.correctChain?
                 <div className="flex flex-col items-center w-full h-full">
                     <div className="flex flex-col text-white w-full px-[10px] justify-center md:px-[1rem]">
                     Tokenized Vaults that are powered by AAVE and generate Dual Yields form
-                    Supplying Assets to AAVE + Vault Fee rewarding long term holders with Boosted Yields than just supplying to AAVE alone.
+                    Supplying Assets to AAVE + Vault Fee rewarding long term holders with Boosted Yields than just supplying to AAVE alone. Current version is BETA version launch on 
+                    Sepolia Testnet and is Incentivised by the end of BETA testing period.
                     <div className="hover:underline w-[8rem] hover:text-blue-400 cursor-pointer">Learn More ...</div>
                     </div>
                     
@@ -441,10 +544,10 @@ const AaveVault=()=>{
                             </div>
                             <div className="flex flex-col w-full items-center gap-[15px]">
                                 {states.usdcDeposit ? <div className="flex w-full flex-col items-center justify-center gap-[5px]">                              
-                                    <input className="flex bg-transparent border w-[80%] h-[2.5rem] rounded-lg" type={`number`} onChange={(e)=>previewUsdcDeposit(e)}/>
+                                    <input className="flex bg-transparent border w-[80%] h-[2.5rem] rounded-lg" type={`number`} defaultValue={inputData.usdcDepositInput} onChange={(e)=>previewUsdcDeposit(e)}/>
                                     <div className="flex w-[80%] text-black justify-between px-[20px]">
-                                    <button className="bg-[#E5BD19] hover:scale-105 text-black px-[10px] font-nunito text-[18px] rounded-xl">
-                                       BuyShares
+                                    <button onClick={()=> usdcDeposit()} className="bg-[#E5BD19] hover:scale-105 text-black px-[10px] font-nunito text-[18px] rounded-xl">
+                                       {loaders.usdcDepositLoader}
                                     </button>
                                     <button onClick={()=>toggleUsdcButtons(true,true)} className="bg-[#E5BD19] hover:scale-105 text-black px-[10px] font-nunito text-[18px] rounded-xl">
                                         Close
@@ -455,8 +558,8 @@ const AaveVault=()=>{
                                 {states.usdcRedeem ? <div className="flex flex-col w-full items-center justify-center gap-[5px]">
                                     <input className="flex bg-transparent border w-[80%] h-[2.5rem] rounded-lg" type={`number`} onChange={(e)=> previewUsdcRedeem(e)}/>
                                     <div className="flex w-[80%] text-black justify-between px-[20px]">
-                                    <button className="bg-[#E5BD19] hover:scale-105 text-black px-[10px] font-nunito text-[18px] rounded-xl">
-                                        SellShares
+                                    <button onClick={()=> usdcRedeem()} className="bg-[#E5BD19] hover:scale-105 text-black px-[10px] font-nunito text-[18px] rounded-xl">
+                                        {loaders.usdcRedeemLoader}
                                     </button>
                                     <button onClick={()=>toggleUsdcButtons(true,true)} className="bg-[#E5BD19] hover:scale-105 text-black px-[10px] font-nunito text-[18px] rounded-xl">
                                         Close
