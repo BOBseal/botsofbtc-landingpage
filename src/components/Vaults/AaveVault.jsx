@@ -14,8 +14,8 @@ import { ethers } from "ethers"
 import Faucet from "@/utils/ABIS/Faucet.json"
 
 const AaveVault=()=>{
-    const lnUSDTAddress = "0x58E557cEB48Dc6218717f20fafb417988071F852"
-    const lnUSDCAddress = "0x65f138763F6eeD9d2E60630Be997C74603c96322";
+    const lnUSDTAddress = "0xCF821f1Af225b69758EB997e148642a165383da1"
+    const lnUSDCAddress = "0x5f44d7a840A27aCED8532cEd411E2f059366638c";
     const USDTAddress = "0xaA8E23Fb1079EA71e0a56F48a2aA51851D8433D0"
     const USDCAddress = "0x94a9D9AC8a22534E3FaCa9F4e7F2E2cf85d5E4C8"
     const VaultABI = Vault.abi;
