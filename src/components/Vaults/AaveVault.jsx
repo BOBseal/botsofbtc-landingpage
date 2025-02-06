@@ -12,6 +12,7 @@ import Vault from "@/utils/ABIS/Vault.json"
 import { erc20Abi } from "viem"
 import { ethers } from "ethers"
 import Faucet from "@/utils/ABIS/Faucet.json"
+import Link from "next/link"
 
 const AaveVault=()=>{
     const lnUSDTAddress = "0xCF821f1Af225b69758EB997e148642a165383da1"
@@ -462,7 +463,9 @@ const AaveVault=()=>{
                     Tokenized Vaults that are powered by AAVE and generate Dual Yields form
                     Supplying Assets to AAVE + Vault Fee rewarding long term holders with Boosted Yields than just supplying to AAVE alone. Current version is BETA version launch on 
                     Sepolia Testnet and is Incentivised by the end of BETA testing period.
-                    <div className="hover:underline w-[8rem] hover:text-blue-400 cursor-pointer">Learn More ...</div>
+                    <Link href={'https://botsofbtc.notion.site/STAKING-YIELD-VAULTS-0043e799ffef4c57baa3823384afcc12?pvs=4'} target={'_blank'}>
+                        <div className="hover:underline w-[8rem] hover:text-blue-400 cursor-pointer">Learn More ...</div>
+                    </Link>
                     </div>
                     
                     <div className="flex border-y border-y-[3px] py-[0.4rem] px-[2rem] border-black w-[75%] justify-center md:w-[50%] lg:w-[25%] mt-[1rem] text-black bg-[#E5BD19]">
