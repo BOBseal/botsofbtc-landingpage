@@ -413,31 +413,66 @@ const AaveVault=()=>{
 
     const estimateMaxUsdtDeposit = async()=>{
         try {
-            
+            const value = data.usdtUserBalance;
+            const lendUsdtCa = await connectContract(lnUSDTAddress,VaultABI,user.wallet);
+            const valStr = value.toString();
+            const formattedNum = ethers.utils.parseUnits(valStr,6);
+            const preview =await lendUsdtCa.previewDeposit(formattedNum);
+            const formattedPreview = ethers.utils.formatUnits(preview,18);
+            console.log(formattedPreview)
+            setInputData({...inputData,usdtDepositInput:Number(formattedPreview), usdtDepositCost:value})
+            return preview;
         } catch (error) {
+            setInputData({...inputData,usdtDepositInput:0, usdtDepositCost:0})
             console.log(error)
         }
     }
 
     const estimateMaxUsdtRedeem = async()=>{
         try {
-            
+            const value = data.lnUsdtUserBalance;
+            const lendUsdtCa = await connectContract(lnUSDTAddress,VaultABI,user.wallet);
+            //const decimals = await lendUsdtCa.decimals();
+            const valStr = value.toString();
+            const formattedNum = ethers.utils.parseUnits(valStr,18);
+            const preview =await lendUsdtCa.previewRedeem(formattedNum);
+            const formattedPreview = ethers.utils.formatUnits(preview,6);
+            console.log(formattedPreview)
+            setInputData({...inputData,usdtRedeemInput:value, usdtRedeemOutput:Number(formattedPreview)})
         } catch (error) {
+            setInputData({...inputData,usdtRedeemInput:0, usdtRedeemOutput:0})
             console.log(error)
         }
     }
 
     const estimateMaxUsdcDeposit = async()=>{
         try {
-            
+            const value = data.usdcUserBalance;
+            const lendUsdtCa = await connectContract(lnUSDCAddress,VaultABI,user.wallet);
+            const decimals = await lendUsdtCa.decimals();
+            const valStr = value.toString();
+            const formattedNum = ethers.utils.parseUnits(valStr,6);
+            const preview =await lendUsdtCa.previewDeposit(formattedNum);
+            const formattedPreview = ethers.utils.formatUnits(preview,18);
+            console.log(formattedPreview, value)
+            setInputData({...inputData,usdcDepositInput:Number(formattedPreview), usdcDepositCost:value})
         } catch (error) {
+            setInputData({...inputData,usdcDepositInput:0, usdcDepositCost:0})
             console.log(error)
         }
     }
 
     const estimateMaxUsdcRedeem = async()=>{
         try {
-            
+            const value = data.lnUsdcUserBalance;
+            const lendUsdtCa = await connectContract(lnUSDCAddress,VaultABI,user.wallet);
+            //const decimals = await lendUsdtCa.decimals();
+            const valStr = value.toString();
+            const formattedNum = ethers.utils.parseUnits(valStr,18);
+            const preview =await lendUsdtCa.previewRedeem(formattedNum);
+            const formattedPreview = ethers.utils.formatUnits(preview,6);
+            console.log(formattedPreview)
+            setInputData({...inputData,usdcRedeemInput:value, usdcRedeemOutput:Number(formattedPreview)})
         } catch (error) {
             console.log(error)
         }
@@ -499,26 +534,37 @@ const AaveVault=()=>{
                             </div>
                             <div className="flex flex-col w-full items-center gap-[15px]">
                             {states.usdtDeposit ? <div className="flex w-full flex-col items-center justify-center gap-[5px]">                              
-                                    <input className="flex bg-transparent border w-[80%] h-[2.5rem] rounded-lg" type={`number`} onChange={(e)=> previewUsdtDeposit(e)}/>
+                                    <input className="flex bg-transparent border w-[80%] h-[2.5rem] rounded-lg" value={inputData.usdtDepositInput} type={`number`} onChange={(e)=> previewUsdtDeposit(e)}/>
                                     <div className="flex w-[80%] text-black justify-between px-[20px]">
                                     <button onClick={()=>usdtDeposit()} className="bg-[#E5BD19] text-black px-[10px] hover:scale-105 font-nunito text-[18px] rounded-xl">
                                         {loaders.usdtDepositLoader}
+                                    </button>
+                                    <div className="flex">
+                                    <button onClick={()=>estimateMaxUsdtDeposit()} className="bg-[#E5BD19] text-black px-[10px] hover:scale-105 font-nunito text-[18px] rounded-xl">
+                                        Max
                                     </button>
                                     <button onClick={()=>toggleUsdtButtons(true,true)} className="bg-[#E5BD19] hover:scale-105 text-black px-[10px] font-nunito text-[18px] rounded-xl">
                                         Close
                                     </button>
                                     </div>
+                                    </div>
                                 </div> :""}
                                 
                                 {states.usdtRedeem ? <div className="flex flex-col w-full items-center justify-center gap-[5px]">
-                                    <input className="flex bg-transparent border w-[80%] h-[2.5rem] rounded-lg" type={`number`} onChange={(e)=> previewUsdtRedeem(e)}/>
+                                    <input className="flex bg-transparent border w-[80%] h-[2.5rem] rounded-lg" value={inputData.usdtRedeemInput} type={`number`} onChange={(e)=> previewUsdtRedeem(e)}/>
                                     <div className="flex w-[80%] text-black justify-between px-[20px]">
                                     <button onClick={()=> usdtRedeem()} className="bg-[#E5BD19] text-black hover:scale-105 px-[10px] font-nunito text-[18px] rounded-xl">
                                         {loaders.usdtRedeemLoader}
                                     </button>
+                                    
+                                    <div className="flex">
+                                    <button onClick={()=>estimateMaxUsdtRedeem()} className="bg-[#E5BD19] text-black px-[10px] hover:scale-105 font-nunito text-[18px] rounded-xl">
+                                        Max
+                                    </button>
                                     <button onClick={()=>toggleUsdtButtons(true,true)} className="bg-[#E5BD19] hover:scale-105 text-black px-[10px] font-nunito text-[18px] rounded-xl">
                                         Close
                                     </button>
+                                    </div>
                                     </div>
                                 </div> :""}
                                 {!states.usdtHideButton ?<div className="flex w-[80%] text-black justify-between px-[20px]">
@@ -547,26 +593,38 @@ const AaveVault=()=>{
                             </div>
                             <div className="flex flex-col w-full items-center gap-[15px]">
                                 {states.usdcDeposit ? <div className="flex w-full flex-col items-center justify-center gap-[5px]">                              
-                                    <input className="flex bg-transparent border w-[80%] h-[2.5rem] rounded-lg" type={`number`} defaultValue={inputData.usdcDepositInput} onChange={(e)=>previewUsdcDeposit(e)}/>
+                                    <input className="flex bg-transparent border w-[80%] h-[2.5rem] rounded-lg" type={`number`} value={inputData.usdcDepositInput} onChange={(e)=>previewUsdcDeposit(e)}/>
                                     <div className="flex w-[80%] text-black justify-between px-[20px]">
                                     <button onClick={()=> usdcDeposit()} className="bg-[#E5BD19] hover:scale-105 text-black px-[10px] font-nunito text-[18px] rounded-xl">
                                        {loaders.usdcDepositLoader}
+                                    </button>
+
+                                    <div className="flex">
+                                    <button onClick={()=>estimateMaxUsdcDeposit()} className="bg-[#E5BD19] text-black px-[10px] hover:scale-105 font-nunito text-[18px] rounded-xl">
+                                        Max
                                     </button>
                                     <button onClick={()=>toggleUsdcButtons(true,true)} className="bg-[#E5BD19] hover:scale-105 text-black px-[10px] font-nunito text-[18px] rounded-xl">
                                         Close
                                     </button>
                                     </div>
+                                    </div>
                                 </div> :""}
                                 
                                 {states.usdcRedeem ? <div className="flex flex-col w-full items-center justify-center gap-[5px]">
-                                    <input className="flex bg-transparent border w-[80%] h-[2.5rem] rounded-lg" type={`number`} onChange={(e)=> previewUsdcRedeem(e)}/>
+                                    <input className="flex bg-transparent border w-[80%] h-[2.5rem] rounded-lg" type={`number`} value={inputData.usdcRedeemInput} onChange={(e)=> previewUsdcRedeem(e)}/>
                                     <div className="flex w-[80%] text-black justify-between px-[20px]">
                                     <button onClick={()=> usdcRedeem()} className="bg-[#E5BD19] hover:scale-105 text-black px-[10px] font-nunito text-[18px] rounded-xl">
                                         {loaders.usdcRedeemLoader}
                                     </button>
+
+                                    <div className="flex">
+                                    <button onClick={()=>estimateMaxUsdcRedeem()} className="bg-[#E5BD19] text-black px-[10px] hover:scale-105 font-nunito text-[18px] rounded-xl">
+                                        Max
+                                    </button>
                                     <button onClick={()=>toggleUsdcButtons(true,true)} className="bg-[#E5BD19] hover:scale-105 text-black px-[10px] font-nunito text-[18px] rounded-xl">
                                         Close
                                     </button>
+                                    </div>
                                     </div>
                                 </div> :""}
                                 {!states.usdcHideButton ?<div className="flex w-[80%] text-black justify-between px-[20px]">
