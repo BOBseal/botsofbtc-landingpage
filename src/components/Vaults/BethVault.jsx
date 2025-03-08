@@ -13,6 +13,10 @@ import { erc20Abi } from "viem"
 import { ethers } from "ethers"
 import Faucet from "@/utils/ABIS/Faucet.json"
 import Link from "next/link"
+import Image from "next/image"
+import { partnerInfo } from "@/configs/config"
+import okuLogo from "../../assets/Oku.svg"
+import apiLogo from "../../assets/api3lgo.svg"
 
 const AaveVault=()=>{
     const BethAddress = "0x79674078Ad361D75eE04C73BCCB5BBeA4c55c618"
@@ -301,7 +305,7 @@ const AaveVault=()=>{
                 <h1 className="font-fredoka text-[28px] md:text-[35px] text-[#E5BD19]">BTC-ETH (BETH) - BETA</h1>
                 {/* NETWORK ERROR*/}
                 {states.correctChain?
-                <div className="flex flex-col items-center w-full h-full">
+                <div className="flex flex-col items-center gap-[3rem] w-full h-full">
                     <div className="flex flex-col items-center w-full h-full">
                     <div className="flex flex-col text-white w-full px-[10px] justify-center md:px-[1rem]">
                     BTC-ETH (BETH) is a Modified Version of ERC-4626 Tokenized Vaults which is designed to act like an Index Fund
@@ -371,6 +375,19 @@ const AaveVault=()=>{
                             </div>
                         </div>
                         </div>
+                </div>
+
+                
+                <div className="text-[15px] w-[95%] border-b-[2px] py-[0.5rem] md:w-auto font-fredoka flex flex-col items-center bg-transparent text-white p-[5px] rounded-2xl ">
+                POWERED BY :
+                    <div className="flex gap-[0.5rem] cursor-pointer pt-[0.3rem] justify-evenly w-full md:w-[25rem]">
+                    <Image src={apiLogo} height={50} width={50} alt="powered" />{" "}
+                    <Image src={okuLogo} height={100} width={60} alt="powered" />{" "}
+                    </div>
+                </div>
+                <div className="flex flex-col text-[10px] w-[90%] md:w-[70%] lg:w-[50%]">
+                    <p>disclaimer*</p>
+                    <p>BETH vault is currently a BETA product and may incurr losses during high volatility conditions and is affected by market & AMM conditions. Bots Of Bitcoin holds no responsibility of losses incurred during the BETA launch of this product , please DYOR</p>
                 </div>
                 </div>:<NetworkError data={"BOB Mainnet"}/>}
             </div>
