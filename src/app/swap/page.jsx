@@ -62,37 +62,46 @@ const Page = () => {
       setDexStates({...dexStates, tokenOut:e , outBalance:balance})        
     }
 
-    const setAmountIn= async(e)=>{
-      setDexStates({...dexStates, amountIn:e})     
-        const tokenOut = findTokenByTicker(dexStates.tokenOut);
-        const tokenIn = findTokenByTicker(dexStates.tokenIn);
-        const path = [tokenIn.address,tokenOut.address]
-        
-        //onst decimals = tknOutD.decimals;
-        //let amount
-        //console.log(amount)
-        const vall = ethers.utils.parseUnits(e,tokenIn.decimals);
-        //const valInt = parseInt(Number(vall));
-        const wall  = user.wallet ? user.wallet : zeroAddr;
-        const a = await getSwapData(vall,path,wall)
-        //console.log(a);
-        
-        const res =await a.json();
-        console.log(res)
-        const nums = res.toAmount.toString();
-        const outAmountBG = ethers.BigNumber.from(nums);
-        const oA = ethers.utils.formatUnits(outAmountBG,tokenOut.decimals);
-        console.log(oA)
-        
-        setStates({...states,data:res,amountOut:oA})
-        //if(dexStates.amountIn){
-        //  amount = ethers.utils.parseUnits(dexStates.amountIn , decimals)
-        //}
-        //const amountsOut = await getAmountsOut(amount , path);
-        //const amt0 = ethers.utils.formatUnits(amountOut[0],decimals)
-        //const amt1 = ethers.utils.formatUnits(amountOut[1],decimals)
-       // console.log("REturn val:",amountsOut)
-    }
+    const setAmountIn= async(event)=>{
+               
+            const tokenOut = findTokenByTicker(dexStates.tokenOut);
+            const tokenIn = findTokenByTicker(dexStates.tokenIn);
+            const path = [tokenIn.address,tokenOut.address]
+            if(tokenIn.ticker === "WETH"){
+              
+            }
+            let e = event.target.value;
+            console.log(e)
+            setDexStates({...dexStates, amountIn:e})
+            //onst decimals = tknOutD.decimals;
+            //let amount
+            //console.log(amount)
+            const vall = ethers.utils.parseUnits(e,tokenIn.decimals);
+            //const valInt = parseInt(Number(vall));
+            const wall  = user.wallet ? user.wallet : zeroAddr;
+            let res,oA, outAmountBG;
+            try {
+               const a = await getSwapData(vall,path,wall)
+               res =await a.json();
+            
+               if(a.ok){
+                const amtNum = res.toAmount.toString();
+                outAmountBG =await ethers.BigNumber.from(amtNum);
+                oA = await ethers.utils.formatUnits(outAmountBG,tokenOut.decimals);
+                setStates({...states,data:res,amountOut:oA})
+              } 
+              if(!a.ok){
+                setStates({...states,data:null , amountOut:"ERROR OCURRED , RETRY TYPING"})
+                return
+              }
+            } catch (error) {
+              setStates({...states,data:null , amountOut:"ERROR OCURRED WHEN CALCULATING"})
+              console.log(error)
+            }
+            //console.log(a);
+            
+          
+        }
 
     const switchToken =()=>{
       try {

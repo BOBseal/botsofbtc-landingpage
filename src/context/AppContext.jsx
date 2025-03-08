@@ -304,8 +304,9 @@ export const AppProvider =({children})=>{
     const executeSwap=async(dataObj,token,amount)=>{
         try {
             setLoaders({...loaders, swap:"Loading"});
+            if(token !== "0x0000000000000000000000000000000000000000"){
             const ca = await getIceContract(user.wallet);
-           
+            console.log(ca)
             if(!dataObj){
                 alert("Enter Amount")
                 return
@@ -346,6 +347,31 @@ export const AppProvider =({children})=>{
             const execs = await ca.swap(dataObj.tx.to,dataObj.tx.data,token,amount,{value:dataObj.tx.value});
             execs.wait(1).then(async(a)=>{alert(`swap complete txhash: ${execs.hash}`);
             setLoaders({...loaders, swap:""});})
+            return execs
+        }} else {
+            setLoaders({...loaders, swap:"Swapping"});
+                const provider = new ethers.providers.Web3Provider(window.ethereum);
+                const sign = await provider.getSigner();
+                const exec = await sign.sendTransaction({to:dataObj.tx.to,data:dataObj.tx.data,value:dataObj.tx.value});
+                exec.wait(1).then(async(a)=>{
+                    alert(`swap complete txhash: ${exec.hash}`);
+                    const tknInAdd = findTokenByTicker(dexStates.tokenIn);
+                    const tknOutAdd = findTokenByTicker(dexStates.tokenOut)
+                    let tokenInBal,tokenOutBal;
+                    if(tknInAdd.ticker === "ETH"){
+                        tokenInBal = await getEthBalance(user.wallet)
+                    }else {
+                        tokenInBal = await getErc20Balances(tknInAdd.address, user.wallet);
+                    }
+                    if(tknOutAdd.ticker === "ETH"){
+                        tokenOutBal = await getEthBalance(user.wallet)
+                    }else {
+                        tokenOutBal = await getErc20Balances(tknInAdd.address, user.wallet);
+                    }
+                    setDexStates({...dexStates,inBalance:tokenInBal ,outBalance:tokenOutBal})
+                })
+                setLoaders({...loaders, swap:""});
+                return exec
         }
         } catch (error) {
             setLoaders({...loaders, swap:"Swap Now"});

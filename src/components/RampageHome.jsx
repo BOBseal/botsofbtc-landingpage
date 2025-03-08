@@ -18,7 +18,7 @@ const RampageHome = () => {
     })
 
     const goRight =()=>{
-        if(utils == 3){
+        if(utils == 2){
             return
         }
         const s = utils
