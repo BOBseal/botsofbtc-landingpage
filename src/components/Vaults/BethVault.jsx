@@ -332,7 +332,7 @@ const AaveVault=()=>{
                             </div>
                             <div className="flex flex-col w-full items-center gap-[15px]">
                             {states.usdtDeposit ? <div className="flex w-full flex-col items-center justify-center gap-[5px]">                              
-                                    <input className="flex bg-transparent border w-[80%] h-[2.5rem] rounded-lg" value={inputData.usdtDepositInput} type={`number`} onChange={(e)=> previewUsdtDeposit(e)}/>
+                                    <input className="flex bg-transparent border w-[80%] h-[2.5rem] text-white rounded-lg" value={inputData.usdtDepositInput} type={`number`} onChange={(e)=> previewUsdtDeposit(e)}/>
                                     <div className="flex w-[80%] text-black justify-between px-[20px]">
                                     <button onClick={()=>usdtDeposit()} className="bg-[#E5BD19] text-black px-[10px] hover:scale-105 font-nunito text-[18px] rounded-xl">
                                         {loaders.usdtDepositLoader}
@@ -346,7 +346,7 @@ const AaveVault=()=>{
                                 </div> :""}
                                 
                                 {states.usdtRedeem ? <div className="flex flex-col w-full items-center justify-center gap-[5px]">
-                                    <input className="flex bg-transparent border w-[80%] h-[2.5rem] rounded-lg" value={inputData.usdtRedeemInput} type={`number`} onChange={(e)=> previewUsdtRedeem(e)}/>
+                                    <input className="flex bg-transparent border w-[80%] h-[2.5rem] text-white rounded-lg" value={inputData.usdtRedeemInput} type={`number`} onChange={(e)=> previewUsdtRedeem(e)}/>
                                     <div className="flex w-[80%] text-black justify-between px-[20px]">
                                     <button onClick={()=> usdtRedeem()} className="bg-[#E5BD19] text-black hover:scale-105 px-[10px] font-nunito text-[18px] rounded-xl">
                                         {loaders.usdtRedeemLoader}
