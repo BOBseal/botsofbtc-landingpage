@@ -381,8 +381,12 @@ const AaveVault=()=>{
                 <div className="text-[15px] w-[95%] border-b-[2px] py-[0.5rem] md:w-auto font-fredoka flex flex-col items-center bg-transparent text-white p-[5px] rounded-2xl ">
                 POWERED BY :
                     <div className="flex gap-[0.5rem] cursor-pointer pt-[0.3rem] justify-evenly w-full md:w-[25rem]">
-                    <Image src={apiLogo} height={50} width={50} alt="powered" />{" "}
-                    <Image src={okuLogo} height={100} width={60} alt="powered" />{" "}
+                        <Link href={"https://api3.org"} target={'_blank'}>
+                            <Image src={apiLogo} height={50} width={50} alt="powered" />{" "}
+                        </Link>
+                        <Link href={"https://oku.trade"} target={'_blank'}>
+                            <Image src={okuLogo} height={100} width={60} alt="powered" />{" "}
+                        </Link>
                     </div>
                 </div>
                 <div className="flex flex-col text-[10px] w-[90%] md:w-[70%] lg:w-[50%]">
