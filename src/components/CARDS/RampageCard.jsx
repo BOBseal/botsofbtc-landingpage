@@ -20,7 +20,7 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
     }
 
     const goRight=()=>{
-        if(states.acNo == 3){
+        if(states.acNo == 2){
             return
         }
         const a = states.acNo;

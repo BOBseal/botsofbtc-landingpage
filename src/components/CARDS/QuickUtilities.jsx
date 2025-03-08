@@ -9,8 +9,8 @@ const QuickUtilities = ({pageNo}) => {
     <div className='flex w-full h-full pt-[1rem]'>
         {pageNo == 0 ? <SobBanner/> :""}
         {pageNo == 1 ? <Swap/> :""}
-        {pageNo == 2 ?<LotterySelectZone/>:""}
-        {pageNo == 3 ? <SkibStake/>:""}
+        {pageNo == 3 ?<LotterySelectZone/>:""}
+        {pageNo == 2 ? <SkibStake/>:""}
       
     </div>
   )
