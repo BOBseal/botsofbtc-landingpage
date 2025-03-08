@@ -260,10 +260,10 @@ const Page = () => {
           }
         </div>
 
-        <p className="text-[15px] w-[95%] md:w-auto font-fredoka flex items-center bg-black text-white p-[5px] rounded-2xl ">
+        <div className="text-[15px] w-[95%] md:w-auto font-fredoka flex items-center bg-black text-white p-[5px] rounded-2xl ">
           Powered By{" "}
-          <Image src={partnerInfo[1].logo} height={100} width={200} />{" "}
-        </p>
+          <Image src={partnerInfo[1].logo} height={100} width={200} alt="powered" />{" "}
+        </div>
       </div>
       <Footer />
     </>
