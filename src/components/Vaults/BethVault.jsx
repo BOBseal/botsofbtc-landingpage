@@ -170,8 +170,8 @@ const AaveVault=()=>{
             const vaultCa = await connectContract(BethAddress,VaultABI,user.wallet);
             const usdtCa = await connectContract(USDTAddress,erc20Abi,user.wallet);
             const vaultDecimals = await vaultCa.decimals();
-            if(inputData.usdtDepositInput == 0){
-                alert("Minimum shares to buy must be Greater than 0")
+            if(inputData.usdtDepositInput < 50){
+                alert("Minimum shares to buy must be Greater than 50")
                 setLoaders({...loaders,usdtDepositLoader:"BuyShares"})
                 return
             }
