@@ -19,7 +19,7 @@ import okuLogo from "../../assets/Oku.svg"
 import apiLogo from "../../assets/api3lgo.svg"
 
 const AaveVault=()=>{
-    const BethAddress = "0x3153e271b6abbe85db54A175eD5Cf5A5fc981E8f"
+    const BethAddress = "0xf9bcffb46e008ff75006a7c906976bDC6d89615D"
     const USDTAddress = "0x05D032ac25d322df992303dCa074EE7392C117b9"
     const VaultABI = Vault.abi;
     const {user, connectWallet} = useContext(AppContext)
@@ -327,7 +327,7 @@ const AaveVault=()=>{
                                 <p>Share Value : {data.sharePrice ? <>{parseFloat(data.sharePrice.toFixed(6))}</>:"0"} USDT</p>
                                 <p>BTC Price :{data.btcPrice ? <>{parseFloat(data.btcPrice.toFixed(2))}</>:"0"} USDT</p>
                                 <p>ETH Price :{data.ethPrice ? <>{parseFloat(data.ethPrice.toFixed(2))}</>:"0"} USDT</p>
-                                <p>Vault Fee : 0.1% + Slippage & Swap Fee</p>
+                                <p>Vault Fee : 0.25% + Slippage & Swap Fee</p>
                                 <p>BETH Balance : {data.userBethBalance ? <>{parseFloat(data.userBethBalance.toFixed(2))}</>:"0"} lnUSDT</p>
                                 <p>USDT Balance : {data.userUsdtBalance ? <>{parseFloat(data.userUsdtBalance.toFixed(2))}</>:"0"} USDT</p>
                                 {states.usdtDeposit ? <p>Cost : {inputData.usdtDepositCost? <>{inputData.usdtDepositCost}</>:"0"} USDT</p> :""}
