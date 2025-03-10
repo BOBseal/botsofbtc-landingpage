@@ -175,6 +175,12 @@ const AaveVault=()=>{
                 setLoaders({...loaders,usdtDepositLoader:"BuyShares"})
                 return
             }
+
+            if(inputData.usdtDepositInput > 10000){
+                alert("Maximum of 10000 Shares can be minted in One Tx")
+                setLoaders({...loaders,usdtDepositLoader:"BuyShares"})
+                return
+            }
             const val = inputData.usdtDepositInput.toString();
             const formatVal = ethers.utils.parseUnits(val,vaultDecimals);
             const usdtAmount = await vaultCa.previewMint(formatVal);
