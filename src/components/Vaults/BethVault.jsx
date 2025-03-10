@@ -313,7 +313,7 @@ const AaveVault=()=>{
                 {states.correctChain?
                 <div className="flex flex-col items-center gap-[3rem] w-full h-full">
                     <div className="flex flex-col items-center w-full h-full">
-                    <div className="flex flex-col text-white w-full px-[10px] justify-center md:px-[1rem]">
+                    <div className="flex flex-col text-white w-full md:w-[90%] lg:w-[60%] px-[10px] justify-center md:px-[1rem]">
                     BTC-ETH (BETH) is a modified ERC-4626 tokenized vault designed to function as an index fund backed by Bitcoin (BTC) and Ethereum (ETH). It also acts as a hybrid ERC20 token, with its value directly influenced by the prices of the underlying BTC and ETH assets. The BETH Vault is designed to eventually serve as a liquidity layer for the WBTC-WETH pair on OKU (Uni v3), aiming to generate real yield for its underlying assets. This yield, once enabled, will contribute to pushing the base price floor of BETH shares higher over time — ensuring sustainable growth and value appreciation for its holders.
                     <Link href={'https://botsofbtc.notion.site/BTC-ETH-Hybrid-Vault-V1-1a2dae0f14ca80718af1eb8e16d9c918?pvs=4'} target={'_blank'}>
                         <div className="hover:underline w-[8rem] hover:text-blue-400 cursor-pointer">Learn More ...</div>
@@ -334,7 +334,7 @@ const AaveVault=()=>{
                                 <p>BTC Price :{data.btcPrice ? <>{parseFloat(data.btcPrice.toFixed(2))}</>:"0"} USDT</p>
                                 <p>ETH Price :{data.ethPrice ? <>{parseFloat(data.ethPrice.toFixed(2))}</>:"0"} USDT</p>
                                 <p>Vault Fee : 0.25% + Slippage & Swap Fee</p>
-                                <p>BETH Balance : {data.userBethBalance ? <>{parseFloat(data.userBethBalance.toFixed(2))}</>:"0"} lnUSDT</p>
+                                <p>BETH Balance : {data.userBethBalance ? <>{parseFloat(data.userBethBalance.toFixed(2))}</>:"0"} BETH</p>
                                 <p>USDT Balance : {data.userUsdtBalance ? <>{parseFloat(data.userUsdtBalance.toFixed(2))}</>:"0"} USDT</p>
                                 {states.usdtDeposit ? <p>Cost : {inputData.usdtDepositCost? <>{inputData.usdtDepositCost}</>:"0"} USDT</p> :""}
                                 {states.usdtRedeem ? <p>Recieve : {inputData.usdtRedeemOutput? <>{inputData.usdtRedeemOutput}</>:"0"} USDT</p> :""}
