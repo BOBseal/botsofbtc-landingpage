@@ -21,7 +21,9 @@ const DefiHover = ({toggleFunction}) => {
             <Link href={"/aave-vaults"} target={'_blank'}>
             <button onClick={()=>toggleFunction()} className='hover:scale-105 hover:underline'>AAVE Lending Vaults</button>
             </Link>
-            <button onClick={()=>toggleAndAlert()} className='hover:scale-105 hover:underline'>BETH - BITCOIN-ETH Vault</button>
+            <Link href={"/beth"} target={'_blank'}>
+            <button onClick={()=>toggleFunction()} className='hover:scale-105 hover:underline'>BETH - BITCOIN-ETH Vault</button>
+            </Link>
         </div>
     </div>
   )

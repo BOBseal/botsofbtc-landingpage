@@ -172,6 +172,9 @@ const MobileNav: React.FC<NavbarProps> = ({ openMobileMenu, userWallet, connectW
           <Link href={'/aave-vaults'} target={'_blank'}>
             <p className=' font-nunito text-black text-[20px]'>Lending Vaults</p>
           </Link>
+          <Link href={'/beth'} target={'_blank'}>
+            <p className=' font-nunito text-black text-[20px]'>BTC-ETH (BETH)</p>
+          </Link>
           <Link href={'https://botsofbtc.notion.site/BOTS-OF-BITCOIN-27ab822513f5459d861d07a6f11271ba?pvs=4'} target={'_blank'}>
             <p className=' font-nunito text-black text-[20px]'>Docs</p>
           </Link>
