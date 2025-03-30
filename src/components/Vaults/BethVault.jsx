@@ -132,10 +132,20 @@ const AaveVault=()=>{
 
     const previewUsdtDeposit =async(e)=>{
         try {
-            const value = e.target.value;
+            const value = Number(e.target.value) ;
             const vaultCa = await connectContract(BethAddress,VaultABI,user.wallet);
             const decimals =await vaultCa.decimals();
-            const valStr = value.toString()
+            const onePercent = Number(value)/100;
+            let ssss = 0;
+            if(value>100){
+                console.log(onePercent)
+                ssss = Number(value)+onePercent;
+                console.log(ssss)
+            } else {
+                ssss = Number(value)+1;
+                console.log(ssss)
+            }
+            const valStr = ssss.toString()
             const format = ethers.utils.parseUnits(valStr,Number(decimals))
             const preview =await vaultCa.previewMint(format);
             const formattedPreview =  ethers.utils.formatUnits(preview,6)
@@ -181,7 +191,9 @@ const AaveVault=()=>{
                 setLoaders({...loaders,usdtDepositLoader:"BuyShares"})
                 return
             }
-            const val = inputData.usdtDepositInput.toString();
+            const toMint =inputData.usdtDepositInput;
+            const toMintRefactor = Number(toMint)+1; 
+            const val = toMintRefactor.toString();
             const formatVal = ethers.utils.parseUnits(val,vaultDecimals);
             const usdtAmount = await vaultCa.previewMint(formatVal);
             const formatAmount = ethers.utils.formatUnits(usdtAmount,6);
@@ -319,7 +331,7 @@ const AaveVault=()=>{
                         <div className="hover:underline w-[8rem] hover:text-blue-400 cursor-pointer">Learn More ...</div>
                     </Link>
                     </div>
-                    
+                   
                     <div className="flex border-y border-y-[3px] py-[0.4rem] px-[2rem] border-black w-[75%] justify-center md:w-[50%] lg:w-[25%] mt-[1rem] text-black bg-[#E5BD19]">
                         <div className="text-[20px] md:text-[25px] lg:text-[28px] font-nunito">TVL : {data.tvl ? <>{parseFloat(data.tvl.toFixed(2))}</>:"0"} USD</div>
                     </div>
@@ -396,7 +408,7 @@ const AaveVault=()=>{
                 </div>
                 <div className="flex flex-col text-[10px] w-[90%] md:w-[70%] lg:w-[50%]">
                     <p>disclaimer*</p>
-                    <p>BETH vault is currently a BETA product and may incurr losses during high volatility conditions and is affected by market & AMM conditions. Bots Of Bitcoin holds no responsibility of losses incurred during the BETA launch of this product , please DYOR</p>
+                    <p>BETH vault is currently a BETA product and may incurr losses during high volatility conditions and is affected by market & AMM conditions. Value of BETH is directly influenced by the Value of Bitcoin and Ethereum. Bots Of Bitcoin holds no responsibility of losses incurred during the BETA launch of this product , please DYOR</p>
                 </div>
                 </div>:<NetworkError data={"BOB Mainnet"}/>}
             </div>
