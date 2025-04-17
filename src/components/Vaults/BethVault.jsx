@@ -19,7 +19,7 @@ import okuLogo from "../../assets/Oku.svg"
 import apiLogo from "../../assets/api3lgo.svg"
 
 const AaveVault=()=>{
-    const BethAddress = "0xf9bcffb46e008ff75006a7c906976bDC6d89615D"
+    const BethAddress = "0x6D380D6Fd1f36f3c46e13E7f6dc38A1261bfead1"
     const USDTAddress = "0x05D032ac25d322df992303dCa074EE7392C117b9"
     const VaultABI = Vault.abi;
     const {user, connectWallet} = useContext(AppContext)
