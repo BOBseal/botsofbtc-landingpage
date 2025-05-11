@@ -86,7 +86,7 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
                     {states.acNo == 0 ? <ClaimSpice/> :""} 
                     {states.acNo == 2 ? <DailyLogin dailyMine={dailyMine} data={rampageData} loaders={loaders}/> :""}
                     {states.acNo == 3 ? <SwapAc/> :""}
-                    {states.acNo == 1 ? <div className='flex justify-center items-center'><BethVault/></div> :""}
+                    {states.acNo == 1 ? <BethVault/> :""}
                     {states.acNo == 4 ? <DailyLogin/> :""}
                     {states.acNo == 5 ? <DailyLogin/> :""}
                     {states.acNo == 6 ? <DailyLogin/> :""}
