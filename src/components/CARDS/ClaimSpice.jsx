@@ -15,7 +15,8 @@ const ClaimSpice = () => {
         initial: false,
         claim: "Claim Spice",
         bonus: "Claim Bonus",
-        vote:"Voter Claim"
+        vote:"Voter Claim",
+        beth: "BETH Claim"
     })
     const apiUrl = `https://api.botsofbtc.com`
 
@@ -37,6 +38,13 @@ const ClaimSpice = () => {
             const coreCa = await getRpCoreContract(user.wallet);
             const bobHolderList = await fetch(`${apiUrl}/holderListBOB`);
             const eligibleSpice = await fetch(`${apiUrl}/eligibleSobSpice?address=${userFormat}`)
+            const spicePerBethUser = await fetch(`${apiUrl}/beth/claimableSpice?address=${userFormat}`)
+            const spicePerBethData = await fetch(`${apiUrl}/beth/spicePerBeth`)
+            const spData =await spicePerBethData.json();
+            const bethUser = await spicePerBethUser.json()
+            const bethSpices = parseFloat(spData.points).toFixed(2)
+            const userBeth = parseFloat(bethUser.points).toFixed(2)
+            console.log(spData)
             let vtSpc = 0;
             let elig = false;
             if(eligibleSpice.status == 200){
@@ -71,6 +79,11 @@ const ClaimSpice = () => {
             const dca = await fetch(`${apiUrl}/claimableSpice?address=${userFormat}`)
             const dCa = await dca.json();
             const dailyClaim = dCa.claimable;
+            const dClmStr = dailyClaim.toString()
+            const dClm = parseFloat(dClmStr).toFixed(2);
+            const totalClaims = Number(claimableMintSpice) + Number(dailyClaim)
+            const tclmStr = totalClaims.toString()
+            const tClm = parseFloat(tclmStr).toFixed(2);
             setData({
                 ...data,
                 bobHeld: Number(bobHeld),
@@ -78,11 +91,13 @@ const ClaimSpice = () => {
                 unclaimedIds: unclaimedIds,
                 claimableIds: unclaimedIds.length,
                 rpBalance: Number(rpData[1]),
-                dailyClaimable: dailyClaim,
+                dailyClaimable: Number(dClm),
                 mintClaimable: claimableMintSpice,
-                totalClaimable: Number(claimableMintSpice) + Number(dailyClaim),
+                totalClaimable: Number(tClm),
                 voteSpice:vtSpc,
                 eligible:elig,
+                bethSpice : bethSpices,
+                userBethSpice:userBeth,
                 processed: true
             })
             setLoaders({ ...loaders, initial: false })
@@ -114,6 +129,35 @@ const ClaimSpice = () => {
         } catch (error) {
             console.log(error)
             setLoaders({ ...loaders, claim: "Claim Spice" ,claimLoader:false})
+        }
+    }
+
+    const claimDailyBeth = async () => {
+        try {
+            setLoaders({ ...loaders, beth: "Claiming" ,bethClaimLoader:true})
+            if (loaders.initial) {
+                setLoaders({ ...loaders, beth: "BETH Claim" })
+                alert("Info loading , claim after states are loaded")
+                return
+            }
+            const userFormat = ethers.utils.getAddress(user.wallet)
+            const url = `${apiUrl}/beth/claimSpice`
+            const call = await fetch(url,{
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({address:userFormat})
+            });
+            if (call.ok) {
+                alert(`${data.userBethSpice} Spice is sent to ${userFormat}`);
+                await getSpiceData();
+            }
+            else {
+                alert(`Something went wrong when claiming`)
+            }
+            setLoaders({ ...loaders, beth: "BETH Claim" ,bethClaimLoader:false})
+        } catch (error) {
+            console.log(error)
+            setLoaders({ ...loaders, beth: "BETH Claim" ,bethClaimLoader:false})
         }
     }
 
@@ -190,6 +234,14 @@ const ClaimSpice = () => {
                         <p className="text-[17px] lg:text-[22px]">SOB Held: {data.sobHeld ? <>{data.sobHeld}</> : "0"} SOB</p>
                         <p className="text-[17px] lg:text-[22px]">Spice Per RP/day: {data.spicePerRP} Spice</p>
                         <p className="text-[17px] lg:text-[22px]">RP Balance: {data.rpBalance ? <>{data.rpBalance}</> : "0"} $RP</p>
+                        <p className="text-[17px] lg:text-[22px]">Spice Per $BETH/day: {data.bethSpice} Spice</p>
+                        {
+                            data.userBethSpice >0 ?
+                            <div className="flex text-white gap-[5px] flex flex-col w-full">
+                                <p className="text-[17px] lg:text-[22px]">Claimable $BETH Spice : {data.userBethSpice} Spice</p>
+                            </div>
+                            :""
+                        }
                         {
                             data.eligible?
                             <div className="flex text-white gap-[5px] flex flex-col w-full">
@@ -211,6 +263,12 @@ const ClaimSpice = () => {
                     {data.claimableIds > 0 ?
                         <div className="flex w-[50%] justify-center items-center">
                             <button onClick={() => claimMintBonus()} disabled={loaders.mintBonusLoader} className="bg-yellow-500 px-[10px] py-[3px] rounded-full font-fredoka">{loaders.bonus}</button>
+                        </div>
+                        : ""}
+
+                    {data.userBethSpice > 0 ?
+                        <div className="flex w-[50%] justify-center items-center">
+                            <button onClick={() => claimDailyBeth()} className="bg-yellow-500 px-[10px] py-[3px] rounded-full font-fredoka">{loaders.beth}</button>
                         </div>
                         : ""}
 
