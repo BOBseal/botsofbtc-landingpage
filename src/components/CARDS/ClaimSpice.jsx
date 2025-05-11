@@ -226,37 +226,37 @@ const ClaimSpice = () => {
                 </div>
                 {!loaders.initial ?
                     <div className="flex text-white px-[0.5rem] md:pl-[2rem] font-fredoka pt-[1rem] gap-[5px] h-[70%] flex flex-col justify-center w-full">
-                        <p className="text-[17px] lg:text-[22px]">Spice Per BOB/day: {data.spicePerBOB} Spice</p>
+                        <p className="text-[17px] lg:text-[20px]">Spice Per BOB/day: {data.spicePerBOB} Spice</p>
 
-                        <p className="text-[17px] lg:text-[22px]">BOB Held: {data.bobHeld ? <>{data.bobHeld}</> : "0"} BOB</p>
+                        <p className="text-[17px] lg:text-[20px]">BOB Held: {data.bobHeld ? <>{data.bobHeld}</> : "0"} BOB</p>
                         <p className="text-[17px] lg:text-[22px]">Spice Per SOB/day: {data.spicePerSOB} Spice</p>
 
-                        <p className="text-[17px] lg:text-[22px]">SOB Held: {data.sobHeld ? <>{data.sobHeld}</> : "0"} SOB</p>
-                        <p className="text-[17px] lg:text-[22px]">Spice Per RP/day: {data.spicePerRP} Spice</p>
-                        <p className="text-[17px] lg:text-[22px]">RP Balance: {data.rpBalance ? <>{data.rpBalance}</> : "0"} $RP</p>
-                        <p className="text-[17px] lg:text-[22px]">Spice Per $BETH/day: {data.bethSpice} Spice</p>
+                        <p className="text-[17px] lg:text-[20px]">SOB Held: {data.sobHeld ? <>{data.sobHeld}</> : "0"} SOB</p>
+                        <p className="text-[17px] lg:text-[20px]">Spice Per RP/day: {data.spicePerRP} Spice</p>
+                        <p className="text-[17px] lg:text-[20px]">RP Balance: {data.rpBalance ? <>{data.rpBalance}</> : "0"} $RP</p>
+                        <p className="text-[17px] lg:text-[20px]">Spice Per $BETH/day: {data.bethSpice} Spice</p>
                         {
                             data.userBethSpice >0 ?
                             <div className="flex text-white gap-[5px] flex flex-col w-full">
-                                <p className="text-[17px] lg:text-[22px]">Claimable $BETH Spice : {data.userBethSpice} Spice</p>
+                                <p className="text-[17px] lg:text-[20px]">Claimable $BETH Spice : {data.userBethSpice} Spice</p>
                             </div>
                             :""
                         }
                         {
                             data.eligible?
                             <div className="flex text-white gap-[5px] flex flex-col w-full">
-                                <p className="text-[17px] lg:text-[22px]">Voting SOB Rewards: {data.voteSpice >0 ? <>{data.voteSpice}</> : "0"} Spice</p>
+                                <p className="text-[17px] lg:text-[20px]">Voting SOB Rewards: {data.voteSpice >0 ? <>{data.voteSpice}</> : "0"} Spice</p>
                             </div>
                             :""
                         }
                         {data.claimableIds > 0 ?
                             <div className="flex text-white gap-[5px] flex flex-col w-full">
-                                <p className="text-[17px] lg:text-[22px]">Unclaimed BOB Mints: {data.claimableIds ? <>{data.claimableIds}</> : "0"} BOB</p>
-                                <p className="text-[17px] lg:text-[22px]">Bonus Per Mint: 1000 Spice</p>
-                                <p className="text-[17px] lg:text-[22px]">Claimable Bonus: {data.mintClaimable ? <>{data.mintClaimable}</> : "0"} Spice</p>
+                                <p className="text-[17px] lg:text-[20px]">Unclaimed BOB Mints: {data.claimableIds ? <>{data.claimableIds}</> : "0"} BOB</p>
+                                <p className="text-[17px] lg:text-[20px]">Bonus Per Mint: 1000 Spice</p>
+                                <p className="text-[17px] lg:text-[20px]">Claimable Bonus: {data.mintClaimable ? <>{data.mintClaimable}</> : "0"} Spice</p>
                             </div> : ""
                         }
-                        <p className="text-[17px] lg:text-[22px]">Claimable Spice: {data.dailyClaimable ? <>{data.dailyClaimable}</> : "0"} Spice</p>
+                        <p className="text-[17px] lg:text-[20px]">Claimable Spice: {data.dailyClaimable ? <>{data.dailyClaimable}</> : "0"} Spice</p>
                     </div> :
                     <div className="text-white text-[25px]">Loading...</div>}
                 <div className={`w-full text-[20px] lg:text-[25px] h-[15%] pb-[1rem] px-[1rem] flex ${data.claimableIds > 0 ? "justify-between" : "justify-center"}`}>
