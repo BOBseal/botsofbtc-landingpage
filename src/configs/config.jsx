@@ -106,7 +106,17 @@ export const sectionText = [
             "SPICE Bonus : New Spice Distribution Rules in Accordance with BOB Fusion S3 will be announced on Socials."
         ],
     },
-
+    {
+        sectionName : "vaults",
+        h1: "Tokenized Vaults",
+        p1: "Tokenized ERC-4626 Vaults where User can stake their LSTs, ETH , BTC or Stablecoins to earn Yeild on their Stake. The Yeild will be generated using various strategies such as Trading Bots , LP , Staking , or Hybrid etc. There will be a Selection of Vaults using Different Strategies for Yeild , where user can Stake or Restake their Assets and Get Yeild on top.",
+        h2: "Currently Deployed & Developed Vaults & Strategies :",
+        h2a: [
+            "BTC-ETH (BETH) : Index Fund Vault of BITCOIN & ETHEREUM that represents 50-50 BTC & ETH. $BETH Vault will accrue Yield on by acting as a Liquidity Provider for WBTC/WETH Pair & Will undergo Smart Rebalancing to Increase Vaule of $BETH.",
+            "Lending/Borrowing : Utilizes Lending/Borrowing to accrue Yield on Staked assets in the Vault.Assets are provided to AAVE to accrue Yield , Share tokens get a Boosted Yield effect thn directly Lending to AAVE",
+            "New Vaults added on Future Community Voted Strategies"
+        ],
+    },
    /*
     {
         sectionName:"oilpots",
@@ -122,18 +132,6 @@ export const sectionText = [
             "The System of Starting Ticket Buy , Starting Draw and Transfer of Win Amounts are all Automatic and Admin have no control over funds except fee accrued.",
             "Till TGE 50% of All Fee Generated through Raffles would be Reserved towards Strengthening Token Liquidity.",
         ]
-    },
-    {
-        sectionName : "vaults",
-        h1: "Tokenized Vaults",
-        p1: "Tokenized ERC-4626 Vaults where User can stake their LSTs, ETH , BTC or Stablecoins to earn Yeild on their Stake. The Yeild will be generated using various strategies such as Trading Bots , LP , Staking , or Hybrid etc. There will be a Selection of Vaults using Different Strategies for Yeild , where user can Stake or Restake their Assets and Get Yeild on top.",
-        h2: "Examples of Vaults & Strategies :",
-        h2a: [
-            "Trading Bot Vault (Auto-Market Making) : Accrues Profits from Deposited Pool of the Vault in a Set Pair by using Market Making Strategy.",
-            "Restaking Vault (LP farming LSTs + AMM ) : Utilizes a Dual Strategy of Liquidity Farming of the Staked LSTs (stEth or stBtc for eg) + Trading preset LST pairs with AMM strategy.",
-            "Lending/Borrowing : Utilizes Lending/Borrowing to accrue Yield on Staked assets in the Vault.",
-            "New Vaults added on Future Community Voted Strategies"
-        ],
     },
     {
         sectionName : "bots",

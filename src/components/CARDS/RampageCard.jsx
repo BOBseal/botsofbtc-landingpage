@@ -9,6 +9,8 @@ import r from "../../assets/rightArrow.png"
 import SwapAc from "../Activities/SwapAc"
 import {motion,AnimatePresence} from "framer-motion"
 import ClaimSpice from "../../components/CARDS/ClaimSpice"
+import BethVault from "../Vaults/BethVault"
+
 const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , setStates,variants}) => {
 
     const goLeft =()=>{
@@ -20,7 +22,7 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
     }
 
     const goRight=()=>{
-        if(states.acNo == 2){
+        if(states.acNo == 3){
             return
         }
         const a = states.acNo;
@@ -82,9 +84,9 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
                             className='w-full h-full'
                         >
                     {states.acNo == 0 ? <ClaimSpice/> :""} 
-                    {states.acNo == 1 ? <DailyLogin dailyMine={dailyMine} data={rampageData} loaders={loaders}/> :""}
-                    {states.acNo == 2 ? <SwapAc/> :""}
-                    {states.acNo == 3 ? <LotterySelectZone/> :""}
+                    {states.acNo == 2 ? <DailyLogin dailyMine={dailyMine} data={rampageData} loaders={loaders}/> :""}
+                    {states.acNo == 3 ? <SwapAc/> :""}
+                    {states.acNo == 1 ? <BethVault/> :""}
                     {states.acNo == 4 ? <DailyLogin/> :""}
                     {states.acNo == 5 ? <DailyLogin/> :""}
                     {states.acNo == 6 ? <DailyLogin/> :""}
@@ -112,9 +114,9 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
                             className='w-full h-full'
                         >
                     {states.acNo == 0 ? <ClaimSpice/> :""} 
-                    {states.acNo == 1 ? <DailyLogin dailyMine={dailyMine} data={rampageData} loaders={loaders}/> :""}
-                    {states.acNo == 2 ? <SwapAc/> :""}
-                    {states.acNo == 3 ? <LotterySelectZone/> :""}
+                    {states.acNo == 2 ? <DailyLogin dailyMine={dailyMine} data={rampageData} loaders={loaders}/> :""}
+                    {states.acNo == 3 ? <SwapAc/> :""}
+                    {states.acNo == 1 ? <div className='flex justify-center items-center'><BethVault/></div> :""}
                     {states.acNo == 4 ? <DailyLogin/> :""}
                     {states.acNo == 4 ? <DailyLogin/> :""}
                     {states.acNo == 5 ? <DailyLogin/> :""}

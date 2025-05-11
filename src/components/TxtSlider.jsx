@@ -17,7 +17,7 @@ const TxtSlider = () => {
     })
 
     const goRight =()=>{
-        if(act == 2){
+        if(act == 3){
             return
         }
         const s = act
