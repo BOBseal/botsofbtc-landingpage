@@ -90,6 +90,10 @@ const Navbar: React.FC<NavbarProps> = () => {
         <Link href={'/rampage'} target={'_blank'}>
           <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105'>Rampage</button>
         </Link>
+
+        <Link href={'https://dailyspice.botsofbtc.com'} target={'_blank'}>
+          <button className='lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105'>DailySpice</button>
+        </Link>
           
         <div className='flex items-center justify-center'>
           <button onClick={()=>setNftButtonState()} className={`lg:text-[22px] font-nunito font-semibold md:text-[18px] hover:scale-105`}>NFTs</button>
@@ -162,6 +166,10 @@ const MobileNav: React.FC<NavbarProps> = ({ openMobileMenu, userWallet, connectW
           </Link>
           <Link href={'/rampage'} target={'_blank'}>
             <p className=' font-nunito text-black text-[20px]'>Rampage</p>
+          </Link>
+
+          <Link href={'https://dailyspice.botsofbtc.com'} target={'_blank'}>
+            <p className=' font-nunito text-black text-[20px]'>Daily Spice</p>
           </Link>
           <Link href={'/stake'} target={'_blank'}>
             <p className=' font-nunito text-black text-[20px]'>Stake</p>

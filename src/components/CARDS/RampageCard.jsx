@@ -22,7 +22,7 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
     }
 
     const goRight=()=>{
-        if(states.acNo == 3){
+        if(states.acNo == 2){
             return
         }
         const a = states.acNo;
@@ -83,10 +83,10 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
                             transition={{ duration: 0.3 }}
                             className='w-full h-full'
                         >
-                    {states.acNo == 0 ? <ClaimSpice/> :""} 
+                    {states.acNo == 12 ? <ClaimSpice/> :""} 
                     {states.acNo == 2 ? <DailyLogin dailyMine={dailyMine} data={rampageData} loaders={loaders}/> :""}
-                    {states.acNo == 3 ? <SwapAc/> :""}
-                    {states.acNo == 1 ? <BethVault/> :""}
+                    {states.acNo == 1 ? <SwapAc/> :""}
+                    {states.acNo == 0 ? <BethVault/> :""}
                     {states.acNo == 4 ? <DailyLogin/> :""}
                     {states.acNo == 5 ? <DailyLogin/> :""}
                     {states.acNo == 6 ? <DailyLogin/> :""}
@@ -113,10 +113,10 @@ const RampageCard = ({rampageData,copyToClipboard,dailyMine, loaders,states , se
                             transition={{ duration: 0.3 }}
                             className='w-full h-full'
                         >
-                    {states.acNo == 0 ? <ClaimSpice/> :""} 
+                    {states.acNo == 12 ? <ClaimSpice/> :""} 
                     {states.acNo == 2 ? <DailyLogin dailyMine={dailyMine} data={rampageData} loaders={loaders}/> :""}
-                    {states.acNo == 3 ? <SwapAc/> :""}
-                    {states.acNo == 1 ? <div className='flex justify-center items-center'><BethVault/></div> :""}
+                    {states.acNo == 1 ? <SwapAc/> :""}
+                    {states.acNo == 0 ? <div className='flex justify-center items-center'><BethVault/></div> :""}
                     {states.acNo == 4 ? <DailyLogin/> :""}
                     {states.acNo == 4 ? <DailyLogin/> :""}
                     {states.acNo == 5 ? <DailyLogin/> :""}

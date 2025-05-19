@@ -318,11 +318,11 @@ const AaveVault=()=>{
       }, [user.wallet]);
 
     return(
-        <div className="bg-[#231F20] h-full w-full md:w-[80%] lg:w-[70%] rounded-2xl">
+        <div className=" h-full w-full md:w-[80%] lg:w-[70%] rounded-2xl">
             <div className="flex flex-col items-center w-full h-full py-[20px]">
                 {/* NETWORK ERROR*/}
                 {states.correctChain?
-                <div className="flex flex-col items-center gap-[3rem] w-full h-full">
+                <div className="flex flex-col items-center bg-[#231F20] gap-[3rem] w-full h-full">
                     <div className="flex flex-col items-center w-full h-full">
                    
                     <div className="flex border-y border-y-[3px] py-[0.4rem] px-[2rem] border-black w-[75%] justify-center md:w-[50%] lg:w-[25%] mt-[1rem] text-black bg-[#E5BD19]">
