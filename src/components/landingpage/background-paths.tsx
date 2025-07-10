@@ -48,13 +48,13 @@ function useSVGParser(svgUrl: string) {
         const paths: SVGPathElement[] = []
 
         // Function to recursively extract all drawable elements
-        function extractElements(
+        const extractElements = (
           element: Element,
           parentTransform = "",
           parentFill = "",
           parentStroke = "",
           parentOpacity = "1",
-        ) {
+        )   => {
           const children = Array.from(element.children)
 
           children.forEach((child, index) => {
