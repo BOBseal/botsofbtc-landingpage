@@ -394,7 +394,7 @@ export default function BackgroundPaths({
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black">
       <div className="absolute inset-0">
-        {!loading && svgData && <TracedSVGPaths svgData={svgData} />}
+        {!loading && svgData && <div className="opacity-50"><TracedSVGPaths svgData={svgData} /></div>}
 
         {/* Subtle radial gradient overlay for depth */}
         <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/30" />
@@ -410,7 +410,7 @@ export default function BackgroundPaths({
           transition={{ duration: 2, delay: 0.5 }}
           className="max-w-4xl mx-auto"
         >
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold mb-8 tracking-tighter">
+          <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold mb-8 rounded-2xl border-[#ffaf19] tracking-tighter">
             {words.map((word, wordIndex) => (
               <span key={wordIndex} className="inline-block mr-4 last:mr-0">
                 {word.split("").map((letter, letterIndex) => (
@@ -425,7 +425,7 @@ export default function BackgroundPaths({
                       damping: 25,
                     }}
                     className="inline-block text-transparent bg-clip-text 
-                                        bg-gradient-to-r from-[#ffaf19] to-[#ff8c00]"
+                                        bg-[#ffaf19]"
                     style={{
                       filter: "drop-shadow(0 0 10px rgba(255, 175, 25, 0.5))",
                     }}
@@ -441,7 +441,7 @@ export default function BackgroundPaths({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2.5, duration: 1 }}
-            className="text-xl text-white border border-[#ffaf19] mb-8 max-w-2xl mx-auto font-semibold bg-black/40 rounded-2xl p-[12px]"
+            className="text-xl text-white border border-[#ffaf19] mb-8 max-w-2xl mx-auto font-semibold bg-black/70 rounded-2xl p-[12px]"
           >
             Bots of Bitcoin mashes up NFTs and Bitcoin DeFi in style — tap into BTC-Fi with cutting-edge Yield Vaults, Index Fund Vaults, and smooth Swaps. Collect from 10,000 one-of-a-kind dynamic NFTs that can transform their looks!
           </motion.p>

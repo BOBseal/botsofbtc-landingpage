@@ -19,27 +19,27 @@ export const teamConfig =[
 ]
 
 export const partnerInfo =[
-    {logo:partner1Logo,link:"https://gobob.xyz", imgSizeData:{
+    {logo:partner1Logo,url:"https://gobob.xyz", imgSizeData:{
         sm:'100px',
         md:'180px',
         lg:'240px'
-    }},
-    {logo:icecream ,link:"https://icecreamswap.com",imgSizeData:{
+    },id:1},
+    {logo:icecream ,id:2,url:"https://icecreamswap.com",imgSizeData:{
         sm:'110px',
         md:'190px',
         lg:'400px'
     }},
-    {logo:dappListLogo ,link:"https://thedapplist.com/project/bots-of-bitcoin",imgSizeData:{
+    {logo:dappListLogo ,id:3,url:"https://thedapplist.com/project/bots-of-bitcoin",imgSizeData:{
         sm:'90px',
         md:'150px',
         lg:'400px'
     }},
-    {logo:api3logo ,link:"https://api3.org",imgSizeData:{
+    {logo:api3logo ,id:4,url:"https://api3.org",imgSizeData:{
         sm:'100px',
         md:'180px',
         lg:'400px'
     }},
-    {logo:okuLogo ,link:"https://oku.trade",imgSizeData:{
+    {logo:okuLogo ,id:5,url:"https://oku.trade",imgSizeData:{
         sm:'110px',
         md:'180px',
         lg:'400px'
