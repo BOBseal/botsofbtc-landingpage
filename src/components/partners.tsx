@@ -64,8 +64,8 @@ function PartnerLogo({ partner, size }: { partner: (typeof partnerInfo)[0]; size
                 alt={`${partner.id} logo`}
                 width={imgSizeData[size].width}
                 height={imgSizeData[size].height}
-                className="object-contain filter brightness-0 invert opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ filter: "brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(35deg)" }}
+                className="object-contain filter opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ filter: "" }}
               />
             </div>
           </div>
