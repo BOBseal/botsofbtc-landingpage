@@ -11,6 +11,7 @@ import BotsLogo from "../assets/dp.jpg"
 import dappListLogo from "../assets/dapplistlogo.svg"
 import api3logo from "../assets/api3white.svg"
 import okuLogo from "../assets/okuwhite.svg"
+import magicLogo from "../assets/magiclogo.png"
 export const teamConfig =[
     {id:1 , name : "BOB" , designation:"Founder & CTO", desc:"Web3 Dev and a sucker for blockchain & AI tech. Self-Taught dev with an Obsession for NFTs and DeFi.", link:"", picture: bob},
     {id:2 , name : "Deep" , designation:"Co-Founder/Graphics Lead", desc:"Funny & Obsessed Artist with an eye for details and a punch in his Artworks. Have a unique perspective for the world!", link:"", picture: deep},
@@ -43,7 +44,8 @@ export const partnerInfo =[
         sm:'110px',
         md:'180px',
         lg:'400px'
-    }}
+    }},
+    {id:6,logo:magicLogo,url:"https://magicsquare.io/store"}
 ]
 
 export const lotteryTokenConfigs ={
