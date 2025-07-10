@@ -38,6 +38,10 @@ const itemVariants = {
   },
 }
 
+const firstRowPartners = partnerInfo.slice(0, Math.ceil(partnerInfo.length / 2))
+const secondRowPartners = partnerInfo.slice(Math.ceil(partnerInfo.length / 2))
+
+
 function PartnerLogo({ partner, size }: { partner: (typeof partnerInfo)[0]; size: keyof typeof imgSizeData }) {
   const [isHovered, setIsHovered] = useState(false)
 
@@ -64,7 +68,7 @@ function PartnerLogo({ partner, size }: { partner: (typeof partnerInfo)[0]; size
                 alt={`${partner.id} logo`}
                 width={imgSizeData[size].width}
                 height={imgSizeData[size].height}
-                className="object-contain filter opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                className="object-contain filter opacity-70 group-hover:opacity-100 transition-opacity duration-200"
                 style={{ filter: "" }}
               />
             </div>
@@ -177,7 +181,7 @@ export default function PartnersIntegrations() {
                 animate={{ animationPlayState: isPaused ? "paused" : "running" }}
                 transition={{ duration: 0.3 }}
               >
-                <AnimatedPartnerRow partners={partnerInfo} direction="right" speed={40} />
+                <AnimatedPartnerRow partners={firstRowPartners} direction="right" speed={40} />
               </motion.div>
             </div>
 
@@ -190,7 +194,7 @@ export default function PartnersIntegrations() {
                 animate={{ animationPlayState: isPaused ? "paused" : "running" }}
                 transition={{ duration: 0.3 }}
               >
-                <AnimatedPartnerRow partners={partnerInfo} direction="left" speed={45} />
+                <AnimatedPartnerRow partners={secondRowPartners} direction="left" speed={45} />
               </motion.div>
             </div>
           </motion.div>
