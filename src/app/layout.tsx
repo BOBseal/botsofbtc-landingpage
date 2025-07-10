@@ -1,6 +1,5 @@
 import './globals.css'
 import React from 'react'
-import {AppProvider} from "../context/AppContext"
 import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/react';
 //import Navbar from '@/components/Navbar'
@@ -23,7 +22,8 @@ const nunito = Nunito({
 
 export const metadata:Metadata = {
   title: 'BOTS OF BITCOIN',
-  description: '10k UNIQUE BOTS ON BITCOIN. NFT-FI, De-Fi , Casino & Airdrops Combined into a Fun Platform!',
+  description: 'A Bitcoin Defi & NFT platform. Fusing Bitcoin & Ethereum with $BETH , 10k Unique Dynamic NFTs with multiple changeable looks , Aggregated Defi with AAVE supply vaults , DEX and many more!',
+  keywords:'BTC , Bitcoin , BOTS OF BITCOIN , Bots Of Bitcoin , Bots of btc , Ethereum , NFT , BOTS , PFP ,DeFi , Bitcoin Defi, BOB , Build On Bitcoin, BitVM , Skibbidies, Skibbidi Toilet , SOB '
 }
 
 export default function RootLayout({
@@ -34,9 +34,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${fredoka.variable} ${nunito.variable}`}>
-        <AppProvider>
+        
         {children}
-        </AppProvider>
+        
         <Analytics/>
         </body>
     </html>

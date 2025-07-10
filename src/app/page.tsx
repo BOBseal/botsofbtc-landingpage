@@ -1,10 +1,16 @@
 //import HomePage from "../screens/Home.jsx";
 'use client'
-import HomeV2 from "../screens/HomeV2.jsx"
-import HMT from "../components/TestPage.jsx"
+import { NextPage } from "next"
 
-export default function Home() {
+import Navbar from "../components/navbar"
+import BackgroundPaths from "../components/landingpage/background-paths"
+
+
+export default function Page() {
   return (
-    <HomeV2/>
+    <div className="min-h-screen bg-black">
+      <Navbar />
+      <BackgroundPaths title="BOTS OF BITCOIN" />
+    </div>
   )
 }
