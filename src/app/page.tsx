@@ -4,7 +4,10 @@ import { NextPage } from "next"
 
 import Navbar from "../components/navbar"
 import BackgroundPaths from "../components/landingpage/background-paths"
-import ProjectDetails from "../components/partners"
+import PartnerDetails from "../components/partners"
+import Footer from "../components/footer"
+import ProjectDetails from "../components/project-details"
+import Roadmap from "../components/roadmap"
 
 export default function Page() {
   return (
@@ -12,6 +15,9 @@ export default function Page() {
       <Navbar />
       <BackgroundPaths title="BOTS OF BITCOIN" />
       <ProjectDetails/>
+      <PartnerDetails/>
+      <Roadmap/>
+      <Footer/>
     </div>
   )
 }
