@@ -46,22 +46,42 @@ function useSVGParser(svgUrl: string) {
 
         const paths: SVGPathElement[] = []
 
-        // Simplified extraction for better performance
-        const extractElements =(element: Element, parentTransform = "")=> {
+        // Function to recursively extract all drawable elements
+        const extractElements = (
+          element: Element,
+          parentTransform = "",
+          parentFill = "",
+          parentStroke = "",
+          parentOpacity = "1",
+        )   => {
           const children = Array.from(element.children)
 
           children.forEach((child, index) => {
             const transform = child.getAttribute("transform") || ""
             const combinedTransform = `${parentTransform} ${transform}`.trim()
-            const tagName = child.tagName.toLowerCase()
+            const fill = child.getAttribute("fill") || parentFill || "none"
+            const stroke = child.getAttribute("stroke") || parentStroke || "none"
+            const opacity = child.getAttribute("opacity") || parentOpacity
+            const fillRule = child.getAttribute("fill-rule") || "nonzero"
+            const clipPath = child.getAttribute("clip-path") || ""
 
             let pathData = ""
+            const tagName = child.tagName.toLowerCase()
 
-            // Only process essential SVG elements for mobile performance
+            // Convert all SVG shapes to path data
             switch (tagName) {
               case "path":
                 pathData = child.getAttribute("d") || ""
                 break
+
+              case "line":
+                const x1 = child.getAttribute("x1") || "0"
+                const y1 = child.getAttribute("y1") || "0"
+                const x2 = child.getAttribute("x2") || "0"
+                const y2 = child.getAttribute("y2") || "0"
+                pathData = `M${x1},${y1}L${x2},${y2}`
+                break
+
               case "circle":
                 const cx = Number.parseFloat(child.getAttribute("cx") || "0")
                 const cy = Number.parseFloat(child.getAttribute("cy") || "0")
@@ -70,51 +90,127 @@ function useSVGParser(svgUrl: string) {
                   pathData = `M${cx - r},${cy}A${r},${r} 0 1,0 ${cx + r},${cy}A${r},${r} 0 1,0 ${cx - r},${cy}Z`
                 }
                 break
+
+              case "ellipse":
+                const ecx = Number.parseFloat(child.getAttribute("cx") || "0")
+                const ecy = Number.parseFloat(child.getAttribute("cy") || "0")
+                const rx = Number.parseFloat(child.getAttribute("rx") || "0")
+                const ry = Number.parseFloat(child.getAttribute("ry") || "0")
+                if (rx > 0 && ry > 0) {
+                  pathData = `M${ecx - rx},${ecy}A${rx},${ry} 0 1,0 ${ecx + rx},${ecy}A${rx},${ry} 0 1,0 ${ecx - rx},${ecy}Z`
+                }
+                break
+
               case "rect":
                 const x = Number.parseFloat(child.getAttribute("x") || "0")
                 const y = Number.parseFloat(child.getAttribute("y") || "0")
                 const w = Number.parseFloat(child.getAttribute("width") || "0")
                 const h = Number.parseFloat(child.getAttribute("height") || "0")
+                const rectRx = Number.parseFloat(child.getAttribute("rx") || "0")
+                const rectRy = Number.parseFloat(child.getAttribute("ry") || "0")
+
                 if (w > 0 && h > 0) {
-                  pathData = `M${x},${y}L${x + w},${y}L${x + w},${y + h}L${x},${y + h}Z`
+                  if (rectRx > 0 || rectRy > 0) {
+                    const effectiveRx = Math.min(rectRx || rectRy, w / 2)
+                    const effectiveRy = Math.min(rectRy || rectRx, h / 2)
+                    pathData = `M${x + effectiveRx},${y}L${x + w - effectiveRx},${y}A${effectiveRx},${effectiveRy} 0 0,1 ${x + w},${y + effectiveRy}L${x + w},${y + h - effectiveRy}A${effectiveRx},${effectiveRy} 0 0,1 ${x + w - effectiveRx},${y + h}L${x + effectiveRx},${y + h}A${effectiveRx},${effectiveRy} 0 0,1 ${x},${y + h - effectiveRy}L${x},${y + effectiveRy}A${effectiveRx},${effectiveRy} 0 0,1 ${x + effectiveRx},${y}Z`
+                  } else {
+                    pathData = `M${x},${y}L${x + w},${y}L${x + w},${y + h}L${x},${y + h}Z`
+                  }
                 }
                 break
+
+              case "polygon":
+                const points = child.getAttribute("points") || ""
+                const coords = points
+                  .trim()
+                  .split(/[\s,]+/)
+                  .filter(Boolean)
+                if (coords.length >= 4 && coords.length % 2 === 0) {
+                  pathData = `M${coords[0]},${coords[1]}`
+                  for (let i = 2; i < coords.length; i += 2) {
+                    pathData += `L${coords[i]},${coords[i + 1]}`
+                  }
+                  pathData += "Z"
+                }
+                break
+
+              case "polyline":
+                const polyPoints = child.getAttribute("points") || ""
+                const polyCoords = polyPoints
+                  .trim()
+                  .split(/[\s,]+/)
+                  .filter(Boolean)
+                if (polyCoords.length >= 4 && polyCoords.length % 2 === 0) {
+                  pathData = `M${polyCoords[0]},${polyCoords[1]}`
+                  for (let i = 2; i < polyCoords.length; i += 2) {
+                    pathData += `L${polyCoords[i]},${polyCoords[i + 1]}`
+                  }
+                }
+                break
+
               case "g":
               case "svg":
-                extractElements(child, combinedTransform)
+              case "defs":
+              case "clipPath":
+              case "mask":
+              case "symbol":
+              case "marker":
+                // Recursively process container elements
+                extractElements(child, combinedTransform, fill, stroke, opacity)
                 return
+
+              case "use":
+                // Handle <use> elements by finding the referenced element
+                const href = child.getAttribute("href") || child.getAttribute("xlink:href")
+                if (href && href.startsWith("#")) {
+                  const referencedElement = svgDoc.querySelector(href)
+                  if (referencedElement) {
+                    const useX = Number.parseFloat(child.getAttribute("x") || "0")
+                    const useY = Number.parseFloat(child.getAttribute("y") || "0")
+                    const useTransform = useX !== 0 || useY !== 0 ? `translate(${useX},${useY})` : ""
+                    const finalTransform = `${combinedTransform} ${useTransform}`.trim()
+                    extractElements(referencedElement, finalTransform, fill, stroke, opacity)
+                  }
+                }
+                return
+
               default:
+                // Skip unknown elements
                 return
             }
 
+            // Add path if we have valid path data
             if (pathData && pathData.trim()) {
               paths.push({
                 d: pathData,
-                fill: child.getAttribute("fill") || "none",
-                stroke: child.getAttribute("stroke") || "none",
+                fill: fill,
+                stroke: stroke,
                 strokeWidth: child.getAttribute("stroke-width") || "1",
                 transform: combinedTransform,
-                opacity: child.getAttribute("opacity") || "1",
-                fillRule: child.getAttribute("fill-rule") || "nonzero",
-                clipPath: child.getAttribute("clip-path") || "",
+                opacity: opacity,
+                fillRule: fillRule,
+                clipPath: clipPath,
                 id: `${tagName}-${paths.length}`,
               })
             }
 
+            // Process nested elements
             if (child.children.length > 0) {
-              extractElements(child, combinedTransform)
+              extractElements(child, combinedTransform, fill, stroke, opacity)
             }
           })
         }
 
+        // Start extraction from the root SVG element
         extractElements(svgElement)
 
-        // Limit paths for mobile performance
-        const isMobile = window.innerWidth < 768
-        const maxPaths = isMobile ? 20 : 50
-        const limitedPaths = paths.slice(0, maxPaths)
+        // Remove duplicate paths and empty paths
+        const uniquePaths = paths.filter((path, index, self) => {
+          return path.d.trim() && self.findIndex((p) => p.d === path.d && p.transform === path.transform) === index
+        })
 
-        setSvgData({ viewBox, width, height, paths: limitedPaths })
+        setSvgData({ viewBox, width, height, paths: uniquePaths })
       } catch (error) {
         console.error("Error parsing SVG:", error)
       } finally {
@@ -129,122 +225,155 @@ function useSVGParser(svgUrl: string) {
 }
 
 function TracedSVGPaths({ svgData }: { svgData: SVGData }) {
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-    return () => window.removeEventListener("resize", checkMobile)
-  }, [])
-
-  // Reduce animation complexity on mobile
-  const animationConfig = useMemo(
-    () => ({
-      pathDuration: isMobile ? 2 : 3,
-      opacityDuration: isMobile ? 3 : 4,
-      delay: isMobile ? 0.05 : 0.03,
-      layers: isMobile ? 2 : 3, // Fewer layers on mobile
-    }),
-    [isMobile],
-  )
-
   return (
     <div className="absolute inset-0 pointer-events-none">
       <svg
         className="w-full h-full"
         viewBox={svgData.viewBox}
         preserveAspectRatio="xMidYMid meet"
-        style={{
-          filter: isMobile ? "none" : "drop-shadow(0 0 20px rgba(255, 175, 25, 0.4))",
-          willChange: "transform",
-        }}
+        style={{ filter: "drop-shadow(0 0 20px rgba(255, 175, 25, 0.4))" }}
       >
         <title>Traced SVG Paths</title>
-        {!isMobile && (
-          <defs>
-            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="2" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-        )}
+        <defs>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="innerGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="1" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
 
         {svgData.paths.map((path, index) => {
+          const hasStroke = path.stroke && path.stroke !== "none"
+          const hasFill = path.fill && path.fill !== "none"
           const pathOpacity = Number.parseFloat(path.opacity || "1")
 
           return (
             <g key={path.id} transform={path.transform}>
+              {/* Background fill with subtle opacity */}
+              {hasFill && (
+                <motion.path
+                  d={path.d}
+                  fill={path.fill === "#000000" || path.fill === "black" ? "#fae9c8" : "#fae9c8"}
+                  fillRule={path.fillRule as any}
+                  opacity={pathOpacity * 0.08}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: pathOpacity * 0.08, scale: 1 }}
+                  transition={{
+                    delay: index * 0.02,
+                    duration: 2,
+                    ease: "easeOut",
+                  }}
+                />
+              )}
+
               {/* Main animated stroke path */}
               <motion.path
                 d={path.d}
                 fill="none"
                 stroke="#fae9c8"
-                strokeWidth={isMobile ? 0.5 : Math.max(Number.parseFloat(path.strokeWidth || "1") * 0.6, 0.3)}
+                strokeWidth={Math.max(Number.parseFloat(path.strokeWidth || "1") * 0.6, 0.3)}
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                opacity={pathOpacity * (isMobile ? 0.6 : 0.8)}
+                opacity={pathOpacity}
                 initial={{
                   pathLength: 0,
                   opacity: 0,
                 }}
                 animate={{
                   pathLength: 1,
-                  opacity: isMobile ? pathOpacity * 0.6 : [0, pathOpacity * 0.9, pathOpacity * 0.7],
+                  opacity: [0, pathOpacity * 0.9, pathOpacity * 0.7],
                 }}
                 transition={{
                   pathLength: {
-                    duration: animationConfig.pathDuration + Math.random(),
-                    delay: index * animationConfig.delay,
+                    duration: 3 + Math.random() * 2,
+                    delay: index * 0.03,
                     ease: "easeInOut",
                   },
                   opacity: {
-                    duration: animationConfig.opacityDuration,
-                    delay: index * animationConfig.delay,
-                    repeat: isMobile ? 0 : Number.POSITIVE_INFINITY,
+                    duration: 4 + Math.random() * 2,
+                    delay: index * 0.03,
+                    repeat: Number.POSITIVE_INFINITY,
                     repeatType: "reverse",
                     ease: "easeInOut",
                   },
                 }}
               />
 
-              {/* Glowing effect path - only on desktop */}
-              {!isMobile && animationConfig.layers > 2 && (
-                <motion.path
-                  d={path.d}
-                  fill="none"
-                  stroke="#fae9c8"
-                  strokeWidth={Math.max(Number.parseFloat(path.strokeWidth || "1") * 0.2, 0.1)}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  filter="url(#glow)"
-                  initial={{
-                    pathLength: 0,
-                    opacity: 0,
-                  }}
-                  animate={{
-                    pathLength: 1,
-                    opacity: [0, 0.4, 0.2],
-                  }}
-                  transition={{
-                    pathLength: {
-                      duration: animationConfig.pathDuration + 1,
-                      delay: index * animationConfig.delay + 0.2,
-                      ease: "easeInOut",
-                    },
-                    opacity: {
-                      duration: animationConfig.opacityDuration + 1,
-                      delay: index * animationConfig.delay + 0.2,
-                      repeat: Number.POSITIVE_INFINITY,
-                      repeatType: "reverse",
-                      ease: "easeInOut",
-                    },
-                  }}
-                />
-              )}
+              {/* Glowing effect path */}
+              <motion.path
+                d={path.d}
+                fill="none"
+                stroke="#fae9c8"
+                strokeWidth={Math.max(Number.parseFloat(path.strokeWidth || "1") * 0.2, 0.1)}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                filter="url(#glow)"
+                initial={{
+                  pathLength: 0,
+                  opacity: 0,
+                }}
+                animate={{
+                  pathLength: 1,
+                  opacity: [0, 0.6, 0.3],
+                }}
+                transition={{
+                  pathLength: {
+                    duration: 3.5 + Math.random() * 2,
+                    delay: index * 0.03 + 0.2,
+                    ease: "easeInOut",
+                  },
+                  opacity: {
+                    duration: 5 + Math.random() * 2,
+                    delay: index * 0.03 + 0.2,
+                    repeat: Number.POSITIVE_INFINITY,
+                    repeatType: "reverse",
+                    ease: "easeInOut",
+                  },
+                }}
+              />
+
+              {/* Inner highlight path */}
+              <motion.path
+                d={path.d}
+                fill="none"
+                stroke="#fff"
+                strokeWidth={Math.max(Number.parseFloat(path.strokeWidth || "1") * 0.05, 0.05)}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                opacity={0.3}
+                filter="url(#innerGlow)"
+                initial={{
+                  pathLength: 0,
+                  opacity: 0,
+                }}
+                animate={{
+                  pathLength: 1,
+                  opacity: [0, 0.3, 0.1],
+                }}
+                transition={{
+                  pathLength: {
+                    duration: 4 + Math.random() * 2,
+                    delay: index * 0.03 + 0.4,
+                    ease: "easeInOut",
+                  },
+                  opacity: {
+                    duration: 6 + Math.random() * 2,
+                    delay: index * 0.03 + 0.4,
+                    repeat: Number.POSITIVE_INFINITY,
+                    repeatType: "reverse",
+                    ease: "easeInOut",
+                  },
+                }}
+              />
             </g>
           )
         })}
@@ -252,7 +381,6 @@ function TracedSVGPaths({ svgData }: { svgData: SVGData }) {
     </div>
   )
 }
-
 export default function BackgroundPaths({
   title = "BOTS OF BITCOIN",
 }: {
