@@ -1,33 +1,27 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Twitter, MessageCircle, Send, HelpCircle, Github, Mail, ExternalLink } from "lucide-react"
+import { MessageCircle, Send, HelpCircle, Github, Mail, ExternalLink ,X } from "lucide-react"
 import { useState, useEffect } from "react"
 
 const socialLinks = [
   {
-    name: "Twitter",
-    icon: Twitter,
-    url: "https://twitter.com/kokonutui",
+    name: "X",
+    icon: X,
+    url: "https://x.com/botsofbtc",
     description: "Follow us for updates",
   },
   {
     name: "Discord",
     icon: MessageCircle,
-    url: "https://discord.gg/kokonutui",
+    url: "https://discord.gg/G8bkv4yw",
     description: "Join our community",
   },
   {
     name: "Telegram",
     icon: Send,
-    url: "https://t.me/kokonutui",
+    url: "https://t.me/botsofbtc",
     description: "Get instant updates",
-  },
-  {
-    name: "GitHub",
-    icon: Github,
-    url: "https://github.com/kokonutui",
-    description: "View source code",
   },
 ]
 
@@ -198,7 +192,6 @@ export default function Footer() {
             className="flex flex-col md:flex-row items-center justify-between pt-6 md:pt-8 border-t border-[#ffaf19]/10 space-y-3 md:space-y-0"
           >
             <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-xs md:text-sm text-gray-400">
-              <span>© 2024 Kokonut UI. All rights reserved.</span>
               <div className="flex items-center gap-3 md:gap-4">
                 <button onClick={() => scrollToSection("#privacy")} className="hover:text-[#ffaf19] transition-colors">
                   Privacy Policy
@@ -208,12 +201,6 @@ export default function Footer() {
                   Terms of Service
                 </button>
               </div>
-            </div>
-
-            <div className="flex items-center gap-2 md:gap-4">
-              <span className="text-xs md:text-sm text-gray-400">Made with</span>
-              <div className="w-3 h-3 md:w-4 md:h-4 bg-gradient-to-r from-[#ffaf19] to-[#ff8c00] rounded-full animate-pulse"></div>
-              <span className="text-xs md:text-sm text-gray-400">by developers</span>
             </div>
           </motion.div>
 

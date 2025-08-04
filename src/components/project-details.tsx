@@ -16,14 +16,12 @@ const technologies = [
 ]
 
 const features = [
-  "Advanced SVG path tracing with real-time animations",
-  "Comprehensive vector graphics parsing and rendering",
-  "Responsive design with mobile-first approach",
-  "Custom color theming with #ffaf19 accent",
-  "Smooth scrolling navigation and transitions",
-  "Performance-optimized rendering pipeline",
-  "Cross-browser compatibility and accessibility",
-  "Modular component architecture",
+  "Genesis NFT collection with staking utility and early ecosystem access",
+  "Tokenized BTC/ETH/stablecoin vaults offering yield through DeFi strategies",
+  "Decentralized automation layer for autonomous contract execution on BitVMs",
+  "Permissionless tools: memecoin launchers, token deployers, Telegram bots",
+  "Partner-driven DeFi integrations: DEX, liquidity management, NFT launchers",
+  "SDKs & Toolings for developers to configure automation and run execution nodes"
 ]
 
 export default function ProjectDetails() {
@@ -55,11 +53,10 @@ export default function ProjectDetails() {
             className="text-center space-y-4 md:space-y-6"
           >
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ffaf19] to-[#ff8c00]">
-              Project Overview
+              An Overview
             </h2>
             <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              An innovative SVG path tracing application that transforms static vector graphics into dynamic, animated
-              experiences through advanced parsing algorithms and real-time rendering techniques.
+              BOTS OF BITCOIN is an Innovative Bicoin DeFi project aiming to become an One Stop Hub for DeFi , NFTs & Automations within the Bitcoin Ecosystem.
             </p>
           </motion.div>
 
@@ -75,18 +72,18 @@ export default function ProjectDetails() {
               <CardHeader>
                 <CardTitle className="text-xl md:text-2xl text-[#ffaf19] flex items-center gap-3">
                   <Globe className="w-5 h-5 md:w-6 md:h-6" />
-                  Project Purpose
+                  Our Purpose
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-gray-300 space-y-3 md:space-y-4">
                 <p className="text-base md:text-lg leading-relaxed">
-                  This project demonstrates the intersection of modern web technologies and creative visual design. By
-                  implementing sophisticated SVG parsing and path tracing algorithms, we create immersive experiences
-                  that bring static graphics to life.
+                Bots of Bitcoin is on a mission to build the execution layer for Bitcoin Layer 2s by merging NFTs, DeFi vaults, and decentralized automation infrastructure.
+                </p>
+                <p>
+                    Our project addresses a critical limitation in blockchain ecosystems: the lack of native, autonomous smart contract execution. By developing a decentralized network of automation nodes powered by BitVM, we aim to eliminate the need for manual triggers and centralized off-chain services — reducing operational costs, enhancing security, and enabling scalable on-chain automation.
                 </p>
                 <p className="text-sm md:text-base leading-relaxed">
-                  The application serves as both a technical showcase and a practical tool for understanding how vector
-                  graphics can be dynamically manipulated and animated in real-time web environments.
+                  Through this, we are not just enhancing Bitcoin&apos;s DeFi potential but also creating new paradigms for yield generation, decentralized tooling, and autonomous execution across the Bitcoin ecosystem.
                 </p>
               </CardContent>
             </Card>
@@ -100,7 +97,7 @@ export default function ProjectDetails() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="space-y-6 md:space-y-8"
           >
-            <h3 className="text-2xl md:text-3xl font-bold text-[#ffaf19] text-center">Key Features</h3>
+            <h3 className="text-2xl md:text-3xl font-bold text-[#ffaf19] text-center">Planned Products</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
               {features.map((feature, index) => (
                 <motion.div
@@ -119,40 +116,8 @@ export default function ProjectDetails() {
           </motion.div>
 
           {/* Technologies */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="space-y-6 md:space-y-8"
-          >
-            <h3 className="text-2xl md:text-3xl font-bold text-[#ffaf19] text-center">Technologies Used</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-              {technologies.map((tech, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  whileHover={isMobile ? {} : { scale: 1.02 }}
-                  className="group"
-                >
-                  <Card className="bg-black/50 border-[#ffaf19]/20 hover:border-[#ffaf19]/40 transition-all duration-200 h-full">
-                    <CardContent className="p-4 md:p-6 space-y-3 md:space-y-4">
-                      <div className="flex items-center gap-3">
-                        <div className="p-2 rounded-lg bg-[#ffaf19]/10 group-hover:bg-[#ffaf19]/20 transition-colors duration-200">
-                          <tech.icon className="w-4 h-4 md:w-6 md:h-6 text-[#ffaf19]" />
-                        </div>
-                        <h4 className="text-base md:text-lg font-semibold text-white">{tech.name}</h4>
-                      </div>
-                      <p className="text-gray-400 text-xs md:text-sm">{tech.description}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+         
+
 
           {/* Call to Action */}
           <motion.div
@@ -164,22 +129,15 @@ export default function ProjectDetails() {
           >
             <h3 className="text-xl md:text-2xl font-bold text-white">Ready to Explore?</h3>
             <p className="text-gray-400 max-w-2xl mx-auto text-sm md:text-base">
-              Dive deeper into the technical implementation or start building your own SVG path tracing applications.
+              Dive deeper & Explore what we have in store.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 className="bg-[#ffaf19] hover:bg-[#ff8c00] text-black font-semibold px-6 md:px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105"
                 onClick={() => document.getElementById("home")?.scrollIntoView({ behavior: "smooth" })}
               >
-                View Demo
+                Go To APP
                 <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-              <Button
-                variant="outline"
-                className="border-[#ffaf19] text-[#ffaf19] hover:bg-[#ffaf19] hover:text-black px-6 md:px-8 py-3 rounded-lg transition-all duration-300 bg-transparent"
-              >
-                <Github className="w-4 h-4 mr-2" />
-                View Source
               </Button>
             </div>
           </motion.div>
