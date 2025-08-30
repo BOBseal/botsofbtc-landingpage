@@ -2,6 +2,7 @@ import './globals.css'
 import React from 'react'
 import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/react';
+import WalletProvider from "@/components/providers/wallet-provider"
 //import Navbar from '@/components/Navbar'
 //import NAVBAR from "../components/NAVBAR"
 import {Fredoka , Varela_Round , Saira, Nunito} from 'next/font/google'
@@ -35,7 +36,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${fredoka.variable} ${nunito.variable}`}>
         
-        {children}
+        <WalletProvider>{children}</WalletProvider>
         
         <Analytics/>
         </body>

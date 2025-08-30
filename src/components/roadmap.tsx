@@ -23,29 +23,29 @@ const roadmapData = [
     phase: "Phase 1",
     title: "Foundation & Launch",
     status: "completed",
-    quarter: "Q1 2024",
+    quarter: "Q4 2024",
     items: [
       {
-        title: "Smart Contract Development",
-        description: "Core Bitcoin DeFi smart contracts deployed and audited",
+        title: "Community Building & V1 Website",
+        description: "Launch of V1 website and all other socials",
         icon: Shield,
         completed: true,
       },
       {
-        title: "NFT Collection Genesis",
-        description: "Launch of 10,000 unique dynamic Bitcoin Bots NFTs",
+        title: "SOB Collection Genesis",
+        description: "Launch of 3456 SOB NFTs inspired from Skibidi Toilet Meme",
         icon: Sparkles,
         completed: true,
       },
       {
-        title: "Basic Yield Vaults",
-        description: "Initial BTC yield farming opportunities",
+        title: "Launch Of BOTS OF BITCOIN NFTs",
+        description: "Genesis mints for BOTS OF BITCOIN NFT Collection",
         icon: Coins,
         completed: true,
       },
       {
-        title: "Community Building",
-        description: "Discord, Twitter, and Telegram communities established",
+        title: "Vaults V1 Development",
+        description: "Start development and research for Tokenized Vaults",
         icon: Users,
         completed: true,
       },
@@ -53,31 +53,31 @@ const roadmapData = [
   },
   {
     phase: "Phase 2",
-    title: "DeFi Integration",
+    title: "DeFi Launch",
     status: "in-progress",
-    quarter: "Q2 2024",
+    quarter: "Q1 2025",
     items: [
       {
-        title: "Advanced Yield Vaults",
-        description: "Multi-strategy yield optimization with auto-compounding",
+        title: "AAVE Vaults BETA Launch",
+        description: "Launch BETA version of AAVE based Yield Vaults on Testnet",
         icon: TrendingUp,
         completed: true,
       },
       {
-        title: "Index Fund Vaults",
-        description: "Diversified crypto index funds with rebalancing",
+        title: "Index Fund Vault - BETH",
+        description: "Hybrid Vault acting as Index Fund for Bitcoin & Ethereum",
         icon: Target,
-        completed: false,
+        completed: true,
       },
       {
-        title: "Lightning Network Integration",
-        description: "Fast and cheap Bitcoin transactions",
+        title: "AAVE Vaults Mainnet Launch",
+        description: "Launch Mainnet Vaults for AAVE supported assets",
         icon: Zap,
         completed: false,
       },
       {
-        title: "NFT Staking Rewards",
-        description: "Stake your Bots to earn additional rewards",
+        title: "BOB Staking V1",
+        description: "Staking for BOB NFTs with Vault tokens as rewards",
         icon: Star,
         completed: false,
       },
@@ -85,13 +85,13 @@ const roadmapData = [
   },
   {
     phase: "Phase 3",
-    title: "Advanced Features",
+    title: "Utility Expansion",
     status: "upcoming",
     quarter: "Q3 2024",
     items: [
       {
-        title: "Cross-Chain Swaps",
-        description: "Seamless swapping between Bitcoin and other cryptocurrencies",
+        title: "Chain Expansions",
+        description: "Deployments of Existing Products on MultiChain",
         icon: Globe,
         completed: false,
       },
@@ -383,32 +383,6 @@ export default function Roadmap() {
               ))}
             </div>
           </div>
-
-          {/* Summary Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="grid grid-cols-1 md:grid-cols-4 gap-6 pt-8 md:pt-12 border-t border-[#fae9c8]/10"
-          >
-            <div className="text-center space-y-2">
-              <div className="text-2xl md:text-3xl font-bold text-[#fae9c8]">4</div>
-              <div className="text-gray-300 text-sm md:text-base">Development Phases</div>
-            </div>
-            <div className="text-center space-y-2">
-              <div className="text-2xl md:text-3xl font-bold text-[#fae9c8]">16</div>
-              <div className="text-gray-300 text-sm md:text-base">Major Features</div>
-            </div>
-            <div className="text-center space-y-2">
-              <div className="text-2xl md:text-3xl font-bold text-[#fae9c8]">7</div>
-              <div className="text-gray-300 text-sm md:text-base">Features Completed</div>
-            </div>
-            <div className="text-center space-y-2">
-              <div className="text-2xl md:text-3xl font-bold text-[#fae9c8]">Q4 2024</div>
-              <div className="text-gray-300 text-sm md:text-base">Full Launch Target</div>
-            </div>
-          </motion.div>
 
           {/* Call to Action */}
           <motion.div
