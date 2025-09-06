@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react"
 import { useState, useEffect, useCallback } from "react"
 import Image from "next/image"
 import WalletConnection from "@/components/wallet-connection"
+import logo from "../assets/dp.jpg";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -82,7 +83,7 @@ export default function Navbar() {
           >
             <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg overflow-hidden flex items-center justify-center bg-gradient-to-br from-[#fae9c8]/20 to-[#fae9c8]/10 border border-[#fae9c8]/30">
               <Image
-                src="/placeholder.svg?height=32&width=32&text=🤖"
+                src={logo}
                 alt="Bots of Bitcoin Logo"
                 width={24}
                 height={24}

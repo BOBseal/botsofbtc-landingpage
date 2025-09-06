@@ -6,6 +6,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
+import Image from "next/image"
+import imageHolder from "../../assets/lala.gif"
 import {
   Zap,
   Shield,
@@ -290,47 +292,20 @@ function MintContent() {
                   {/* IPFS Preview */}
                   <div className="rounded-xl overflow-hidden bg-black/40 border border-[#fae9c8]/10">
                     <div className="aspect-square w-full">
-                      <img
-                        src={currentIpfsUrl || "/placeholder.svg"}
+                      <Image
+                        src={imageHolder}
                         alt="BOB NFT Preview"
                         className="w-full h-full object-contain bg-gradient-to-br from-pink-500 via-purple-600 to-pink-700"
-                        crossOrigin="anonymous"
                       />
                     </div>
-                    <div className="flex items-center justify-between p-3 border-t border-[#fae9c8]/10">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setIpfsIndex((i) => (i + ipfsImages.length - 1) % ipfsImages.length)}
-                        className="border-[#fae9c8]/30 text-[#fae9c8] hover:bg-[#fae9c8]/10"
-                      >
-                        Prev
-                      </Button>
-                      <a
-                        href={currentIpfsUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[#fae9c8] text-sm inline-flex items-center gap-2 hover:underline"
-                      >
-                        <LinkIcon className="w-4 h-4" />
-                        View on IPFS
-                      </a>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setIpfsIndex((i) => (i + 1) % ipfsImages.length)}
-                        className="border-[#fae9c8]/30 text-[#fae9c8] hover:bg-[#fae9c8]/10"
-                      >
-                        Next
-                      </Button>
-                    </div>
+                    
                   </div>
 
                   {/* Asset selector */}
                   <div className="space-y-2">
                     <div className="text-sm text-gray-300 font-medium">Pay With</div>
                     <div className="flex flex-wrap gap-2">
-                      {(["ETH", "WBTC", "USDT"] as const).map((a) => (
+                      {(["ETH"] as const).map((a) => (
                         <Button
                           key={a}
                           variant={asset === a ? "default" : "outline"}
