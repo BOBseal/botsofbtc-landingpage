@@ -18,7 +18,6 @@ export default function Navbar() {
     { name: "Mint", href: "/mint", id: "mint", route: "/mint" },
     { name: "Rampage", href: "/rampage", id: "rampage", route: "/rampage" },
     { name: "Products", href: "/beth", id: "products", route: "/beth" },
-    { name: "Roadmap", href: "#roadmap", id: "roadmap", route: "/" },
     { name: "Docs", href: "#docs", id: "docs", route: "/" },
   ]
 

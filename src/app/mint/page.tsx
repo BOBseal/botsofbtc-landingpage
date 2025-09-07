@@ -29,15 +29,6 @@ import { CONTRACTS, TOKEN_DECIMALS } from "@/lib/web3-config"
 import { bobNftAbi } from "@/abis/bob-nft"
 import { erc20Abi } from "@/abis/erc20"
 
-// IPFS assets (replace with your real reveal/preview flow)
-const ipfsImages = [
-  "ipfs://bafybeibwpkk25hj72ildehlxcowzbne3v6yi5b3bqgy3zip6iw3g2q6t5u/1.json"
-]
-
-function ipfsToHttp(uri: string) {
-  if (uri.startsWith("ipfs://")) return "https://ipfs.io/ipfs/" + uri.slice("ipfs://".length)
-  return uri
-}
 
 const contractData = {
   mintPriceETH: 0.005, // base price per NFT in ETH
@@ -52,34 +43,33 @@ const contractData = {
 const utilities = [
   { name: "Dynamic PFPs", icon: Sparkles, description: "NFTs that evolve based on market conditions" },
   { name: "Governance", icon: Shield, description: "Vote on protocol decisions and upgrades" },
+  {name:"Exclusive Pass" , icon: Zap, description:" Priority access to  all Services , Products &  Events by Bots Of Bitcoin"},
+  { name: "Discounts & Bonuses", icon: Zap, description: " Discounts on Platform Service Fees and Bonuses on many Events and Products" },
+  { name: "Platform Revenue", icon: Sparkles, description: "Percent of Platform Revenue through staking." },
 ]
 
 const mintDetails = [
-  "Waitlist Mint Amount: 3",
-  "Waitlist Mint Time: 14:30 UTC 1st Oct",
-  "Public Mint Time: 16:30 UTC 6 Oct",
-  "Public Mint Amount: 10",
+  "Mints Allowed Current Round : 300",
+  "Public Mint Amount: 15",
   "Mint Price: 0.005 ETH (or equivalent in WBTC/USDT)",
   "Earn 5% of mint cost from referral mints",
-  "10 Random BOTs lucky draw for minters",
+  "Earn Royalties on your mint's Secondary Sales"
 ]
 
 function MintContent() {
   const { address, isConnected } = useAccount()
   const [mintQuantity, setMintQuantity] = useState(1)
   const [asset, setAsset] = useState<"ETH" | "WBTC" | "USDT">("ETH")
-  const [ipfsIndex, setIpfsIndex] = useState(0)
-  const currentIpfsUrl = useMemo(() => ipfsToHttp(ipfsImages[ipfsIndex % ipfsImages.length]), [ipfsIndex])
 
   // Mock FX rates (replace with oracle/price feed)
   const [rates] = useState({ ETH_USD: 3000, BTC_USD: 60000 })
 
   // Referrals state (replace with contract reads)
   const [refTotals, setRefTotals] = useState({
-    totalReferrals: 38,
-    totalReferredUsers: 31,
-    totalEarnedEth: 0.42,
-    withdrawableEth: 0.21,
+    totalReferrals: 0,
+    totalReferredUsers: 0,
+    totalEarnedEth: 0.00,
+    withdrawableEth: 0.00,
   })
 
   const { writeContractAsync, data: pendingHash, isPending: isWriting } = useWriteContract()

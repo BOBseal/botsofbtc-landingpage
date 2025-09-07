@@ -387,6 +387,7 @@ export default function BackgroundPaths({
   title?: string
 }) {
   const { svgData, loading } = useSVGParser("/hero-image.svg")
+  //const { svgData, loading } = useSVGParser("/hero-image.svg")
   const words = title.split(" ")
   const [isMobile, setIsMobile] = useState(false)
 
@@ -407,7 +408,7 @@ export default function BackgroundPaths({
       className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black"
     >
       <div className="absolute inset-0">
-        <div className="opacity-50">{!loading && svgData && <TracedSVGPaths svgData={svgData} />}</div>
+        <div className="opacity-60">{!loading && svgData && <TracedSVGPaths svgData={svgData} />}</div>
 
         {/* Simplified gradients for mobile */}
         {!isMobile && (
