@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
@@ -150,20 +150,9 @@ export default function RampagePage() {
     getRampageData(address as Address) 
   }, [address])
 
-  const mintProfile = useCallback((username: string) => {
-    const initial: Profile = {
-      username,
-      userAddress: address as Address,
-      bobsHeld: 6,
-      bethHeld:0,
-      sobsHeld: 19,
-      referrals: 0,
-      rpBalance: 100000,
-      rpDaily:50
-    }
-    setProfile(initial)
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }, [])
+  const mintProfile = ()=>{
+    return true
+  }
 
   const awardDaily = ()=>{
     return true
