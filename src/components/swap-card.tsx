@@ -7,31 +7,50 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ArrowUpDown, ChevronDown, Settings, Zap, AlertTriangle, Loader2 } from "lucide-react"
 import { useWallet } from "@/components/providers/wallet-provider"
+import {YELLOW} from "@/utils/constants";
+import {ethers} from "ethers"
+import {getSwapData} from "@/utils/hooks"
+//import ERC20_ABI from "@/utils/ABIS/ERC20.json"
+import {getContract,http, erc20Abi , parseUnits } from "viem"
+import { bob } from "viem/chains";
+import { walletClient,publicClient } from "@/components/providers/wallet-provider"
 
-const YELLOW = "#f1c40f" // bright yellow like rampage
-const DARK_YELLOW = "#d4ac0d" // darker yellow
-const LIGHT_YELLOW = "#f7dc6f" // lighter yellow
-const GOLD = "#f39c12" // golden yellow
-const BLACK = "#1a1a1a" // rich black
-const DARK_GRAY = "#2c2c2c" // dark gray
-
-// Mock token data
-const tokens = [
-  { symbol: "WETH", name: "Wrapped Ethereum", balance: 0.00031809, decimals: 18, logo: "⟠" },
-  { symbol: "USDT", name: "Tether USD", balance: 0.0, decimals: 6, logo: "₮" },
-  { symbol: "WBTC", name: "Wrapped Bitcoin", balance: 0.0, decimals: 8, logo: "₿" },
-  { symbol: "BETH", name: "BTC-ETH Index", balance: 363.0, decimals: 18, logo: "🤖" },
-  { symbol: "BOB", name: "Bots of Bitcoin", balance: 6.0, decimals: 18, logo: "🤖" },
+export let tokens = [
+    {name:"WRAPPED ETHER" , symbol:"WETH", address:"0x4200000000000000000000000000000000000006", logo:null , decimals:18, balance:0},
+    {name:"ETHEREUM" , symbol:"ETH", address:"0x0000000000000000000000000000000000000000", logo:null , decimals:18 , balance:0},
+    {name:"WRAPPED BTC" , symbol:"WBTC", address:"0x0555e30da8f98308edb960aa94c0db47230d2b9c", logo:null, decimals:8,balance:0},
+    {name:"USDT" , symbol:"USDT", address:"0x1217bfe6c773eec6cc4a38b5dc45b92292b6e189", logo:null, decimals:6,balance:0},
+    {name:"USDC" , symbol:"USDC", address:"0xe75D0fB2C24A55cA1e3F96781a2bCC7bdba058F0", logo:null, decimals:6,balance:0},
+    //{name:"SOVRYN" , symbol:"SOV", address:"0xba20a5e63eeEFfFA6fD365E7e540628F8fC61474", img:null, decimals:18, balance:0},
+    {name:"DAI" , symbol:"DAI", address:"0x6c851F501a3F24E29A8E39a29591cddf09369080", img:null, decimals:18, balance:0},
+    {name:"STAKE STONE" , symbol:"STONE", address:"0x96147A9Ae9a42d7Da551fD2322ca15B71032F342", img:null, decimals:18, balance:0},
+    {name:"SOLV BTC" , symbol:"SolvBTC", address:"0x541fd749419ca806a8bc7da8ac23d346f2df8b77", img:null, decimals:18, balance:0},
+    {name:"Universal BTC" , symbol:"uniBTC", address:"0x236f8c0a61dA474dB21B693fB2ea7AAB0c803894", img:null, decimals:18, balance:0},
 ]
 
-// Mock price data
-const mockPrices = {
-  WETH: 3000,
-  USDT: 1,
-  WBTC: 60000,
-  BETH: 0.315106,
-  BOB: 0.05,
+
+async function fetchAndUpdateBalances(provider: ethers.providers.Provider, account: string) {
+  await Promise.all(
+    tokens.map(async (token) => {
+      try {
+        
+        if (token.symbol === "ETH") {
+          const bal = await provider.getBalance(account)
+          token.balance = parseFloat(ethers.utils.formatUnits(bal, token.decimals))
+        } else {
+          const contract = new ethers.Contract(token.address, erc20Abi, provider)
+          const bal = await contract.balanceOf(account)
+          token.balance = parseFloat(ethers.utils.formatUnits(bal, token.decimals))
+          console.log(`${token.symbol} balance: ${token.balance}`)
+        }
+      } catch (err) {
+        console.error(`Failed fetching ${token.symbol} balance:`, err)
+        token.balance = 0
+      }
+    })
+  )
 }
+
 
 interface SwapCardProps {
   isEmbedded?: boolean
@@ -39,7 +58,8 @@ interface SwapCardProps {
 }
 
 export default function SwapCard({ isEmbedded = false, className = "" }: SwapCardProps) {
-  const { isConnected } = useWallet()
+  const { isConnected , address } = useWallet()
+  //const publicClient = usePublicClient();
   const [fromToken, setFromToken] = useState("WETH")
   const [toToken, setToToken] = useState("USDT")
   const [fromAmount, setFromAmount] = useState("")
@@ -47,54 +67,128 @@ export default function SwapCard({ isEmbedded = false, className = "" }: SwapCar
   const [isSwapping, setIsSwapping] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
   const [slippage, setSlippage] = useState("0.5")
-  const [isMobile, setIsMobile] = useState(false)
+  const [loadingQuote, setLoadingQuote] = useState(false)
+  const quoteCache = useMemo<Record<string, string>>(() => ({}), []) // simple in-memory cache
+  const [txData , setTxData] = useState<any>();
+  // wrap viem transport into ethers provider
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-    return () => window.removeEventListener("resize", checkMobile)
-  }, [])
+  const loadBalances = async () => {
+    if (!isConnected || !address || !publicClient) return
+    const provider = new ethers.providers.Web3Provider(publicClient.transport)
+    await fetchAndUpdateBalances(provider, address)
+  }
+
+  loadBalances()
+}, [isConnected, address, publicClient])
 
   const fromTokenData = tokens.find((t) => t.symbol === fromToken)
   const toTokenData = tokens.find((t) => t.symbol === toToken)
-
-  // Calculate exchange rate and output amount
-  const exchangeRate = useMemo(() => {
-    if (!fromTokenData || !toTokenData) return 0
-    const fromPrice = mockPrices[fromToken as keyof typeof mockPrices] || 0
-    const toPrice = mockPrices[toToken as keyof typeof mockPrices] || 1
-    return fromPrice / toPrice
-  }, [fromToken, toToken, fromTokenData, toTokenData])
-
-  // Update toAmount when fromAmount changes
-  useEffect(() => {
-    if (fromAmount && !isNaN(Number(fromAmount))) {
-      const output = Number(fromAmount) * exchangeRate
-      setToAmount(output.toFixed(6))
-    } else {
-      setToAmount("")
+  //const balanceData = 
+  
+  const updateQuote = async (input: string, type: "from" | "to") => {
+    if (!fromTokenData || !toTokenData || !address) return
+    if (!input || Number(input) <= 0) {
+      type === "from" ? setToAmount("") : setFromAmount("")
+      return
     }
-  }, [fromAmount, exchangeRate])
+
+    setLoadingQuote(true)
+    try {
+      const key = `${type}-${fromToken}-${toToken}-${input}`
+      if (quoteCache[key]) {
+        type === "from" ? setToAmount(quoteCache[key]) : setFromAmount(quoteCache[key])
+        setLoadingQuote(false)
+        return
+      }
+
+      const inputAmount = type === "from"
+        ? ethers.utils.parseUnits(input, fromTokenData.decimals)
+        : ethers.utils.parseUnits(input, toTokenData.decimals)
+
+      const path = type === "from"
+        ? [fromTokenData.address, toTokenData.address]
+        : [toTokenData.address, fromTokenData.address]
+
+      const res = await getSwapData(inputAmount, path, address)
+      // Convert smallest unit to human-readable
+      const decimals = type === "from" ? toTokenData.decimals : fromTokenData.decimals
+      const formatted = (Number(ethers.utils.formatUnits(res.toAmount.toString(), decimals))).toFixed(decimals)
+
+      type === "from" ? setToAmount(formatted) : setFromAmount(formatted)
+      setTxData(res.tx)
+      console.log(res)
+      quoteCache[key] = formatted
+    } catch (err) {
+      console.error(err)
+      type === "from" ? setToAmount("ERROR") : setFromAmount("ERROR")
+    } finally {
+      setLoadingQuote(false)
+    }
+  }
+
+  const handleFromChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFromAmount(e.target.value)
+    updateQuote(e.target.value, "from")
+  }
 
   const swapTokens = () => {
     setFromToken(toToken)
     setToToken(fromToken)
-    setFromAmount(toAmount)
-    setToAmount(fromAmount)
+    setFromAmount("0")
+    setToAmount("0")
   }
 
   const handleSwap = async () => {
     if (!isConnected || !fromAmount || Number(fromAmount) <= 0) return
 
     setIsSwapping(true)
-    // Simulate swap transaction
-    await new Promise((resolve) => setTimeout(resolve, 3000))
+    try {
+      if(fromToken === "ETH"){
+        const hash = await walletClient.sendTransaction({
+        account:address,
+        to:txData?.to,
+        data:txData?.data,
+        value:BigInt(txData?.value||"0")
+      })
+      publicClient.waitForTransactionReceipt({hash}).then(async(r)=>{
+        const provider = new ethers.providers.Web3Provider(publicClient.transport)
+        setTxData(undefined)
+        await fetchAndUpdateBalances(provider, address!)
+      })} else {
+        const approveHash = await walletClient.writeContract({
+          account: address,
+          address: fromTokenData?.address as `0x${string}`,
+          abi: erc20Abi,
+          functionName: "approve",
+          args: [txData?.to as `0x${string}`, parseUnits(fromAmount, fromTokenData!.decimals)],
+        })
+          const hash = await walletClient.sendTransaction({
+          account:address,
+          to:txData?.to,
+          data:txData?.data,
+          value:BigInt(txData?.value||"0")
+        })
+        publicClient.waitForTransactionReceipt({hash}).then(async(r)=>{
+          const provider = new ethers.providers.Web3Provider(publicClient.transport)
+          setTxData(undefined)
+          await fetchAndUpdateBalances(provider, address!)
+        })
+      }
+    } catch (error) {
+      console.log(error)
+      setIsSwapping(false)
+    }
     setIsSwapping(false)
 
     // Reset form
     setFromAmount("")
     setToAmount("")
+  }
+
+  const handleMax =(amounts:string)=>{
+    setFromAmount(amounts);
+    updateQuote(amounts,"from")
   }
 
   const canSwap =
@@ -140,6 +234,9 @@ export default function SwapCard({ isEmbedded = false, className = "" }: SwapCar
                     onClick={() => {
                       onSelect(token.symbol)
                       setIsOpen(false)
+                      setFromAmount("")
+                      setToAmount("")
+                      setTxData(undefined)
                     }}
                     className="w-full flex items-center gap-3 p-3 hover:bg-[#f1c40f]/10 transition-colors first:rounded-t-lg last:rounded-b-lg"
                   >
@@ -147,9 +244,6 @@ export default function SwapCard({ isEmbedded = false, className = "" }: SwapCar
                     <div className="flex-1 text-left">
                       <div className="text-white font-medium">{token.symbol}</div>
                       <div className="text-gray-400 text-xs">{token.name}</div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-[#f1c40f] text-sm">{token.balance.toFixed(6)}</div>
                     </div>
                   </button>
                 ))}
@@ -216,7 +310,7 @@ export default function SwapCard({ isEmbedded = false, className = "" }: SwapCar
           <div className="flex items-center justify-between">
             <span className="text-gray-400 text-sm font-medium">FROM:</span>
             <span className="text-gray-400 text-xs">
-              Balance: {fromTokenData?.balance.toFixed(6)} {fromToken}
+              Balance: {fromTokenData?.balance.toFixed(8)} {fromToken}
             </span>
           </div>
           <div className="bg-black/50 rounded-lg p-4 space-y-3">
@@ -225,7 +319,8 @@ export default function SwapCard({ isEmbedded = false, className = "" }: SwapCar
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => setFromAmount(fromTokenData?.balance.toString() || "")}
+                onClick={() => handleMax(fromTokenData?.balance.toString() || "0") 
+                }
                 className="text-[#f1c40f] hover:bg-[#f1c40f]/10 text-xs"
               >
                 MAX
@@ -235,7 +330,7 @@ export default function SwapCard({ isEmbedded = false, className = "" }: SwapCar
               type="number"
               placeholder="0.0"
               value={fromAmount}
-              onChange={(e) => setFromAmount(e.target.value)}
+              onChange={(e)=>handleFromChange(e)}
               className="bg-transparent border-none text-2xl font-bold text-white placeholder-gray-500 p-0 h-auto focus-visible:ring-0"
             />
           </div>
@@ -258,12 +353,12 @@ export default function SwapCard({ isEmbedded = false, className = "" }: SwapCar
           <div className="flex items-center justify-between">
             <span className="text-gray-400 text-sm font-medium">TO:</span>
             <span className="text-gray-400 text-xs">
-              Balance: {toTokenData?.balance.toFixed(6)} {toToken}
+              Balance: {toTokenData?.balance.toFixed(8)} {toToken}
             </span>
           </div>
           <div className="bg-black/50 rounded-lg p-4 space-y-3">
             <TokenSelector selectedToken={toToken} onSelect={setToToken} label="TO" />
-            <div className="text-2xl font-bold text-white">{toAmount || "0.0"}</div>
+            <div className="text-2xl font-bold text-white">{loadingQuote ? "getting quote": <>{toAmount || "0.0"}</>}</div>
           </div>
         </div>
 
@@ -277,7 +372,7 @@ export default function SwapCard({ isEmbedded = false, className = "" }: SwapCar
             <div className="flex items-center justify-between text-sm">
               <span className="text-gray-400">Exchange Rate:</span>
               <span className="text-[#f1c40f] font-medium">
-                1 {fromToken} = {exchangeRate.toFixed(6)} {toToken}
+                {fromAmount} {fromToken} = {toAmount} {toToken}
               </span>
             </div>
             <div className="flex items-center justify-between text-sm mt-1">
@@ -320,7 +415,7 @@ export default function SwapCard({ isEmbedded = false, className = "" }: SwapCar
               <div className="space-y-1">
                 <p className="text-yellow-400 text-sm font-medium">Important Notice</p>
                 <p className="text-yellow-300 text-xs">
-                  Always verify token addresses and amounts before confirming swaps. Slippage may occur during high
+                  Always verify token amounts before confirming swaps. Slippage may occur during high
                   volatility.
                 </p>
               </div>

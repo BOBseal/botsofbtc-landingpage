@@ -94,3 +94,10 @@ export const SkibStake = [
 export const Skib = [
     {address:"0x3efc90a28685d320f6916b76d8c679da67cc23dc",abi:sk.abi}
 ]
+
+export const YELLOW = "#f1c40f" // bright yellow like rampage
+export const DARK_YELLOW = "#d4ac0d" // darker yellow
+export const LIGHT_YELLOW = "#f7dc6f" // lighter yellow
+export const GOLD = "#f39c12" // golden yellow
+export const BLACK = "#1a1a1a" // rich black
+export const DARK_GRAY = "#2c2c2c" // dark gray

@@ -9,6 +9,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { useAccount, useDisconnect } from "wagmi"
 import { useConnectModal } from "@rainbow-me/rainbowkit"
 import "@rainbow-me/rainbowkit/styles.css"
+import { createWalletClient, custom , createPublicClient } from "viem"
 // Important: Do NOT import "@rainbow-me/rainbowkit/styles.css" in this preview runtime.
 // It can trigger a MIME-type load error for CSS as JS. The ConnectButton will remain unstyled here.
 
@@ -52,3 +53,14 @@ export function useWallet() {
     disconnect: () => disconnect(),
   }
 }
+
+
+export const walletClient = createWalletClient({
+  chain:bob,
+  transport:custom(window.ethereum)
+})
+
+export const publicClient = createPublicClient({
+  chain:bob,
+  transport:custom(window.ethereum)
+})

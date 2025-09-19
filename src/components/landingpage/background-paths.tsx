@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion"
 import { useEffect, useState, useMemo, useCallback } from "react"
+import { Button } from "../ui/button"
+import Link from "next/link"
 
 interface SVGPathElement {
   d: string
@@ -467,8 +469,8 @@ export default function BackgroundPaths({
             transition={{ delay: isMobile ? 2 : 3, duration: 0.8 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
+            <Link href={"/mint"}>
             <button
-              onClick={scrollToProject}
               className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-medium text-black transition duration-300 ease-out border-2 border-[#fae9c8] rounded-full group hover:border-white/50"
             >
               <span className="absolute inset-0 flex items-center justify-center w-full h-full duration-300 -translate-x-full bg-[#ffaf19] group-hover:translate-x-0 ease">
@@ -488,10 +490,12 @@ export default function BackgroundPaths({
                 </svg>
               </span>
               <span className="absolute flex items-center justify-center w-full h-full text-[#ffaf19] transition-all duration-300 transform group-hover:translate-x-full ease">
-                Explore App
+               
+                Mint Now
               </span>
-              <span className="relative invisible">Explore App</span>
+              <span className="relative invisible">Mint Now</span>
             </button>
+            </Link>
           </motion.div>
         </motion.div>
       </div>

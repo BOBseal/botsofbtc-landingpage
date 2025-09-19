@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import Image from "next/image"
 import imageHolder from "../../assets/lala.gif"
+import { useSearchParams } from "next/navigation"
 import {
   Zap,
   Shield,
@@ -24,21 +25,13 @@ import {
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { useAccount, useWriteContract, useWaitForTransactionReceipt } from "wagmi"
-import { parseEther, parseUnits, type Address } from "viem"
+import { parseEther, parseUnits, type Address , zeroAddress, isAddress, formatEther} from "viem"
 import { CONTRACTS, TOKEN_DECIMALS } from "@/lib/web3-config"
-import { bobNftAbi } from "@/abis/bob-nft"
-import { erc20Abi } from "@/abis/erc20"
+import MinterABI from "@/utils/ABIS/NFTMinter.json"
+import { publicClient,walletClient } from "@/components/providers/wallet-provider"
+import { readContract } from "viem/actions"
 
-
-const contractData = {
-  mintPriceETH: 0.005, // base price per NFT in ETH
-  pfpLimit: 10000,
-  totalSupplyPerHolder: 10,
-  mintLimitPerWallet: 10,
-  dailySales: 200,
-  totalMinted: 0,
-  mintStatus: "Live",
-}
+const minterAbi = [{"inputs":[{"internalType":"address","name":"_nftAddress","type":"address"},{"internalType":"address","name":"_rpAdd","type":"address"},{"internalType":"uint256","name":"_nextId","type":"uint256"},{"internalType":"uint256","name":"_mCost","type":"uint256"},{"internalType":"uint256","name":"_toId","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"OwnableInvalidOwner","type":"error"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"OwnableUnauthorizedAccount","type":"error"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"inputs":[{"internalType":"address","name":"target","type":"address"},{"internalType":"bytes","name":"data","type":"bytes"}],"name":"_execute","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"_nextIdToMint","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"bob","outputs":[{"internalType":"contract BOTSOFBITCOIN","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"},{"internalType":"address","name":"token","type":"address"}],"name":"getMinterBalances","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getMinterData","outputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getRaised","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"maxMintPerWallet","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"mintCost","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"minterData","outputs":[{"internalType":"uint256","name":"totalMints","type":"uint256"},{"internalType":"address","name":"referer","type":"address"},{"internalType":"uint256","name":"totalReferals","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"address","name":"from","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"data","type":"bytes"}],"name":"onERC721Received","outputs":[{"internalType":"bytes4","name":"","type":"bytes4"}],"stateMutability":"pure","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"ref","type":"address"}],"name":"pubMint","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"referalBonus","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"rpBase","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"rpCore","outputs":[{"internalType":"contract EventCore","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_toId","type":"uint256"},{"internalType":"uint256","name":"_mCost","type":"uint256"},{"internalType":"uint256","name":"_maxPerWallet","type":"uint256"},{"internalType":"uint256","name":"_rpBase","type":"uint256"},{"internalType":"uint256","name":"_nextIdToMint_","type":"uint256"}],"name":"setStates","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"toId","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"withdrawEther","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"withdrawRaised","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"token","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"withdrawUserBalances","outputs":[],"stateMutability":"nonpayable","type":"function"}]
 
 const utilities = [
   { name: "Dynamic PFPs", icon: Sparkles, description: "NFTs that evolve based on market conditions" },
@@ -59,8 +52,20 @@ const mintDetails = [
 function MintContent() {
   const { address, isConnected } = useAccount()
   const [mintQuantity, setMintQuantity] = useState(1)
+  const [contractData , setContractData] = useState({
+    mintPriceETH: 0.005, // base price per NFT in ETH
+    pfpLimit: 10000,
+    totalSupplyPerHolder: 15,
+    mintLimitPerWallet: 15,
+    roundLimit: 300,
+    totalMinted: 0,
+    mintStatus: "Live",
+  })
   const [asset, setAsset] = useState<"ETH" | "WBTC" | "USDT">("ETH")
-
+  const rf= useSearchParams().get("ref")
+  const isRefAddress = isAddress(rf!);
+  const referer = isRefAddress ? rf :zeroAddress
+  //console.log(referer)
   // Mock FX rates (replace with oracle/price feed)
   const [rates] = useState({ ETH_USD: 3000, BTC_USD: 60000 })
 
@@ -69,7 +74,7 @@ function MintContent() {
     totalReferrals: 0,
     totalReferredUsers: 0,
     totalEarnedEth: 0.00,
-    withdrawableEth: 0.00,
+    withdrawableEth: 0.00
   })
 
   const { writeContractAsync, data: pendingHash, isPending: isWriting } = useWriteContract()
@@ -77,6 +82,46 @@ function MintContent() {
     hash: pendingHash,
   })
 
+  async function getAllContractReads(userAddress: `0x${string}`) {
+  const CONTRACT_ADDRESS = CONTRACTS.BOB_NFT
+
+  const results = await publicClient.multicall({
+    contracts: [
+      { address: CONTRACT_ADDRESS, abi: minterAbi, functionName: "_nextIdToMint" },
+      { address: CONTRACT_ADDRESS, abi: minterAbi, functionName: "mintCost" },
+      { address: CONTRACT_ADDRESS, abi: minterAbi, functionName: "getRaised" },
+      { address: CONTRACT_ADDRESS, abi: minterAbi, functionName: "getMinterData", args: [userAddress] },
+      { address: CONTRACT_ADDRESS, abi: minterAbi, functionName: "getMinterBalances", args: [userAddress, "0x0000000000000000000000000000000000000000"] },
+    ],
+    allowFailure: false, // throws if any call fails
+  })
+
+  const [nextId, mintCost, raised, minterData, minterBalanceRaw] = results as [
+    bigint,                 // _nextIdToMint
+    bigint,                 // mintCost
+    bigint,                 // raised
+    [bigint, bigint, `0x${string}`], // getMinterData return tuple (adjust if ABI has more fields)
+    bigint                  // getMinterBalances
+  ]
+   setContractData({
+    ...contractData,
+    mintPriceETH: Number(formatEther(mintCost as bigint)),
+    totalMinted: 2550 - Number(nextId) +1,
+    totalSupplyPerHolder:Number(minterData[0])
+  })
+  setRefTotals({
+    ...refTotals,
+    totalReferrals:Number(minterData[1]),
+    withdrawableEth:Number(formatEther(minterBalanceRaw as bigint))
+  })
+  return {
+    nextId: Number(nextId),
+    mintCost: formatEther(mintCost as bigint),
+    raised: formatEther(raised as bigint),
+    minterData, // depends on how contract returns it (tuple/struct)
+    minterBalance: formatEther(minterBalanceRaw as bigint),
+  }
+}
   const pricePerNft = useMemo(() => {
     const priceEth = contractData.mintPriceETH
     const priceUsd = priceEth * rates.ETH_USD
@@ -104,30 +149,10 @@ function MintContent() {
   async function mintWithETH() {
     return await writeContractAsync({
       address: CONTRACTS.BOB_NFT,
-      abi: bobNftAbi,
-      functionName: "mint",
-      args: [BigInt(mintQuantity)],
+      abi: minterAbi,
+      functionName: "pubMint",
+      args: [referer],
       value: totalCostBigInt(),
-    })
-  }
-
-  async function approveToken(token: Address, amount: bigint) {
-    return await writeContractAsync({
-      address: token,
-      abi: erc20Abi,
-      functionName: "approve",
-      args: [CONTRACTS.BOB_NFT, amount],
-    })
-  }
-
-  async function mintWithToken(token: Address) {
-    const amount = totalCostBigInt()
-    await approveToken(token, amount)
-    return await writeContractAsync({
-      address: CONTRACTS.BOB_NFT,
-      abi: bobNftAbi,
-      functionName: "mintWithToken",
-      args: [token, BigInt(mintQuantity)],
     })
   }
 
@@ -139,10 +164,6 @@ function MintContent() {
     try {
       if (asset === "ETH") {
         await mintWithETH()
-      } else if (asset === "WBTC") {
-        await mintWithToken(CONTRACTS.WBTC)
-      } else {
-        await mintWithToken(CONTRACTS.USDT)
       }
     } catch (err) {
       console.error("Mint error:", err)
@@ -154,9 +175,9 @@ function MintContent() {
     try {
       await writeContractAsync({
         address: CONTRACTS.BOB_NFT,
-        abi: bobNftAbi,
-        functionName: "withdrawReferral",
-        args: [],
+        abi: minterAbi,
+        functionName: "withdrawUserBalances",
+        args: [zeroAddress,parseEther(refTotals.withdrawableEth.toString())],
       })
       setRefTotals((p) => ({ ...p, withdrawableEth: 0 }))
     } catch (e) {
@@ -174,11 +195,13 @@ function MintContent() {
     navigator.clipboard.writeText(link)
   }
 
-  useEffect(() => {
-    if (txSuccess) {
-      // Could refetch balances, supplies, etc.
-    }
-  }, [txSuccess])
+ useEffect(() => {
+  if (!address) return
+  ;(async () => {
+    const data = await getAllContractReads(address as `0x${string}`)
+    console.log("Contract Reads:", data)
+  })()
+}, [address, txSuccess])
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -231,20 +254,20 @@ function MintContent() {
                       <div className="text-white font-bold">{contractData.pfpLimit.toLocaleString()}</div>
                     </div>
                     <div>
-                      <span className="text-gray-400">Per Holder Supply:</span>
-                      <div className="text-white font-bold">{contractData.totalSupplyPerHolder}</div>
-                    </div>
-                    <div>
                       <span className="text-gray-400">Mint Limit/Wallet:</span>
                       <div className="text-white font-bold">{contractData.mintLimitPerWallet}</div>
                     </div>
                     <div>
-                      <span className="text-gray-400">Daily Sales:</span>
-                      <div className="text-white font-bold">{contractData.dailySales} / day</div>
+                      <span className="text-gray-400">Mints This Round:</span>
+                      <div className="text-white font-bold">{contractData.roundLimit} </div>
                     </div>
                     <div>
-                      <span className="text-gray-400">Total Minted:</span>
+                      <span className="text-gray-400">Mints Left:</span>
                       <div className="text-white font-bold">{contractData.totalMinted}</div>
+                    </div>
+                    <div>
+                      <span className="text-gray-400">Your Total Mints:</span>
+                      <div className="text-white font-bold">{contractData.totalSupplyPerHolder}</div>
                     </div>
                   </div>
 
@@ -319,41 +342,7 @@ function MintContent() {
                       <label className="text-sm font-medium text-gray-300">Quantity</label>
                       <div className="text-xs text-gray-400">Max per wallet: {contractData.mintLimitPerWallet}</div>
                     </div>
-                    <div className="flex items-center justify-center gap-3">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setMintQuantity((q) => Math.max(1, q - 1))}
-                        disabled={mintQuantity <= 1}
-                        className="border-[#fae9c8]/30 text-[#fae9c8] hover:bg-[#fae9c8]/10 bg-transparent"
-                      >
-                        <Minus className="w-4 h-4" />
-                      </Button>
-                      <div className="w-20">
-                        <Input
-                          type="number"
-                          value={mintQuantity}
-                          onChange={(e) => {
-                            const v = Math.max(
-                              1,
-                              Math.min(Number.parseInt(e.target.value || "1"), contractData.mintLimitPerWallet),
-                            )
-                            setMintQuantity(v)
-                          }}
-                          className="bg-black/50 border-[#fae9c8]/30 text-white text-center"
-                          min={1}
-                          max={contractData.mintLimitPerWallet}
-                        />
-                      </div>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setMintQuantity((q) => Math.min(contractData.mintLimitPerWallet, q + 1))}
-                        className="border-[#fae9c8]/30 text-[#fae9c8] hover:bg-[#fae9c8]/10"
-                      >
-                        <Plus className="w-4 h-4" />
-                      </Button>
-                    </div>
+                  
                   </div>
 
                   {/* Pricing */}
@@ -393,15 +382,6 @@ function MintContent() {
                   </Button>
 
                   {!isConnected && <p className="text-center text-xs text-gray-400">Connect your wallet to mint.</p>}
-
-                  <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3">
-                    <div className="flex items-start gap-3">
-                      <AlertTriangle className="w-5 h-5 text-yellow-400 mt-0.5 flex-shrink-0" />
-                      <p className="text-yellow-300 text-sm">
-                        Verify the payment asset and total before confirming the transaction in your wallet.
-                      </p>
-                    </div>
-                  </div>
                 </CardContent>
               </Card>
             </motion.div>
@@ -436,25 +416,20 @@ function MintContent() {
                       </Button>
                     </div>
                     <p className="text-xs text-gray-500">
-                      Share this link. You earn a percentage from mints by your referrals.
+                      Share this link. You earn 5% from mints by your referrals.
                     </p>
                   </div>
 
                   <div className="grid grid-cols-1 gap-4">
                     <div className="bg-black/30 rounded-lg p-4">
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-400 text-sm">Total Referrals / Users</span>
+                        <span className="text-gray-400 text-sm">Total Referrals</span>
                         <span className="text-white font-semibold">
-                          {refTotals.totalReferrals} / {refTotals.totalReferredUsers}
+                          {refTotals.totalReferrals}
                         </span>
                       </div>
                     </div>
-                    <div className="bg-black/30 rounded-lg p-4">
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-400 text-sm">Total Earned (ETH)</span>
-                        <span className="text-[#fae9c8] font-semibold">{refTotals.totalEarnedEth.toFixed(4)} ETH</span>
-                      </div>
-                    </div>
+        
                     <div className="bg-black/30 rounded-lg p-4">
                       <div className="flex items-center justify-between">
                         <span className="text-gray-400 text-sm">Withdrawable Balance</span>

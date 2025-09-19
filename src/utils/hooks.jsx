@@ -46,8 +46,13 @@ export const getSwapData = async(amount,path,_from)=>{
         const from = path[0]
         const to = path[1]
         
-        const data  = await fetch(`${baseLink}?src=${from}&dst=${to}&amount=${amount}&from=${_from}`);
-        return data
+        const res = await fetch(`${baseLink}?src=${from}&dst=${to}&amount=${amount}&from=${_from}`);
+        console.log(res)
+        const data = await res.json()
+        //console.log(data)
+        if(res.status === 200){
+            return data
+        } else return null
     } catch (error) {
         console.log(error)
     }

@@ -36,13 +36,6 @@ const features = [
   },
 ]
 
-const stats = [
-  { label: "Total Volume", value: "$2.4B+", icon: BarChart3 },
-  { label: "Active Users", value: "125K+", icon: Users },
-  { label: "Supported Chains", value: "15+", icon: ArrowUpDown },
-  { label: "Average Slippage", value: "<0.1%", icon: TrendingUp },
-]
-
 const partnerFeatures = [
   "Cross-chain swaps with minimal fees",
   "Advanced MEV protection",
@@ -75,7 +68,7 @@ export default function SwapPage() {
             transition={{ duration: 0.8 }}
             className="text-center space-y-6 mb-12"
           >
-            <div
+            {/*<div
               className="inline-flex items-center gap-2 rounded-full px-6 py-3 border"
               style={{
                 background: `${YELLOW}20`,
@@ -87,7 +80,7 @@ export default function SwapPage() {
               <span style={{ color: YELLOW }} className="text-sm font-bold">
                 POWERED BY ICECREAMSWAP
               </span>
-            </div>
+            </div>*/}
 
             <h1
               className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-wide"
@@ -102,14 +95,14 @@ export default function SwapPage() {
             <p className="text-gray-300 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed">
               Trade cryptocurrencies instantly across multiple chains with{" "}
               <span style={{ color: YELLOW }} className="font-semibold">
-                IceCreamSwap{`&apos;`}s
+                IceCreamSwap&apos;s
               </span>{" "}
               battle-tested infrastructure. Experience the sweetest DeFi trading with optimal rates and minimal
               slippage.
             </p>
 
             {/* Partner Badge */}
-            <motion.div
+            {/*<motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
@@ -130,7 +123,7 @@ export default function SwapPage() {
                   <Star className="w-5 h-5" />
                 </div>
               </div>
-            </motion.div>
+            </motion.div>*/}
           </motion.div>
 
           {/* Main Content Grid */}
@@ -176,7 +169,7 @@ export default function SwapPage() {
               </div>
 
               <p className="text-gray-300 max-w-4xl mx-auto text-lg leading-relaxed">
-                We{`&apos;`}ve partnered with{" "}
+                We&apos;ve partnered with{" "}
                 <span style={{ color: YELLOW }} className="font-semibold">
                   IceCreamSwap
                 </span>

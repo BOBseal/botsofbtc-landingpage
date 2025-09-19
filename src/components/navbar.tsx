@@ -14,10 +14,10 @@ export default function Navbar() {
   const [isMobile, setIsMobile] = useState(false)
 
   const navItems = [
-    { name: "Home", href: "#home", id: "home", route: "/" },
     { name: "Mint", href: "/mint", id: "mint", route: "/mint" },
     { name: "Rampage", href: "/rampage", id: "rampage", route: "/rampage" },
-    { name: "Products", href: "/beth", id: "products", route: "/beth" },
+    { name: "Swap", href: "#home", id: "home", route: "/swap" },
+    { name: "BTC-ETH", href: "/beth", id: "products", route: "/beth" },
     { name: "Docs", href: "#docs", id: "docs", route: "/" },
   ]
 
