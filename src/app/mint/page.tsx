@@ -191,7 +191,7 @@ function MintContent() {
 
   const copyReferral = () => {
     const ref = address || "0x0000…"
-    const link = `${typeof window !== "undefined" ? window.location.origin : ""}/mint?ref=${ref}`
+    const link = `${window.location.origin}/mint?ref=${ref}`
     navigator.clipboard.writeText(link)
   }
 
@@ -403,7 +403,7 @@ function MintContent() {
                     <div className="flex items-center gap-2">
                       <Input
                         readOnly
-                        value={`${typeof window !== "undefined" ? window.location.origin : ""}/mint?ref=${address || "0x..."}`}
+                        value={`${window.location.origin}/mint?ref=${address || "0x..."}`}
                         className="bg-black/50 border-[#fae9c8]/30 text-white"
                       />
                       <Button

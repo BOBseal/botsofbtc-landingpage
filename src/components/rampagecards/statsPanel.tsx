@@ -31,7 +31,7 @@ const LIGHT_GRAY = "#3a3a3a" // lighter gray
 
 //Top Panel/Stats
 function StatsPanel({ profile }: { profile: Profile }) {
-  const baseUrl = typeof window !== "undefined" ? window.location.origin : "https://example.com"
+  const baseUrl = window.location.origin
   const referral = `${baseUrl}/rampage?ref=${encodeURIComponent(profile.userAddress)}`
 
   const [copied, setCopied] = useState(false)

@@ -6,17 +6,18 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Copy, Check, ChevronLeft, ChevronRight, Zap, Trophy, Coins, Users, Clock, Target } from "lucide-react"
-
+import { Address } from "viem"
 
 type Profile = {
   username: string
+  userAddress: Address
   bobsHeld: number
   sobsHeld: number
   bethHeld: number
   referrals: number
   rpBalance: number
   lastDailyAt?: number
-  lastSpiceClaimAt?: number
+  rpDaily: number
 }
 
 const YELLOW = "#f1c40f" // bright Rampage yellow
@@ -43,7 +44,6 @@ function SpiceClaimsCard({
   const perBETH = 26.8
 
   const now = Date.now()
-  const last = profile.lastSpiceClaimAt
   const days = Math.max(0, (now) / (24 * 60 * 60 * 1000))
 
   const claimableBOBSpice = profile.bobsHeld * perBOB * days

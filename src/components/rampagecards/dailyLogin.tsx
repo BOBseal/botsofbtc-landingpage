@@ -5,11 +5,13 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
+import { Address } from "viem"
 import { Copy, Check, ChevronLeft, ChevronRight, Zap, Trophy, Coins, Users, Clock, Target } from "lucide-react"
 
 
 type Profile = {
   username: string
+  userAddress: Address
   bobsHeld: number
   sobsHeld: number
   bethHeld: number

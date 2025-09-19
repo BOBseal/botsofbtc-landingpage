@@ -65,18 +65,6 @@ const GOLD = "#f39c12" // golden yellow
 const BLACK = "#1a1a1a" // rich black
 const DARK_GRAY = "#2c2c2c" // dark gray
 
-// Utility to read/write local storage
-function loadProfile(): Profile | null {
-  if (typeof window === "undefined") return null
-  const raw = localStorage.getItem("rampage_profile")
-  if (!raw) return null
-  try {
-    return JSON.parse(raw) as Profile
-  } catch {
-    return null
-  }
-}
-
 export default function RampagePage() {
   const [profile, setProfile] = useState<Profile | null>(null)
   const [uActive , setUActive] = useState(false);
