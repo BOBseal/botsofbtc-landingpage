@@ -145,17 +145,12 @@ export default function RampagePage() {
     }
   }
 
-  const fetchRampageData = useCallback(async () => {
-    const res = await getRampageData(address as Address) // your function
-  }, [address])
-
   useEffect(() => {
     isActive(address as `0x${string}`);
-    fetchRampageData()
-  }, [address,fetchRampageData])
+    getRampageData(address as Address) 
+  }, [address])
 
   const mintProfile = useCallback((username: string) => {
-    const now = Date.now()
     const initial: Profile = {
       username,
       userAddress: address as Address,
