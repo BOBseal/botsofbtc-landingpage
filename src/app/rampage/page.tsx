@@ -165,34 +165,17 @@ export default function RampagePage() {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }, [])
 
-  const awardDaily = useCallback(
-    (amount: number) => {
-      if (!profile) return
-      const p = { ...profile, rpBalance: profile.rpBalance + Math.floor(amount), lastDailyAt: Date.now() }
-      setProfile(p)
-    },
-    [profile],
-  )
+  const awardDaily = ()=>{
+    return true
+  }
 
-  const claimSpice = useCallback(
-    (amount: number) => {
-      if (!profile) return
-      const p = { ...profile, lastSpiceClaimAt: Date.now() }
-      setProfile(p)
-      alert(`Claimed ${amount.toFixed(2)} Spice!`)
-    },
-    [profile],
-  )
+  const claimSpice = ()=>{
+    return true
+  }
 
-  const claimBeth = useCallback(
-    (amount: number) => {
-      if (!profile) return
-      const p = { ...profile, lastSpiceClaimAt: Date.now() }
-      setProfile(p)
-      alert(`Claimed ${amount.toFixed(2)} BETH Spice!`)
-    },
-    [profile],
-  )
+  const claimBeth = ()=>{
+    return true
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white relative">
