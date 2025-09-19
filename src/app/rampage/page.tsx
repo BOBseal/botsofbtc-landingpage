@@ -48,6 +48,7 @@ type UserData = {
 
 type Profile = {
   username: string
+  userAddress: Address
   bobsHeld: number
   sobsHeld: number
   bethHeld: number
@@ -148,24 +149,28 @@ export default function RampagePage() {
           bethHeld: BethHeld,
           lastDailyAt:Number(lastSigntime),
           referrals:Number(tReferals),
-          rpDaily:Number(rpPerD)
+          rpDaily:Number(rpPerD),
+          userAddress:params
         })
     } catch (error) {
       console.log(error)
     }
   }
 
-  useEffect(() => {
-    const active = isActive(address as `0x${string}`);
-    getRampageData(address as Address)
-    const p = loadProfile()
-    setProfile(p)
+  const fetchRampageData = useCallback(async () => {
+    const res = await getRampageData(address as Address) // your function
   }, [address])
+
+  useEffect(() => {
+    isActive(address as `0x${string}`);
+    fetchRampageData()
+  }, [address,fetchRampageData])
 
   const mintProfile = useCallback((username: string) => {
     const now = Date.now()
     const initial: Profile = {
       username,
+      userAddress: address as Address,
       bobsHeld: 6,
       bethHeld:0,
       sobsHeld: 19,

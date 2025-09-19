@@ -6,10 +6,12 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Copy, Check, ChevronLeft, ChevronRight, Zap, Trophy, Coins, Users, Clock, Target } from "lucide-react"
+import { Address } from "viem"
 
 
 type Profile = {
   username: string
+  userAddress: Address
   bobsHeld: number
   sobsHeld: number
   bethHeld: number
@@ -30,7 +32,7 @@ const LIGHT_GRAY = "#3a3a3a" // lighter gray
 //Top Panel/Stats
 function StatsPanel({ profile }: { profile: Profile }) {
   const baseUrl = typeof window !== "undefined" ? window.location.origin : "https://example.com"
-  const referral = `${baseUrl}/rampage?ref=${encodeURIComponent(profile.username)}`
+  const referral = `${baseUrl}/rampage?ref=${encodeURIComponent(profile.userAddress)}`
 
   const [copied, setCopied] = useState(false)
   const copy = async () => {
