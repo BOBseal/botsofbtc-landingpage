@@ -49,22 +49,11 @@ const quickLinks = [
 export default function Footer() {
   const [isMobile, setIsMobile] = useState(false)
 
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-    return () => window.removeEventListener("resize", checkMobile)
-  }, [])
-
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
     }
-  }
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
   return (
@@ -204,21 +193,6 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* Back to Top Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-center pt-4 md:pt-8"
-          >
-            <button
-              onClick={scrollToTop}
-              className="border-[#ffaf19]/30 text-[#ffaf19] hover:bg-[#ffaf19] hover:text-black transition-all duration-300 rounded-full px-6 md:px-8 py-2 bg-transparent text-sm md:text-base"
-            >
-              Back to Top ↑
-            </button>
-          </motion.div>
         </motion.div>
       </div>
     </footer>

@@ -10,7 +10,6 @@ import { Address } from "viem"
 
 type Profile = {
   username: string
-  userAddress: Address
   bobsHeld: number
   sobsHeld: number
   bethHeld: number

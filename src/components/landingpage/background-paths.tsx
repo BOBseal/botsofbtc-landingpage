@@ -393,13 +393,6 @@ export default function BackgroundPaths({
   const words = title.split(" ")
   const [isMobile, setIsMobile] = useState(false)
 
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-    return () => window.removeEventListener("resize", checkMobile)
-  }, [])
-
   const scrollToProject = useCallback(() => {
     document.getElementById("project")?.scrollIntoView({ behavior: "smooth" })
   }, [])

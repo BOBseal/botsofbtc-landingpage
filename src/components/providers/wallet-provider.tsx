@@ -57,10 +57,10 @@ export function useWallet() {
 
 export const walletClient = createWalletClient({
   chain:bob,
-  transport:custom(window.ethereum)
+  transport:http("https://rpc.gobob.xyz")
 })
 
 export const publicClient = createPublicClient({
   chain:bob,
-  transport:custom(window.ethereum)
+  transport:http("https://rpc.gobob.xyz")
 })

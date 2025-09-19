@@ -21,16 +21,6 @@ export default function Navbar() {
     { name: "Docs", href: "#docs", id: "docs", route: "/" },
   ]
 
-  // Optimized mobile detection
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
-
-    const debouncedResize = debounce(checkMobile, 150)
-    window.addEventListener("resize", debouncedResize)
-    return () => window.removeEventListener("resize", debouncedResize)
-  }, [])
-
   // Throttled scroll handler for better performance
   const handleScroll = useCallback(
     throttle(() => {

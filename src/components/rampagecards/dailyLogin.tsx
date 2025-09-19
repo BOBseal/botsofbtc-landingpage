@@ -11,7 +11,6 @@ import { Copy, Check, ChevronLeft, ChevronRight, Zap, Trophy, Coins, Users, Cloc
 
 type Profile = {
   username: string
-  userAddress: Address
   bobsHeld: number
   sobsHeld: number
   bethHeld: number

@@ -11,7 +11,6 @@ import { Address } from "viem"
 
 type Profile = {
   username: string
-  userAddress: Address
   bobsHeld: number
   sobsHeld: number
   bethHeld: number
@@ -30,9 +29,9 @@ const DARK_GRAY = "#2c2c2c" // dark gray
 const LIGHT_GRAY = "#3a3a3a" // lighter gray
 
 //Top Panel/Stats
-function StatsPanel({ profile }: { profile: Profile }) {
-  const baseUrl = window.location.origin
-  const referral = `${baseUrl}/rampage?ref=${encodeURIComponent(profile.userAddress)}`
+function StatsPanel({ profile , user }: { profile: Profile , user:Address }) {
+  const baseUrl = "https://botsofbtc.com"
+  const referral = `${baseUrl}/rampage?ref=${user}`
 
   const [copied, setCopied] = useState(false)
   const copy = async () => {

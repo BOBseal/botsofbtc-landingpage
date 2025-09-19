@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import SwapCard from "@/components/swap-card"
 import { TrendingUp, Zap, Shield, ArrowUpDown, BarChart3, Users, ExternalLink, Star } from "lucide-react"
+import Link from "next/link"
 
 const YELLOW = "#f1c40f" // bright yellow like rampage
 const DARK_YELLOW = "#d4ac0d" // darker yellow
@@ -215,26 +216,14 @@ export default function SwapPage() {
                   Join thousands of traders who trust IceCreamSwap for their DeFi needs
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <button
-                    className="inline-flex items-center gap-2 rounded-full font-bold px-6 py-3 transform transition-all duration-200 hover:scale-105"
-                    style={{
-                      background: BLACK,
-                      color: YELLOW,
-                      boxShadow: `0 10px 25px rgba(0,0,0,0.4), 0 0 20px ${YELLOW}40`,
-                    }}
-                    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                  >
-                    <ArrowUpDown className="w-5 h-5" />
-                    Start Trading Now
-                  </button>
+                  <Link href={"https://icecreamswap.com"} target="_blank"></Link>
                   <button
                     className="inline-flex items-center gap-2 rounded-full font-bold px-6 py-3 border transform transition-all duration-200 hover:scale-105"
                     style={{
                       borderColor: BLACK,
-                      color: BLACK,
-                      background: "transparent",
+                      color: YELLOW,
+                      background: "BLACK",
                     }}
-                    onClick={() => window.open("https://icecreamswap.com", "_blank")}
                   >
                     <ExternalLink className="w-5 h-5" />
                     Visit IceCreamSwap

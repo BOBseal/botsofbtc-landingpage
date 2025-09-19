@@ -48,7 +48,6 @@ type UserData = {
 
 type Profile = {
   username: string
-  userAddress: Address
   bobsHeld: number
   sobsHeld: number
   bethHeld: number
@@ -66,7 +65,16 @@ const BLACK = "#1a1a1a" // rich black
 const DARK_GRAY = "#2c2c2c" // dark gray
 
 export default function RampagePage() {
-  const [profile, setProfile] = useState<Profile | null>(null)
+  const [profile, setProfile] = useState<Profile>({
+    username:"",
+    bobsHeld:0,
+    sobsHeld:0,
+    bethHeld:0,
+    referrals:0,
+    rpBalance:0,
+    lastDailyAt:0,
+    rpDaily:0
+  })
   const [uActive , setUActive] = useState(false);
   const [tab, setTab] = useState<"daily" | "claims">("claims")
   const { address, isConnected } = useAccount()
@@ -137,8 +145,7 @@ export default function RampagePage() {
           bethHeld: BethHeld,
           lastDailyAt:Number(lastSigntime),
           referrals:Number(tReferals),
-          rpDaily:Number(rpPerD),
-          userAddress:params
+          rpDaily:Number(rpPerD)
         })
     } catch (error) {
       console.log(error)
@@ -146,9 +153,26 @@ export default function RampagePage() {
   }
 
   useEffect(() => {
-    isActive(address as `0x${string}`);
-    getRampageData(address as Address) 
-  }, [address])
+  if (!address) return; // ✅ don't run if address is null/undefined
+
+  let cancelled = false;
+
+  (async () => {
+    try {
+      // Run them in parallel if both are async
+      await Promise.all([
+        isActive(address as `0x${string}`),
+        getRampageData(address as Address),
+      ]);
+    } catch (err) {
+      console.error("Failed to fetch user data:", err);
+    }
+  })();
+
+  return () => {
+    cancelled = true; // in case you want to abort pending updates
+  };
+}, [address]);
 
   const mintProfile = ()=>{
     return true
@@ -224,7 +248,7 @@ export default function RampagePage() {
 
               <div className="flex-1 space-y-6">
                 {/* STATS */}
-                <StatsPanel profile={profile as Profile} />
+                <StatsPanel profile={profile as Profile} user={address as Address} />
 
                 {/* Enhanced Tabs */}
                 <div className="w-full max-w-5xl mx-auto px-4">

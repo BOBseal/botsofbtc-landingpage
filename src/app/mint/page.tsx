@@ -30,6 +30,7 @@ import { CONTRACTS, TOKEN_DECIMALS } from "@/lib/web3-config"
 import MinterABI from "@/utils/ABIS/NFTMinter.json"
 import { publicClient,walletClient } from "@/components/providers/wallet-provider"
 import { readContract } from "viem/actions"
+import Link from "next/link"
 
 const minterAbi = [{"inputs":[{"internalType":"address","name":"_nftAddress","type":"address"},{"internalType":"address","name":"_rpAdd","type":"address"},{"internalType":"uint256","name":"_nextId","type":"uint256"},{"internalType":"uint256","name":"_mCost","type":"uint256"},{"internalType":"uint256","name":"_toId","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"OwnableInvalidOwner","type":"error"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"OwnableUnauthorizedAccount","type":"error"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"inputs":[{"internalType":"address","name":"target","type":"address"},{"internalType":"bytes","name":"data","type":"bytes"}],"name":"_execute","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"_nextIdToMint","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"bob","outputs":[{"internalType":"contract BOTSOFBITCOIN","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"},{"internalType":"address","name":"token","type":"address"}],"name":"getMinterBalances","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getMinterData","outputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getRaised","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"maxMintPerWallet","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"mintCost","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"minterData","outputs":[{"internalType":"uint256","name":"totalMints","type":"uint256"},{"internalType":"address","name":"referer","type":"address"},{"internalType":"uint256","name":"totalReferals","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"address","name":"from","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"data","type":"bytes"}],"name":"onERC721Received","outputs":[{"internalType":"bytes4","name":"","type":"bytes4"}],"stateMutability":"pure","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"ref","type":"address"}],"name":"pubMint","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"referalBonus","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"rpBase","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"rpCore","outputs":[{"internalType":"contract EventCore","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_toId","type":"uint256"},{"internalType":"uint256","name":"_mCost","type":"uint256"},{"internalType":"uint256","name":"_maxPerWallet","type":"uint256"},{"internalType":"uint256","name":"_rpBase","type":"uint256"},{"internalType":"uint256","name":"_nextIdToMint_","type":"uint256"}],"name":"setStates","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"toId","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"withdrawEther","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"withdrawRaised","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"token","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"withdrawUserBalances","outputs":[],"stateMutability":"nonpayable","type":"function"}]
 
@@ -191,7 +192,7 @@ function MintContent() {
 
   const copyReferral = () => {
     const ref = address || "0x0000…"
-    const link = `${window.location.origin}/mint?ref=${ref}`
+    const link = `https://botsofbtc.com/mint?ref=${ref}`
     navigator.clipboard.writeText(link)
   }
 
@@ -281,14 +282,15 @@ function MintContent() {
                     <div className="text-xs text-gray-500 break-all">Contract: {CONTRACTS.BOB_NFT}</div>
                   </div>
 
+                  <Link href={`https://etherscan.io/address/${CONTRACTS.BOB_NFT}`} target="_blank">
                   <Button
                     variant="outline"
                     className="w-full border-[#fae9c8]/30 text-[#fae9c8] hover:bg-[#fae9c8]/10 bg-transparent"
-                    onClick={() => window.open(`https://etherscan.io/address/${CONTRACTS.BOB_NFT}`, "_blank")}
                   >
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Open Dashboard
                   </Button>
+                  </Link>
                 </CardContent>
               </Card>
             </motion.div>
@@ -403,7 +405,7 @@ function MintContent() {
                     <div className="flex items-center gap-2">
                       <Input
                         readOnly
-                        value={`${window.location.origin}/mint?ref=${address || "0x..."}`}
+                        value={`https://botsofbtc.com/mint?ref=${address || "0x..."}`}
                         className="bg-black/50 border-[#fae9c8]/30 text-white"
                       />
                       <Button

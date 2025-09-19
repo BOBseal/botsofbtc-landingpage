@@ -98,22 +98,6 @@ function AnimatedPartnerRow({
 }) {
   const [screenSize, setScreenSize] = useState<keyof typeof imgSizeData>("md")
 
-  useEffect(() => {
-    const updateScreenSize = () => {
-      if (window.innerWidth < 640) {
-        setScreenSize("sm")
-      } else if (window.innerWidth < 1024) {
-        setScreenSize("md")
-      } else {
-        setScreenSize("lg")
-      }
-    }
-
-    updateScreenSize()
-    window.addEventListener("resize", updateScreenSize)
-    return () => window.removeEventListener("resize", updateScreenSize)
-  }, [])
-
   // Duplicate partners for seamless loop
   const duplicatedPartners = [...partners, ...partners, ...partners]
 

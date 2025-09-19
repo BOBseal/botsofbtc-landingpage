@@ -191,13 +191,6 @@ function RoadmapItem({
 }) {
   const [isMobile, setIsMobile] = useState(false)
 
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-    return () => window.removeEventListener("resize", checkMobile)
-  }, [])
-
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
@@ -232,13 +225,6 @@ function RoadmapPhase({ phase, index }: { phase: any; index: number }) {
   const config = statusConfig[phase.status as keyof typeof statusConfig]
   const StatusIcon = config.icon
   const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-    return () => window.removeEventListener("resize", checkMobile)
-  }, [])
 
   const completedItems = phase.items.filter((item: any) => item.completed).length
   const totalItems = phase.items.length
@@ -340,13 +326,6 @@ function RoadmapPhase({ phase, index }: { phase: any; index: number }) {
 
 export default function Roadmap() {
   const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-    return () => window.removeEventListener("resize", checkMobile)
-  }, [])
 
   return (
     <section id="roadmap" className="py-12 md:py-20 px-4 md:px-6 bg-black border-t border-[#fae9c8]/10">

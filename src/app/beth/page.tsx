@@ -46,13 +46,6 @@ export default function BethPage() {
   const [isMobile, setIsMobile] = useState(false)
   const { isConnected } = useWallet()
 
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-    return () => window.removeEventListener("resize", checkMobile)
-  }, [])
-
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
       <Navbar />

@@ -27,13 +27,6 @@ const features = [
 export default function ProjectDetails() {
   const [isMobile, setIsMobile] = useState(false)
 
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-    return () => window.removeEventListener("resize", checkMobile)
-  }, [])
-
   return (
     <section id="project" className="min-h-screen bg-black py-12 md:py-20 px-4 md:px-6">
       <div className="container mx-auto max-w-6xl">
