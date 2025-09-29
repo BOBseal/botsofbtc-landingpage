@@ -72,9 +72,7 @@ export default function RampagePage() {
   const [uActive , setUActive] = useState(false);
   const [tab, setTab] = useState<"daily" | "claims">("claims")
   const { address, isConnected } = useAccount()
-  const rf= useSearchParams().get("ref")
-  const isRefAddress = isAddress(rf!);
-  const referer = isRefAddress ? rf : zeroAddress
+  const [referer , setReferer] = useState<`0x${string}`>();
   console.log(referer)
   const { data: walletClient } = useWalletClient()
 
@@ -155,7 +153,6 @@ export default function RampagePage() {
   if (!address) return; // ✅ don't run if address is null/undefined
 
   let cancelled = false;
-
   (async () => {
     try {
       // Run them in parallel if both are async
@@ -167,11 +164,17 @@ export default function RampagePage() {
       console.error("Failed to fetch user data:", err);
     }
   })();
-
+  
   return () => {
     cancelled = true; // in case you want to abort pending updates
   };
 }, [address]);
+
+useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const rf = params.get("ref") ?? undefined
+    setReferer(rf as `0x${string}`) // ✅ only one call, no extra ()
+}, [])
 
   const mintProfile = async(name:string)=>{
     try {
