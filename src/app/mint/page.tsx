@@ -86,7 +86,7 @@ function MintContent() {
 
   async function getAllContractReads(userAddress: `0x${string}`) {
   const CONTRACT_ADDRESS = CONTRACTS.BOB_NFT
-
+   if (!publicClient) return; 
   const results = await publicClient.multicall({
     contracts: [
       { address: CONTRACT_ADDRESS, abi: minterAbi, functionName: "_nextIdToMint" },

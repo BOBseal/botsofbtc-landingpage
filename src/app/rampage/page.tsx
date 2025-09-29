@@ -78,6 +78,7 @@ export default function RampagePage() {
   const { data: walletClient } = useWalletClient()
 
   async function isActive(params:`0x${string}`) {
+     if (!publicClient) return; 
     try {
       const add = Contracts.rampage.address as Address
       const active = await publicClient.readContract({
@@ -95,6 +96,7 @@ export default function RampagePage() {
   }
 
   async function getRampageData(params:Address) {
+     if (!publicClient) return; 
     try {
       const RampageAddress = Contracts.core.address as Address
       const RampageAbi = Contracts.core.abi as any[]
@@ -151,7 +153,7 @@ export default function RampagePage() {
   }
 
   useEffect(() => {
-  if (!address) return; // ✅ don't run if address is null/undefined
+  if (!address || !publicClient) return; // ✅ don't run if address is null/undefined
 
   let cancelled = false;
   (async () => {
@@ -178,6 +180,7 @@ useEffect(() => {
 }, [])
 
   const mintProfile = async(name:string)=>{
+     if (!publicClient) return; 
     try {
       if (!walletClient) throw new Error("Wallet not connected")
       const hash = await walletClient.writeContract({
@@ -199,7 +202,7 @@ useEffect(() => {
   }
 
   const awardDaily = async()=>{
-
+    if (!publicClient) return; 
       try {
         if (!walletClient) throw new Error("Wallet not connected")
       const hash = await walletClient.writeContract({
