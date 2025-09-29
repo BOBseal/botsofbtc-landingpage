@@ -120,7 +120,7 @@ const roadmapData = [
     phase: "Phase 4",
     title: "DePIN + RWA Expansion",
     status: "planned",
-    quarter: "Q4 2024",
+    quarter: "Q2-4 2026",
     items: [
       {
         title: "...",
