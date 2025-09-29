@@ -404,14 +404,6 @@ export default function BackgroundPaths({
     >
       <div className="absolute inset-0">
         <div className="opacity-60">{!loading && svgData && <TracedSVGPaths svgData={svgData} />}</div>
-
-        {/* Simplified gradients for mobile */}
-        {!isMobile && (
-          <>
-            <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/30" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/20" />
-          </>
-        )}
       </div>
 
       <div className="relative z-10 container mx-auto px-4 md:px-6 text-center mt-16">

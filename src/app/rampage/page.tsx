@@ -11,13 +11,15 @@ import WelcomeCard from "@/components/rampagecards/welcomeCard"
 import StatsPanel from "@/components/rampagecards/statsPanel"
 import DailyLoginCard from "@/components/rampagecards/dailyLogin"
 import SpiceClaimsCard from "@/components/rampagecards/dailySpice"
-import { publicClient, walletClient } from "@/components/providers/wallet-provider"
+import { publicClient } from "@/components/providers/wallet-provider"
 import EVENT_CORE from "@/utils/ABIS/EventCore.json"
 import RampageV1  from "@/utils/ABIS/RAMPAGEv1.json"
-import { Address, erc20Abi, erc721Abi,decodeAbiParameters, formatUnits} from "viem"
-import { useAccount } from "wagmi"
+import { Address, erc20Abi, erc721Abi,decodeAbiParameters, formatUnits, parseEther, isAddress, zeroAddress} from "viem"
+import { useAccount} from "wagmi"
 import { Bytes } from "ethers"
 import { CONTRACTS, TOKEN_DECIMALS } from "@/lib/web3-config"
+import { useSearchParams } from "next/navigation"
+import { useWalletClient } from 'wagmi'
 
 const Contracts = {
   rampage:{
@@ -28,14 +30,6 @@ const Contracts = {
     address:"0xCA9c5943Dd7d0fE1E6A0Cf12F2eA65d310A3b2AA",
     abi:EVENT_CORE.abi
   }
-}
-
-function decodeUsername(encoded: `0x${string}`): string {
-  const [username] = decodeAbiParameters(
-    [{ type: "string" }],
-    encoded as `0x${string}`
-  );
-  return username;
 }
 
 type UserData = {
@@ -78,6 +72,11 @@ export default function RampagePage() {
   const [uActive , setUActive] = useState(false);
   const [tab, setTab] = useState<"daily" | "claims">("claims")
   const { address, isConnected } = useAccount()
+  const rf= useSearchParams().get("ref")
+  const isRefAddress = isAddress(rf!);
+  const referer = isRefAddress ? rf : zeroAddress
+  console.log(referer)
+  const { data: walletClient } = useWalletClient()
 
   async function isActive(params:`0x${string}`) {
     try {
@@ -174,20 +173,47 @@ export default function RampagePage() {
   };
 }, [address]);
 
-  const mintProfile = ()=>{
-    return true
+  const mintProfile = async(name:string)=>{
+    try {
+      if (!walletClient) throw new Error("Wallet not connected")
+      const hash = await walletClient.writeContract({
+        account:address as `0x${string}`,
+        address:Contracts.rampage.address as `0x${string}`,
+        abi:Contracts.rampage.abi ,
+        functionName:"createAccount",
+        args:[referer as `0x${string}`,name as string],
+        value: parseEther("0.0001")
+      })
+      const rcp = await publicClient.waitForTransactionReceipt({hash})
+      const [active, rampageData] = await Promise.all([
+      isActive(address as `0x${string}`),
+      getRampageData(address as Address),
+      ]);
+    } catch (error) {
+      console.log(error)
+    }
   }
 
-  const awardDaily = ()=>{
-    return true
-  }
+  const awardDaily = async()=>{
 
-  const claimSpice = ()=>{
-    return true
-  }
-
-  const claimBeth = ()=>{
-    return true
+      try {
+        if (!walletClient) throw new Error("Wallet not connected")
+      const hash = await walletClient.writeContract({
+        account:address as `0x${string}`,
+        address:Contracts.rampage.address as `0x${string}`,
+        abi:Contracts.rampage.abi ,
+        functionName:"dailyLogin",
+        value: parseEther("0.000008")
+      })
+      const rcp = await publicClient.waitForTransactionReceipt({hash})
+      const [active, rampageData] = await Promise.all([
+      isActive(address as `0x${string}`),
+      getRampageData(address as Address),
+      ]);
+    } catch (error) {
+      console.log(error);
+      alert(`Mining went wrong`)
+    }
   }
 
   return (
@@ -305,7 +331,7 @@ export default function RampagePage() {
                       exit={{ opacity: 0, y: -20, scale: 0.95 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <SpiceClaimsCard profile={profile as Profile} onClaimSpice={claimSpice} onClaimBeth={claimBeth} />
+                      <SpiceClaimsCard profile={profile as Profile} />
                     </motion.div>
                   )}
                 </AnimatePresence>

@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Copy, Check, ChevronLeft, ChevronRight, Zap, Trophy, Coins, Users, Clock, Target } from "lucide-react"
-import { Address } from "viem"
+///import { Address } from "viem"
+import { useAccount } from "wagmi"
 
 type Profile = {
   username: string
@@ -29,56 +30,139 @@ const LIGHT_GRAY = "#3a3a3a" // lighter gray
 
 // Spice claim
 function SpiceClaimsCard({
-  profile,
-  onClaimSpice,
-  onClaimBeth,
+  profile
 }: {
   profile: Profile
-  onClaimSpice: (amount: number) => void
-  onClaimBeth: (amount: number) => void
 }) {
-  const perBOB = 500
-  const perSOB = 100
-  const perRP = 0.075
-  const perBETH = 26.8
+  const {address} = useAccount()
+  const [states , setStates] = useState({
+    perBOB:500,
+    perSOB:100,
+    perRP : 0.075,
+    perBETH:0,
+    claimableDailySpice:0,
+    bethDerived:0,
+    totalSpice:0
+  })
+  const [loader,setLoader] = useState(false);
+  const getData = async()=>{
+    try {
+      const spicePerBethRes = await fetch("https://api.botsofbtc.com/beth/spicePerBeth",{method:"GET"})
+      const spicePerBeth = await spicePerBethRes.json();
+      const spicePerBethNum = spicePerBeth.points
+      const bethBlaimCall = await fetch(`https://api.botsofbtc.com/beth/claimableSpice?address=${address}`,{method:"GET"})
+      const clmBeth = await bethBlaimCall.json()
+      const claimableBethSpice = clmBeth.points;
+      const dlyClmCall = await fetch(`https://api.botsofbtc.com/rampage/claimableSpice?address=${address}`,{method:"GET"})
+      const dlyClm = await dlyClmCall.json();
+      const dailyClaimable = dlyClm.claimable;
+      const totalClaimable = Number(claimableBethSpice) + Number(dailyClaimable);
 
-  const now = Date.now()
-  const days = Math.max(0, (now) / (24 * 60 * 60 * 1000))
+      setStates({
+        ...states,
+        perBETH:Number(spicePerBethNum),
+        claimableDailySpice:dailyClaimable,
+        bethDerived:claimableBethSpice,
+        totalSpice:totalClaimable
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const claimSpice = async()=>{
+    try {
+      setLoader(true)
+      const url = `https://api.botsofbtc.com/rampage/dailyClaim`
+      const res =await fetch(url,{
+        method:"POST",
+        headers:{
+                'Content-Type': 'application/json',
+              },
+        body:JSON.stringify({address:address})
+      })
+      if(res.ok){
+        alert(`Claimed ${states.claimableDailySpice} Spice Successfully`)
+        await getData();
+        setLoader(false)
+      }
+      setLoader(false)
+    } catch (error) {
+      console.log(error)
+      alert("Claim Failed, Try again!")
+      setLoader(false)
+    }
+  }
 
-  const claimableBOBSpice = profile.bobsHeld * perBOB * days
-  const claimableSOBSpice = profile.sobsHeld * perSOB * days
-  const claimableRPSpice = profile.rpBalance * perRP * days
-  const totalSpice = claimableBOBSpice + claimableSOBSpice + claimableRPSpice
-
-  const bethDerived = perBETH * days
-
+  const claimBeth = async()=>{
+    try {
+      setLoader(true)
+      const url = `https://api.botsofbtc.com/beth/claimSpice`
+      const res =await fetch(url,{
+        method:"POST",
+        headers:{
+                'Content-Type': 'application/json',
+              },
+        body:JSON.stringify({address:address})
+      })
+      if(res.ok){
+        alert(`Claimed  ${states.bethDerived} Spice Successfully`)
+        await getData();
+        setLoader(false)
+      }
+      setLoader(false)
+    } catch (error) {
+      console.log(error)
+      alert("Claim Failed, Try again!")
+      setLoader(false)
+    }
+  }
   const spiceData = [
     {
       label: "Spice Per BOB/day",
-      value: `${perBOB} Spice`,
+      value: `${states.perBOB} Spice`,
       held: `${profile.bobsHeld} BOB`,
       icon: Coins,
     },
     {
       label: "Spice Per SOB/day",
-      value: `${perSOB} Spice`,
+      value: `${states.perSOB} Spice`,
       held: `${profile.sobsHeld} SOB`,
       icon: Trophy,
     },
     {
       label: "Spice Per RP/day",
-      value: `${perRP} Spice`,
+      value: `${states.perRP} Spice`,
       held: `${profile.rpBalance.toLocaleString()} $RP`,
       icon: Zap,
     },
     {
       label: "Spice Per $BETH/day",
-      value: `${perBETH} Spice`,
-      held: `${bethDerived.toFixed(2)} Spice`,
+      value: `${states.perBETH} Spice`,
+      held: `${states.bethDerived.toFixed(2)} Spice`,
       icon: Target,
     },
   ]
 
+  useEffect(() => {
+    if (!address) return; // ✅ don't run if address is null/undefined
+  
+    let cancelled = false;
+  
+    (async () => {
+      try {
+        // Run them in parallel if both are async
+        await Promise.all([
+          getData()
+        ]);
+      } catch (err) {
+        console.error("Failed to fetch user data:", err);
+      }
+    })();
+  
+    return () => {
+      cancelled = true; // in case you want to abort pending updates
+    };
+  }, [address]);
   return (
     <div className="w-full max-w-4xl mx-auto px-4">
       <motion.div
@@ -147,36 +231,38 @@ function SpiceClaimsCard({
           >
             <div className="flex items-center justify-center gap-3">
               <Trophy className="w-5 h-5" style={{ color: BLACK }} />
-              <span className="text-lg font-bold" style={{ color: BLACK }}>
-                Claimable Spice: {totalSpice.toFixed(2)} Spice
+              <span className="text-lg font-bold" style={{ color: YELLOW }}>
+                Claimable Spice: {states.totalSpice.toFixed(2)} Spice
               </span>
             </div>
           </motion.div>
 
           <div className="flex items-center justify-center gap-4 pt-2">
             <Button
-              onClick={() => onClaimBeth(bethDerived)}
+              onClick={() => claimBeth()}
               className="rounded-full font-extrabold px-6 md:px-8 py-4 transform transition-all duration-200 hover:scale-105"
               style={{
                 background: `linear-gradient(135deg, ${DARK_YELLOW}, ${GOLD})`,
                 color: BLACK,
                 boxShadow: `0 10px 25px rgba(0,0,0,0.4), 0 0 20px ${YELLOW}40`,
               }}
+              disabled={loader}
             >
               <Target className="w-4 h-4 mr-2" />
-              BETH Claim
+              {loader ? <>Claiming</>:<>BETH Claim</>}
             </Button>
             <Button
-              onClick={() => onClaimSpice(totalSpice)}
+              onClick={() => claimSpice()}
               className="rounded-full font-extrabold px-6 md:px-8 py-4 transform transition-all duration-200 hover:scale-105"
               style={{
                 background: YELLOW,
                 color: BLACK,
                 boxShadow: `0 10px 25px rgba(0,0,0,0.4), 0 0 20px ${YELLOW}50`,
               }}
+              disabled={loader}
             >
               <Coins className="w-4 h-4 mr-2" />
-              Claim Spice
+              {loader ? <>Claiming</>:<>Daily Claim</>}
             </Button>
           </div>
         </div>

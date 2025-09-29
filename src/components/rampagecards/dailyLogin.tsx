@@ -29,18 +29,22 @@ const DARK_GRAY = "#2c2c2c" // dark gray
 const LIGHT_GRAY = "#3a3a3a" // lighter gray
 
 // Daily Login Panel
-function DailyLoginCard({ profile, onClaim }: { profile: Profile; onClaim: (amount: number) => void }) {
-  const now = Date.now()
-  const eligible = profile.rpDaily;
-  const nextTime = profile.lastDailyAt ? profile.lastDailyAt + 24 * 60 * 60 * 1000 : 0
-  const canMine = !profile.lastDailyAt || now >= nextTime
+function DailyLoginCard({ profile, onClaim }: { profile: Profile; onClaim: () => void }) {
+  
+  
+  const eligible  = profile.rpDaily
+  const now = Date.now(); // milliseconds
+  const lastDailyAt = profile.lastDailyAt!; // seconds
 
-  const nextStr = useMemo(() => {
-    if (canMine) return "Now"
-    const d = new Date(nextTime)
-    return d.toLocaleString()
-  }, [canMine, nextTime])
+  // nextTime in ms
+  const nextTime = (lastDailyAt + 24 * 60 * 60) * 1000;
 
+  // canMine check
+  const canMine = now >= nextTime;
+
+  // human-readable date
+  const nextTimeHuman = new Date(nextTime).toLocaleString();
+  
   return (
     <div className="w-full max-w-4xl mx-auto px-4">
       <motion.div
@@ -105,7 +109,7 @@ function DailyLoginCard({ profile, onClaim }: { profile: Profile; onClaim: (amou
                   <span className="font-medium text-white">Next Sign-In On :</span>
                 </div>
                 <span className="font-bold text-sm" style={{ color: LIGHT_YELLOW }}>
-                  {nextStr}
+                  {nextTimeHuman}
                 </span>
               </div>
             </motion.div>
@@ -114,7 +118,7 @@ function DailyLoginCard({ profile, onClaim }: { profile: Profile; onClaim: (amou
           <div className="flex justify-center">
             <Button
               disabled={!canMine}
-              onClick={() => onClaim(eligible)}
+              onClick={() => onClaim()}
               className="rounded-full font-extrabold px-8 md:px-12 py-6 text-sm md:text-base transform transition-all duration-200 hover:scale-105"
               style={{
                 background: canMine ? YELLOW : "rgba(241,196,15,0.3)",

@@ -13,11 +13,14 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home")
   const [isMobile, setIsMobile] = useState(false)
 
+  const onBethClick =()=>{
+    alert("Undergoing Upgrades & Modifications");
+  }
   const navItems = [
     { name: "Mint", href: "/mint", id: "mint", route: "/mint" },
     { name: "Rampage", href: "/rampage", id: "rampage", route: "/rampage" },
     { name: "Swap", href: "#home", id: "home", route: "/swap" },
-    { name: "BTC-ETH", href: "/beth", id: "products", route: "/beth" },
+    { name: "BTC-ETH", href: "/", id: "products" , onClick:true },
     { name: "Docs", href: "#docs", id: "docs", route: "/" },
   ]
 
@@ -90,7 +93,10 @@ export default function Navbar() {
                 onClick={() => {
                   if (item.route && item.route !== "/") {
                     window.location.href = item.route
-                  } else {
+                  } if(item.onClick && !item.route){
+                      onBethClick()
+                  } 
+                  else {
                     scrollToSection(item.href)
                   }
                 }}
@@ -147,7 +153,11 @@ export default function Navbar() {
                 onClick={() => {
                   if (item.route && item.route !== "/") {
                     window.location.href = item.route
-                  } else {
+                  } 
+                  if(item.onClick && !item.route){
+                      onBethClick()
+                  } 
+                  else {
                     scrollToSection(item.href)
                   }
                 }}
