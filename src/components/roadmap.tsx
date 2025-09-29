@@ -17,6 +17,7 @@ import {
   Star,
 } from "lucide-react"
 import { useState, useEffect } from "react"
+import Link from "next/link"
 
 const roadmapData = [
   {
@@ -377,6 +378,8 @@ export default function Roadmap() {
               previews.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href={"https://discord.gg/m7MFmG6gKP"}>
+              
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -385,6 +388,8 @@ export default function Roadmap() {
                 <Users className="w-4 h-4" />
                 Join Community
               </motion.button>
+              </Link>
+              <Link href={"https://botsofbtc.notion.site/BOTS-OF-BITCOIN-27ab822513f5459d861d07a6f11271ba"}>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -393,6 +398,7 @@ export default function Roadmap() {
                 <Globe className="w-4 h-4" />
                 View Documentation
               </motion.button>
+              </Link>
             </div>
           </motion.div>
         </motion.div>

@@ -21,7 +21,7 @@ export default function Navbar() {
     { name: "Rampage", href: "/rampage", id: "rampage", route: "/rampage" },
     { name: "Swap", href: "#home", id: "home", route: "/swap" },
     { name: "BTC-ETH", href: "/", id: "products" , onClick:true },
-    { name: "Docs", href: "#docs", id: "docs", route: "/" },
+    { name: "Docs", href: "#docs", id: "docs", route: "https://botsofbtc.notion.site/BOTS-OF-BITCOIN-27ab822513f5459d861d07a6f11271ba?pvs=4" },
   ]
 
   // Throttled scroll handler for better performance

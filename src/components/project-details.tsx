@@ -18,10 +18,10 @@ const technologies = [
 const features = [
   "Genesis NFT collection with staking utility and early ecosystem access",
   "Tokenized BTC/ETH/stablecoin vaults offering yield through DeFi strategies",
-  "Decentralized automation layer for autonomous contract execution on BitVMs",
+  "DePIN layer for autonomous contract execution on BitVMs",
   "Permissionless tools: memecoin launchers, token deployers, Telegram bots",
-  "Partner-driven DeFi integrations: DEX, liquidity management, NFT launchers",
-  "SDKs & Toolings for developers to configure automation and run execution nodes"
+  "Partner-driven DeFi integrations: DEX, liquidity management, Unified DeFi and many more",
+  "SDKs & Toolings for developers, RWAs and much more"
 ]
 
 export default function ProjectDetails() {

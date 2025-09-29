@@ -14,7 +14,7 @@ const socialLinks = [
   {
     name: "Discord",
     icon: MessageCircle,
-    url: "https://discord.gg/G8bkv4yw",
+    url: "https://discord.gg/m7MFmG6gKP",
     description: "Join our community",
   },
   {
@@ -27,21 +27,15 @@ const socialLinks = [
 
 const quickLinks = [
   {
-    name: "FAQ",
-    icon: HelpCircle,
-    href: "#faq",
-    description: "Frequently asked questions",
-  },
-  {
     name: "Documentation",
     icon: ExternalLink,
-    href: "#docs",
+    href: "https://botsofbtc.notion.site/BOTS-OF-BITCOIN-27ab822513f5459d861d07a6f11271ba",
     description: "Technical documentation",
   },
   {
     name: "Contact",
     icon: Mail,
-    href: "#contact",
+    href: "https://discord.com/invite/m7MFmG6gKP",
     description: "Get in touch with us",
   },
 ]
