@@ -11,11 +11,11 @@ import WelcomeCard from "@/components/rampagecards/welcomeCard"
 import StatsPanel from "@/components/rampagecards/statsPanel"
 import DailyLoginCard from "@/components/rampagecards/dailyLogin"
 import SpiceClaimsCard from "@/components/rampagecards/dailySpice"
-import { publicClient } from "@/components/providers/wallet-provider"
+//import { publicClient } from "@/components/providers/wallet-provider"
 import EVENT_CORE from "@/utils/ABIS/EventCore.json"
 import RampageV1  from "@/utils/ABIS/RAMPAGEv1.json"
 import { Address, erc20Abi, erc721Abi,decodeAbiParameters, formatUnits, parseEther, isAddress, zeroAddress} from "viem"
-import { useAccount} from "wagmi"
+import { useAccount, usePublicClient} from "wagmi"
 import { Bytes } from "ethers"
 import { CONTRACTS, TOKEN_DECIMALS } from "@/lib/web3-config"
 import { useSearchParams } from "next/navigation"
@@ -69,6 +69,7 @@ export default function RampagePage() {
     lastDailyAt:0,
     rpDaily:0
   })
+  const publicClient = usePublicClient()
   const [uActive , setUActive] = useState(false);
   const [tab, setTab] = useState<"daily" | "claims">("claims")
   const { address, isConnected } = useAccount()

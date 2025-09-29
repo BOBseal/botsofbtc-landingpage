@@ -24,11 +24,11 @@ import {
 } from "lucide-react"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import { useAccount, useWriteContract, useWaitForTransactionReceipt } from "wagmi"
+import { useAccount, useWriteContract, useWaitForTransactionReceipt, usePublicClient } from "wagmi"
 import { parseEther, parseUnits, type Address , zeroAddress, isAddress, formatEther} from "viem"
 import { CONTRACTS, TOKEN_DECIMALS } from "@/lib/web3-config"
 import MinterABI from "@/utils/ABIS/NFTMinter.json"
-import { publicClient,walletClient } from "@/components/providers/wallet-provider"
+import {walletClient } from "@/components/providers/wallet-provider"
 import { readContract } from "viem/actions"
 import Link from "next/link"
 
@@ -53,6 +53,7 @@ const mintDetails = [
 function MintContent() {
   const { address, isConnected } = useAccount()
   const [mintQuantity, setMintQuantity] = useState(1)
+  const publicClient = usePublicClient()
   const [contractData , setContractData] = useState({
     mintPriceETH: 0.005, // base price per NFT in ETH
     pfpLimit: 10000,
